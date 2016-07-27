@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="PHP,胡说," />
+  <meta name="keywords" content="Mysql," />
 
 
 
@@ -84,16 +84,25 @@
 
 
 
-<meta name="description" content="PHP是最好的语言    呵呵12345678910111213&amp;lt;?phpecho &apos;PHP 是最好的语言&apos;;//关于我define(&apos;NAME&apos;,&apos;杨国奇&apos;);define(&apos;JOB&apos;,&apos;PHPER&apos;);define(&apos;LOCATION&apos;,&apos;陕西西安&apos;);define(&apos;WECHAT&apos;,&apos;ygq1192&apos;);define(&apos;EMAIL&apos;,&apos;lnmput@gmail.com&apos;);?&amp;">
+<meta name="description" content="想戴上最美的面具，又想卸下所有的伪装。
+常用命令
+连接数
+12345678910111213141516171819202122如果是root帐号，你能看到所有用户的当前连接如果是其它普通帐号，只能看到自己占用的连接show processlist; 列出前100条show full processlist; 全部列出show global variables like &apos;%connections">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP是最好的语言">
-<meta property="og:url" content="http://yangguoqi.me/2016/07/23/PHP是最好的语言/index.html">
+<meta property="og:title" content="Mysql性能优化">
+<meta property="og:url" content="http://yangguoqi.me/2016/07/27/Mysql性能优化/index.html">
 <meta property="og:site_name" content="web实验室">
-<meta property="og:description" content="PHP是最好的语言    呵呵12345678910111213&amp;lt;?phpecho &apos;PHP 是最好的语言&apos;;//关于我define(&apos;NAME&apos;,&apos;杨国奇&apos;);define(&apos;JOB&apos;,&apos;PHPER&apos;);define(&apos;LOCATION&apos;,&apos;陕西西安&apos;);define(&apos;WECHAT&apos;,&apos;ygq1192&apos;);define(&apos;EMAIL&apos;,&apos;lnmput@gmail.com&apos;);?&amp;">
-<meta property="og:updated_time" content="2016-07-26T14:23:56.922Z">
+<meta property="og:description" content="想戴上最美的面具，又想卸下所有的伪装。
+常用命令
+连接数
+12345678910111213141516171819202122如果是root帐号，你能看到所有用户的当前连接如果是其它普通帐号，只能看到自己占用的连接show processlist; 列出前100条show full processlist; 全部列出show global variables like &apos;%connections">
+<meta property="og:updated_time" content="2016-07-27T14:38:24.361Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHP是最好的语言">
-<meta name="twitter:description" content="PHP是最好的语言    呵呵12345678910111213&amp;lt;?phpecho &apos;PHP 是最好的语言&apos;;//关于我define(&apos;NAME&apos;,&apos;杨国奇&apos;);define(&apos;JOB&apos;,&apos;PHPER&apos;);define(&apos;LOCATION&apos;,&apos;陕西西安&apos;);define(&apos;WECHAT&apos;,&apos;ygq1192&apos;);define(&apos;EMAIL&apos;,&apos;lnmput@gmail.com&apos;);?&amp;">
+<meta name="twitter:title" content="Mysql性能优化">
+<meta name="twitter:description" content="想戴上最美的面具，又想卸下所有的伪装。
+常用命令
+连接数
+12345678910111213141516171819202122如果是root帐号，你能看到所有用户的当前连接如果是其它普通帐号，只能看到自己占用的连接show processlist; 列出前100条show full processlist; 全部列出show global variables like &apos;%connections">
 
 
 
@@ -114,9 +123,9 @@
 
 
 
-  <link rel="canonical" href="http://yangguoqi.me/2016/07/23/PHP是最好的语言/"/>
+  <link rel="canonical" href="http://yangguoqi.me/2016/07/27/Mysql性能优化/"/>
 
-  <title> PHP是最好的语言 | web实验室 </title>
+  <title> Mysql性能优化 | web实验室 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -236,7 +245,7 @@
             
             
               
-                PHP是最好的语言
+                Mysql性能优化
               
             
           </h1>
@@ -248,8 +257,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-07-23T16:02:22+08:00" content="2016-07-23">
-              2016-07-23
+            <time itemprop="dateCreated" datetime="2016-07-27T22:17:13+08:00" content="2016-07-27">
+              2016-07-27
             </time>
           </span>
 
@@ -276,7 +285,14 @@
       
 
       
-        <p><blockquote class="blockquote-center"><br>    PHP是最好的语言<br>    呵呵<br></blockquote><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="string">'PHP 是最好的语言'</span>;</div><div class="line"></div><div class="line"><span class="comment">//关于我</span></div><div class="line"></div><div class="line">define(<span class="string">'NAME'</span>,<span class="string">'杨国奇'</span>);</div><div class="line">define(<span class="string">'JOB'</span>,<span class="string">'PHPER'</span>);</div><div class="line">define(<span class="string">'LOCATION'</span>,<span class="string">'陕西西安'</span>);</div><div class="line">define(<span class="string">'WECHAT'</span>,<span class="string">'ygq1192'</span>);</div><div class="line">define(<span class="string">'EMAIL'</span>,<span class="string">'lnmput@gmail.com'</span>);</div><div class="line"></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+        <p><blockquote class="blockquote-center"><br>想戴上最美的面具，又想卸下所有的伪装。<br></blockquote></p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
+<li><p>连接数</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">如果是root帐号，你能看到所有用户的当前连接</div><div class="line">如果是其它普通帐号，只能看到自己占用的连接</div><div class="line">show processlist; 列出前<span class="number">100</span>条</div><div class="line">show full processlist; 全部列出</div><div class="line">show <span class="keyword">global</span> variables like <span class="string">'%connections%'</span>; 查看整个MySQL实例的最大连接数限制</div><div class="line">max_connections 就是整个MySQL实例的最大连接数限制</div><div class="line">max_user_connections 是单个用户的最大连接数，这里未指明是哪个用户，是任意一个用户</div><div class="line"></div><div class="line">查看某个用户的最大连接数，<span class="number">0</span>表示不限制：</div><div class="line">select user,max_user_connections from mysql.user where user=<span class="string">'root'</span>;</div><div class="line">通过设置这个值，防止某个指定用户使用过多的连接资源。默认是<span class="number">0</span>，不限制。</div><div class="line"> </div><div class="line">上面<span class="number">3</span>个参数的关系是：</div><div class="line">max_user_connections &lt; 实例 max_user_connections &lt; max_connections</div><div class="line"> </div><div class="line">整个MySQL实例，曾经同时最大连接数，包括很多用户连接数之和：</div><div class="line">show <span class="keyword">global</span> status like <span class="string">'%max_used_connections%'</span>;</div><div class="line"></div><div class="line">修改mysql最大连接数：</div><div class="line">打开my.ini，修改max_connections=<span class="number">100</span>(默认为<span class="number">100</span>)。</div><div class="line"></div><div class="line">使用连接池减少mysql的连接数</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看状态</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show status;</div></pre></td></tr></table></figure></li>
+</ul>
 
       
     </div>
@@ -320,9 +336,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/PHP/" rel="tag">#PHP</a>
-          
-            <a href="/tags/胡说/" rel="tag">#胡说</a>
+            <a href="/tags/Mysql/" rel="tag">#Mysql</a>
           
         </div>
       
@@ -331,13 +345,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/07/27/PHP7-Swoole开发超高性能后台程序/" rel="next" title="PHP7+Swoole开发超高性能后台程序">
+                <i class="fa fa-chevron-left"></i> PHP7+Swoole开发超高性能后台程序
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/23/centos下搭建laravel运行环境/" rel="prev" title="centos下搭建laravel运行环境">
-                centos下搭建laravel运行环境 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -444,7 +458,7 @@
               
             
             
-              <p class="post-toc-empty">Dieser Artikel hat kein Inhaltsverzeichnis</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a></li></ol></div>
             
           </div>
         </section>
