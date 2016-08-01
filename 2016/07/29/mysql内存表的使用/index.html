@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Mysql," />
+  <meta name="keywords" content="mysql," />
 
 
 
@@ -84,25 +84,19 @@
 
 
 
-<meta name="description" content="想戴上最美的面具，又想卸下所有的伪装。
-常用命令
-连接数
-12345678910111213141516171819202122如果是root帐号，你能看到所有用户的当前连接如果是其它普通帐号，只能看到自己占用的连接show processlist; 列出前100条show full processlist; 全部列出show global variables like &apos;%connections">
+<meta name="description" content="答案很长，我准备用一生的时间来回答，你准备要听了吗？
+简介1234567MySQL的内存表，表结构创建在磁盘上，数据存放在内存中，所以当MySQL启动着的时候，这个表是存在的，数据也是存在的，当MySQL重启后，数据消失，表结构还存在（临时表表结构及数据都在内存中）。内存表最大所需内存需要通过max_heap_table_size=1024M设定，临时表最大所需内存需要通过tmp_table_si">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql性能优化">
-<meta property="og:url" content="http://yangguoqi.me/2016/07/27/Mysql性能优化/index.html">
+<meta property="og:title" content="mysql内存表的使用">
+<meta property="og:url" content="http://yangguoqi.me/2016/07/29/mysql内存表的使用/index.html">
 <meta property="og:site_name" content="web实验室">
-<meta property="og:description" content="想戴上最美的面具，又想卸下所有的伪装。
-常用命令
-连接数
-12345678910111213141516171819202122如果是root帐号，你能看到所有用户的当前连接如果是其它普通帐号，只能看到自己占用的连接show processlist; 列出前100条show full processlist; 全部列出show global variables like &apos;%connections">
-<meta property="og:updated_time" content="2016-07-27T14:38:24.361Z">
+<meta property="og:description" content="答案很长，我准备用一生的时间来回答，你准备要听了吗？
+简介1234567MySQL的内存表，表结构创建在磁盘上，数据存放在内存中，所以当MySQL启动着的时候，这个表是存在的，数据也是存在的，当MySQL重启后，数据消失，表结构还存在（临时表表结构及数据都在内存中）。内存表最大所需内存需要通过max_heap_table_size=1024M设定，临时表最大所需内存需要通过tmp_table_si">
+<meta property="og:updated_time" content="2016-07-29T02:09:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql性能优化">
-<meta name="twitter:description" content="想戴上最美的面具，又想卸下所有的伪装。
-常用命令
-连接数
-12345678910111213141516171819202122如果是root帐号，你能看到所有用户的当前连接如果是其它普通帐号，只能看到自己占用的连接show processlist; 列出前100条show full processlist; 全部列出show global variables like &apos;%connections">
+<meta name="twitter:title" content="mysql内存表的使用">
+<meta name="twitter:description" content="答案很长，我准备用一生的时间来回答，你准备要听了吗？
+简介1234567MySQL的内存表，表结构创建在磁盘上，数据存放在内存中，所以当MySQL启动着的时候，这个表是存在的，数据也是存在的，当MySQL重启后，数据消失，表结构还存在（临时表表结构及数据都在内存中）。内存表最大所需内存需要通过max_heap_table_size=1024M设定，临时表最大所需内存需要通过tmp_table_si">
 
 
 
@@ -123,9 +117,9 @@
 
 
 
-  <link rel="canonical" href="http://yangguoqi.me/2016/07/27/Mysql性能优化/"/>
+  <link rel="canonical" href="http://yangguoqi.me/2016/07/29/mysql内存表的使用/"/>
 
-  <title> Mysql性能优化 | web实验室 </title>
+  <title> mysql内存表的使用 | web实验室 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -245,7 +239,7 @@
             
             
               
-                Mysql性能优化
+                mysql内存表的使用
               
             
           </h1>
@@ -257,8 +251,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Veröffentlicht am</span>
-            <time itemprop="dateCreated" datetime="2016-07-27T22:17:13+08:00" content="2016-07-27">
-              2016-07-27
+            <time itemprop="dateCreated" datetime="2016-07-29T09:56:40+08:00" content="2016-07-29">
+              2016-07-29
             </time>
           </span>
 
@@ -285,15 +279,12 @@
       
 
       
-        <p><blockquote class="blockquote-center"><br>想戴上最美的面具，又想卸下所有的伪装。<br></blockquote></p>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
-<li><p>连接数</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">如果是root帐号，你能看到所有用户的当前连接</div><div class="line">如果是其它普通帐号，只能看到自己占用的连接</div><div class="line">show processlist; 列出前<span class="number">100</span>条</div><div class="line">show full processlist; 全部列出</div><div class="line">show <span class="keyword">global</span> variables like <span class="string">'%connections%'</span>; 查看整个MySQL实例的最大连接数限制</div><div class="line">max_connections 就是整个MySQL实例的最大连接数限制</div><div class="line">max_user_connections 是单个用户的最大连接数，这里未指明是哪个用户，是任意一个用户</div><div class="line"></div><div class="line">查看某个用户的最大连接数，<span class="number">0</span>表示不限制：</div><div class="line">select user,max_user_connections from mysql.user where user=<span class="string">'root'</span>;</div><div class="line">通过设置这个值，防止某个指定用户使用过多的连接资源。默认是<span class="number">0</span>，不限制。</div><div class="line"> </div><div class="line">上面<span class="number">3</span>个参数的关系是：</div><div class="line">max_user_connections &lt; 实例 max_user_connections &lt; max_connections</div><div class="line"> </div><div class="line">整个MySQL实例，曾经同时最大连接数，包括很多用户连接数之和：</div><div class="line">show <span class="keyword">global</span> status like <span class="string">'%max_used_connections%'</span>;</div><div class="line"></div><div class="line">修改mysql最大连接数：</div><div class="line">打开my.ini，修改max_connections=<span class="number">100</span>(默认为<span class="number">100</span>)。</div><div class="line"></div><div class="line">使用连接池减少mysql的连接数</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看状态</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show status;</div></pre></td></tr></table></figure></li>
-</ul>
-
+        <p><blockquote class="blockquote-center"><br>答案很长，我准备用一生的时间来回答，你准备要听了吗？<br></blockquote></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">MySQL的内存表，表结构创建在磁盘上，数据存放在内存中，所以当MySQL启动着的时候，</div><div class="line">这个表是存在的，数据也是存在的，当MySQL重启后，数据消失，表结构还存在（</div><div class="line">临时表表结构及数据都在内存中）。内存表最大所需内存需要通过</div><div class="line">max_heap_table_size=<span class="number">1024</span>M设定，临时表最大所需内存需要通过tmp_table_size = <span class="number">1024</span>M</div><div class="line">设定。当数据超过临时表的最大值设定时，自动转为基于磁盘的MyISAM表，</div><div class="line">存储在指定的tmpdir目录，此时因需要进行IO操作，性能会大大下降，</div><div class="line">而内存表不会，内存表满后，会提示数据满错误。</div></pre></td></tr></table></figure>
+<h3 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">内存表的表定义是存放在磁盘上的，扩展名为.frm， 重启不会丢失。</div><div class="line">内存表的数据是存放在内存中的，重启会丢失数据。</div><div class="line">MEMORY表使用一个固定的记录长度格式。</div><div class="line">mysql重启后，主键、自增、索引仍然存在，只是数据丢失。</div></pre></td></tr></table></figure>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">内存表使用哈希散列索引把数据保存在内存中，因此具有极快的速度。</div></pre></td></tr></table></figure>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">内存表不能包含BLOB或者TEXT列。</div><div class="line">内存表不支持事务。</div><div class="line">内存表是表锁，当修改频繁时，性能可能会下降。</div><div class="line">内存表数据清空或删除表后占用内存不会自动释放。</div></pre></td></tr></table></figure>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> mem_table(  </div><div class="line">  <span class="keyword">id</span> <span class="built_in">int</span>(<span class="number">10</span>),  </div><div class="line">  <span class="keyword">num</span> <span class="built_in">int</span>(<span class="number">10</span>)  </div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">MEMORY</span>;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -336,7 +327,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mysql/" rel="tag">#Mysql</a>
+            <a href="/tags/mysql/" rel="tag">#mysql</a>
           
         </div>
       
@@ -345,17 +336,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/27/PHP7-Swoole开发超高性能后台程序/" rel="next" title="PHP7+Swoole开发超高性能后台程序">
-                <i class="fa fa-chevron-left"></i> PHP7+Swoole开发超高性能后台程序
+              <a href="/2016/07/28/稍微理解ORM/" rel="next" title="稍微理解ORM">
+                <i class="fa fa-chevron-left"></i> 稍微理解ORM
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/28/关于出现php-m和phpinfo不一致的问题/" rel="prev" title="关于出现php-m和phpinfo不一致的问题">
-                关于出现php-m和phpinfo不一致的问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -462,7 +449,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征"><span class="nav-number">2.</span> <span class="nav-text">特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">3.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">4.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作"><span class="nav-number">5.</span> <span class="nav-text">基本操作</span></a></li></ol></div>
             
           </div>
         </section>
