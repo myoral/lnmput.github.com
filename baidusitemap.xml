@@ -3,6 +3,59 @@
 
 
     
+  <url>
+    <loc>http://yangguoqi.me/2016/08/04/PHP%E7%9A%84%E8%BF%AD%E4%BB%A3%E5%99%A8/</loc>
+    <lastmod>2016-08-04T13:05:04.000Z</lastmod>
+    <data>
+        <display>
+        <title>PHP的迭代器</title>
+        <pubTime>2016-08-04T12:55:16.000Z</pubTime>
+        
+        <tag>PHP</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2016/08/04/%E5%85%B3%E4%BA%8EPHP%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%9A%84%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E9%A2%98/</loc>
+    <lastmod>2016-08-04T12:39:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>关于PHP迭代器的一道笔试题</title>
+        <pubTime>2016-08-04T12:17:45.000Z</pubTime>
+        
+        <tag>PHP</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2016/08/04/%E5%9C%A8laravel%E4%B8%AD%E4%BD%BF%E7%94%A8twig%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/</loc>
+    <lastmod>2016-08-04T03:42:27.000Z</lastmod>
+    <data>
+        <display>
+        <title>在laravel中使用twig模板引擎</title>
+        <pubTime>2016-08-04T03:30:38.000Z</pubTime>
+        
+        <tag>laravel</tag>
+         
+        <tag>twig</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://yangguoqi.me/2016/07/29/mysql%E5%86%85%E5%AD%98%E8%A1%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
@@ -193,11 +246,11 @@
         <title>centos下搭建laravel运行环境</title>
         <pubTime>2016-07-23T08:13:44.000Z</pubTime>
         
-        <tag>php7</tag>
-         
         <tag>linux</tag>
          
         <tag>laravel</tag>
+         
+        <tag>php7</tag>
          
          
            

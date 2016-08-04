@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mysql," />
+  <meta name="keywords" content="laravel,twig," />
 
 
 
@@ -84,19 +84,49 @@
 
 
 
-<meta name="description" content="那些最容易脸红的人，往往是最善良的。
-相关命令123456789101112131415查看所有用户select host,user from user ;添加一个用户grant all on *.* to yangzie@&quot;%&quot; identified by &quot;123&quot; ; 说明：all表示所有权限(包括增 删 改 查等权限)*.* 表示所有数据库，前面一个* 指的是库，后面指的是表yangzie">
+<meta name="description" content="你走了好，不然总担心你要走。
+实验环境
+laravel 5.1
+
+实验步骤
+1.安装扩展包
+
+1composer require rcrowe/twigbridge
+
+2.在config/app.php下配置
+
+12345678&apos;providers&apos; =&amp;gt; [     ...                TwigBridge\ServiceProvider::class,],&apos;aliase">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql用户相关操作">
-<meta property="og:url" content="http://yangguoqi.me/2016/07/26/mysql用户相关操作/index.html">
+<meta property="og:title" content="在laravel中使用twig模板引擎">
+<meta property="og:url" content="http://yangguoqi.me/2016/08/04/在laravel中使用twig模板引擎/index.html">
 <meta property="og:site_name" content="web实验室">
-<meta property="og:description" content="那些最容易脸红的人，往往是最善良的。
-相关命令123456789101112131415查看所有用户select host,user from user ;添加一个用户grant all on *.* to yangzie@&quot;%&quot; identified by &quot;123&quot; ; 说明：all表示所有权限(包括增 删 改 查等权限)*.* 表示所有数据库，前面一个* 指的是库，后面指的是表yangzie">
-<meta property="og:updated_time" content="2016-07-26T14:51:57.491Z">
+<meta property="og:description" content="你走了好，不然总担心你要走。
+实验环境
+laravel 5.1
+
+实验步骤
+1.安装扩展包
+
+1composer require rcrowe/twigbridge
+
+2.在config/app.php下配置
+
+12345678&apos;providers&apos; =&amp;gt; [     ...                TwigBridge\ServiceProvider::class,],&apos;aliase">
+<meta property="og:updated_time" content="2016-08-04T03:42:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mysql用户相关操作">
-<meta name="twitter:description" content="那些最容易脸红的人，往往是最善良的。
-相关命令123456789101112131415查看所有用户select host,user from user ;添加一个用户grant all on *.* to yangzie@&quot;%&quot; identified by &quot;123&quot; ; 说明：all表示所有权限(包括增 删 改 查等权限)*.* 表示所有数据库，前面一个* 指的是库，后面指的是表yangzie">
+<meta name="twitter:title" content="在laravel中使用twig模板引擎">
+<meta name="twitter:description" content="你走了好，不然总担心你要走。
+实验环境
+laravel 5.1
+
+实验步骤
+1.安装扩展包
+
+1composer require rcrowe/twigbridge
+
+2.在config/app.php下配置
+
+12345678&apos;providers&apos; =&amp;gt; [     ...                TwigBridge\ServiceProvider::class,],&apos;aliase">
 
 
 
@@ -117,9 +147,9 @@
 
 
 
-  <link rel="canonical" href="http://yangguoqi.me/2016/07/26/mysql用户相关操作/"/>
+  <link rel="canonical" href="http://yangguoqi.me/2016/08/04/在laravel中使用twig模板引擎/"/>
 
-  <title> mysql用户相关操作 | web实验室 </title>
+  <title> 在laravel中使用twig模板引擎 | web实验室 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +279,7 @@
             
             
               
-                mysql用户相关操作
+                在laravel中使用twig模板引擎
               
             
           </h1>
@@ -261,8 +291,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-26T22:45:49+08:00" content="2016-07-26">
-              2016-07-26
+            <time itemprop="dateCreated" datetime="2016-08-04T11:30:38+08:00" content="2016-08-04">
+              2016-08-04
             </time>
           </span>
 
@@ -289,8 +319,29 @@
       
 
       
-        <p><blockquote class="blockquote-center"><br>那些最容易脸红的人，往往是最善良的。<br></blockquote></p>
-<h3 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">查看所有用户</div><div class="line">select host,user from user ;</div><div class="line">添加一个用户</div><div class="line">grant all on *.* to yangzie@<span class="string">"%"</span> identified by <span class="string">"123"</span> ; </div><div class="line">说明：</div><div class="line">all表示所有权限(包括增 删 改 查等权限)</div><div class="line">*.* 表示所有数据库，前面一个* 指的是库，后面指的是表</div><div class="line">yangzie为添加的用户名</div><div class="line"><span class="number">123</span>为密码，高版本的mysq会对密码的安全性做验证，简单的密码会导致命令执行失败</div><div class="line">%为匹配的所有主机，% 即可以使用其他连接工具像navicat远程连接</div><div class="line">删除一个用户</div><div class="line">delete from mysql.user where user =<span class="string">'yushan'</span> ;</div><div class="line"></div><div class="line">所有的这些操作完成以后，记得刷新权限</div><div class="line">flush privileges;</div></pre></td></tr></table></figure>
+        <p><blockquote class="blockquote-center"><br>你走了好，不然总担心你要走。<br></blockquote></p>
+<h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><ul>
+<li>laravel 5.1</li>
+</ul>
+<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><ul>
+<li>1.安装扩展包</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer <span class="keyword">require</span> rcrowe/twigbridge</div></pre></td></tr></table></figure>
+<ul>
+<li>2.在config/app.php下配置</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="string">'providers'</span> =&gt; [</div><div class="line">     ...</div><div class="line">                TwigBridge\ServiceProvider::class,</div><div class="line">],</div><div class="line"><span class="string">'aliases'</span> =&gt; [</div><div class="line">    ... </div><div class="line">                <span class="string">'Twig'</span> =&gt; TwigBridge\Facade\Twig::class,</div><div class="line">],</div></pre></td></tr></table></figure>
+<ul>
+<li>3.发布配置文件,该操作会在config目录下新建一个专属twig的配置文件twigbrage.php</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan vendor:publish --provider=<span class="string">"TwigBridge\ServiceProvider"</span></div></pre></td></tr></table></figure>
+<ul>
+<li>4.开始使用</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//返回视图</span></div><div class="line">Route::get(<span class="string">'test'</span>,<span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</div><div class="line">    $users = \App\User::all();</div><div class="line">    <span class="keyword">return</span> view(<span class="string">'hello'</span>,compact(<span class="string">'users'</span>));</div><div class="line">&#125;);</div><div class="line"><span class="comment">//新建视图文件resources/views/hello.twig</span></div><div class="line">&lt;body&gt;</div><div class="line">    &#123;%  <span class="keyword">for</span> user in users %&#125;</div><div class="line">        &#123;&#123; user.name &#125;&#125;</div><div class="line">    &#123;%  <span class="keyword">endfor</span> %&#125;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><blockquote>
+<p><a href="https://packagist.org/packages/rcrowe/twigbridge" target="_blank" rel="external">https://packagist.org/packages/rcrowe/twigbridge</a></p>
+</blockquote>
 
       
     </div>
@@ -334,7 +385,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag">#mysql</a>
+            <a href="/tags/laravel/" rel="tag">#laravel</a>
+          
+            <a href="/tags/twig/" rel="tag">#twig</a>
           
         </div>
       
@@ -343,16 +396,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/25/centos下ftp相关设置/" rel="next" title="centos下ftp相关设置">
-                <i class="fa fa-chevron-left"></i> centos下ftp相关设置
+              <a href="/2016/07/29/mysql内存表的使用/" rel="next" title="mysql内存表的使用">
+                <i class="fa fa-chevron-left"></i> mysql内存表的使用
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/07/27/PHP7-Swoole开发超高性能后台程序/" rel="prev" title="PHP7+Swoole开发超高性能后台程序">
-                PHP7+Swoole开发超高性能后台程序 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/04/关于PHP迭代器的一道笔试题/" rel="prev" title="关于PHP迭代器的一道笔试题">
+                关于PHP迭代器的一道笔试题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -460,7 +513,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关命令"><span class="nav-number">1.</span> <span class="nav-text">相关命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验环境"><span class="nav-number">1.</span> <span class="nav-text">实验环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验步骤"><span class="nav-number">2.</span> <span class="nav-text">实验步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
           </div>
         </section>
