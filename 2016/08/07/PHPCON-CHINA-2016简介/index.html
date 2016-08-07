@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mysql," />
+  <meta name="keywords" content="PHP," />
 
 
 
@@ -84,19 +84,22 @@
 
 
 
-<meta name="description" content="答案很长，我准备用一生的时间来回答，你准备要听了吗？
-简介1234567MySQL的内存表，表结构创建在磁盘上，数据存放在内存中，所以当MySQL启动着的时候，这个表是存在的，数据也是存在的，当MySQL重启后，数据消失，表结构还存在（临时表表结构及数据都在内存中）。内存表最大所需内存需要通过max_heap_table_size=1024M设定，临时表最大所需内存需要通过tmp_table_si">
+<meta name="description" content="无人与我立黄昏，无人问我粥可温
+简介12从2012年起，Think技术社区开始举办PHPCon中国馆开发者大会，至今有近万人关注我们的活动，我们致力于举办有态度，有价值，有干货的技术峰会，邀请行业专家进行分享、圆桌会议。
+演讲1234567891011PHP7+Swoole开发超高性能后台程序--韩天峰PHP7,大象真会飞--胡波PHP7高性能之源--鸟哥PHP在金融股票项目中的应用--超群PHP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql内存表的使用">
-<meta property="og:url" content="http://yangguoqi.me/2016/07/29/mysql内存表的使用/index.html">
+<meta property="og:title" content="PHPCON-CHINA-2016简介">
+<meta property="og:url" content="http://yangguoqi.me/2016/08/07/PHPCON-CHINA-2016简介/index.html">
 <meta property="og:site_name" content="web实验室">
-<meta property="og:description" content="答案很长，我准备用一生的时间来回答，你准备要听了吗？
-简介1234567MySQL的内存表，表结构创建在磁盘上，数据存放在内存中，所以当MySQL启动着的时候，这个表是存在的，数据也是存在的，当MySQL重启后，数据消失，表结构还存在（临时表表结构及数据都在内存中）。内存表最大所需内存需要通过max_heap_table_size=1024M设定，临时表最大所需内存需要通过tmp_table_si">
-<meta property="og:updated_time" content="2016-07-29T02:09:35.000Z">
+<meta property="og:description" content="无人与我立黄昏，无人问我粥可温
+简介12从2012年起，Think技术社区开始举办PHPCon中国馆开发者大会，至今有近万人关注我们的活动，我们致力于举办有态度，有价值，有干货的技术峰会，邀请行业专家进行分享、圆桌会议。
+演讲1234567891011PHP7+Swoole开发超高性能后台程序--韩天峰PHP7,大象真会飞--胡波PHP7高性能之源--鸟哥PHP在金融股票项目中的应用--超群PHP">
+<meta property="og:updated_time" content="2016-08-07T11:46:20.888Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mysql内存表的使用">
-<meta name="twitter:description" content="答案很长，我准备用一生的时间来回答，你准备要听了吗？
-简介1234567MySQL的内存表，表结构创建在磁盘上，数据存放在内存中，所以当MySQL启动着的时候，这个表是存在的，数据也是存在的，当MySQL重启后，数据消失，表结构还存在（临时表表结构及数据都在内存中）。内存表最大所需内存需要通过max_heap_table_size=1024M设定，临时表最大所需内存需要通过tmp_table_si">
+<meta name="twitter:title" content="PHPCON-CHINA-2016简介">
+<meta name="twitter:description" content="无人与我立黄昏，无人问我粥可温
+简介12从2012年起，Think技术社区开始举办PHPCon中国馆开发者大会，至今有近万人关注我们的活动，我们致力于举办有态度，有价值，有干货的技术峰会，邀请行业专家进行分享、圆桌会议。
+演讲1234567891011PHP7+Swoole开发超高性能后台程序--韩天峰PHP7,大象真会飞--胡波PHP7高性能之源--鸟哥PHP在金融股票项目中的应用--超群PHP">
 
 
 
@@ -117,9 +120,9 @@
 
 
 
-  <link rel="canonical" href="http://yangguoqi.me/2016/07/29/mysql内存表的使用/"/>
+  <link rel="canonical" href="http://yangguoqi.me/2016/08/07/PHPCON-CHINA-2016简介/"/>
 
-  <title> mysql内存表的使用 | web实验室 </title>
+  <title> PHPCON-CHINA-2016简介 | web实验室 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +252,7 @@
             
             
               
-                mysql内存表的使用
+                PHPCON-CHINA-2016简介
               
             
           </h1>
@@ -261,8 +264,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-29T09:56:40+08:00" content="2016-07-29">
-              2016-07-29
+            <time itemprop="dateCreated" datetime="2016-08-07T19:35:03+08:00" content="2016-08-07">
+              2016-08-07
             </time>
           </span>
 
@@ -289,12 +292,11 @@
       
 
       
-        <p><blockquote class="blockquote-center"><br>答案很长，我准备用一生的时间来回答，你准备要听了吗？<br></blockquote></p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">MySQL的内存表，表结构创建在磁盘上，数据存放在内存中，所以当MySQL启动着的时候，</div><div class="line">这个表是存在的，数据也是存在的，当MySQL重启后，数据消失，表结构还存在（</div><div class="line">临时表表结构及数据都在内存中）。内存表最大所需内存需要通过</div><div class="line">max_heap_table_size=<span class="number">1024</span>M设定，临时表最大所需内存需要通过tmp_table_size = <span class="number">1024</span>M</div><div class="line">设定。当数据超过临时表的最大值设定时，自动转为基于磁盘的MyISAM表，</div><div class="line">存储在指定的tmpdir目录，此时因需要进行IO操作，性能会大大下降，</div><div class="line">而内存表不会，内存表满后，会提示数据满错误。</div></pre></td></tr></table></figure>
-<h3 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">内存表的表定义是存放在磁盘上的，扩展名为.frm， 重启不会丢失。</div><div class="line">内存表的数据是存放在内存中的，重启会丢失数据。</div><div class="line">MEMORY表使用一个固定的记录长度格式。</div><div class="line">mysql重启后，主键、自增、索引仍然存在，只是数据丢失。</div></pre></td></tr></table></figure>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">内存表使用哈希散列索引把数据保存在内存中，因此具有极快的速度。</div></pre></td></tr></table></figure>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">内存表不能包含BLOB或者TEXT列。</div><div class="line">内存表不支持事务。</div><div class="line">内存表是表锁，当修改频繁时，性能可能会下降。</div><div class="line">内存表数据清空或删除表后占用内存不会自动释放。</div></pre></td></tr></table></figure>
-<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> mem_table(  </div><div class="line">  <span class="keyword">id</span> <span class="built_in">int</span>(<span class="number">10</span>),  </div><div class="line">  <span class="keyword">num</span> <span class="built_in">int</span>(<span class="number">10</span>)  </div><div class="line">) <span class="keyword">ENGINE</span>=<span class="keyword">MEMORY</span>;</div></pre></td></tr></table></figure>
+        <p><blockquote class="blockquote-center"><br>无人与我立黄昏，无人问我粥可温<br></blockquote></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">从<span class="number">2012</span>年起，Think技术社区开始举办PHPCon中国馆开发者大会，至今有近万人关注我们的活动，</div><div class="line">我们致力于举办有态度，有价值，有干货的技术峰会，邀请行业专家进行分享、圆桌会议。</div></pre></td></tr></table></figure>
+<h3 id="演讲"><a href="#演讲" class="headerlink" title="演讲"></a>演讲</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">PHP7+Swoole开发超高性能后台程序--韩天峰</div><div class="line">PHP7,大象真会飞--胡波</div><div class="line">PHP7高性能之源--鸟哥</div><div class="line">PHP在金融股票项目中的应用--超群</div><div class="line">PHP系统问题排查实践--信海龙</div><div class="line">QQ会员活动运营平台PHP7升级实践--徐汉彬</div><div class="line">Sys-Schema--赖明星</div><div class="line">從學徒變大師談Laravel框架擴充與套件開發--范聖佑</div><div class="line">架构探险--卜赫</div><div class="line">百万并发下PHP协程+非阻塞框架设计实践--代维</div><div class="line">起点中文网全新改版的协程之路--张凌</div></pre></td></tr></table></figure>
+<h3 id="网址跳转"><a href="#网址跳转" class="headerlink" title="网址跳转"></a>网址跳转</h3><p><a href="https://github.com/ThinkDevelopers/PHPConChina/tree/master/PHPCON2016" target="_blank" rel="external">官网链接</a></p>
+
       
     </div>
 
@@ -337,7 +339,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag">#mysql</a>
+            <a href="/tags/PHP/" rel="tag">#PHP</a>
           
         </div>
       
@@ -346,16 +348,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/28/稍微理解ORM/" rel="next" title="稍微理解ORM">
-                <i class="fa fa-chevron-left"></i> 稍微理解ORM
+              <a href="/2016/08/04/PHP的迭代器/" rel="next" title="PHP的迭代器">
+                <i class="fa fa-chevron-left"></i> PHP的迭代器
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/04/在laravel中使用twig模板引擎/" rel="prev" title="在laravel中使用twig模板引擎">
-                在laravel中使用twig模板引擎 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/07/PHP生成器的简单理解/" rel="prev" title="PHP生成器的简单理解">
+                PHP生成器的简单理解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -463,7 +465,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征"><span class="nav-number">2.</span> <span class="nav-text">特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">3.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">4.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本操作"><span class="nav-number">5.</span> <span class="nav-text">基本操作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#演讲"><span class="nav-number">2.</span> <span class="nav-text">演讲</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网址跳转"><span class="nav-number">3.</span> <span class="nav-text">网址跳转</span></a></li></ol></div>
             
           </div>
         </section>

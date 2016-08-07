@@ -4,6 +4,40 @@
 
     
   <url>
+    <loc>http://yangguoqi.me/2016/08/07/PHP%E7%94%9F%E6%88%90%E5%99%A8%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/</loc>
+    <lastmod>2016-08-07T12:31:40.478Z</lastmod>
+    <data>
+        <display>
+        <title>PHP生成器的简单理解</title>
+        <pubTime>2016-08-07T12:15:30.000Z</pubTime>
+        
+        <tag>PHP</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2016/08/07/PHPCON-CHINA-2016%E7%AE%80%E4%BB%8B/</loc>
+    <lastmod>2016-08-07T11:46:20.888Z</lastmod>
+    <data>
+        <display>
+        <title>PHPCON-CHINA-2016简介</title>
+        <pubTime>2016-08-07T11:35:03.000Z</pubTime>
+        
+        <tag>PHP</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yangguoqi.me/2016/08/04/PHP%E7%9A%84%E8%BF%AD%E4%BB%A3%E5%99%A8/</loc>
     <lastmod>2016-08-04T13:05:04.000Z</lastmod>
     <data>
@@ -246,11 +280,11 @@
         <title>centos下搭建laravel运行环境</title>
         <pubTime>2016-07-23T08:13:44.000Z</pubTime>
         
+        <tag>php7</tag>
+         
         <tag>linux</tag>
          
         <tag>laravel</tag>
-         
-        <tag>php7</tag>
          
          
            
