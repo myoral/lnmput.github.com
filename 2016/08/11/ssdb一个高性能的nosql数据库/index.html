@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Mysql," />
+  <meta name="keywords" content="nosql,ssdb,redis," />
 
 
 
@@ -84,25 +84,22 @@
 
 
 
-<meta name="description" content="想戴上最美的面具，又想卸下所有的伪装。
-常用命令
-连接数
-12345678910111213141516171819202122如果是root帐号，你能看到所有用户的当前连接如果是其它普通帐号，只能看到自己占用的连接show processlist; 列出前100条show full processlist; 全部列出show global variables like &apos;%connections">
+<meta name="description" content="某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。
+
+简要说明12345678一个高性能的支持丰富数据结构的 NoSQL 数据库, 用于替代 Redis.基于google/leveldb 开发SSDB是一个开源的高性能数据库服务器, 使用Google 的 LevelDB作为存储引擎, 大家有可能没听过leveldb的名字，但是淘宝的开源nosql tair大家应该有所">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql性能优化">
-<meta property="og:url" content="http://yangguoqi.me/2016/07/27/Mysql性能优化/index.html">
+<meta property="og:title" content="ssdb一个高性能的nosql数据库">
+<meta property="og:url" content="http://yangguoqi.me/2016/08/11/ssdb一个高性能的nosql数据库/index.html">
 <meta property="og:site_name" content="web实验室">
-<meta property="og:description" content="想戴上最美的面具，又想卸下所有的伪装。
-常用命令
-连接数
-12345678910111213141516171819202122如果是root帐号，你能看到所有用户的当前连接如果是其它普通帐号，只能看到自己占用的连接show processlist; 列出前100条show full processlist; 全部列出show global variables like &apos;%connections">
-<meta property="og:updated_time" content="2016-07-27T14:38:24.361Z">
+<meta property="og:description" content="某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。
+
+简要说明12345678一个高性能的支持丰富数据结构的 NoSQL 数据库, 用于替代 Redis.基于google/leveldb 开发SSDB是一个开源的高性能数据库服务器, 使用Google 的 LevelDB作为存储引擎, 大家有可能没听过leveldb的名字，但是淘宝的开源nosql tair大家应该有所">
+<meta property="og:updated_time" content="2016-08-11T14:53:29.733Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql性能优化">
-<meta name="twitter:description" content="想戴上最美的面具，又想卸下所有的伪装。
-常用命令
-连接数
-12345678910111213141516171819202122如果是root帐号，你能看到所有用户的当前连接如果是其它普通帐号，只能看到自己占用的连接show processlist; 列出前100条show full processlist; 全部列出show global variables like &apos;%connections">
+<meta name="twitter:title" content="ssdb一个高性能的nosql数据库">
+<meta name="twitter:description" content="某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。
+
+简要说明12345678一个高性能的支持丰富数据结构的 NoSQL 数据库, 用于替代 Redis.基于google/leveldb 开发SSDB是一个开源的高性能数据库服务器, 使用Google 的 LevelDB作为存储引擎, 大家有可能没听过leveldb的名字，但是淘宝的开源nosql tair大家应该有所">
 
 
 
@@ -123,9 +120,9 @@
 
 
 
-  <link rel="canonical" href="http://yangguoqi.me/2016/07/27/Mysql性能优化/"/>
+  <link rel="canonical" href="http://yangguoqi.me/2016/08/11/ssdb一个高性能的nosql数据库/"/>
 
-  <title> Mysql性能优化 | web实验室 </title>
+  <title> ssdb一个高性能的nosql数据库 | web实验室 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +252,7 @@
             
             
               
-                Mysql性能优化
+                ssdb一个高性能的nosql数据库
               
             
           </h1>
@@ -267,8 +264,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-27T22:17:13+08:00" content="2016-07-27">
-              2016-07-27
+            <time itemprop="dateCreated" datetime="2016-08-11T22:26:19+08:00" content="2016-08-11">
+              2016-08-11
             </time>
           </span>
 
@@ -295,14 +292,17 @@
       
 
       
-        <p><blockquote class="blockquote-center"><br>想戴上最美的面具，又想卸下所有的伪装。<br></blockquote></p>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
-<li><p>连接数</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">如果是root帐号，你能看到所有用户的当前连接</div><div class="line">如果是其它普通帐号，只能看到自己占用的连接</div><div class="line">show processlist; 列出前<span class="number">100</span>条</div><div class="line">show full processlist; 全部列出</div><div class="line">show <span class="keyword">global</span> variables like <span class="string">'%connections%'</span>; 查看整个MySQL实例的最大连接数限制</div><div class="line">max_connections 就是整个MySQL实例的最大连接数限制</div><div class="line">max_user_connections 是单个用户的最大连接数，这里未指明是哪个用户，是任意一个用户</div><div class="line"></div><div class="line">查看某个用户的最大连接数，<span class="number">0</span>表示不限制：</div><div class="line">select user,max_user_connections from mysql.user where user=<span class="string">'root'</span>;</div><div class="line">通过设置这个值，防止某个指定用户使用过多的连接资源。默认是<span class="number">0</span>，不限制。</div><div class="line"> </div><div class="line">上面<span class="number">3</span>个参数的关系是：</div><div class="line">max_user_connections &lt; 实例 max_user_connections &lt; max_connections</div><div class="line"> </div><div class="line">整个MySQL实例，曾经同时最大连接数，包括很多用户连接数之和：</div><div class="line">show <span class="keyword">global</span> status like <span class="string">'%max_used_connections%'</span>;</div><div class="line"></div><div class="line">修改mysql最大连接数：</div><div class="line">打开my.ini，修改max_connections=<span class="number">100</span>(默认为<span class="number">100</span>)。</div><div class="line"></div><div class="line">使用连接池减少mysql的连接数</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看状态</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show status;</div></pre></td></tr></table></figure></li>
-</ul>
+        <blockquote class="blockquote-center"><br>某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。<br></blockquote>
+
+<h3 id="简要说明"><a href="#简要说明" class="headerlink" title="简要说明"></a>简要说明</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">一个高性能的支持丰富数据结构的 NoSQL 数据库, 用于替代 Redis.</div><div class="line">基于google/leveldb 开发SSDB是一个开源的高性能数据库服务器, </div><div class="line">使用Google 的 LevelDB作为存储引擎, 大家有可能没听过leveldb的名字，</div><div class="line">但是淘宝的开源nosql tair大家应该有所耳闻吧，他也是基于leveldb做的开发。</div><div class="line">ssdb支持T级别的数据, 同时支持类似Redis中的zset和hash等数据结构,</div><div class="line">在同时需求高性能和大数据的条件下, 是一个可以代替Redis的方案.</div><div class="line">ssdb是一个持久化存储的KV系统，和Memcached、Redis这种内存型的KV系统不同，</div><div class="line">ssdb不会像Redis一样狂吃内存，而是将大部分数据存储到磁盘上。</div></pre></td></tr></table></figure>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate https:<span class="comment">//github.com/ideawu/ssdb/archive/master.zip</span></div><div class="line">unzip master</div><div class="line">cd ssdb-master</div><div class="line">make</div><div class="line"><span class="comment"># optional, install ssdb in /usr/local/ssdb</span></div><div class="line">sudo make install</div></pre></td></tr></table></figure>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># start master</span></div><div class="line">./ssdb-server ssdb.conf</div><div class="line"></div><div class="line"><span class="comment"># or start as daemon</span></div><div class="line">./ssdb-server -d ssdb.conf</div></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">require_once</span>(<span class="string">'SSDB.php'</span>);</div><div class="line">$ssdb = <span class="keyword">new</span> SimpleSSDB(<span class="string">'127.0.0.1'</span>, <span class="number">8888</span>);</div><div class="line">$resp = $ssdb-&gt;set(<span class="string">'key'</span>, <span class="string">'123'</span>);</div><div class="line">$resp = $ssdb-&gt;get(<span class="string">'key'</span>);</div><div class="line"><span class="keyword">echo</span> $resp; <span class="comment">// output: 123</span></div></pre></td></tr></table></figure>
+<h3 id="关于leveldb"><a href="#关于leveldb" class="headerlink" title="关于leveldb"></a>关于leveldb</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">LevelDB是google开源的一个key-value存储引擎库，类似于开源的Lucene索引库一样。</div><div class="line">其他的软件开发者可以利用该库做二次开发，来满足定制需求。</div><div class="line">LevelDB采用日志式的写方式来提高写性能，但是牺牲了部分读性能。</div><div class="line">为了弥补牺牲了的读性能，一些人提议使用SSD作为存储介质。</div></pre></td></tr></table></figure>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">高级应用可以查看主从这一块儿</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="http://ssdb.io/zh_cn/" target="_blank" rel="external">http://ssdb.io/zh_cn/</a></p>
+</blockquote>
 
       
     </div>
@@ -346,7 +346,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mysql/" rel="tag">#Mysql</a>
+            <a href="/tags/nosql/" rel="tag">#nosql</a>
+          
+            <a href="/tags/ssdb/" rel="tag">#ssdb</a>
+          
+            <a href="/tags/redis/" rel="tag">#redis</a>
           
         </div>
       
@@ -355,17 +359,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/27/PHP7-Swoole开发超高性能后台程序/" rel="next" title="PHP7+Swoole开发超高性能后台程序">
-                <i class="fa fa-chevron-left"></i> PHP7+Swoole开发超高性能后台程序
+              <a href="/2016/08/10/php三种工作方式-CGI模式-FastCGI模式-Apache的mod-php/" rel="next" title="php三种工作方式-CGI模式-FastCGI模式-Apache的mod_php">
+                <i class="fa fa-chevron-left"></i> php三种工作方式-CGI模式-FastCGI模式-Apache的mod_php
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/28/关于出现php-m和phpinfo不一致的问题/" rel="prev" title="关于出现php-m和phpinfo不一致的问题">
-                关于出现php-m和phpinfo不一致的问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -472,7 +472,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简要说明"><span class="nav-number">1.</span> <span class="nav-text">简要说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动"><span class="nav-number">3.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">4.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于leveldb"><span class="nav-number">5.</span> <span class="nav-text">关于leveldb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说明"><span class="nav-number">6.</span> <span class="nav-text">说明</span></a></li></ol></div>
             
           </div>
         </section>
