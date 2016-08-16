@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="linux,centos,ftp," />
+  <meta name="keywords" content="PHP,csrf," />
 
 
 
@@ -84,43 +84,22 @@
 
 
 
-<meta name="description" content="你如今的气质里，藏着你走过的路，读过的书，和爱过的人。
-实验环境centos6.5 64位
-步骤：
-安装
+<meta name="description" content="你这么擅长安慰他人，一定度过了很多自己安慰自己的日子吧
 
-1234yum install vsftpchkconfig vsftpd onchkconfig --list vsftpd service vsftpd start
-
-匿名用户登录
-
-123//在浏览器中通过ftp://121.40.215.165这样的方式，无需输入用户名密码即可访问v">
+基本概念CSRF（Cross-site request forgery），中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。那么CSRF到底能够干嘛呢？你可以这样简单的理解：攻击者可以盗用你的登陆信息，以你的身份模拟发送各种请求。攻击者只要借助少许的社会工程学的诡计">
 <meta property="og:type" content="article">
-<meta property="og:title" content="centos下ftp相关设置">
-<meta property="og:url" content="http://yangguoqi.me/2016/07/25/centos下ftp相关设置/index.html">
+<meta property="og:title" content="预防CSRF攻击">
+<meta property="og:url" content="http://yangguoqi.me/2016/08/15/预防CSRF攻击/index.html">
 <meta property="og:site_name" content="web实验室">
-<meta property="og:description" content="你如今的气质里，藏着你走过的路，读过的书，和爱过的人。
-实验环境centos6.5 64位
-步骤：
-安装
+<meta property="og:description" content="你这么擅长安慰他人，一定度过了很多自己安慰自己的日子吧
 
-1234yum install vsftpchkconfig vsftpd onchkconfig --list vsftpd service vsftpd start
-
-匿名用户登录
-
-123//在浏览器中通过ftp://121.40.215.165这样的方式，无需输入用户名密码即可访问v">
-<meta property="og:updated_time" content="2016-07-25T15:55:54.738Z">
+基本概念CSRF（Cross-site request forgery），中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。那么CSRF到底能够干嘛呢？你可以这样简单的理解：攻击者可以盗用你的登陆信息，以你的身份模拟发送各种请求。攻击者只要借助少许的社会工程学的诡计">
+<meta property="og:updated_time" content="2016-08-15T11:26:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="centos下ftp相关设置">
-<meta name="twitter:description" content="你如今的气质里，藏着你走过的路，读过的书，和爱过的人。
-实验环境centos6.5 64位
-步骤：
-安装
+<meta name="twitter:title" content="预防CSRF攻击">
+<meta name="twitter:description" content="你这么擅长安慰他人，一定度过了很多自己安慰自己的日子吧
 
-1234yum install vsftpchkconfig vsftpd onchkconfig --list vsftpd service vsftpd start
-
-匿名用户登录
-
-123//在浏览器中通过ftp://121.40.215.165这样的方式，无需输入用户名密码即可访问v">
+基本概念CSRF（Cross-site request forgery），中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。那么CSRF到底能够干嘛呢？你可以这样简单的理解：攻击者可以盗用你的登陆信息，以你的身份模拟发送各种请求。攻击者只要借助少许的社会工程学的诡计">
 
 
 
@@ -141,9 +120,9 @@
 
 
 
-  <link rel="canonical" href="http://yangguoqi.me/2016/07/25/centos下ftp相关设置/"/>
+  <link rel="canonical" href="http://yangguoqi.me/2016/08/15/预防CSRF攻击/"/>
 
-  <title> centos下ftp相关设置 | web实验室 </title>
+  <title> 预防CSRF攻击 | web实验室 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +252,7 @@
             
             
               
-                centos下ftp相关设置
+                预防CSRF攻击
               
             
           </h1>
@@ -285,8 +264,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-25T22:56:59+08:00" content="2016-07-25">
-              2016-07-25
+            <time itemprop="dateCreated" datetime="2016-08-15T19:18:44+08:00" content="2016-08-15">
+              2016-08-15
             </time>
           </span>
 
@@ -313,35 +292,12 @@
       
 
       
-        <p><blockquote class="blockquote-center"><br>你如今的气质里，藏着你走过的路，读过的书，和爱过的人。<br></blockquote></p>
-<h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><p>centos6.5 64位</p>
-<h3 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h3><ul>
-<li>安装</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">yum install vsftp</div><div class="line">chkconfig vsftpd on</div><div class="line">chkconfig --<span class="keyword">list</span> vsftpd </div><div class="line">service vsftpd start</div></pre></td></tr></table></figure>
-<ul>
-<li>匿名用户登录</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//在浏览器中通过ftp://121.40.215.165这样的方式，无需输入用户名密码即可访问</span></div><div class="line">vim /etc/vsftpd/vsftpd.conf</div><div class="line">anonymous_enable=YES    <span class="comment">//匿名访问 开启</span></div></pre></td></tr></table></figure>
-<ul>
-<li>selinux </li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//SELinux 全称 Security Enhanced Linux (安全强化 Linux)，是 MAC (Mandatory Access Control，强制访问控制系统)</span></div><div class="line"><span class="comment">//的一个实现，目的在于明确的指明某个进程可以访问哪些资源(文件、网络端口等)。</span></div><div class="line">getenforce   <span class="comment">//查看状态</span></div><div class="line">setenforce <span class="number">0</span> <span class="comment">//临时关闭</span></div><div class="line">setenforce <span class="number">1</span> <span class="comment">//临时开启</span></div><div class="line"><span class="comment">//永久关闭</span></div><div class="line">修改/etc/selinux/config 文件</div><div class="line">将SELINUX=enforcing改为SELINUX=disabled</div><div class="line">重启机器即可</div></pre></td></tr></table></figure>
-<ul>
-<li>修改默认端口号</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//编辑 /etc/vsftpd/vsftpd.conf 文件，在该配置文件中添加此行：listen_port=801</span></div><div class="line"><span class="comment">//编辑 /etc/services 文件，将其中的 ftp 21/tcp 改为 ftp 801/tcp , ftp 21/udp 改为 ftp 801/udp</span></div><div class="line"><span class="comment">//执行 /etc/init.d/vsftpd restart 重新启动 vsftpd 服务.</span></div></pre></td></tr></table></figure>
-<ul>
-<li>ftp的配置文件</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//位于/etc/vsftpd/目录下，分别是：</span></div><div class="line"><span class="comment">//ftpusers    该文件用来指定那些用户不能访问ftp服务器。</span></div><div class="line"><span class="comment">//user_list   该文件用来指示的默认账户在默认情况下也不能访问ftp</span></div><div class="line"><span class="comment">//vsftpd.conf   该文件是vsftpd的主配置文件</span></div></pre></td></tr></table></figure>
-<ul>
-<li>建立用户以及指定目录</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">useradd -d /home/ftp ftpuser</div><div class="line">passwd ftpuser</div><div class="line"><span class="comment">//此时用户ftpuser可以通过ftp登录</span></div><div class="line"></div><div class="line"><span class="comment">//系统内所有的FTP用户都限制在家目录中,修改配置文件/etc/vsftpd/vsftpd.conf</span></div><div class="line">chroot_local_user=YES</div></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="http://jasonhzy.github.io/2016/03/11/linux-ftp/" target="_blank" rel="external">http://jasonhzy.github.io/2016/03/11/linux-ftp/</a></p>
-</blockquote>
+        <blockquote class="blockquote-center"><br>你这么擅长安慰他人，一定度过了很多自己安慰自己的日子吧<br></blockquote>
+
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>CSRF（Cross-site request forgery），中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。<br>那么CSRF到底能够干嘛呢？你可以这样简单的理解：攻击者可以盗用你的登陆信息，以你的身份模拟发送各种请求。攻击者只要借助少许的社会工程学的诡计，例如通过QQ等聊天软件发送的链接(有些还伪装成短域名，用户无法分辨)，攻击者就能迫使Web应用的用户去执行攻击者预设的操作。例如，当用户登录网络银行去查看其存款余额，在他没有退出时，就点击了一个QQ好友发来的链接，那么该用户银行帐户中的资金就有可能被转移到攻击者指定的帐户中。<br>所以遇到CSRF攻击时，将对终端用户的数据和操作指令构成严重的威胁；当受攻击的终端用户具有管理员帐户的时候，CSRF攻击将危及整个Web应用程序。</p>
+<h3 id="CSRF的攻击过程"><a href="#CSRF的攻击过程" class="headerlink" title="CSRF的攻击过程"></a>CSRF的攻击过程</h3><p>要完成一次CSRF攻击，受害者必须依次完成两个步骤 ：<br>1.登录受信任网站A，并在本地生成Cookie 。<br>2.在不退出A的情况下，访问危险网站B。<br>看到这里，读者也许会问：“如果我不满足以上两个条件中的任意一个，就不会受到CSRF的攻击”。是的，确实如此，但你不能保证以下情况不会发生：<br>你不能保证你登录了一个网站后，不再打开一个tab页面并访问另外的网站，特别现在浏览器都是支持多tab的。<br>你不能保证你关闭浏览器了后，你本地的Cookie立刻过期，你上次的会话已经结束。<br>上图中所谓的攻击网站，可能是一个存在其他漏洞的可信任的经常被人访问的网站。<br>因此对于用户来说很难避免在登陆一个网站之后不点击一些链接进行其他操作，所以随时可能成为CSRF的受害者。<br>CSRF攻击主要是因为Web的隐式身份验证机制，Web的身份验证机制虽然可以保证一个请求是来自于某个用户的浏览器，但却无法保证该请求是用户批准发送的</p>
+<h3 id="如何预防CSRF"><a href="#如何预防CSRF" class="headerlink" title="如何预防CSRF"></a>如何预防CSRF</h3><p>CSRF的防御可以从服务端和客户端两方面着手，防御效果是从服务端着手效果比较好，现在一般的CSRF防御也都在服务端进行。<br>服务端的预防CSRF攻击的方式方法有多种，但思想上都是差不多的，主要从以下2个方面入手：<br>1、正确使用GET,POST和Cookie；<br>2、在非GET请求中增加伪随机数；</p>
+<p>为每个用户生成一个唯一的cookie token，所有表单都包含同一个伪随机值，这种方案最简单，因为攻击者不能获得第三方的Cookie(理论上)，所以表单中的数据也就构造失败，但是由于用户的Cookie很容易由于网站的XSS漏洞而被盗取，所以这个方案必须要在没有XSS的情况下才安全。<br>每个请求使用验证码，这个方案是完美的，因为要多次输入验证码，所以用户友好性很差，所以不适合实际运用。<br>不同的表单包含一个不同的伪随机值，我们在4.4小节介绍“如何防止表单多次递交”时介绍过此方案，复用相关代码，实现如下：</p>
 
       
     </div>
@@ -385,11 +341,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/linux/" rel="tag">#linux</a>
+            <a href="/tags/PHP/" rel="tag">#PHP</a>
           
-            <a href="/tags/centos/" rel="tag">#centos</a>
-          
-            <a href="/tags/ftp/" rel="tag">#ftp</a>
+            <a href="/tags/csrf/" rel="tag">#csrf</a>
           
         </div>
       
@@ -398,17 +352,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/23/mysql5-7相关操作/" rel="next" title="mysql5.7相关操作">
-                <i class="fa fa-chevron-left"></i> mysql5.7相关操作
+              <a href="/2016/08/11/git-stash的用法/" rel="next" title="git-stash的用法">
+                <i class="fa fa-chevron-left"></i> git-stash的用法
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/26/mysql用户相关操作/" rel="prev" title="mysql用户相关操作">
-                mysql用户相关操作 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -515,7 +465,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实验环境"><span class="nav-number">1.</span> <span class="nav-text">实验环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤："><span class="nav-number">2.</span> <span class="nav-text">步骤：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSRF的攻击过程"><span class="nav-number">2.</span> <span class="nav-text">CSRF的攻击过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何预防CSRF"><span class="nav-number">3.</span> <span class="nav-text">如何预防CSRF</span></a></li></ol></div>
             
           </div>
         </section>
