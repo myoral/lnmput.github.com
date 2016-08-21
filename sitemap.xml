@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yangguoqi.me/2016/08/21/%E5%85%8D%E8%B4%B9%E5%88%86%E4%BA%AB%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B/</loc>
+    
+    <lastmod>2016-08-21T14:14:55.672Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yangguoqi.me/life/index.html</loc>
+    
+    <lastmod>2016-08-21T12:56:36.972Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yangguoqi.me/2016/08/18/laravel-session%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2016-08-18T12:13:56.000Z</lastmod>
@@ -82,13 +96,6 @@
     <loc>http://yangguoqi.me/2016/08/04/%E5%9C%A8laravel%E4%B8%AD%E4%BD%BF%E7%94%A8twig%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/</loc>
     
     <lastmod>2016-08-04T03:42:27.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yangguoqi.me/life/index.html</loc>
-    
-    <lastmod>2016-08-02T06:05:55.000Z</lastmod>
     
   </url>
   
