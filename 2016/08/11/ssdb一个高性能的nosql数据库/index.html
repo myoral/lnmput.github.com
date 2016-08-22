@@ -94,7 +94,7 @@
 <meta property="og:description" content="某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。
 
 简要说明12345678一个高性能的支持丰富数据结构的 NoSQL 数据库, 用于替代 Redis.基于google/leveldb 开发SSDB是一个开源的高性能数据库服务器, 使用Google 的 LevelDB作为存储引擎, 大家有可能没听过leveldb的名字，但是淘宝的开源nosql tair大家应该有所">
-<meta property="og:updated_time" content="2016-08-11T14:53:29.733Z">
+<meta property="og:updated_time" content="2016-08-19T10:20:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssdb一个高性能的nosql数据库">
 <meta name="twitter:description" content="某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。
@@ -299,7 +299,7 @@
 <h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># start master</span></div><div class="line">./ssdb-server ssdb.conf</div><div class="line"></div><div class="line"><span class="comment"># or start as daemon</span></div><div class="line">./ssdb-server -d ssdb.conf</div></pre></td></tr></table></figure>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">require_once</span>(<span class="string">'SSDB.php'</span>);</div><div class="line">$ssdb = <span class="keyword">new</span> SimpleSSDB(<span class="string">'127.0.0.1'</span>, <span class="number">8888</span>);</div><div class="line">$resp = $ssdb-&gt;set(<span class="string">'key'</span>, <span class="string">'123'</span>);</div><div class="line">$resp = $ssdb-&gt;get(<span class="string">'key'</span>);</div><div class="line"><span class="keyword">echo</span> $resp; <span class="comment">// output: 123</span></div></pre></td></tr></table></figure>
 <h3 id="关于leveldb"><a href="#关于leveldb" class="headerlink" title="关于leveldb"></a>关于leveldb</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">LevelDB是google开源的一个key-value存储引擎库，类似于开源的Lucene索引库一样。</div><div class="line">其他的软件开发者可以利用该库做二次开发，来满足定制需求。</div><div class="line">LevelDB采用日志式的写方式来提高写性能，但是牺牲了部分读性能。</div><div class="line">为了弥补牺牲了的读性能，一些人提议使用SSD作为存储介质。</div></pre></td></tr></table></figure>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">高级应用可以查看主从这一块儿</div></pre></td></tr></table></figure>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">修改ssdb.conf文件，把ip改成<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>，允许外网访问</div><div class="line">高级应用可以查看主从这一块儿</div></pre></td></tr></table></figure>
 <blockquote>
 <p><a href="http://ssdb.io/zh_cn/" target="_blank" rel="external">http://ssdb.io/zh_cn/</a></p>
 </blockquote>
@@ -437,7 +437,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-count">25</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
