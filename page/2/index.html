@@ -245,6 +245,116 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/23/自定义任务调度进程/" itemprop="url">
+                  自定义任务调度进程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-23T15:22:32+08:00" content="2016-08-23">
+              2016-08-23
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/23/自定义任务调度进程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/23/自定义任务调度进程/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>我 曾经 喜欢 过 你<br></blockquote><br>已经多次遇到过自定义任务调度进程，替换init进程的情况了。自定义的任务调度进程，方便统一监控管理，报警，观察输出等。</p>
+<p>Linux机器上的计划任务是由系统进程init根据cron文件调度的，计划任务作为子进程执行任务，共享机器的cpu，内存等资源。于是，可以提供一个守护进程脚本替代系统进程，根据后台管理的数据库文件，拉取本机的cron配置，fork子进程来执行任务。这样子进程的状态，输出等都可以自定义控制。</p>
+<p><img src="http://7nj3d5.com1.z0.glb.clouddn.com/tr.png" alt="alt text"></p>
+<p>任务调度流程图<br>php版本的实现，需要用到pcntl与posix两个扩展，通过pcntl_fork生成子进程，posix_kill进行进程通信，pcntl_wait回收子进程。还需要考虑，网络状况等问题可能造成的异常，例如：忽略SIGPIPE信号等。</p>
+<p>解析crontab格式的表达式，可以使用这个库：<a href="https://github.com/mtdowling/cron-expression" target="_blank" rel="external">https://github.com/mtdowling/cron-expression</a></p>
+<p>子进程的杀死操作，可以使用上一篇文章里的shell进行，也可以通过php的posix_getppid等函数做，但是要注意杀死整个进程树。</p>
+<p>通过修改fork子进程的脚本，可以很容易实现，基于多进程的对阻塞队列的并发消费，用来处理高负载的消息队列。以后再写文章概述。</p>
+<blockquote>
+<p><a href="http://it.taocms.org/08/5384.htm" target="_blank" rel="external">http://it.taocms.org/08/5384.htm</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/23/PHP中的随机性——你觉得自己幸运吗？/" itemprop="url">
                   PHP中的随机性——你觉得自己幸运吗？
                 </a>
@@ -267,6 +377,13 @@
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/23/PHP中的随机性——你觉得自己幸运吗？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/23/PHP中的随机性——你觉得自己幸运吗？/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -381,6 +498,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/22/深入理解PHP原理之foreach/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/22/深入理解PHP原理之foreach/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -480,6 +604,13 @@
           
 
           
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/21/免费分享视频教程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/21/免费分享视频教程/" itemprop="commentsCount"></span>
+                </a>
+              </span>
             
           
 
@@ -613,6 +744,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/18/laravel-session的使用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/18/laravel-session的使用/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -649,105 +787,6 @@
 <p>后来看到网络上有个方法Session::save()，于是我也用了下，居然发现成功的生成了session的文件。于是我感觉到，Laravel不用php原生的session，那么在controller之后应该做了一些事情，将session写入到文件中，而不是每次put操作都写操作，这样会IO操作太频繁的，影响性能的。<br>可以看见，在调用完controller之后，调用了session-&gt;save()的方法，来主动的保存session。这样session才能落地保存起来，如果在controller或者view里面写了exit;，那么session是不会被保存的，除非主动的写Session::save()才能手工的保存起来。</p>
 <blockquote>
 <p><a href="https://www.chenyudong.com/archives/laravel-session-use.html" target="_blank" rel="external">https://www.chenyudong.com/archives/laravel-session-use.html</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/18/PHP设置会话Session超时过期时间实现登录时间限制/" itemprop="url">
-                  PHP设置会话Session超时过期时间实现登录时间限制
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-18T19:49:10+08:00" content="2016-08-18">
-              2016-08-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>我亦只有一个一生，不能慷慨赠予我不爱的人。<br></blockquote></p>
-<h3 id="设置php-ini配置文件"><a href="#设置php-ini配置文件" class="headerlink" title="设置php.ini配置文件"></a>设置php.ini配置文件</h3><p>第一种方法即设置php.ini配置文件，设置session.gc_maxlifetime和session.cookie_lifetime节点属性值，当然也可以使用ini_set函数改变当前上下文环境的属性值：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ini_set(<span class="string">'session.gc_maxlifetime'</span>, <span class="string">"3600"</span>); <span class="comment">// 秒</span></div><div class="line">ini_set(<span class="string">"session.cookie_lifetime"</span>,<span class="string">"3600"</span>); <span class="comment">// 秒</span></div></pre></td></tr></table></figure></p>
-<h3 id="设置Session时间戳"><a href="#设置Session时间戳" class="headerlink" title="设置Session时间戳"></a>设置Session时间戳</h3><p>第二种方法即设置Session时间戳，比如下面的办法。<br>在登录成功时设置时间戳为当前时间推后1小时，$_SESSION[‘expiretime’] = time() + 3600;。在检查用户登录情况使用如下代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_SESSION[<span class="string">'expiretime'</span>])) &#123;</div><div class="line">    <span class="keyword">if</span>($_SESSION[<span class="string">'expiretime'</span>] &lt; time()) &#123;</div><div class="line">        <span class="keyword">unset</span>($_SESSION[<span class="string">'expiretime'</span>]);</div><div class="line">        header(<span class="string">'Location: logout.php?TIMEOUT'</span>); <span class="comment">// 登出</span></div><div class="line">        <span class="keyword">exit</span>(<span class="number">0</span>);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        $_SESSION[<span class="string">'expiretime'</span>] = time() + <span class="number">3600</span>; <span class="comment">// 刷新时间戳</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p><a href="http://wangye.org/blog/archives/933/" target="_blank" rel="external">http://wangye.org/blog/archives/933/</a><br><a href="http://www.laruence.com/2012/01/10/2469.html" target="_blank" rel="external">http://www.laruence.com/2012/01/10/2469.html</a></p>
 </blockquote>
 
           
@@ -822,7 +861,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">32</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -832,7 +871,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -960,9 +999,30 @@
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"yangguoqi"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
 
 
 
