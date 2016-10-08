@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="PHP," />
+  <meta name="keywords" content="git," />
 
 
 
@@ -84,19 +84,25 @@
 
 
 
-<meta name="description" content="“跑呀跑呀跑呀跑呀，拼命努力着追上前面那个被目光期许的自己，生怕抓不住时光，只有和你一起的时候，才觉得不如就这样老了吧，也不算太辜负。”
-CGI123456789CGI英文全程是 Command Gateway Interface，通常翻译为公共网关接口，是HTTP服务器与机器上的其他程序进行通信的一个接口。这个“其他程序”可以是使用任何计算机语言进行编 写，例如php，python，perl等等">
+<meta name="description" content="當我們懂得珍惜平凡的幸福時，就已經成了人生的贏家。撤销commit有很多方法，个人比较推荐用 reset 或 rebase -i，底下将会同时介绍 revert 和 reset 的方法。
+commit 如下
+A -&amp;gt; B -&amp;gt; C -&amp;gt; D -&amp;gt; E想要还原到 commit C 之后的状态 (也就是把 D 和 E 回退)
+revert用：12git revert Egit">
 <meta property="og:type" content="article">
-<meta property="og:title" content="php三种工作方式-CGI模式-FastCGI模式-Apache的mod_php">
-<meta property="og:url" content="http://yangguoqi.me/2016/08/10/php三种工作方式-CGI模式-FastCGI模式-Apache的mod-php/index.html">
+<meta property="og:title" content="git撤销commit的三个方法">
+<meta property="og:url" content="http://yangguoqi.me/2016/10/08/git撤销commit的三个方法/index.html">
 <meta property="og:site_name" content="web实验室">
-<meta property="og:description" content="“跑呀跑呀跑呀跑呀，拼命努力着追上前面那个被目光期许的自己，生怕抓不住时光，只有和你一起的时候，才觉得不如就这样老了吧，也不算太辜负。”
-CGI123456789CGI英文全程是 Command Gateway Interface，通常翻译为公共网关接口，是HTTP服务器与机器上的其他程序进行通信的一个接口。这个“其他程序”可以是使用任何计算机语言进行编 写，例如php，python，perl等等">
-<meta property="og:updated_time" content="2016-08-10T15:21:59.232Z">
+<meta property="og:description" content="當我們懂得珍惜平凡的幸福時，就已經成了人生的贏家。撤销commit有很多方法，个人比较推荐用 reset 或 rebase -i，底下将会同时介绍 revert 和 reset 的方法。
+commit 如下
+A -&amp;gt; B -&amp;gt; C -&amp;gt; D -&amp;gt; E想要还原到 commit C 之后的状态 (也就是把 D 和 E 回退)
+revert用：12git revert Egit">
+<meta property="og:updated_time" content="2016-10-08T13:39:17.269Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="php三种工作方式-CGI模式-FastCGI模式-Apache的mod_php">
-<meta name="twitter:description" content="“跑呀跑呀跑呀跑呀，拼命努力着追上前面那个被目光期许的自己，生怕抓不住时光，只有和你一起的时候，才觉得不如就这样老了吧，也不算太辜负。”
-CGI123456789CGI英文全程是 Command Gateway Interface，通常翻译为公共网关接口，是HTTP服务器与机器上的其他程序进行通信的一个接口。这个“其他程序”可以是使用任何计算机语言进行编 写，例如php，python，perl等等">
+<meta name="twitter:title" content="git撤销commit的三个方法">
+<meta name="twitter:description" content="當我們懂得珍惜平凡的幸福時，就已經成了人生的贏家。撤销commit有很多方法，个人比较推荐用 reset 或 rebase -i，底下将会同时介绍 revert 和 reset 的方法。
+commit 如下
+A -&amp;gt; B -&amp;gt; C -&amp;gt; D -&amp;gt; E想要还原到 commit C 之后的状态 (也就是把 D 和 E 回退)
+revert用：12git revert Egit">
 
 
 
@@ -117,9 +123,9 @@ CGI123456789CGI英文全程是 Command Gateway Interface，通常翻译为公共
 
 
 
-  <link rel="canonical" href="http://yangguoqi.me/2016/08/10/php三种工作方式-CGI模式-FastCGI模式-Apache的mod-php/"/>
+  <link rel="canonical" href="http://yangguoqi.me/2016/10/08/git撤销commit的三个方法/"/>
 
-  <title> php三种工作方式-CGI模式-FastCGI模式-Apache的mod_php | web实验室 </title>
+  <title> git撤销commit的三个方法 | web实验室 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -249,7 +255,7 @@ CGI123456789CGI英文全程是 Command Gateway Interface，通常翻译为公共
             
             
               
-                php三种工作方式-CGI模式-FastCGI模式-Apache的mod_php
+                git撤销commit的三个方法
               
             
           </h1>
@@ -261,8 +267,8 @@ CGI123456789CGI英文全程是 Command Gateway Interface，通常翻译为公共
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-10T23:04:19+08:00" content="2016-08-10">
-              2016-08-10
+            <time itemprop="dateCreated" datetime="2016-10-08T21:33:53+08:00" content="2016-10-08">
+              2016-10-08
             </time>
           </span>
 
@@ -272,8 +278,8 @@ CGI123456789CGI英文全程是 Command Gateway Interface，通常翻译为公共
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/10/php三种工作方式-CGI模式-FastCGI模式-Apache的mod-php/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/php三种工作方式-CGI模式-FastCGI模式-Apache的mod-php/" itemprop="commentsCount"></span>
+                <a href="/2016/10/08/git撤销commit的三个方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/08/git撤销commit的三个方法/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -296,15 +302,30 @@ CGI123456789CGI英文全程是 Command Gateway Interface，通常翻译为公共
       
 
       
-        <p><blockquote class="blockquote-center"><br>“跑呀跑呀跑呀跑呀，拼命努力着追上前面那个被目光期许的自己，生怕抓不住时光，只有和你一起的时候，才觉得不如就这样老了吧，也不算太辜负。”<br></blockquote></p>
-<h3 id="CGI"><a href="#CGI" class="headerlink" title="CGI"></a>CGI</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CGI英文全程是 Command Gateway <span class="class"><span class="keyword">Interface</span>，通常翻译为公共网关接口，</span></div><div class="line">是<span class="title">HTTP</span>服务器与机器上的其他程序进行通信的一个接口。</div><div class="line">这个“其他程序”可以是使用任何计算机语言进行编 写，例如<span class="title">php</span>，<span class="title">python</span>，<span class="title">perl</span>等等。</div><div class="line">它通过<span class="title">CGI</span>这个接口从<span class="title">HTTP</span>服务器取得输入，然后把运行结果又通过<span class="title">CGI</span>这个接口交给<span class="title">HTTP</span>服务器， 而<span class="title">HTTP</span>服务器把这个结果送给浏览器。</div><div class="line"></div><div class="line"><span class="title">CGI</span> 的出现让<span class="title">WEB</span>从静态变为动态，随着<span class="title">web</span>的越来越普及，很多的网站都需要有动态的页面，</div><div class="line">以便与浏览者进行交互。<span class="title">CGI</span>的缺点也越来越突出，因为<span class="title">HTTP</span> 要生成一个动态页面，</div><div class="line">系统就必须启动一个新的进程以运行<span class="title">CGI</span>程序，</div><div class="line">不断的<span class="title">fork</span>是一项很消耗时间和资源的工作。</div></pre></td></tr></table></figure>
-<h3 id="FastCGI"><a href="#FastCGI" class="headerlink" title="FastCGI"></a>FastCGI</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">FastCGIFastCGI是可伸缩架构的CGI开放扩展，</div><div class="line">其主要行为是将CGI解释器进程保持在内存中并因此获得较高的性能。</div><div class="line">传统的CGI 解释器的反复加载是CGI性能低下的主要原因，</div><div class="line">如果CGI解释器保持在内存中并接受FastCGI进程管理器调度，</div><div class="line">则可以提供良好的性能、伸缩性等 。在上述情况中，你可以想象 CGI通常有多慢。</div><div class="line">每一个Web请求PHP都必须重新解析php.ini、重新载入全部扩展并重初始化全部数据结构。</div><div class="line">使用FastCGI，所有这些 都只在进程启动时发生一次。一个额外的好处是，</div><div class="line">持续数据库连接(Persistent database connection)可以工作。</div></pre></td></tr></table></figure>
-<h3 id="mod-php"><a href="#mod-php" class="headerlink" title="mod_php"></a>mod_php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">在lamp体系中，对于apache端的php的配置，我们最常用的就是mod_php，</div><div class="line">它把php作为apache一个内置的模块.让apache http服务器本身能够支持php语言，</div><div class="line">不需要每一个请求就启动php解释器来解释php.</div><div class="line"></div><div class="line">和把webserver与php绑定起来的方式不同，</div><div class="line">fastcgi是http服务器与你的或其它机器上的程序进行“交谈”的一种工具，</div><div class="line">相当于一 个程序接口。它可以接受来自web服务器的请求，解释输入信息，</div><div class="line">将处理后的结果返回给服务器等。mod_fastcgi就是在apache下支持 fastcgi协议的模块。</div><div class="line"></div><div class="line">在lamp体系中，mod_php是最常使用的工作方式。在这种模式下，</div><div class="line">php被编译为apache的一个内置模块，在启动加载的时候，</div><div class="line">当有一个php请求过来，直接在httpd进程里完成了php的解释运行，将结果返回。</div></pre></td></tr></table></figure>
-<h3 id="mod-fastcgi"><a href="#mod-fastcgi" class="headerlink" title="mod_fastcgi"></a>mod_fastcgi</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mod_fastcgi就是在apache下支持 fastcgi协议的模块。</div><div class="line">fastcgi实例和apache分离开来，这两者可以分开来部署。</div><div class="line">他们之间的通信通过tcp或者unix sock来完成。使用ext方式，</div><div class="line">fastcgi实例是独立运行的。</div></pre></td></tr></table></figure>
-<h3 id="FPM"><a href="#FPM" class="headerlink" title="FPM"></a>FPM</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">FPM（FastCGI 进程管理器）用于替换 PHP FastCGI 的大部分附加功能，</div><div class="line">对于高负载网站是非常有用的。</div></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="http://blog.shiliuvip.com/391.html" target="_blank" rel="external">http://blog.shiliuvip.com/391.html</a><br><a href="http://php.net/manual/zh/install.fpm.php" target="_blank" rel="external">http://php.net/manual/zh/install.fpm.php</a></p>
-</blockquote>
+        <p><blockquote class="blockquote-center"><br>當我們懂得珍惜平凡的幸福時，就已經成了人生的贏家。<br></blockquote><br>撤销commit有很多方法，个人比较推荐用 reset 或 rebase -i，底下将会同时介绍 revert 和 reset 的方法。</p>
+<p>commit 如下</p>
+<p>A -&gt; B -&gt; C -&gt; D -&gt; E<br>想要还原到 commit C 之后的状态 (也就是把 D 和 E 回退)</p>
+<h3 id="revert"><a href="#revert" class="headerlink" title="revert"></a>revert</h3><p>用：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git revert E</div><div class="line">git revert D</div></pre></td></tr></table></figure></p>
+<p>结果：</p>
+<p>A -&gt; B -&gt; C -&gt; D -&gt; E -&gt; F -&gt; G<br>F 是还原 commit E 修改结果的 commit</p>
+<p>G 是还原 commit D 修改结果的 commit</p>
+<p>因此，revert 只会让 commit 继续往前</p>
+<p>优点是可以针对某个 commit 进行还原，并且留下还原记录</p>
+<h3 id="rebase-i"><a href="#rebase-i" class="headerlink" title="rebase -i"></a>rebase -i</h3><p>假如想要抽掉某个 commit 又不想留下记录, rebase -i 就很好用了</p>
+<p>假如只想要还原 D 变成：</p>
+<p>A -&gt; B -&gt; C -&gt; E</p>
+<p>则用命令<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git rebase -i C</div></pre></td></tr></table></figure></p>
+<p>这时候会出现文字编辑<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pick D xxx</div><div class="line">pick E ooo</div></pre></td></tr></table></figure></p>
+<p>把 pick D xxx 整列移除后储存就可以了，若中间有遇到冲突，则必须自行修正后再继续<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git rebase --<span class="keyword">continue</span></div></pre></td></tr></table></figure></p>
+<h3 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h3><p>用于做整段 commits 的还原</p>
+<p>例如希望还原到 B commit 以后的状态变成</p>
+<p>A -&gt; B<br>则<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset B</div></pre></td></tr></table></figure></p>
+<p>那么 git 会将 log 中的 C, D, E 都清除</p>
+<p>但档案内容没有任何变动，因此会看到 C, D, E 修改的档案处在 unstaged 阶段</p>
+<p>若针对部分档案还原可以用<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout [file path]</div></pre></td></tr></table></figure></p>
+<p>若要全部还原可用<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -f</div></pre></td></tr></table></figure></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>还没 push 前，个人倾向不产生太多 commit。因此我都会用 rebase -i 进行编修, 顺便合并或reword 一些 commit</p>
+<p>某个特殊情况, 例如发现某个 commit 里面包含了不相干的档案, 欲重新 commit 时，就会先用 rebase -i 把欲修改的 commit 换到后面(较新), 然后再用 reset 重新 stage + commit。</p>
 
       
     </div>
@@ -348,7 +369,7 @@ CGI123456789CGI英文全程是 Command Gateway Interface，通常翻译为公共
       
         <div class="post-tags">
           
-            <a href="/tags/PHP/" rel="tag">#PHP</a>
+            <a href="/tags/git/" rel="tag">#git</a>
           
         </div>
       
@@ -357,17 +378,13 @@ CGI123456789CGI英文全程是 Command Gateway Interface，通常翻译为公共
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/07/PHP生成器的简单理解/" rel="next" title="PHP生成器的简单理解">
-                <i class="fa fa-chevron-left"></i> PHP生成器的简单理解
+              <a href="/2016/08/31/深入理解PHP原理之Opcodes/" rel="next" title="深入理解PHP原理之Opcodes">
+                <i class="fa fa-chevron-left"></i> 深入理解PHP原理之Opcodes
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/11/ssdb一个高性能的nosql数据库/" rel="prev" title="ssdb一个高性能的nosql数据库">
-                ssdb一个高性能的nosql数据库 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -393,8 +410,8 @@ CGI123456789CGI英文全程是 Command Gateway Interface，通常翻译为公共
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/10/php三种工作方式-CGI模式-FastCGI模式-Apache的mod-php/"
-           data-title="php三种工作方式-CGI模式-FastCGI模式-Apache的mod_php" data-url="http://yangguoqi.me/2016/08/10/php三种工作方式-CGI模式-FastCGI模式-Apache的mod-php/">
+      <div class="ds-thread" data-thread-key="2016/10/08/git撤销commit的三个方法/"
+           data-title="git撤销commit的三个方法" data-url="http://yangguoqi.me/2016/10/08/git撤销commit的三个方法/">
       </div>
     
   </div>
@@ -478,7 +495,7 @@ CGI123456789CGI英文全程是 Command Gateway Interface，通常翻译为公共
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CGI"><span class="nav-number">1.</span> <span class="nav-text">CGI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FastCGI"><span class="nav-number">2.</span> <span class="nav-text">FastCGI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mod-php"><span class="nav-number">3.</span> <span class="nav-text">mod_php</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mod-fastcgi"><span class="nav-number">4.</span> <span class="nav-text">mod_fastcgi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FPM"><span class="nav-number">5.</span> <span class="nav-text">FPM</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#revert"><span class="nav-number">1.</span> <span class="nav-text">revert</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rebase-i"><span class="nav-number">2.</span> <span class="nav-text">rebase -i</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reset"><span class="nav-number">3.</span> <span class="nav-text">reset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">4.</span> <span class="nav-text">结论</span></a></li></ol></div>
             
           </div>
         </section>
