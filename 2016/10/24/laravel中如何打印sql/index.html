@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="PHP," />
+  <meta name="keywords" content="laravel," />
 
 
 
@@ -84,22 +84,25 @@
 
 
 
-<meta name="description" content="无她，唯手熟尔
-例子调用函数123456789&amp;lt;?phpfunction a($b, $c)&amp;#123;  echo $b;  echo $c;&amp;#125;call_user_func_array(&apos;a&apos;, array(&quot;111&quot;, &quot;222&quot;));//显示 111 222?&amp;gt;
-调用静态方法1234567891011&amp;lt;?phpClass ClassA&amp;#123;  public">
+<meta name="description" content="你也是一片在我胸口颤动的小叶子。生命之风将你吹送至此。
+
+第一种方法1234//in our case, DB::table(&apos;users&apos;)-&amp;gt;toSql(); //returnselect * from users
+第二种方法12345678910Route::get(&apos;haha&apos;,function ()&amp;#123;    Event::listen(&apos;illuminate.query&apos;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP函数call_user_func_array用法">
-<meta property="og:url" content="http://yangguoqi.me/2016/08/24/PHP函数call-user-func-array用法/index.html">
+<meta property="og:title" content="laravel中如何打印sql">
+<meta property="og:url" content="http://yangguoqi.me/2016/10/24/laravel中如何打印sql/index.html">
 <meta property="og:site_name" content="web实验室">
-<meta property="og:description" content="无她，唯手熟尔
-例子调用函数123456789&amp;lt;?phpfunction a($b, $c)&amp;#123;  echo $b;  echo $c;&amp;#125;call_user_func_array(&apos;a&apos;, array(&quot;111&quot;, &quot;222&quot;));//显示 111 222?&amp;gt;
-调用静态方法1234567891011&amp;lt;?phpClass ClassA&amp;#123;  public">
-<meta property="og:updated_time" content="2016-08-24T06:52:15.000Z">
+<meta property="og:description" content="你也是一片在我胸口颤动的小叶子。生命之风将你吹送至此。
+
+第一种方法1234//in our case, DB::table(&apos;users&apos;)-&amp;gt;toSql(); //returnselect * from users
+第二种方法12345678910Route::get(&apos;haha&apos;,function ()&amp;#123;    Event::listen(&apos;illuminate.query&apos;">
+<meta property="og:updated_time" content="2016-10-24T03:34:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHP函数call_user_func_array用法">
-<meta name="twitter:description" content="无她，唯手熟尔
-例子调用函数123456789&amp;lt;?phpfunction a($b, $c)&amp;#123;  echo $b;  echo $c;&amp;#125;call_user_func_array(&apos;a&apos;, array(&quot;111&quot;, &quot;222&quot;));//显示 111 222?&amp;gt;
-调用静态方法1234567891011&amp;lt;?phpClass ClassA&amp;#123;  public">
+<meta name="twitter:title" content="laravel中如何打印sql">
+<meta name="twitter:description" content="你也是一片在我胸口颤动的小叶子。生命之风将你吹送至此。
+
+第一种方法1234//in our case, DB::table(&apos;users&apos;)-&amp;gt;toSql(); //returnselect * from users
+第二种方法12345678910Route::get(&apos;haha&apos;,function ()&amp;#123;    Event::listen(&apos;illuminate.query&apos;">
 
 
 
@@ -120,9 +123,9 @@
 
 
 
-  <link rel="canonical" href="http://yangguoqi.me/2016/08/24/PHP函数call-user-func-array用法/"/>
+  <link rel="canonical" href="http://yangguoqi.me/2016/10/24/laravel中如何打印sql/"/>
 
-  <title> PHP函数call_user_func_array用法 | web实验室 </title>
+  <title> laravel中如何打印sql | web实验室 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -252,7 +255,7 @@
             
             
               
-                PHP函数call_user_func_array用法
+                laravel中如何打印sql
               
             
           </h1>
@@ -264,8 +267,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-24T12:13:26+08:00" content="2016-08-24">
-              2016-08-24
+            <time itemprop="dateCreated" datetime="2016-10-24T10:13:28+08:00" content="2016-10-24">
+              2016-10-24
             </time>
           </span>
 
@@ -275,8 +278,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/24/PHP函数call-user-func-array用法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/24/PHP函数call-user-func-array用法/" itemprop="commentsCount"></span>
+                <a href="/2016/10/24/laravel中如何打印sql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/24/laravel中如何打印sql/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -299,12 +302,12 @@
       
 
       
-        <p><blockquote class="blockquote-center"><br>无她，唯手熟尔<br></blockquote></p>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>调用函数<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span><span class="params">($b, $c)</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">echo</span> $b;</div><div class="line">  <span class="keyword">echo</span> $c;</div><div class="line">&#125;</div><div class="line">call_user_func_array(<span class="string">'a'</span>, <span class="keyword">array</span>(<span class="string">"111"</span>, <span class="string">"222"</span>));</div><div class="line"><span class="comment">//显示 111 222</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
-<p>调用静态方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">Class</span> <span class="title">ClassA</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">bc</span><span class="params">($b, $c)</span> </span>&#123;</div><div class="line">	$bc = $b + $c;</div><div class="line">	  <span class="keyword">echo</span> $bc;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">call_user_func_array(<span class="keyword">array</span>(<span class="string">'ClassA'</span>,<span class="string">'bc'</span>), <span class="keyword">array</span>(<span class="string">"111"</span>, <span class="string">"222"</span>));</div><div class="line"><span class="comment">//显示 333</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
-<p>说明：这样就可以用数组的方式给类的方法传入必要的参数</p>
-<p>调用普通方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Hello, World!"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$a = <span class="keyword">new</span> MyClass();</div><div class="line">call_user_func(<span class="keyword">array</span>($a, <span class="string">'hello'</span>));</div></pre></td></tr></table></figure></p>
+        <blockquote class="blockquote-center"><br>你也是一片<br>在我胸口颤动的小叶子。<br>生命之风将你吹送至此。<br></blockquote>
 
+<h3 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//in our case,</span></div><div class="line"> DB::table(<span class="string">'users'</span>)-&gt;toSql(); </div><div class="line"><span class="comment">//return</span></div><div class="line">select * from users</div></pre></td></tr></table></figure>
+<h3 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Route::get(<span class="string">'haha'</span>,<span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</div><div class="line">    Event::listen(<span class="string">'illuminate.query'</span>, <span class="function"><span class="keyword">function</span><span class="params">($query, $params, $time, $conn)</span></span></div><div class="line">    &#123;</div><div class="line">        dd(<span class="keyword">array</span>($query, $params, $time, $conn));</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    \RainLab\User\Models\User::whereBetween(<span class="string">'created_at'</span>, </div><div class="line">    	[<span class="string">'2016-05-26 00:00:00'</span>, <span class="string">'2016-06-27 00:00:00'</span>]</div><div class="line">    	)-&gt;get([<span class="string">'email'</span>]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="第三种方法"><a href="#第三种方法" class="headerlink" title="第三种方法"></a>第三种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DB::enableQueryLog();</div><div class="line">   $users = \RainLab\User\Models\User::whereBetween(<span class="string">'created_at'</span>, [<span class="string">'2016-05-26 00:00:00'</span>, <span class="string">'2016-06-27 00:00:00'</span>])-&gt;get();</div><div class="line">   dd(DB::getQueryLog());</div></pre></td></tr></table></figure>
+<h3 id="最后一种方法"><a href="#最后一种方法" class="headerlink" title="最后一种方法"></a>最后一种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//安装 debug</span></div><div class="line">composer <span class="keyword">require</span> barryvdh/laravel-debugbar</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -347,7 +350,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/PHP/" rel="tag">#PHP</a>
+            <a href="/tags/laravel/" rel="tag">#laravel</a>
           
         </div>
       
@@ -356,17 +359,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/24/PHP大量数据循环时内存耗尽问题的解决方案/" rel="next" title="PHP大量数据循环时内存耗尽问题的解决方案">
-                <i class="fa fa-chevron-left"></i> PHP大量数据循环时内存耗尽问题的解决方案
+              <a href="/2016/10/18/main-：用法解析/" rel="next" title="__main__：用法解析">
+                <i class="fa fa-chevron-left"></i> __main__：用法解析
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/24/PHP反射类ReflectionClass/" rel="prev" title="PHP反射类ReflectionClass">
-                PHP反射类ReflectionClass <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -392,8 +391,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/24/PHP函数call-user-func-array用法/"
-           data-title="PHP函数call_user_func_array用法" data-url="http://yangguoqi.me/2016/08/24/PHP函数call-user-func-array用法/">
+      <div class="ds-thread" data-thread-key="2016/10/24/laravel中如何打印sql/"
+           data-title="laravel中如何打印sql" data-url="http://yangguoqi.me/2016/10/24/laravel中如何打印sql/">
       </div>
     
   </div>
@@ -477,7 +476,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">1.</span> <span class="nav-text">例子</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种方法"><span class="nav-number">1.</span> <span class="nav-text">第一种方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种方法"><span class="nav-number">2.</span> <span class="nav-text">第二种方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三种方法"><span class="nav-number">3.</span> <span class="nav-text">第三种方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后一种方法"><span class="nav-number">4.</span> <span class="nav-text">最后一种方法</span></a></li></ol></div>
             
           </div>
         </section>
