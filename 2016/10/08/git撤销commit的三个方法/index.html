@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>git撤销commit的三个方法 | web实验室</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="當我們懂得珍惜平凡的幸福時，就已經成了人生的贏家。撤销commit有很多方法，个人比较推荐用 reset 或 rebase -i，底下将会同时介绍 revert 和 reset 的方法。
+commit 如下
+A -&amp;gt; B -&amp;gt; C -&amp;gt; D -&amp;gt; E想要还原到 commit C 之后的状态 (也就是把 D 和 E 回退)
+revert用：12git revert Egit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git撤销commit的三个方法">
+<meta property="og:url" content="http://yangguoqi.me/2016/10/08/git撤销commit的三个方法/index.html">
+<meta property="og:site_name" content="web实验室">
+<meta property="og:description" content="當我們懂得珍惜平凡的幸福時，就已經成了人生的贏家。撤销commit有很多方法，个人比较推荐用 reset 或 rebase -i，底下将会同时介绍 revert 和 reset 的方法。
+commit 如下
+A -&amp;gt; B -&amp;gt; C -&amp;gt; D -&amp;gt; E想要还原到 commit C 之后的状态 (也就是把 D 和 E 回退)
+revert用：12git revert Egit">
+<meta property="og:updated_time" content="2016-10-08T13:39:17.269Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git撤销commit的三个方法">
+<meta name="twitter:description" content="當我們懂得珍惜平凡的幸福時，就已經成了人生的贏家。撤销commit有很多方法，个人比较推荐用 reset 或 rebase -i，底下将会同时介绍 revert 和 reset 的方法。
+commit 如下
+A -&amp;gt; B -&amp;gt; C -&amp;gt; D -&amp;gt; E想要还原到 commit C 之后的状态 (也就是把 D 和 E 回退)
+revert用：12git revert Egit">
+  
+    <link rel="alternate" href="/atom.xml" title="web实验室" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">web实验室</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yangguoqi.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-git撤销commit的三个方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/08/git撤销commit的三个方法/" class="article-date">
+  <time datetime="2016-10-08T13:33:53.000Z" itemprop="datePublished">2016-10-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      git撤销commit的三个方法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><blockquote class="blockquote-center"><br>當我們懂得珍惜平凡的幸福時，就已經成了人生的贏家。<br></blockquote><br>撤销commit有很多方法，个人比较推荐用 reset 或 rebase -i，底下将会同时介绍 revert 和 reset 的方法。</p>
+<p>commit 如下</p>
+<p>A -&gt; B -&gt; C -&gt; D -&gt; E<br>想要还原到 commit C 之后的状态 (也就是把 D 和 E 回退)</p>
+<h3 id="revert"><a href="#revert" class="headerlink" title="revert"></a>revert</h3><p>用：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git revert E</div><div class="line">git revert D</div></pre></td></tr></table></figure></p>
+<p>结果：</p>
+<p>A -&gt; B -&gt; C -&gt; D -&gt; E -&gt; F -&gt; G<br>F 是还原 commit E 修改结果的 commit</p>
+<p>G 是还原 commit D 修改结果的 commit</p>
+<p>因此，revert 只会让 commit 继续往前</p>
+<p>优点是可以针对某个 commit 进行还原，并且留下还原记录</p>
+<h3 id="rebase-i"><a href="#rebase-i" class="headerlink" title="rebase -i"></a>rebase -i</h3><p>假如想要抽掉某个 commit 又不想留下记录, rebase -i 就很好用了</p>
+<p>假如只想要还原 D 变成：</p>
+<p>A -&gt; B -&gt; C -&gt; E</p>
+<p>则用命令<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git rebase -i C</div></pre></td></tr></table></figure></p>
+<p>这时候会出现文字编辑<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pick D xxx</div><div class="line">pick E ooo</div></pre></td></tr></table></figure></p>
+<p>把 pick D xxx 整列移除后储存就可以了，若中间有遇到冲突，则必须自行修正后再继续<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git rebase --<span class="keyword">continue</span></div></pre></td></tr></table></figure></p>
+<h3 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h3><p>用于做整段 commits 的还原</p>
+<p>例如希望还原到 B commit 以后的状态变成</p>
+<p>A -&gt; B<br>则<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset B</div></pre></td></tr></table></figure></p>
+<p>那么 git 会将 log 中的 C, D, E 都清除</p>
+<p>但档案内容没有任何变动，因此会看到 C, D, E 修改的档案处在 unstaged 阶段</p>
+<p>若针对部分档案还原可以用<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout [file path]</div></pre></td></tr></table></figure></p>
+<p>若要全部还原可用<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -f</div></pre></td></tr></table></figure></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>还没 push 前，个人倾向不产生太多 commit。因此我都会用 rebase -i 进行编修, 顺便合并或reword 一些 commit</p>
+<p>某个特殊情况, 例如发现某个 commit 里面包含了不相干的档案, 欲重新 commit 时，就会先用 rebase -i 把欲修改的 commit 换到后面(较新), 然后再用 reset 重新 stage + commit。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yangguoqi.me/2016/10/08/git撤销commit的三个方法/" data-id="civnyixvy000xwgmjbsjc2bnk" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/10/17/python学习/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          python学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/31/深入理解PHP原理之Opcodes/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">深入理解PHP原理之Opcodes</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/csrf/">csrf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php7/">php7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/requests/">requests</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssdb/">ssdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/twig/">twig</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/胡说/">胡说</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/csrf/" style="font-size: 10px;">csrf</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/laravel/" style="font-size: 16px;">laravel</a> <a href="/tags/linux/" style="font-size: 12px;">linux</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/php/" style="font-size: 12px;">php</a> <a href="/tags/php7/" style="font-size: 12px;">php7</a> <a href="/tags/python/" style="font-size: 18px;">python</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/requests/" style="font-size: 10px;">requests</a> <a href="/tags/ssdb/" style="font-size: 10px;">ssdb</a> <a href="/tags/twig/" style="font-size: 10px;">twig</a> <a href="/tags/video/" style="font-size: 10px;">video</a> <a href="/tags/教程/" style="font-size: 10px;">教程</a> <a href="/tags/胡说/" style="font-size: 10px;">胡说</a> <a href="/tags/转载/" style="font-size: 14px;">转载</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/07/Mysql排序规则utf8-unicode-ci与utf8-general-ci的区别/">Mysql排序规则utf8_unicode_ci与utf8_general_ci的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/05/mysql优化/">mysql优化</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/05/php优化/">php优化</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/01/opcode缓存原理/">opcode缓存原理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/26/Python-第三方库requests详解/">Python-第三方库requests详解</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 lnmput@gmail.com<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

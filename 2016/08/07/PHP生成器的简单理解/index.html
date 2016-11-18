@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP生成器的简单理解 | web实验室</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最初不相识，最终不相认
+简单理解123456官方的定义中：生成器就是简单的迭代器。不同于标准的PHP迭代器，PHP的生成器并不要求你一定要在一个重量级的类中实现Iterator接口。相反，生成器会按需求计算并交出迭代值。这对应用程序的性能有着深远的意义。想想吧，一个标准的PHP迭代器通常都是基于内存中全部计算过的数据集进行迭代。这样做效率不高。尤其是大量可计算的公式化数据集。使用生成器我们可以动态">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP生成器的简单理解">
+<meta property="og:url" content="http://yangguoqi.me/2016/08/07/PHP生成器的简单理解/index.html">
+<meta property="og:site_name" content="web实验室">
+<meta property="og:description" content="最初不相识，最终不相认
+简单理解123456官方的定义中：生成器就是简单的迭代器。不同于标准的PHP迭代器，PHP的生成器并不要求你一定要在一个重量级的类中实现Iterator接口。相反，生成器会按需求计算并交出迭代值。这对应用程序的性能有着深远的意义。想想吧，一个标准的PHP迭代器通常都是基于内存中全部计算过的数据集进行迭代。这样做效率不高。尤其是大量可计算的公式化数据集。使用生成器我们可以动态">
+<meta property="og:updated_time" content="2016-08-24T02:53:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PHP生成器的简单理解">
+<meta name="twitter:description" content="最初不相识，最终不相认
+简单理解123456官方的定义中：生成器就是简单的迭代器。不同于标准的PHP迭代器，PHP的生成器并不要求你一定要在一个重量级的类中实现Iterator接口。相反，生成器会按需求计算并交出迭代值。这对应用程序的性能有着深远的意义。想想吧，一个标准的PHP迭代器通常都是基于内存中全部计算过的数据集进行迭代。这样做效率不高。尤其是大量可计算的公式化数据集。使用生成器我们可以动态">
+  
+    <link rel="alternate" href="/atom.xml" title="web实验室" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">web实验室</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yangguoqi.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-PHP生成器的简单理解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/07/PHP生成器的简单理解/" class="article-date">
+  <time datetime="2016-08-07T12:15:30.000Z" itemprop="datePublished">2016-08-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PHP生成器的简单理解
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><blockquote class="blockquote-center"><br>最初不相识，最终不相认<br></blockquote></p>
+<h3 id="简单理解"><a href="#简单理解" class="headerlink" title="简单理解"></a>简单理解</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">官方的定义中：生成器就是简单的迭代器。</div><div class="line">不同于标准的PHP迭代器，PHP的生成器并不要求你一定要在一个重量级的类中实现Iterator接口。</div><div class="line">相反，生成器会按需求计算并交出迭代值。这对应用程序的性能有着深远的意义。想想吧，</div><div class="line">一个标准的PHP迭代器通常都是基于内存中全部计算过的数据集进行迭代。这样做效率不高。</div><div class="line">尤其是大量可计算的公式化数据集。使用生成器我们可以动态的计算并交出下一个值而不占用</div><div class="line">宝贵的系统内存，这就是我们使用生成器的原因。</div></pre></td></tr></table></figure>
+<h3 id="创建一个生成器"><a href="#创建一个生成器" class="headerlink" title="创建一个生成器"></a>创建一个生成器</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span>  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myGenerator</span><span class="params">()</span> </span>&#123;  </div><div class="line">    <span class="keyword">yield</span> <span class="string">'value1'</span>;  </div><div class="line">    <span class="keyword">yield</span> <span class="string">'value2'</span>;  </div><div class="line">    <span class="keyword">yield</span> <span class="string">'value3'</span>;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="使用这个生成器"><a href="#使用这个生成器" class="headerlink" title="使用这个生成器"></a>使用这个生成器</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span>  </div><div class="line"><span class="keyword">foreach</span> (myGenerator() <span class="keyword">as</span> $yieldedValue) &#123;  </div><div class="line">    <span class="keyword">echo</span> $yieldedValue, PHP_EOL;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果：<br>value1<br>value2<br>value3</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><ul>
+<li>Range生成器（糟糕的实现）</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span>  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeRange</span><span class="params">($length)</span> </span>&#123;  </div><div class="line">    $dataset = [];  </div><div class="line">    <span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; $length; $i++) &#123;  </div><div class="line">        $dataset[] = $i;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="keyword">return</span> $dataset;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line">$customRange = makeRange(<span class="number">1000000</span>);  </div><div class="line"><span class="keyword">foreach</span> ($customRange <span class="keyword">as</span> $i) &#123;  </div><div class="line">    <span class="keyword">echo</span> $i, PHP_EOL;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Range生成器（好的实现）</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span>  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeRange</span><span class="params">($length)</span> </span>&#123;  </div><div class="line">    <span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; $length; $i++) &#123;  </div><div class="line">        <span class="keyword">yield</span> $i;  </div><div class="line">    &#125;  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">foreach</span> (makeRange(<span class="number">1000000</span>) <span class="keyword">as</span> $i) &#123;  </div><div class="line">    <span class="keyword">echo</span> $i, PHP_EOL;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的例子并不实用。但是，联想一下所有你可能用来计算的数据集。序列数（例如斐波纳挈数）就是很典型的例子。同样你还可以遍历文件流资源。想象一下，如果你需要遍历一个4G的逗号分隔值（CSV）文件，而你的虚拟个人服务器（VPS）上PHP只分配了1G的内存。你根本没法把整个文件读取到内存中。</p>
+<ul>
+<li>CSV生成器</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span>  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getRows</span><span class="params">($file)</span> </span>&#123;  </div><div class="line">    $handle = fopen($file, <span class="string">'rb'</span>);  </div><div class="line">    <span class="keyword">if</span> ($handle === <span class="keyword">false</span>) &#123;  </div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>();  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">while</span> (feof($handle) === <span class="keyword">false</span>) &#123;  </div><div class="line">        <span class="keyword">yield</span> fgetcsv($handle);  </div><div class="line">    &#125;  </div><div class="line">    fclose($handle);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">foreach</span> (getRows(<span class="string">'data.csv'</span>) <span class="keyword">as</span> $row) &#123;  </div><div class="line">    print_r($row);  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>生成器的确使用了很少的内存却大大简化了某些任务。如果你需要更强大的功能诸如重置、快进、或者数据集的检索，你最好还是自定义一个实现Iterator interface接口的类，或者使用PHP现成的Standard PHP Library（SPL）迭代器。</p>
+<blockquote>
+<p><a href="http://blog.csdn.net/bandita/article/details/47723815" target="_blank" rel="external">http://blog.csdn.net/bandita/article/details/47723815</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yangguoqi.me/2016/08/07/PHP生成器的简单理解/" data-id="civnyixy9002uwgmj9pmo5jlx" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/10/php三种工作方式-CGI模式-FastCGI模式-Apache的mod-php/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          php三种工作方式-CGI模式-FastCGI模式-Apache的mod_php
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/07/PHPCON-CHINA-2016简介/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">PHPCON-CHINA-2016简介</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/csrf/">csrf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php7/">php7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/requests/">requests</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssdb/">ssdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/twig/">twig</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/胡说/">胡说</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/csrf/" style="font-size: 10px;">csrf</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/laravel/" style="font-size: 16px;">laravel</a> <a href="/tags/linux/" style="font-size: 12px;">linux</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/php/" style="font-size: 12px;">php</a> <a href="/tags/php7/" style="font-size: 12px;">php7</a> <a href="/tags/python/" style="font-size: 18px;">python</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/requests/" style="font-size: 10px;">requests</a> <a href="/tags/ssdb/" style="font-size: 10px;">ssdb</a> <a href="/tags/twig/" style="font-size: 10px;">twig</a> <a href="/tags/video/" style="font-size: 10px;">video</a> <a href="/tags/教程/" style="font-size: 10px;">教程</a> <a href="/tags/胡说/" style="font-size: 10px;">胡说</a> <a href="/tags/转载/" style="font-size: 14px;">转载</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/07/Mysql排序规则utf8-unicode-ci与utf8-general-ci的区别/">Mysql排序规则utf8_unicode_ci与utf8_general_ci的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/05/mysql优化/">mysql优化</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/05/php优化/">php优化</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/01/opcode缓存原理/">opcode缓存原理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/26/Python-第三方库requests详解/">Python-第三方库requests详解</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 lnmput@gmail.com<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

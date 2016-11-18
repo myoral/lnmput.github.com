@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>php三种工作方式-CGI模式-FastCGI模式-Apache的mod_php | web实验室</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="“跑呀跑呀跑呀跑呀，拼命努力着追上前面那个被目光期许的自己，生怕抓不住时光，只有和你一起的时候，才觉得不如就这样老了吧，也不算太辜负。”
+CGI123456789CGI英文全程是 Command Gateway Interface，通常翻译为公共网关接口，是HTTP服务器与机器上的其他程序进行通信的一个接口。这个“其他程序”可以是使用任何计算机语言进行编 写，例如php，python，perl等等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php三种工作方式-CGI模式-FastCGI模式-Apache的mod_php">
+<meta property="og:url" content="http://yangguoqi.me/2016/08/10/php三种工作方式-CGI模式-FastCGI模式-Apache的mod-php/index.html">
+<meta property="og:site_name" content="web实验室">
+<meta property="og:description" content="“跑呀跑呀跑呀跑呀，拼命努力着追上前面那个被目光期许的自己，生怕抓不住时光，只有和你一起的时候，才觉得不如就这样老了吧，也不算太辜负。”
+CGI123456789CGI英文全程是 Command Gateway Interface，通常翻译为公共网关接口，是HTTP服务器与机器上的其他程序进行通信的一个接口。这个“其他程序”可以是使用任何计算机语言进行编 写，例如php，python，perl等等">
+<meta property="og:updated_time" content="2016-08-10T15:21:59.232Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="php三种工作方式-CGI模式-FastCGI模式-Apache的mod_php">
+<meta name="twitter:description" content="“跑呀跑呀跑呀跑呀，拼命努力着追上前面那个被目光期许的自己，生怕抓不住时光，只有和你一起的时候，才觉得不如就这样老了吧，也不算太辜负。”
+CGI123456789CGI英文全程是 Command Gateway Interface，通常翻译为公共网关接口，是HTTP服务器与机器上的其他程序进行通信的一个接口。这个“其他程序”可以是使用任何计算机语言进行编 写，例如php，python，perl等等">
+  
+    <link rel="alternate" href="/atom.xml" title="web实验室" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">web实验室</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yangguoqi.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-php三种工作方式-CGI模式-FastCGI模式-Apache的mod-php" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/10/php三种工作方式-CGI模式-FastCGI模式-Apache的mod-php/" class="article-date">
+  <time datetime="2016-08-10T15:04:19.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      php三种工作方式-CGI模式-FastCGI模式-Apache的mod_php
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><blockquote class="blockquote-center"><br>“跑呀跑呀跑呀跑呀，拼命努力着追上前面那个被目光期许的自己，生怕抓不住时光，只有和你一起的时候，才觉得不如就这样老了吧，也不算太辜负。”<br></blockquote></p>
+<h3 id="CGI"><a href="#CGI" class="headerlink" title="CGI"></a>CGI</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">CGI英文全程是 Command Gateway <span class="class"><span class="keyword">Interface</span>，通常翻译为公共网关接口，</span></div><div class="line">是<span class="title">HTTP</span>服务器与机器上的其他程序进行通信的一个接口。</div><div class="line">这个“其他程序”可以是使用任何计算机语言进行编 写，例如<span class="title">php</span>，<span class="title">python</span>，<span class="title">perl</span>等等。</div><div class="line">它通过<span class="title">CGI</span>这个接口从<span class="title">HTTP</span>服务器取得输入，然后把运行结果又通过<span class="title">CGI</span>这个接口交给<span class="title">HTTP</span>服务器， 而<span class="title">HTTP</span>服务器把这个结果送给浏览器。</div><div class="line"></div><div class="line"><span class="title">CGI</span> 的出现让<span class="title">WEB</span>从静态变为动态，随着<span class="title">web</span>的越来越普及，很多的网站都需要有动态的页面，</div><div class="line">以便与浏览者进行交互。<span class="title">CGI</span>的缺点也越来越突出，因为<span class="title">HTTP</span> 要生成一个动态页面，</div><div class="line">系统就必须启动一个新的进程以运行<span class="title">CGI</span>程序，</div><div class="line">不断的<span class="title">fork</span>是一项很消耗时间和资源的工作。</div></pre></td></tr></table></figure>
+<h3 id="FastCGI"><a href="#FastCGI" class="headerlink" title="FastCGI"></a>FastCGI</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">FastCGIFastCGI是可伸缩架构的CGI开放扩展，</div><div class="line">其主要行为是将CGI解释器进程保持在内存中并因此获得较高的性能。</div><div class="line">传统的CGI 解释器的反复加载是CGI性能低下的主要原因，</div><div class="line">如果CGI解释器保持在内存中并接受FastCGI进程管理器调度，</div><div class="line">则可以提供良好的性能、伸缩性等 。在上述情况中，你可以想象 CGI通常有多慢。</div><div class="line">每一个Web请求PHP都必须重新解析php.ini、重新载入全部扩展并重初始化全部数据结构。</div><div class="line">使用FastCGI，所有这些 都只在进程启动时发生一次。一个额外的好处是，</div><div class="line">持续数据库连接(Persistent database connection)可以工作。</div></pre></td></tr></table></figure>
+<h3 id="mod-php"><a href="#mod-php" class="headerlink" title="mod_php"></a>mod_php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">在lamp体系中，对于apache端的php的配置，我们最常用的就是mod_php，</div><div class="line">它把php作为apache一个内置的模块.让apache http服务器本身能够支持php语言，</div><div class="line">不需要每一个请求就启动php解释器来解释php.</div><div class="line"></div><div class="line">和把webserver与php绑定起来的方式不同，</div><div class="line">fastcgi是http服务器与你的或其它机器上的程序进行“交谈”的一种工具，</div><div class="line">相当于一 个程序接口。它可以接受来自web服务器的请求，解释输入信息，</div><div class="line">将处理后的结果返回给服务器等。mod_fastcgi就是在apache下支持 fastcgi协议的模块。</div><div class="line"></div><div class="line">在lamp体系中，mod_php是最常使用的工作方式。在这种模式下，</div><div class="line">php被编译为apache的一个内置模块，在启动加载的时候，</div><div class="line">当有一个php请求过来，直接在httpd进程里完成了php的解释运行，将结果返回。</div></pre></td></tr></table></figure>
+<h3 id="mod-fastcgi"><a href="#mod-fastcgi" class="headerlink" title="mod_fastcgi"></a>mod_fastcgi</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mod_fastcgi就是在apache下支持 fastcgi协议的模块。</div><div class="line">fastcgi实例和apache分离开来，这两者可以分开来部署。</div><div class="line">他们之间的通信通过tcp或者unix sock来完成。使用ext方式，</div><div class="line">fastcgi实例是独立运行的。</div></pre></td></tr></table></figure>
+<h3 id="FPM"><a href="#FPM" class="headerlink" title="FPM"></a>FPM</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">FPM（FastCGI 进程管理器）用于替换 PHP FastCGI 的大部分附加功能，</div><div class="line">对于高负载网站是非常有用的。</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="http://blog.shiliuvip.com/391.html" target="_blank" rel="external">http://blog.shiliuvip.com/391.html</a><br><a href="http://php.net/manual/zh/install.fpm.php" target="_blank" rel="external">http://php.net/manual/zh/install.fpm.php</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yangguoqi.me/2016/08/10/php三种工作方式-CGI模式-FastCGI模式-Apache的mod-php/" data-id="civnyixxl002dwgmj3ulk58tc" class="article-share-link">Partager</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/11/ssdb一个高性能的nosql数据库/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Récent</strong>
+      <div class="article-nav-title">
+        
+          ssdb一个高性能的nosql数据库
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/07/PHP生成器的简单理解/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ancien</strong>
+      <div class="article-nav-title">PHP生成器的简单理解</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Mot-clés</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/csrf/">csrf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ftp/">ftp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/">mongodb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nosql/">nosql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/php7/">php7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/requests/">requests</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssdb/">ssdb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/twig/">twig</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/胡说/">胡说</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Nuage de mot-clés</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/PHP/" style="font-size: 20px;">PHP</a> <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/csrf/" style="font-size: 10px;">csrf</a> <a href="/tags/ftp/" style="font-size: 10px;">ftp</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/laravel/" style="font-size: 16px;">laravel</a> <a href="/tags/linux/" style="font-size: 12px;">linux</a> <a href="/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="/tags/mysql/" style="font-size: 16px;">mysql</a> <a href="/tags/nosql/" style="font-size: 10px;">nosql</a> <a href="/tags/php/" style="font-size: 12px;">php</a> <a href="/tags/php7/" style="font-size: 12px;">php7</a> <a href="/tags/python/" style="font-size: 18px;">python</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/requests/" style="font-size: 10px;">requests</a> <a href="/tags/ssdb/" style="font-size: 10px;">ssdb</a> <a href="/tags/twig/" style="font-size: 10px;">twig</a> <a href="/tags/video/" style="font-size: 10px;">video</a> <a href="/tags/教程/" style="font-size: 10px;">教程</a> <a href="/tags/胡说/" style="font-size: 10px;">胡说</a> <a href="/tags/转载/" style="font-size: 14px;">转载</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Articles récents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/07/Mysql排序规则utf8-unicode-ci与utf8-general-ci的区别/">Mysql排序规则utf8_unicode_ci与utf8_general_ci的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/05/mysql优化/">mysql优化</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/05/php优化/">php优化</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/01/opcode缓存原理/">opcode缓存原理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/26/Python-第三方库requests详解/">Python-第三方库requests详解</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 lnmput@gmail.com<br>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
