@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="ES中的聚合被分为两大类：Metric度量和bucket桶（原谅我英语差，找不到合适的词语…..就用单词来说吧！）。说的通俗点，metric很像SQL中的avg、max、min等方法，而bucket就有点类似group by了。
-Sum 求和123&quot;aggs&quot; : &amp;#123;    &quot;intraday_return&quot; : &amp;#123; &quot;sum&quot; : &amp;#123; &quot;field&quot; : &quot;chan">
+<meta name="description" content="当斧头来到树林里的时候，好多树都说，至少它的把手是我们自己人。ES中的聚合被分为两大类：Metric度量和bucket桶（原谅我英语差，找不到合适的词语…..就用单词来说吧！）。说的通俗点，metric很像SQL中的avg、max、min等方法，而bucket就有点类似group by了。
+Sum 求和123&quot;aggs&quot; : &amp;#123;    &quot;intraday_return&quot; : &amp;#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="elasticSearch聚合">
 <meta property="og:url" content="http://yangguoqi.me/2016/11/29/elasticSearch聚合/index.html">
 <meta property="og:site_name" content="杨子鳄">
-<meta property="og:description" content="ES中的聚合被分为两大类：Metric度量和bucket桶（原谅我英语差，找不到合适的词语…..就用单词来说吧！）。说的通俗点，metric很像SQL中的avg、max、min等方法，而bucket就有点类似group by了。
-Sum 求和123&quot;aggs&quot; : &amp;#123;    &quot;intraday_return&quot; : &amp;#123; &quot;sum&quot; : &amp;#123; &quot;field&quot; : &quot;chan">
-<meta property="og:updated_time" content="2016-11-29T15:33:22.000Z">
+<meta property="og:description" content="当斧头来到树林里的时候，好多树都说，至少它的把手是我们自己人。ES中的聚合被分为两大类：Metric度量和bucket桶（原谅我英语差，找不到合适的词语…..就用单词来说吧！）。说的通俗点，metric很像SQL中的avg、max、min等方法，而bucket就有点类似group by了。
+Sum 求和123&quot;aggs&quot; : &amp;#123;    &quot;intraday_return&quot; : &amp;#123;">
+<meta property="og:updated_time" content="2016-11-30T08:19:53.203Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elasticSearch聚合">
-<meta name="twitter:description" content="ES中的聚合被分为两大类：Metric度量和bucket桶（原谅我英语差，找不到合适的词语…..就用单词来说吧！）。说的通俗点，metric很像SQL中的avg、max、min等方法，而bucket就有点类似group by了。
-Sum 求和123&quot;aggs&quot; : &amp;#123;    &quot;intraday_return&quot; : &amp;#123; &quot;sum&quot; : &amp;#123; &quot;field&quot; : &quot;chan">
+<meta name="twitter:description" content="当斧头来到树林里的时候，好多树都说，至少它的把手是我们自己人。ES中的聚合被分为两大类：Metric度量和bucket桶（原谅我英语差，找不到合适的词语…..就用单词来说吧！）。说的通俗点，metric很像SQL中的avg、max、min等方法，而bucket就有点类似group by了。
+Sum 求和123&quot;aggs&quot; : &amp;#123;    &quot;intraday_return&quot; : &amp;#123;">
 
 
 
@@ -274,7 +274,7 @@ Sum 求和123&quot;aggs&quot; : &amp;#123;    &quot;intraday_return&quot; : &amp
       
 
       
-        <p>ES中的聚合被分为两大类：Metric度量和bucket桶（原谅我英语差，找不到合适的词语…..就用单词来说吧！）。说的通俗点，metric很像SQL中的avg、max、min等方法，而bucket就有点类似group by了。</p>
+        <p><blockquote class="blockquote-center"><br>当斧头来到树林里的时候，好多树都说，至少它的把手是我们自己人。<br></blockquote><br>ES中的聚合被分为两大类：Metric度量和bucket桶（原谅我英语差，找不到合适的词语…..就用单词来说吧！）。说的通俗点，metric很像SQL中的avg、max、min等方法，而bucket就有点类似group by了。</p>
 <h3 id="Sum-求和"><a href="#Sum-求和" class="headerlink" title="Sum 求和"></a>Sum 求和</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">"aggs" : &#123;</div><div class="line">    "intraday_return" : &#123; "sum" : &#123; "field" : "change" &#125; &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <h3 id="Min-求最小值"><a href="#Min-求最小值" class="headerlink" title="Min 求最小值"></a>Min 求最小值</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"aggs"</span> : &#123;</div><div class="line">        <span class="attr">"min_price"</span> : &#123; <span class="attr">"min"</span> : &#123; <span class="attr">"field"</span> : <span class="string">"price"</span> &#125; &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="cardinality-求唯一值，即不重复的字段有多少"><a href="#cardinality-求唯一值，即不重复的字段有多少" class="headerlink" title="cardinality 求唯一值，即不重复的字段有多少"></a>cardinality 求唯一值，即不重复的字段有多少</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"aggs"</span> : &#123;</div><div class="line">        <span class="attr">"author_count"</span> : &#123;</div><div class="line">            <span class="attr">"cardinality"</span> : &#123;</div><div class="line">                <span class="attr">"field"</span> : <span class="string">"author"</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -320,6 +320,10 @@ Sum 求和123&quot;aggs&quot; : &amp;#123;    &quot;intraday_return&quot; : &amp
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/30/chrome消息传递实例/" rel="prev" title="chrome消息传递实例">
+                chrome消息传递实例 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -387,7 +391,7 @@ Sum 求和123&quot;aggs&quot; : &amp;#123;    &quot;intraday_return&quot; : &amp
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">54</span>
+              <span class="site-state-item-count">55</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Mysql," />
+  <meta name="keywords" content="chrome," />
 
 
 
@@ -84,25 +84,19 @@
 
 
 
-<meta name="description" content="想戴上最美的面具，又想卸下所有的伪装。
-常用命令
-连接数
-12345678910111213141516171819202122如果是root帐号，你能看到所有用户的当前连接如果是其它普通帐号，只能看到自己占用的连接show processlist; 列出前100条show full processlist; 全部列出show global variables like &apos;%connections">
+<meta name="description" content="不管我本人多么平庸，我总觉得对你的爱很美。
+manifest.json123456789101112131415&amp;#123;&quot;name&quot;: &quot;消息传递&quot;,&quot;version&quot;: &quot;1.0&quot;,&quot;manifest_version&quot;: 2,&quot;description&quot;: &quot;各个页面JS之间事件的触发和消息的传递&quot;,&quot;browser_action&quot;: &amp;#123;&quot;default_icon&quot;: &quot;images">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql性能优化">
-<meta property="og:url" content="http://yangguoqi.me/2016/07/27/Mysql性能优化/index.html">
+<meta property="og:title" content="chrome消息传递实例">
+<meta property="og:url" content="http://yangguoqi.me/2016/11/30/chrome消息传递实例/index.html">
 <meta property="og:site_name" content="杨子鳄">
-<meta property="og:description" content="想戴上最美的面具，又想卸下所有的伪装。
-常用命令
-连接数
-12345678910111213141516171819202122如果是root帐号，你能看到所有用户的当前连接如果是其它普通帐号，只能看到自己占用的连接show processlist; 列出前100条show full processlist; 全部列出show global variables like &apos;%connections">
-<meta property="og:updated_time" content="2016-07-27T14:38:24.000Z">
+<meta property="og:description" content="不管我本人多么平庸，我总觉得对你的爱很美。
+manifest.json123456789101112131415&amp;#123;&quot;name&quot;: &quot;消息传递&quot;,&quot;version&quot;: &quot;1.0&quot;,&quot;manifest_version&quot;: 2,&quot;description&quot;: &quot;各个页面JS之间事件的触发和消息的传递&quot;,&quot;browser_action&quot;: &amp;#123;&quot;default_icon&quot;: &quot;images">
+<meta property="og:updated_time" content="2016-11-30T08:30:22.659Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql性能优化">
-<meta name="twitter:description" content="想戴上最美的面具，又想卸下所有的伪装。
-常用命令
-连接数
-12345678910111213141516171819202122如果是root帐号，你能看到所有用户的当前连接如果是其它普通帐号，只能看到自己占用的连接show processlist; 列出前100条show full processlist; 全部列出show global variables like &apos;%connections">
+<meta name="twitter:title" content="chrome消息传递实例">
+<meta name="twitter:description" content="不管我本人多么平庸，我总觉得对你的爱很美。
+manifest.json123456789101112131415&amp;#123;&quot;name&quot;: &quot;消息传递&quot;,&quot;version&quot;: &quot;1.0&quot;,&quot;manifest_version&quot;: 2,&quot;description&quot;: &quot;各个页面JS之间事件的触发和消息的传递&quot;,&quot;browser_action&quot;: &amp;#123;&quot;default_icon&quot;: &quot;images">
 
 
 
@@ -120,7 +114,7 @@
   };
 </script>
 
-  <title> Mysql性能优化 | 杨子鳄 </title>
+  <title> chrome消息传递实例 | 杨子鳄 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +234,7 @@
             
             
               
-                Mysql性能优化
+                chrome消息传递实例
               
             
           </h1>
@@ -252,8 +246,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-27T22:17:13+08:00" content="2016-07-27">
-              2016-07-27
+            <time itemprop="dateCreated" datetime="2016-11-30T16:22:13+08:00" content="2016-11-30">
+              2016-11-30
             </time>
           </span>
 
@@ -280,15 +274,11 @@
       
 
       
-        <p><blockquote class="blockquote-center"><br>想戴上最美的面具，又想卸下所有的伪装。<br></blockquote></p>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ul>
-<li><p>连接数</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">如果是root帐号，你能看到所有用户的当前连接</div><div class="line">如果是其它普通帐号，只能看到自己占用的连接</div><div class="line">show processlist; 列出前<span class="number">100</span>条</div><div class="line">show full processlist; 全部列出</div><div class="line">show <span class="keyword">global</span> variables like <span class="string">'%connections%'</span>; 查看整个MySQL实例的最大连接数限制</div><div class="line">max_connections 就是整个MySQL实例的最大连接数限制</div><div class="line">max_user_connections 是单个用户的最大连接数，这里未指明是哪个用户，是任意一个用户</div><div class="line"></div><div class="line">查看某个用户的最大连接数，<span class="number">0</span>表示不限制：</div><div class="line">select user,max_user_connections from mysql.user where user=<span class="string">'root'</span>;</div><div class="line">通过设置这个值，防止某个指定用户使用过多的连接资源。默认是<span class="number">0</span>，不限制。</div><div class="line"> </div><div class="line">上面<span class="number">3</span>个参数的关系是：</div><div class="line">max_user_connections &lt; 实例 max_user_connections &lt; max_connections</div><div class="line"> </div><div class="line">整个MySQL实例，曾经同时最大连接数，包括很多用户连接数之和：</div><div class="line">show <span class="keyword">global</span> status like <span class="string">'%max_used_connections%'</span>;</div><div class="line"></div><div class="line">修改mysql最大连接数：</div><div class="line">打开my.ini，修改max_connections=<span class="number">100</span>(默认为<span class="number">100</span>)。</div><div class="line"></div><div class="line">使用连接池减少mysql的连接数</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看状态</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show status;</div></pre></td></tr></table></figure></li>
-</ul>
-
+        <p><blockquote class="blockquote-center"><br>不管我本人多么平庸，我总觉得对你的爱很美。<br></blockquote></p>
+<h3 id="manifest-json"><a href="#manifest-json" class="headerlink" title="manifest.json"></a>manifest.json</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="attr">"name"</span>: <span class="string">"消息传递"</span>,</div><div class="line"><span class="attr">"version"</span>: <span class="string">"1.0"</span>,</div><div class="line"><span class="attr">"manifest_version"</span>: <span class="number">2</span>,</div><div class="line"><span class="attr">"description"</span>: <span class="string">"各个页面JS之间事件的触发和消息的传递"</span>,</div><div class="line"><span class="attr">"browser_action"</span>: &#123;</div><div class="line"><span class="attr">"default_icon"</span>: <span class="string">"images/icon38.png"</span>,</div><div class="line"><span class="attr">"default_popup"</span>: <span class="string">"popup.html"</span></div><div class="line">&#125;,</div><div class="line"><span class="attr">"background"</span>: &#123;</div><div class="line"><span class="attr">"scripts"</span>: [<span class="string">"js/background.js"</span>,<span class="string">"js/jquery.min.js"</span>],</div><div class="line"><span class="attr">"persistent"</span>: <span class="literal">false</span></div><div class="line">&#125;,</div><div class="line"><span class="attr">"permissions"</span>: [<span class="string">"tabs"</span>, <span class="string">"&lt;all_urls&gt;"</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="popup-html"><a href="#popup-html" class="headerlink" title="popup.html"></a>popup.html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/content.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"newtab"</span> &gt;</span>new tab<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="content-js"><a href="#content-js" class="headerlink" title="content.js"></a>content.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">$(<span class="string">"#newtab"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">chrome.runtime.sendMessage(&#123;action:<span class="string">"new_tab"</span>&#125;);</div><div class="line">&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="background-js"><a href="#background-js" class="headerlink" title="background.js"></a>background.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">chrome.runtime.onMessage.addListener(<span class="function"><span class="keyword">function</span> (<span class="params">request, sender, sendResponse</span>) </span>&#123;</div><div class="line"></div><div class="line"><span class="keyword">if</span>(request.action != <span class="string">'new_tab'</span>)&#123;</div><div class="line"><span class="keyword">var</span> newURL = <span class="string">"http://stackoverflow.com/"</span>;</div><div class="line">chrome.tabs.create(&#123; url: newURL &#125;);</div><div class="line">&#125;<span class="keyword">else</span> &#123;</div><div class="line"><span class="keyword">var</span> newURL = <span class="string">"http://www.baidu.com/"</span>;</div><div class="line">chrome.tabs.create(&#123; url: newURL &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -309,7 +299,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Mysql/" rel="tag">#Mysql</a>
+            <a href="/tags/chrome/" rel="tag">#chrome</a>
           
         </div>
       
@@ -318,17 +308,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/27/PHP7-Swoole开发超高性能后台程序/" rel="next" title="PHP7+Swoole开发超高性能后台程序">
-                <i class="fa fa-chevron-left"></i> PHP7+Swoole开发超高性能后台程序
+              <a href="/2016/11/29/elasticSearch聚合/" rel="next" title="elasticSearch聚合">
+                <i class="fa fa-chevron-left"></i> elasticSearch聚合
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/28/关于出现php-m和phpinfo不一致的问题/" rel="prev" title="关于出现php-m和phpinfo不一致的问题">
-                关于出现php-m和phpinfo不一致的问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -435,7 +421,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">1.</span> <span class="nav-text">常用命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#manifest-json"><span class="nav-number">1.</span> <span class="nav-text">manifest.json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#popup-html"><span class="nav-number">2.</span> <span class="nav-text">popup.html</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#content-js"><span class="nav-number">3.</span> <span class="nav-text">content.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#background-js"><span class="nav-number">4.</span> <span class="nav-text">background.js</span></a></li></ol></div>
             
           </div>
         </section>
