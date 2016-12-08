@@ -4,8 +4,42 @@
 
     
   <url>
+    <loc>http://yangguoqi.me/2016/12/08/%E5%85%B3%E4%BA%8Ehttp%E7%9A%84%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86/</loc>
+    <lastmod>2016-12-08T08:51:29.637Z</lastmod>
+    <data>
+        <display>
+        <title>关于http的一些知识</title>
+        <pubTime>2016-12-08T07:35:42.000Z</pubTime>
+        
+        <tag>http</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2016/12/07/%E5%B8%B8%E8%A7%81%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AD%96%E7%95%A5%E7%9A%84%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2016-12-07T10:01:28.495Z</lastmod>
+    <data>
+        <display>
+        <title>常见性能优化策略的总结</title>
+        <pubTime>2016-12-07T09:57:56.000Z</pubTime>
+        
+        <tag>性能优化</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yangguoqi.me/2016/12/06/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%9B%BE%E7%89%87%E7%9A%84%E7%88%AC%E8%99%AB/</loc>
-    <lastmod>2016-12-06T14:41:23.079Z</lastmod>
+    <lastmod>2016-12-06T14:41:23.000Z</lastmod>
     <data>
         <display>
         <title>一个简单的下载图片的爬虫</title>
@@ -22,7 +56,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/12/04/laravel5-2%E4%BD%BF%E7%94%A8JWT/</loc>
-    <lastmod>2016-12-04T05:58:53.699Z</lastmod>
+    <lastmod>2016-12-04T05:58:53.000Z</lastmod>
     <data>
         <display>
         <title>laravel5.2使用JWT</title>
@@ -39,7 +73,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/12/02/flex%E5%B8%83%E5%B1%80%E6%96%B9%E5%BC%8F%E4%B9%8B%E7%88%B6%E5%AE%B9%E5%99%A8/</loc>
-    <lastmod>2016-12-02T07:00:23.000Z</lastmod>
+    <lastmod>2016-12-02T07:00:23.236Z</lastmod>
     <data>
         <display>
         <title>flex布局方式之父容器</title>
@@ -56,7 +90,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/12/02/flex%E5%B8%83%E5%B1%80%E6%96%B9%E5%BC%8F%E4%B9%8B%E5%AD%90%E5%85%83%E7%B4%A0/</loc>
-    <lastmod>2016-12-02T06:58:31.000Z</lastmod>
+    <lastmod>2016-12-02T06:58:31.194Z</lastmod>
     <data>
         <display>
         <title>flex布局方式之子元素</title>
@@ -73,7 +107,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/12/01/laravel%E5%92%8Cnginx%E7%9A%84404/</loc>
-    <lastmod>2016-12-01T01:27:46.000Z</lastmod>
+    <lastmod>2016-12-01T01:27:46.914Z</lastmod>
     <data>
         <display>
         <title>laravel和nginx的404</title>
@@ -93,7 +127,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/11/30/chrome%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E5%AE%9E%E4%BE%8B/</loc>
-    <lastmod>2016-11-30T08:30:22.000Z</lastmod>
+    <lastmod>2016-11-30T08:30:22.659Z</lastmod>
     <data>
         <display>
         <title>chrome消息传递实例</title>
@@ -110,7 +144,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/11/29/elasticSearch%E8%81%9A%E5%90%88/</loc>
-    <lastmod>2016-11-30T08:19:53.000Z</lastmod>
+    <lastmod>2016-11-30T08:19:53.203Z</lastmod>
     <data>
         <display>
         <title>elasticSearch聚合</title>
@@ -127,7 +161,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/11/29/chrome%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E4%B9%8B%E8%8E%B7%E5%8F%96%E5%9B%BE%E7%89%87%E4%BF%A1%E6%81%AF/</loc>
-    <lastmod>2016-11-30T08:18:23.000Z</lastmod>
+    <lastmod>2016-11-30T08:18:55.423Z</lastmod>
     <data>
         <display>
         <title>chrome插件开发之获取图片信息</title>
@@ -144,7 +178,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/11/25/%E4%BA%8B%E4%BB%B6DOMContentLoaded%E5%92%8Cload%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
-    <lastmod>2016-11-25T01:22:31.000Z</lastmod>
+    <lastmod>2016-11-25T01:22:31.452Z</lastmod>
     <data>
         <display>
         <title>事件DOMContentLoaded和load的区别</title>
@@ -161,7 +195,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/11/20/python%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95%E7%9F%A5%E4%B9%8E/</loc>
-    <lastmod>2016-11-20T14:30:44.890Z</lastmod>
+    <lastmod>2016-11-20T14:30:44.000Z</lastmod>
     <data>
         <display>
         <title>python模拟登录知乎</title>
@@ -180,7 +214,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/11/07/Mysql%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99utf8-unicode-ci%E4%B8%8Eutf8-general-ci%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
-    <lastmod>2016-11-07T02:03:58.000Z</lastmod>
+    <lastmod>2016-11-07T02:03:58.784Z</lastmod>
     <data>
         <display>
         <title>Mysql排序规则utf8_unicode_ci与utf8_general_ci的区别</title>
@@ -196,25 +230,8 @@
 
     
   <url>
-    <loc>http://yangguoqi.me/2016/11/05/mysql%E4%BC%98%E5%8C%96/</loc>
-    <lastmod>2016-11-07T01:40:07.000Z</lastmod>
-    <data>
-        <display>
-        <title>mysql优化</title>
-        <pubTime>2016-11-05T05:33:22.000Z</pubTime>
-        
-        <tag>mysql</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yangguoqi.me/2016/11/05/php%E4%BC%98%E5%8C%96/</loc>
-    <lastmod>2016-11-07T01:37:38.000Z</lastmod>
+    <lastmod>2016-11-07T01:40:44.965Z</lastmod>
     <data>
         <display>
         <title>php优化</title>
@@ -230,8 +247,42 @@
 
     
   <url>
+    <loc>http://yangguoqi.me/2016/11/05/mysql%E4%BC%98%E5%8C%96/</loc>
+    <lastmod>2016-11-07T01:40:41.724Z</lastmod>
+    <data>
+        <display>
+        <title>mysql优化</title>
+        <pubTime>2016-11-05T05:33:22.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2016/07/26/mysql%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2016-11-07T01:09:18.542Z</lastmod>
+    <data>
+        <display>
+        <title>mysql用户相关操作</title>
+        <pubTime>2016-07-26T14:45:49.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yangguoqi.me/2016/11/01/opcode%E7%BC%93%E5%AD%98%E5%8E%9F%E7%90%86/</loc>
-    <lastmod>2016-11-01T01:11:57.000Z</lastmod>
+    <lastmod>2016-11-01T01:11:57.071Z</lastmod>
     <data>
         <display>
         <title>opcode缓存原理</title>
@@ -246,7 +297,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/10/26/Python-%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93requests%E8%AF%A6%E8%A7%A3/</loc>
-    <lastmod>2016-10-26T15:39:18.810Z</lastmod>
+    <lastmod>2016-10-26T15:39:18.000Z</lastmod>
     <data>
         <display>
         <title>Python-第三方库requests详解</title>
@@ -265,7 +316,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/10/26/python%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%93%E5%8F%96%E5%92%8C%E5%AD%98%E5%82%A8/</loc>
-    <lastmod>2016-10-26T15:24:37.106Z</lastmod>
+    <lastmod>2016-10-26T15:24:37.000Z</lastmod>
     <data>
         <display>
         <title>python大数据抓取和存储</title>
@@ -284,7 +335,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/10/25/python%E7%9A%84%E4%B8%80%E4%BA%9B%E6%8A%BD%E8%B1%A1%E7%90%86%E8%A7%A3/</loc>
-    <lastmod>2016-10-26T15:20:57.756Z</lastmod>
+    <lastmod>2016-10-26T15:20:57.000Z</lastmod>
     <data>
         <display>
         <title>python的一些抽象理解</title>
@@ -301,7 +352,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/10/26/python%E7%9A%84%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%92%8C%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
-    <lastmod>2016-10-26T14:56:28.911Z</lastmod>
+    <lastmod>2016-10-26T14:56:28.000Z</lastmod>
     <data>
         <display>
         <title>python的多进程和多线程</title>
@@ -318,7 +369,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/10/24/BeautifulSoup%E7%9A%84%E4%B8%80%E5%86%99%E7%94%A8%E6%B3%95/</loc>
-    <lastmod>2016-10-24T15:19:17.615Z</lastmod>
+    <lastmod>2016-10-24T15:13:29.000Z</lastmod>
     <data>
         <display>
         <title>BeautifulSoup的一写用法</title>
@@ -335,7 +386,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/10/24/python%E7%88%AC%E8%99%AB%E7%AC%AC%E4%B8%80%E5%91%A8/</loc>
-    <lastmod>2016-10-24T15:01:43.229Z</lastmod>
+    <lastmod>2016-10-24T15:01:43.000Z</lastmod>
     <data>
         <display>
         <title>python爬虫第一周</title>
@@ -352,7 +403,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/10/24/python%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2016-10-24T14:55:12.015Z</lastmod>
+    <lastmod>2016-10-24T14:55:12.000Z</lastmod>
     <data>
         <display>
         <title>python字符串操作</title>
@@ -369,7 +420,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/10/24/laravel%E4%B8%AD%E5%A6%82%E4%BD%95%E6%89%93%E5%8D%B0sql/</loc>
-    <lastmod>2016-10-24T03:34:45.000Z</lastmod>
+    <lastmod>2016-10-24T03:34:45.473Z</lastmod>
     <data>
         <display>
         <title>laravel中如何打印sql</title>
@@ -385,8 +436,25 @@
 
     
   <url>
+    <loc>http://yangguoqi.me/2016/10/08/git%E6%92%A4%E9%94%80commit%E7%9A%84%E4%B8%89%E4%B8%AA%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2016-10-24T03:34:35.615Z</lastmod>
+    <data>
+        <display>
+        <title>git撤销commit的三个方法</title>
+        <pubTime>2016-10-08T13:33:53.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yangguoqi.me/2016/08/21/%E5%85%8D%E8%B4%B9%E5%88%86%E4%BA%AB%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2016-10-21T02:37:21.000Z</lastmod>
+    <lastmod>2016-10-21T02:37:21.721Z</lastmod>
     <data>
         <display>
         <title>免费分享视频教程</title>
@@ -403,7 +471,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/10/18/main-%EF%BC%9A%E7%94%A8%E6%B3%95%E8%A7%A3%E6%9E%90/</loc>
-    <lastmod>2016-10-18T02:55:08.000Z</lastmod>
+    <lastmod>2016-10-18T03:03:30.640Z</lastmod>
     <data>
         <display>
         <title>__main__：用法解析</title>
@@ -420,7 +488,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/10/17/python%E5%B0%8F%E5%AE%9E%E4%BE%8B/</loc>
-    <lastmod>2016-10-18T02:54:07.000Z</lastmod>
+    <lastmod>2016-10-18T02:54:07.246Z</lastmod>
     <data>
         <display>
         <title>python小实例</title>
@@ -437,7 +505,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/10/17/python%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2016-10-18T01:17:34.000Z</lastmod>
+    <lastmod>2016-10-18T01:17:49.115Z</lastmod>
     <data>
         <display>
         <title>python学习</title>
@@ -453,14 +521,14 @@
 
     
   <url>
-    <loc>http://yangguoqi.me/2016/10/08/git%E6%92%A4%E9%94%80commit%E7%9A%84%E4%B8%89%E4%B8%AA%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2016-10-08T13:39:17.269Z</lastmod>
+    <loc>http://yangguoqi.me/2016/08/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3PHP%E5%8E%9F%E7%90%86%E4%B9%8Bforeach/</loc>
+    <lastmod>2016-08-31T01:57:52.120Z</lastmod>
     <data>
         <display>
-        <title>git撤销commit的三个方法</title>
-        <pubTime>2016-10-08T13:33:53.000Z</pubTime>
+        <title>深入理解PHP原理之foreach</title>
+        <pubTime>2016-08-22T02:17:37.000Z</pubTime>
         
-        <tag>git</tag>
+        <tag>PHP</tag>
          
          
            
@@ -471,7 +539,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/31/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3PHP%E5%8E%9F%E7%90%86%E4%B9%8BOpcodes/</loc>
-    <lastmod>2016-08-31T01:55:21.000Z</lastmod>
+    <lastmod>2016-08-31T01:57:49.716Z</lastmod>
     <data>
         <display>
         <title>深入理解PHP原理之Opcodes</title>
@@ -488,7 +556,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/28/video/</loc>
-    <lastmod>2016-08-28T14:59:29.107Z</lastmod>
+    <lastmod>2016-08-28T14:59:29.000Z</lastmod>
     <data>
         <display>
         <title>video</title>
@@ -505,7 +573,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/26/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%E7%9A%84%E4%B8%89%E7%A7%8D%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/</loc>
-    <lastmod>2016-08-26T08:35:47.000Z</lastmod>
+    <lastmod>2016-08-26T08:35:47.293Z</lastmod>
     <data>
         <display>
         <title>单点登录的三种实现方式</title>
@@ -522,7 +590,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/24/PHP%E4%B8%AD%E7%9A%84%E6%8F%92%E4%BB%B6%E6%9C%BA%E5%88%B6%E5%8E%9F%E7%90%86%E5%92%8C%E5%AE%9E%E4%BE%8B/</loc>
-    <lastmod>2016-08-24T07:22:52.000Z</lastmod>
+    <lastmod>2016-08-24T07:22:52.647Z</lastmod>
     <data>
         <display>
         <title>PHP中的插件机制原理和实例</title>
@@ -539,7 +607,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/24/PHP%E5%8F%8D%E5%B0%84%E7%B1%BBReflectionClass/</loc>
-    <lastmod>2016-08-24T06:57:48.000Z</lastmod>
+    <lastmod>2016-08-24T06:57:48.320Z</lastmod>
     <data>
         <display>
         <title>PHP反射类ReflectionClass</title>
@@ -556,7 +624,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/24/PHP%E5%87%BD%E6%95%B0call-user-func-array%E7%94%A8%E6%B3%95/</loc>
-    <lastmod>2016-08-24T06:52:15.000Z</lastmod>
+    <lastmod>2016-08-24T06:52:15.987Z</lastmod>
     <data>
         <display>
         <title>PHP函数call_user_func_array用法</title>
@@ -573,7 +641,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/24/PHP%E5%A4%A7%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BE%AA%E7%8E%AF%E6%97%B6%E5%86%85%E5%AD%98%E8%80%97%E5%B0%BD%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
-    <lastmod>2016-08-24T02:58:51.000Z</lastmod>
+    <lastmod>2016-08-24T02:58:51.260Z</lastmod>
     <data>
         <display>
         <title>PHP大量数据循环时内存耗尽问题的解决方案</title>
@@ -590,7 +658,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/07/PHP%E7%94%9F%E6%88%90%E5%99%A8%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/</loc>
-    <lastmod>2016-08-24T02:53:52.000Z</lastmod>
+    <lastmod>2016-08-24T02:53:52.274Z</lastmod>
     <data>
         <display>
         <title>PHP生成器的简单理解</title>
@@ -607,7 +675,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/23/%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E8%BF%9B%E7%A8%8B/</loc>
-    <lastmod>2016-08-23T07:30:44.000Z</lastmod>
+    <lastmod>2016-08-23T07:30:44.785Z</lastmod>
     <data>
         <display>
         <title>自定义任务调度进程</title>
@@ -626,7 +694,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/23/PHP%E4%B8%AD%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%80%A7%E2%80%94%E2%80%94%E4%BD%A0%E8%A7%89%E5%BE%97%E8%87%AA%E5%B7%B1%E5%B9%B8%E8%BF%90%E5%90%97%EF%BC%9F/</loc>
-    <lastmod>2016-08-23T06:37:31.000Z</lastmod>
+    <lastmod>2016-08-23T06:37:31.950Z</lastmod>
     <data>
         <display>
         <title>PHP中的随机性——你觉得自己幸运吗？</title>
@@ -642,25 +710,8 @@
 
     
   <url>
-    <loc>http://yangguoqi.me/2016/08/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3PHP%E5%8E%9F%E7%90%86%E4%B9%8Bforeach/</loc>
-    <lastmod>2016-08-22T02:26:44.000Z</lastmod>
-    <data>
-        <display>
-        <title>深入理解PHP原理之foreach</title>
-        <pubTime>2016-08-22T02:17:37.000Z</pubTime>
-        
-        <tag>PHP</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yangguoqi.me/2016/08/11/ssdb%E4%B8%80%E4%B8%AA%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84nosql%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2016-08-19T10:20:41.000Z</lastmod>
+    <lastmod>2016-08-19T10:20:41.715Z</lastmod>
     <data>
         <display>
         <title>ssdb一个高性能的nosql数据库</title>
@@ -681,7 +732,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/18/laravel-session%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2016-08-18T12:13:56.000Z</lastmod>
+    <lastmod>2016-08-18T12:13:56.250Z</lastmod>
     <data>
         <display>
         <title>laravel-session的使用</title>
@@ -698,7 +749,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/18/PHP%E8%AE%BE%E7%BD%AE%E4%BC%9A%E8%AF%9DSession%E8%B6%85%E6%97%B6%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%97%B6%E9%97%B4%E9%99%90%E5%88%B6/</loc>
-    <lastmod>2016-08-18T11:52:47.000Z</lastmod>
+    <lastmod>2016-08-18T11:52:47.229Z</lastmod>
     <data>
         <display>
         <title>PHP设置会话Session超时过期时间实现登录时间限制</title>
@@ -717,7 +768,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/18/%E8%AF%B7%E6%89%8B%E5%8A%A8%E9%87%8A%E6%94%BE%E4%BD%A0%E7%9A%84%E8%B5%84%E6%BA%90/</loc>
-    <lastmod>2016-08-18T11:21:33.000Z</lastmod>
+    <lastmod>2016-08-18T11:21:33.295Z</lastmod>
     <data>
         <display>
         <title>请手动释放你的资源</title>
@@ -736,7 +787,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/15/%E9%A2%84%E9%98%B2CSRF%E6%94%BB%E5%87%BB/</loc>
-    <lastmod>2016-08-15T11:26:48.000Z</lastmod>
+    <lastmod>2016-08-15T11:26:48.451Z</lastmod>
     <data>
         <display>
         <title>预防CSRF攻击</title>
@@ -755,7 +806,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/11/git-stash%E7%9A%84%E7%94%A8%E6%B3%95/</loc>
-    <lastmod>2016-08-11T16:05:16.583Z</lastmod>
+    <lastmod>2016-08-11T16:05:16.000Z</lastmod>
     <data>
         <display>
         <title>git-stash的用法</title>
@@ -772,7 +823,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/10/php%E4%B8%89%E7%A7%8D%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F-CGI%E6%A8%A1%E5%BC%8F-FastCGI%E6%A8%A1%E5%BC%8F-Apache%E7%9A%84mod-php/</loc>
-    <lastmod>2016-08-10T15:21:59.232Z</lastmod>
+    <lastmod>2016-08-10T15:21:59.000Z</lastmod>
     <data>
         <display>
         <title>php三种工作方式-CGI模式-FastCGI模式-Apache的mod_php</title>
@@ -789,7 +840,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/07/PHPCON-CHINA-2016%E7%AE%80%E4%BB%8B/</loc>
-    <lastmod>2016-08-07T11:46:20.888Z</lastmod>
+    <lastmod>2016-08-07T11:46:20.000Z</lastmod>
     <data>
         <display>
         <title>PHPCON-CHINA-2016简介</title>
@@ -806,7 +857,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/04/PHP%E7%9A%84%E8%BF%AD%E4%BB%A3%E5%99%A8/</loc>
-    <lastmod>2016-08-04T13:05:04.000Z</lastmod>
+    <lastmod>2016-08-04T13:05:04.613Z</lastmod>
     <data>
         <display>
         <title>PHP的迭代器</title>
@@ -823,7 +874,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/04/%E5%85%B3%E4%BA%8EPHP%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%9A%84%E4%B8%80%E9%81%93%E7%AC%94%E8%AF%95%E9%A2%98/</loc>
-    <lastmod>2016-08-04T12:39:32.000Z</lastmod>
+    <lastmod>2016-08-04T12:39:32.164Z</lastmod>
     <data>
         <display>
         <title>关于PHP迭代器的一道笔试题</title>
@@ -840,7 +891,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/08/04/%E5%9C%A8laravel%E4%B8%AD%E4%BD%BF%E7%94%A8twig%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/</loc>
-    <lastmod>2016-08-04T03:42:27.000Z</lastmod>
+    <lastmod>2016-08-04T03:42:27.644Z</lastmod>
     <data>
         <display>
         <title>在laravel中使用twig模板引擎</title>
@@ -859,7 +910,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/07/29/mysql%E5%86%85%E5%AD%98%E8%A1%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2016-07-29T02:09:35.000Z</lastmod>
+    <lastmod>2016-07-29T02:09:35.063Z</lastmod>
     <data>
         <display>
         <title>mysql内存表的使用</title>
@@ -876,7 +927,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/07/28/%E7%A8%8D%E5%BE%AE%E7%90%86%E8%A7%A3ORM/</loc>
-    <lastmod>2016-07-28T09:42:48.000Z</lastmod>
+    <lastmod>2016-07-28T09:42:49.576Z</lastmod>
     <data>
         <display>
         <title>稍微理解ORM</title>
@@ -895,7 +946,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/07/28/%E5%85%B3%E4%BA%8E%E5%87%BA%E7%8E%B0php-m%E5%92%8Cphpinfo%E4%B8%8D%E4%B8%80%E8%87%B4%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2016-07-28T01:51:05.000Z</lastmod>
+    <lastmod>2016-07-28T01:51:05.253Z</lastmod>
     <data>
         <display>
         <title>关于出现php-m和phpinfo不一致的问题</title>
@@ -914,7 +965,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/07/27/PHP7-Swoole%E5%BC%80%E5%8F%91%E8%B6%85%E9%AB%98%E6%80%A7%E8%83%BD%E5%90%8E%E5%8F%B0%E7%A8%8B%E5%BA%8F/</loc>
-    <lastmod>2016-07-27T15:21:05.847Z</lastmod>
+    <lastmod>2016-07-27T15:21:05.000Z</lastmod>
     <data>
         <display>
         <title>PHP7+Swoole开发超高性能后台程序</title>
@@ -931,7 +982,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/07/27/Mysql%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</loc>
-    <lastmod>2016-07-27T14:38:24.361Z</lastmod>
+    <lastmod>2016-07-27T14:38:24.000Z</lastmod>
     <data>
         <display>
         <title>Mysql性能优化</title>
@@ -947,25 +998,8 @@
 
     
   <url>
-    <loc>http://yangguoqi.me/2016/07/26/mysql%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2016-07-26T14:51:57.491Z</lastmod>
-    <data>
-        <display>
-        <title>mysql用户相关操作</title>
-        <pubTime>2016-07-26T14:45:49.000Z</pubTime>
-        
-        <tag>mysql</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yangguoqi.me/2016/07/23/PHP%E6%98%AF%E6%9C%80%E5%A5%BD%E7%9A%84%E8%AF%AD%E8%A8%80/</loc>
-    <lastmod>2016-07-26T14:23:56.922Z</lastmod>
+    <lastmod>2016-07-26T14:23:56.000Z</lastmod>
     <data>
         <display>
         <title>PHP是最好的语言</title>
@@ -984,7 +1018,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/07/25/centos%E4%B8%8Bftp%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/</loc>
-    <lastmod>2016-07-25T15:55:54.738Z</lastmod>
+    <lastmod>2016-07-25T15:55:54.000Z</lastmod>
     <data>
         <display>
         <title>centos下ftp相关设置</title>
@@ -1005,7 +1039,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/07/23/mysql5-7%E7%9B%B8%E5%85%B3%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2016-07-23T09:52:18.776Z</lastmod>
+    <lastmod>2016-07-23T09:52:18.000Z</lastmod>
     <data>
         <display>
         <title>mysql5.7相关操作</title>
@@ -1022,7 +1056,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/07/23/hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E6%A0%87%E7%AD%BE%E5%8A%9F%E8%83%BD/</loc>
-    <lastmod>2016-07-23T08:31:28.515Z</lastmod>
+    <lastmod>2016-07-23T08:31:28.000Z</lastmod>
     <data>
         <display>
         <title>hexo博客添加标签功能</title>
@@ -1040,7 +1074,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2016/07/23/centos%E4%B8%8B%E6%90%AD%E5%BB%BAlaravel%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83/</loc>
-    <lastmod>2016-07-23T08:22:23.149Z</lastmod>
+    <lastmod>2016-07-23T08:22:23.000Z</lastmod>
     <data>
         <display>
         <title>centos下搭建laravel运行环境</title>
