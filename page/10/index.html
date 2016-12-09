@@ -240,6 +240,110 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/11/ssdb一个高性能的nosql数据库/" itemprop="url">
+                  ssdb一个高性能的nosql数据库
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-11T22:26:19+08:00" content="2016-08-11">
+              2016-08-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote class="blockquote-center"><br>某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。<br></blockquote>
+
+<h3 id="简要说明"><a href="#简要说明" class="headerlink" title="简要说明"></a>简要说明</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">一个高性能的支持丰富数据结构的 NoSQL 数据库, 用于替代 Redis.</div><div class="line">基于google/leveldb 开发SSDB是一个开源的高性能数据库服务器, </div><div class="line">使用Google 的 LevelDB作为存储引擎, 大家有可能没听过leveldb的名字，</div><div class="line">但是淘宝的开源nosql tair大家应该有所耳闻吧，他也是基于leveldb做的开发。</div><div class="line">ssdb支持T级别的数据, 同时支持类似Redis中的zset和hash等数据结构,</div><div class="line">在同时需求高性能和大数据的条件下, 是一个可以代替Redis的方案.</div><div class="line">ssdb是一个持久化存储的KV系统，和Memcached、Redis这种内存型的KV系统不同，</div><div class="line">ssdb不会像Redis一样狂吃内存，而是将大部分数据存储到磁盘上。</div></pre></td></tr></table></figure>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate https:<span class="comment">//github.com/ideawu/ssdb/archive/master.zip</span></div><div class="line">unzip master</div><div class="line">cd ssdb-master</div><div class="line">make</div><div class="line"><span class="comment"># optional, install ssdb in /usr/local/ssdb</span></div><div class="line">sudo make install</div></pre></td></tr></table></figure>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># start master</span></div><div class="line">./ssdb-server ssdb.conf</div><div class="line"></div><div class="line"><span class="comment"># or start as daemon</span></div><div class="line">./ssdb-server -d ssdb.conf</div></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">require_once</span>(<span class="string">'SSDB.php'</span>);</div><div class="line">$ssdb = <span class="keyword">new</span> SimpleSSDB(<span class="string">'127.0.0.1'</span>, <span class="number">8888</span>);</div><div class="line">$resp = $ssdb-&gt;set(<span class="string">'key'</span>, <span class="string">'123'</span>);</div><div class="line">$resp = $ssdb-&gt;get(<span class="string">'key'</span>);</div><div class="line"><span class="keyword">echo</span> $resp; <span class="comment">// output: 123</span></div></pre></td></tr></table></figure>
+<h3 id="关于leveldb"><a href="#关于leveldb" class="headerlink" title="关于leveldb"></a>关于leveldb</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">LevelDB是google开源的一个key-value存储引擎库，类似于开源的Lucene索引库一样。</div><div class="line">其他的软件开发者可以利用该库做二次开发，来满足定制需求。</div><div class="line">LevelDB采用日志式的写方式来提高写性能，但是牺牲了部分读性能。</div><div class="line">为了弥补牺牲了的读性能，一些人提议使用SSD作为存储介质。</div></pre></td></tr></table></figure>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">修改ssdb.conf文件，把ip改成<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>，允许外网访问</div><div class="line">高级应用可以查看主从这一块儿</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="http://ssdb.io/zh_cn/" target="_blank" rel="external">http://ssdb.io/zh_cn/</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/10/php三种工作方式-CGI模式-FastCGI模式-Apache的mod-php/" itemprop="url">
                   php三种工作方式-CGI模式-FastCGI模式-Apache的mod_php
                 </a>
@@ -636,107 +740,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/04/关于PHP迭代器的一道笔试题/" itemprop="url">
-                  关于PHP迭代器的一道笔试题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-04T20:17:45+08:00" content="2016-08-04">
-              2016-08-04
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>我做事三分钟热度，却也爱你那么久。<br></blockquote></p>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">使对象可以像数组一样进行<span class="keyword">foreach</span>循环，要求属性必须是私有。</div></pre></td></tr></table></figure>
-<h3 id="鸟哥给出的答案"><a href="#鸟哥给出的答案" class="headerlink" title="鸟哥给出的答案"></a>鸟哥给出的答案</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">sample</span> <span class="keyword">implements</span> <span class="title">Iterator</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> $_items = <span class="keyword">array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>);</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</div><div class="line">        ;<span class="comment">//void</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rewind</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        reset(<span class="keyword">$this</span>-&gt;_items);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">current</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> current(<span class="keyword">$this</span>-&gt;_items);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">key</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> key(<span class="keyword">$this</span>-&gt;_items);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">next</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> next(<span class="keyword">$this</span>-&gt;_items);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">valid</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> ( <span class="keyword">$this</span>-&gt;current() !== <span class="keyword">false</span> );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$sa = <span class="keyword">new</span> sample();</div><div class="line"><span class="keyword">foreach</span>($sa <span class="keyword">as</span> $key =&gt; $val)&#123;</div><div class="line">    <span class="keyword">print</span> $key . <span class="string">"=&gt;"</span> .$val.<span class="string">'&lt;br&gt;'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="拓展说明"><a href="#拓展说明" class="headerlink" title="拓展说明"></a>拓展说明</h3><p>使用foreach只可以循环出数组的public属性，protected和private属性无法得到<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> $a = <span class="string">'tom'</span>;</div><div class="line">    <span class="keyword">protected</span>  $b = <span class="string">'lilei'</span>;</div><div class="line">    <span class="keyword">private</span>  $c = <span class="string">'hanmeimei'</span>;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">foreach</span> (<span class="keyword">new</span> User() <span class="keyword">as</span> $user)&#123;</div><div class="line">    <span class="keyword">echo</span> $user.<span class="string">'&lt;br&gt;'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>但是在类的内部可以<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> $a = <span class="string">'tom'</span>;</div><div class="line">    <span class="keyword">protected</span>  $b = <span class="string">'lilei'</span>;</div><div class="line">    <span class="keyword">private</span>  $c = <span class="string">'hanmeimei'</span>;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">do_something</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">foreach</span>(<span class="keyword">$this</span> <span class="keyword">as</span> $key =&gt; $value) &#123;</div><div class="line">            <span class="keyword">echo</span> <span class="string">"$key =&gt; $value\n"</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$user = <span class="keyword">new</span> User();</div><div class="line">$user-&gt;do_something();</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p><a href="http://www.laruence.com/2008/10/31/574.html" target="_blank" rel="external">http://www.laruence.com/2008/10/31/574.html</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -782,7 +785,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">62</span>
+              <span class="site-state-item-count">63</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
