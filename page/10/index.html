@@ -240,6 +240,102 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/11/git-stash的用法/" itemprop="url">
+                  git-stash的用法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-11T23:50:19+08:00" content="2016-08-11">
+              2016-08-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>生活总是有很多出人意料的事情，比如，你以为我要举个例子。<br></blockquote></p>
+<h3 id="应用前提"><a href="#应用前提" class="headerlink" title="应用前提"></a>应用前提</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">分支里面的代码如果没有提交commit ，那么切换到其他分支下还是可以看</div><div class="line">到(git status)这个分支下的代码.</div><div class="line"></div><div class="line">但是如果我们现在想要切换到别的分支但是同时又不想提交commit我们的代码</div><div class="line">该如何处理？</div></pre></td></tr></table></figure>
+<h3 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在你切换分支前，运行：git stash 就可以了</div><div class="line">当你在其他分支改好了代码并切换回当前分支的时候，请git stash pop</div></pre></td></tr></table></figure>
+<h3 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">git stash</div><div class="line">保存当前的工作进度。会分别对暂存区和工作区的状态进行保存</div><div class="line"></div><div class="line">git stash save <span class="string">"message..."</span></div><div class="line">这条命令实际上是第一条 git stash 命令的完整版</div><div class="line"></div><div class="line">git stash <span class="keyword">list</span></div><div class="line">显示进度列表。此命令显然暗示了git stash 可以多次保存工作进度，并用在恢复时候进行选择</div><div class="line"></div><div class="line">git stash pop [--index] [&lt;stash&gt;]</div><div class="line">如果不使用任何参数，会恢复最新保存的工作进度，</div><div class="line">并将恢复的工作进度从存储的工作进度列表中清除。</div><div class="line">如果提供参数（来自 git stash <span class="keyword">list</span> 显示的列表），则从该 &lt;stash&gt; 中恢复。恢复完毕也将从进度列表中删除 &lt;stash&gt;。</div><div class="line">选项--index 除了恢复工作区的文件外，还尝试恢复暂存区。</div><div class="line"></div><div class="line">git stash apply [--index] [&lt;stash&gt;]</div><div class="line">除了不删除恢复的进度之外，其余和 git stash pop 命令一样</div><div class="line"></div><div class="line">git stash clear</div><div class="line">删除所有存储的进度</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/11/ssdb一个高性能的nosql数据库/" itemprop="url">
                   ssdb一个高性能的nosql数据库
                 </a>
@@ -637,109 +733,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/04/PHP的迭代器/" itemprop="url">
-                  PHP的迭代器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-04T20:55:16+08:00" content="2016-08-04">
-              2016-08-04
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>最孤独的，不是不能跟一个人在一起，而是根本不知道想跟谁在一起……<br></blockquote></p>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>PHP5开始支持了接口， 并且内置了<code>Iterator</code>接口， 所以如果你定义了一个类，并实现了<code>Iterator</code>接口，<br>那么你的这个类对象就是<code>ZEND_ITER_OBJECT</code>,否则就是<code>ZEND_ITER_PLAIN_OBJECT</code>.<br>对于<code>ZEND_ITER_PLAIN_OBJEC</code>T的类，foreach会通过HASH_OF获取该对象的默认属性数组，然后对该数组进行foreach.<br>而对于<code>END_ITER_OBJECT</code>的类对象，则会通过调用对象实现的Iterator接口相关函数来进行foreach。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">* Iterator模式的简单实现类</div><div class="line">*/</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">sample</span> <span class="keyword">implements</span> <span class="title">Iterator</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> $_items ;</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(&amp;$data)</span> </span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;_items = $data;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">current</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> current(<span class="keyword">$this</span>-&gt;_items);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">        next(<span class="keyword">$this</span>-&gt;_items);   </div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">key</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> key(<span class="keyword">$this</span>-&gt;_items);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rewind</span><span class="params">()</span> </span>&#123;</div><div class="line">        reset(<span class="keyword">$this</span>-&gt;_items);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">valid</span><span class="params">()</span> </span>&#123;                                                                              </div><div class="line">        <span class="keyword">return</span> (<span class="keyword">$this</span>-&gt;current() !== <span class="keyword">FALSE</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">/** DEMO */</span></div><div class="line">$data = <span class="keyword">array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>);</div><div class="line">$sa = <span class="keyword">new</span> sample($data);</div><div class="line"><span class="keyword">foreach</span> ($sa <span class="keyword">AS</span> $key =&gt; $row) &#123;</div><div class="line">    <span class="keyword">echo</span> $key, <span class="string">' '</span>, $row, <span class="string">'&lt;br /&gt;'</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h3><ul>
-<li>使用返回迭代器的包或库时（如PHP5中的SPL迭代器）</li>
-<li>无法在一次的调用获取容器的所有元素时</li>
-<li>要处理数量巨大的无素时（数据库中的表以GB计的数据）</li>
-<li>……</li>
-</ul>
-<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><p>一般是使用foreach来使用迭代器，下面整理了一下代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span>   </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">sample</span> <span class="keyword">implements</span> <span class="title">Iterator</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">private</span> $_items = <span class="keyword">array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>);</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</div><div class="line">                  ;<span class="comment">//void</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rewind</span><span class="params">()</span> </span>&#123; reset(<span class="keyword">$this</span>-&gt;_items); &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">current</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> current(<span class="keyword">$this</span>-&gt;_items); &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">key</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> key(<span class="keyword">$this</span>-&gt;_items); &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">next</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> next(<span class="keyword">$this</span>-&gt;_items); &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">valid</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> ( <span class="keyword">$this</span>-&gt;current() !== <span class="keyword">false</span> ); &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">$sa = <span class="keyword">new</span> sample();</div><div class="line"><span class="keyword">foreach</span>($sa <span class="keyword">as</span> $key =&gt; $val)&#123;</div><div class="line">    <span class="keyword">print</span> $key . <span class="string">"=&gt;"</span> .$val;</div><div class="line">&#125;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -785,7 +778,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">63</span>
+              <span class="site-state-item-count">64</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -795,7 +788,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
