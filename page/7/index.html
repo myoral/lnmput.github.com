@@ -240,6 +240,102 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/17/python小实例/" itemprop="url">
+                  python小实例
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-17T14:46:25+08:00" content="2016-10-17">
+              2016-10-17
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>自此无心爱良夜，任他明月下西楼。<br></blockquote></p>
+<h3 id="按逗号分隔列表"><a href="#按逗号分隔列表" class="headerlink" title="按逗号分隔列表"></a>按逗号分隔列表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">L = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line">s1 = <span class="string">','</span>.join(str(n) <span class="keyword">for</span> n <span class="keyword">in</span> L)</div><div class="line"><span class="keyword">print</span> s1</div></pre></td></tr></table></figure>
+<h3 id="有1、2、3、4个数字，能组成多少个互不相同且无重复数字的三位数？都是多少？"><a href="#有1、2、3、4个数字，能组成多少个互不相同且无重复数字的三位数？都是多少？" class="headerlink" title="有1、2、3、4个数字，能组成多少个互不相同且无重复数字的三位数？都是多少？"></a>有1、2、3、4个数字，能组成多少个互不相同且无重复数字的三位数？都是多少？</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">5</span>):</div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">5</span>):</div><div class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">5</span>):</div><div class="line">            <span class="keyword">if</span>( i != k ) <span class="keyword">and</span> (i != j) <span class="keyword">and</span> (j != k):</div><div class="line">                <span class="keyword">print</span> i,j,k</div></pre></td></tr></table></figure>
+<h3 id="交换两个变量"><a href="#交换两个变量" class="headerlink" title="交换两个变量"></a>交换两个变量</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">exchange</span><span class="params">(a,b)</span>:</span></div><div class="line">    a,b = b,a</div><div class="line">    <span class="keyword">return</span> (a,b)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    x = <span class="number">10</span></div><div class="line">    y = <span class="number">20</span></div><div class="line">print(<span class="string">'x = %d,y = %d'</span> % (x,y))</div><div class="line"></div><div class="line">x,y = exchange(x,y)</div><div class="line"></div><div class="line">print(<span class="string">'x = %d,y = %d'</span> % (x,y))</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/17/python学习/" itemprop="url">
                   python学习
                 </a>
@@ -632,99 +728,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/26/单点登录的三种实现方式/" itemprop="url">
-                  单点登录的三种实现方式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-26T16:34:39+08:00" content="2016-08-26">
-              2016-08-26
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -770,7 +773,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">66</span>
+              <span class="site-state-item-count">67</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -780,7 +783,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

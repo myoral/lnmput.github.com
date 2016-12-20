@@ -240,6 +240,99 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/26/单点登录的三种实现方式/" itemprop="url">
+                  单点登录的三种实现方式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-26T16:34:39+08:00" content="2016-08-26">
+              2016-08-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/24/PHP中的插件机制原理和实例/" itemprop="url">
                   PHP中的插件机制原理和实例
                 </a>
@@ -621,109 +714,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/23/自定义任务调度进程/" itemprop="url">
-                  自定义任务调度进程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-23T15:22:32+08:00" content="2016-08-23">
-              2016-08-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>我 曾经 喜欢 过 你<br></blockquote><br>已经多次遇到过自定义任务调度进程，替换init进程的情况了。自定义的任务调度进程，方便统一监控管理，报警，观察输出等。</p>
-<p>Linux机器上的计划任务是由系统进程init根据cron文件调度的，计划任务作为子进程执行任务，共享机器的cpu，内存等资源。于是，可以提供一个守护进程脚本替代系统进程，根据后台管理的数据库文件，拉取本机的cron配置，fork子进程来执行任务。这样子进程的状态，输出等都可以自定义控制。</p>
-<p><img src="http://7nj3d5.com1.z0.glb.clouddn.com/tr.png" alt="alt text"></p>
-<p>任务调度流程图<br>php版本的实现，需要用到pcntl与posix两个扩展，通过pcntl_fork生成子进程，posix_kill进行进程通信，pcntl_wait回收子进程。还需要考虑，网络状况等问题可能造成的异常，例如：忽略SIGPIPE信号等。</p>
-<p>解析crontab格式的表达式，可以使用这个库：<a href="https://github.com/mtdowling/cron-expression" target="_blank" rel="external">https://github.com/mtdowling/cron-expression</a></p>
-<p>子进程的杀死操作，可以使用上一篇文章里的shell进行，也可以通过php的posix_getppid等函数做，但是要注意杀死整个进程树。</p>
-<p>通过修改fork子进程的脚本，可以很容易实现，基于多进程的对阻塞队列的并发消费，用来处理高负载的消息队列。以后再写文章概述。</p>
-<blockquote>
-<p><a href="http://it.taocms.org/08/5384.htm" target="_blank" rel="external">http://it.taocms.org/08/5384.htm</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -769,7 +759,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">66</span>
+              <span class="site-state-item-count">67</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -779,7 +769,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

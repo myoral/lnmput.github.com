@@ -240,6 +240,115 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/25/事件DOMContentLoaded和load的区别/" itemprop="url">
+                  事件DOMContentLoaded和load的区别
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-25T09:18:27+08:00" content="2016-11-25">
+              2016-11-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>她是你姑姑，又是你师父，怎么能做你妻子！<br></blockquote></p>
+<h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><p>他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。</p>
+<p>DOM文档加载的步骤为：</p>
+<ul>
+<li>解析HTML结构。</li>
+<li>加载外部脚本和样式表文件。</li>
+<li>解析并执行脚本代码。</li>
+<li>DOM树构建完成。//DOMContentLoaded</li>
+<li>加载图片等外部文件。</li>
+<li>页面加载完毕。//load</li>
+</ul>
+<p>在第4步，会触发DOMContentLoaded事件。在第6步，触发load事件。<br>用原生js可以这么写:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 不兼容老的浏览器，兼容写法见[jQuery中ready与load事件](http://www.imooc.com/code/3253)，或用jQuery</span></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"DOMContentLoaded"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="comment">// ...代码...</span></div><div class="line">&#125;, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"load"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// ...代码...</span></div><div class="line">&#125;, <span class="literal">false</span>);</div></pre></td></tr></table></figure></p>
+<p>用jQuery这么写:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// DOMContentLoaded</span></div><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// ...代码...</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">//load</span></div><div class="line">$(<span class="built_in">document</span>).load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// ...代码...</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><a href="http://www.jianshu.com/p/d851db5f2f30" target="_blank" rel="external">http://www.jianshu.com/p/d851db5f2f30</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/20/python模拟登录知乎/" itemprop="url">
                   python模拟登录知乎
                 </a>
@@ -632,99 +741,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/01/opcode缓存原理/" itemprop="url">
-                  opcode缓存原理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-01T09:11:57+08:00" content="2016-11-01">
-              2016-11-01
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -770,7 +786,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">66</span>
+              <span class="site-state-item-count">67</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -780,7 +796,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
