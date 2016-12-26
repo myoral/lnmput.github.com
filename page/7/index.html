@@ -240,6 +240,109 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/18/main-：用法解析/" itemprop="url">
+                  __main__：用法解析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-18T09:58:38+08:00" content="2016-10-18">
+              2016-10-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote class="blockquote-center"><br>我给你瘦落的街道，绝望的日落，荒郊的月亮，我给你一个久久地望着孤月的人的悲哀。<br></blockquote>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"><span class="comment"># Filename: using_name.py</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">	<span class="keyword">print</span> <span class="string">'This program is being run by itself'</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">	<span class="keyword">print</span> <span class="string">'I am being imported from another module'</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ python using_name.py</div><div class="line">This program <span class="keyword">is</span> being run by itself</div><div class="line"></div><div class="line">$ python</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> using_name</div><div class="line">I am being imported <span class="keyword">from</span> another module</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>When the Python interpreter reads a source file, it executes all of the code found in it.</p>
+<p>Before executing the code, it will define a few special variables. For example, if the python interpreter is running that module (the source file) as the main program, it sets the special <strong>name</strong> variable to have a value “<strong>main</strong>“. If this file is being imported from another module, <strong>name</strong> will be set to the module’s name.</p>
+<p>In the case of your script, let’s assume that it’s executing as the main function, e.g. you said something like</p>
+<p>python threading_example.py<br>on the command line. After setting up the special variables, it will execute the import statement and load those modules. It will then evaluate the def block, creating a function object and creating a variable called myfunction that points to the function object. It will then read the if statement and see that <strong>name</strong> does equal “<strong>main</strong>“, so it will execute the block shown there.</p>
+<p>One of the reasons for doing this is that sometimes you write a module (a .py file) where it can be executed directly. Alternatively, it can also be imported and used in another module. By doing the main check, you can have that code only execute when you want to run the module as a program and not have it execute when someone just wants to import your module and call your functions themselves.</p>
+<p>See this page for some extra details.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/17/python小实例/" itemprop="url">
                   python小实例
                 </a>
@@ -632,102 +735,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/28/video/" itemprop="url">
-                  video
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-28T22:38:29+08:00" content="2016-08-28">
-              2016-08-28
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>学习，成长，进步<br></blockquote></p>
-<blockquote>
-<h2 id="需要视频教程的同学留言了，写下你需要的视频资源-找到后第一时间发给你"><a href="#需要视频教程的同学留言了，写下你需要的视频资源-找到后第一时间发给你" class="headerlink" title="需要视频教程的同学留言了，写下你需要的视频资源,找到后第一时间发给你"></a>需要视频教程的同学留言了，写下你需要的视频资源,找到后第一时间发给你</h2><h4 id="视频资源更新QQ群：481968179"><a href="#视频资源更新QQ群：481968179" class="headerlink" title="视频资源更新QQ群：481968179"></a>视频资源更新QQ群：<code>481968179</code></h4><h4 id="微信公众号：-xfdoors"><a href="#微信公众号：-xfdoors" class="headerlink" title="微信公众号： xfdoors"></a>微信公众号： <code>xfdoors</code></h4><h4 id="个人QQ号：1192414556"><a href="#个人QQ号：1192414556" class="headerlink" title="个人QQ号：1192414556"></a>个人QQ号：<code>1192414556</code></h4></blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -773,7 +780,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -783,7 +790,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

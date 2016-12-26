@@ -240,6 +240,103 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/29/chrome插件开发之获取图片信息/" itemprop="url">
+                  chrome插件开发之获取图片信息
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-29T23:21:48+08:00" content="2016-11-29">
+              2016-11-29
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>受任于败军之际，奉命于危难之间，尔来二十有一年矣。<br></blockquote></p>
+<h3 id="manifest-json"><a href="#manifest-json" class="headerlink" title="manifest.json"></a>manifest.json</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="attr">"name"</span> : <span class="string">"Imageinfo"</span>,</div><div class="line"><span class="attr">"version"</span> : <span class="string">"1.0.1"</span>,</div><div class="line"><span class="attr">"description"</span> : <span class="string">"Get image info for images, including EXIF data"</span>,</div><div class="line"><span class="attr">"background"</span> : &#123; <span class="attr">"scripts"</span>: [<span class="string">"js/background.js"</span>] &#125;,</div><div class="line"><span class="attr">"permissions"</span> : [</div><div class="line"><span class="string">"contextMenus"</span>,</div><div class="line"><span class="string">"tabs"</span>,</div><div class="line"><span class="string">"http://*/*"</span>,</div><div class="line"><span class="string">"https://*/*"</span></div><div class="line">],</div><div class="line"><span class="attr">"minimum_chrome_version"</span> : <span class="string">"6.0.0.0"</span>,</div><div class="line"><span class="attr">"icons"</span> : &#123;</div><div class="line"><span class="attr">"16"</span> : <span class="string">"images/icon16.png"</span>,</div><div class="line"><span class="attr">"48"</span> : <span class="string">"images/icon48.png"</span>,</div><div class="line"><span class="attr">"128"</span> : <span class="string">"images/icon128.png"</span></div><div class="line">&#125;,</div><div class="line"><span class="attr">"manifest_version"</span>: <span class="number">2</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="background-js"><a href="#background-js" class="headerlink" title="background.js"></a>background.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getClickHandler</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">info, tab</span>) </span>&#123;</div><div class="line"><span class="keyword">var</span> url = <span class="string">'html/index.html#'</span> + info.srcUrl;</div><div class="line">chrome.windows.create(&#123; url: url, width: <span class="number">520</span>, height: <span class="number">660</span> &#125;);</div><div class="line">&#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">chrome.contextMenus.create(&#123;</div><div class="line"><span class="string">"title"</span> : <span class="string">"Get image info"</span>,</div><div class="line"><span class="string">"type"</span> : <span class="string">"normal"</span>,</div><div class="line"><span class="string">"contexts"</span> : [<span class="string">"image"</span>],</div><div class="line"><span class="string">"onclick"</span> : getClickHandler()</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span></span></div><div class="line"><span class="attr">content</span>=<span class="string">"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/content.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">h1</span>&gt;</span>tihs is a new page<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"con"</span>&gt;</span></div><div class="line"></div><div class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="content-js"><a href="#content-js" class="headerlink" title="content.js"></a>content.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">url = <span class="built_in">window</span>.location.href;</div><div class="line">kk = url.split(<span class="string">'#'</span>);</div><div class="line">$(<span class="string">"#con"</span>).html(<span class="string">"&lt;img src='"</span>+kk[<span class="number">1</span>]+<span class="string">"' /&gt;"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/25/事件DOMContentLoaded和load的区别/" itemprop="url">
                   事件DOMContentLoaded和load的区别
                 </a>
@@ -638,109 +735,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/05/php优化/" itemprop="url">
-                  php优化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-05T13:33:12+08:00" content="2016-11-05">
-              2016-11-05
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>曹操：“云长兄。英雄，自然你来当。小人，我来！”<br></blockquote></p>
-<h3 id="测试工具ab"><a href="#测试工具ab" class="headerlink" title="测试工具ab"></a>测试工具ab</h3><p>ab命令会创建很多的并发访问线程，模拟多个访问者同时对某一URL地址进行访问。它的测试目标是基于URL的，因此，既可以用来测试Apache的负载压力，也可以测试nginx、lighthttp、tomcat、IIS等其它Web服务器的压力。<br>ab命令对发出负载的计算机要求很低，既不会占用很高CPU，也不会占用很多内存，但却会给目标服务器造成巨大的负载，其原理类似CC攻击。自己测试使用也须注意，否则一次上太多的负载，可能造成目标服务器因资源耗完，严重时甚至导致死机。</p>
-<h3 id="其他建议"><a href="#其他建议" class="headerlink" title="其他建议"></a>其他建议</h3><ul>
-<li>避免在循环内做运算</li>
-<li>避免计算密集型业务</li>
-<li>减少PHP发起的网络请求</li>
-<li>尽量使用内置函数</li>
-<li>合理的使用缓存</li>
-<li>使用消息队列</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -786,7 +780,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">68</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -796,7 +790,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">36</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
