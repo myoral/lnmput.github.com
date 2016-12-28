@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mysql," />
+  <meta name="keywords" content="php," />
 
 
 
@@ -84,16 +84,34 @@
 
 
 
-<meta name="description" content="某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。MySQL支持30多种字符集的70多种 校对规则。字符集和它们的默认校对规则可以通过SHOW CHARACTER SET语句显示；ci是 case insensitive, 即 “大小写不敏感”, a 和 A 会在字符判断中会被当做一样的;bin 是二进制, a 和 A 会别区别对待.例如你运行:SELECT * FR">
+<meta name="description" content="关山难越，谁悲失路之人？萍水相逢，尽是他乡之客。HP作为一门web开发语言，通常情况下我们都是在Web Server中运行PHP，使用浏览器访问，因此很少关注其命令行操作以及相关参数的使用，但是，特别是在类Unix操作系统上，PHP可以作为一门脚本语言执行与shell类似的处理任务。
+
+运行时间：php-cli默认运行时间是无穷，而网页php默认设置是30s。
+
+常用操作
+运行指定php文件
+12">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mysql排序规则utf8_unicode_ci与utf8_general_ci的区别">
-<meta property="og:url" content="http://yangguoqi.me/2016/11/07/Mysql排序规则utf8-unicode-ci与utf8-general-ci的区别/index.html">
+<meta property="og:title" content="php-cli的使用">
+<meta property="og:url" content="http://yangguoqi.me/2016/12/28/php-cli的使用/index.html">
 <meta property="og:site_name" content="杨子鳄">
-<meta property="og:description" content="某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。MySQL支持30多种字符集的70多种 校对规则。字符集和它们的默认校对规则可以通过SHOW CHARACTER SET语句显示；ci是 case insensitive, 即 “大小写不敏感”, a 和 A 会在字符判断中会被当做一样的;bin 是二进制, a 和 A 会别区别对待.例如你运行:SELECT * FR">
-<meta property="og:updated_time" content="2016-11-07T02:03:58.784Z">
+<meta property="og:description" content="关山难越，谁悲失路之人？萍水相逢，尽是他乡之客。HP作为一门web开发语言，通常情况下我们都是在Web Server中运行PHP，使用浏览器访问，因此很少关注其命令行操作以及相关参数的使用，但是，特别是在类Unix操作系统上，PHP可以作为一门脚本语言执行与shell类似的处理任务。
+
+运行时间：php-cli默认运行时间是无穷，而网页php默认设置是30s。
+
+常用操作
+运行指定php文件
+12">
+<meta property="og:updated_time" content="2016-12-28T02:07:28.520Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql排序规则utf8_unicode_ci与utf8_general_ci的区别">
-<meta name="twitter:description" content="某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。MySQL支持30多种字符集的70多种 校对规则。字符集和它们的默认校对规则可以通过SHOW CHARACTER SET语句显示；ci是 case insensitive, 即 “大小写不敏感”, a 和 A 会在字符判断中会被当做一样的;bin 是二进制, a 和 A 会别区别对待.例如你运行:SELECT * FR">
+<meta name="twitter:title" content="php-cli的使用">
+<meta name="twitter:description" content="关山难越，谁悲失路之人？萍水相逢，尽是他乡之客。HP作为一门web开发语言，通常情况下我们都是在Web Server中运行PHP，使用浏览器访问，因此很少关注其命令行操作以及相关参数的使用，但是，特别是在类Unix操作系统上，PHP可以作为一门脚本语言执行与shell类似的处理任务。
+
+运行时间：php-cli默认运行时间是无穷，而网页php默认设置是30s。
+
+常用操作
+运行指定php文件
+12">
 
 
 
@@ -111,7 +129,7 @@
   };
 </script>
 
-  <title> Mysql排序规则utf8_unicode_ci与utf8_general_ci的区别 | 杨子鳄 </title>
+  <title> php-cli的使用 | 杨子鳄 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -241,7 +259,7 @@
             
             
               
-                Mysql排序规则utf8_unicode_ci与utf8_general_ci的区别
+                php-cli的使用
               
             
           </h1>
@@ -253,8 +271,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-07T09:58:49+08:00" content="2016-11-07">
-              2016-11-07
+            <time itemprop="dateCreated" datetime="2016-12-28T09:22:49+08:00" content="2016-12-28">
+              2016-12-28
             </time>
           </span>
 
@@ -281,8 +299,33 @@
       
 
       
-        <p><blockquote class="blockquote-center"><br>某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。<br></blockquote><br>MySQL支持30多种字符集的70多种 校对规则。字符集和它们的默认校对规则可以通过SHOW CHARACTER SET语句显示；<br>ci是 case insensitive, 即 “大小写不敏感”, a 和 A 会在字符判断中会被当做一样的;<br>bin 是二进制, a 和 A 会别区别对待.<br>例如你运行:<br>SELECT * FROM table WHERE txt = ‘a’<br>那么在utf8_bin中你就找不到 txt = ‘A’ 的那一行, 而 utf8_general_ci 则可以.<br>utf8_general_ci 不区分大小写，这个你在注册用户名和邮箱的时候就要使用。<br>utf8_general_cs 区分大小写，如果用户名和邮箱用这个 就会照成不良后果<br>utf8_bin:字符串每个字符串用二进制数据编译存储。 区分大小写，而且可以存二进制的内容</p>
-<h3 id="一句话"><a href="#一句话" class="headerlink" title="一句话"></a>一句话</h3><p>utf8_unicode_ci比较准确，utf8_general_ci速度比较快。</p>
+        <p><blockquote class="blockquote-center"><br>关山难越，谁悲失路之人？<br>萍水相逢，尽是他乡之客。<br></blockquote><br>HP作为一门web开发语言，通常情况下我们都是在Web Server中运行PHP，使用浏览器访问，因此很少关注其命令行操作以及相关参数的使用，但是，特别是在类Unix操作系统上，PHP可以作为一门脚本语言执行与shell类似的处理任务。</p>
+<blockquote>
+<p>运行时间：php-cli默认运行时间是无穷，而网页php默认设置是30s。</p>
+</blockquote>
+<h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><ul>
+<li><p>运行指定php文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">php my_script.php</div><div class="line"> </div><div class="line">php -f  <span class="string">"my_script.php"</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>运行php代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php -r <span class="string">"print_r(get_defined_constants());"</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>语法检查</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php -l index.php</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看版本信息</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php -v</div></pre></td></tr></table></figure>
+</li>
+<li><p>显示配置文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php --ini</div></pre></td></tr></table></figure>
+</li>
+<li><p>接收参数</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">echo</span> <span class="string">'命令行参数个数: '</span> . $argc . <span class="string">"\n"</span>;</div><div class="line"><span class="keyword">echo</span> <span class="string">"命令行参数:\n"</span>;</div><div class="line"><span class="keyword">foreach</span> ($argv <span class="keyword">as</span> $index =&gt; $arg) &#123;</div><div class="line">    <span class="keyword">echo</span> <span class="string">"    &#123;$index&#125; : &#123;$arg&#125;\n"</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 执行命令</span></div><div class="line">php console.php hello world</div></pre></td></tr></table></figure>
+</li>
+<li><p>开启服务器</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 在指定目录下运行该命令，通过url访问http://localhost:8000/hello.php</span></div><div class="line">php -S localhost:<span class="number">8000</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -304,7 +347,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag">#mysql</a>
+            <a href="/tags/php/" rel="tag">#php</a>
           
         </div>
       
@@ -313,17 +356,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/05/mysql优化/" rel="next" title="mysql优化">
-                <i class="fa fa-chevron-left"></i> mysql优化
+              <a href="/2016/12/26/惊艳的vuejs/" rel="next" title="惊艳的vuejs">
+                <i class="fa fa-chevron-left"></i> 惊艳的vuejs
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/20/python模拟登录知乎/" rel="prev" title="python模拟登录知乎">
-                python模拟登录知乎 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -459,7 +498,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一句话"><span class="nav-number">1.</span> <span class="nav-text">一句话</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用操作"><span class="nav-number">1.</span> <span class="nav-text">常用操作</span></a></li></ol></div>
             
           </div>
         </section>

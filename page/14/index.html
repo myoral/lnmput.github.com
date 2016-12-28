@@ -240,6 +240,116 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/23/mysql5-7相关操作/" itemprop="url">
+                  mysql5.7相关操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-23T17:15:14+08:00" content="2016-07-23">
+              2016-07-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>我知这世界，本如露水般短暂。<br>然而，<br>然而。<br></blockquote></p>
+<h3 id="基本命令功能"><a href="#基本命令功能" class="headerlink" title="基本命令功能"></a>基本命令功能</h3><ul>
+<li>找到默认的root密码</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo grep <span class="string">'temporary password'</span> /<span class="keyword">var</span>/log/mysqld.log</div></pre></td></tr></table></figure>
+<ul>
+<li>登录后修改密码</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">alter user <span class="string">'root'</span>@<span class="string">'localhost'</span> identified by <span class="string">'123'</span>;</div><div class="line">flush privileges;</div><div class="line">quit;</div></pre></td></tr></table></figure>
+<ul>
+<li>查看所有用户</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">mysql</span>;</div><div class="line">select distinct(User) from user;</div></pre></td></tr></table></figure>
+<ul>
+<li>通过远程访问</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//查看用户权限情况</span></div><div class="line">select host,user from user; </div><div class="line"><span class="comment">//root是用户名，%代表任意主机，'123456'指定的登录密码（这个和本地的root密码可以设置不同的，互不影响）</span></div><div class="line">grant all privileges on *.* to <span class="string">'root'</span>@<span class="string">'%'</span> identified by<span class="string">'123456'</span>with grant option; </div><div class="line">flush privileges;</div><div class="line">quit;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/23/hexo博客添加标签功能/" itemprop="url">
                   hexo博客添加标签功能
                 </a>
@@ -588,7 +698,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">68</span>
+              <span class="site-state-item-count">69</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
