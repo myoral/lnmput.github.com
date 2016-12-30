@@ -240,6 +240,108 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/24/PHP反射类ReflectionClass/" itemprop="url">
+                  PHP反射类ReflectionClass
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-24T14:22:29+08:00" content="2016-08-24">
+              2016-08-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>我讨厌变老，当我们力量衰弱的时候如果出现更强的敌人，我会觉得很恐怖，很遗憾。<br></blockquote></p>
+<h3 id="基本说明"><a href="#基本说明" class="headerlink" title="基本说明"></a>基本说明</h3><p>先定义一个User类<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> $username;</div><div class="line">    <span class="keyword">private</span> $password;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"login"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"registert"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>实例化并调用其中的方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$user = <span class="keyword">new</span> User();</div><div class="line">$user-&gt;login();</div></pre></td></tr></table></figure></p>
+<p>实例化User类的反射类并调用其中的一个方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$reUser = <span class="keyword">new</span> \ReflectionClass(<span class="string">'User'</span>);</div><div class="line">var_dump($reUser-&gt;getFileName());</div></pre></td></tr></table></figure></p>
+<p>说明：ReflectionClass类获取类相关信息，如获取属性、方法、文档注释等；</p>
+<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><ul>
+<li>通过_call可以调用类一些不确定的方法，这个时候就可以通过反射类ReflectionClass来判断类方法是否存在，是不是可见可调用的。</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">actionA</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"I'am A\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">actionB</span> <span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"I'am B\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> $objects;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;objects=<span class="keyword">array</span>();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">($t)</span></span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;objects[]=$t;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">pp</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//调用不可见的方法或者没有的方法都会走到这里</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span><span class="params">($name,$args)</span></span>&#123;</div><div class="line">        <span class="keyword">foreach</span>(<span class="keyword">$this</span>-&gt;objects <span class="keyword">as</span> $object)&#123;</div><div class="line">            $class=<span class="keyword">new</span> ReflectionClass($object);</div><div class="line">            <span class="keyword">if</span>(!$class-&gt;hasMethod($name))&#123;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            $method=$class-&gt;getMethod($name);</div><div class="line">            <span class="keyword">if</span>($method&amp;&amp;$method-&gt;isPublic()&amp;&amp;!$method-&gt;isAbstract())&#123;</div><div class="line">                $method-&gt;invoke($object,$args);</div><div class="line">                <span class="keyword">return</span> ;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"not method!\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">$t=<span class="keyword">new</span> test();</div><div class="line">$t-&gt;add(<span class="keyword">new</span> A());</div><div class="line">$t-&gt;add(<span class="keyword">new</span> B());</div><div class="line">$t-&gt;pp(); <span class="comment">//不可见方法</span></div><div class="line">$t-&gt;actionA();</div><div class="line">$t-&gt;actionB();</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/24/PHP函数call-user-func-array用法/" itemprop="url">
                   PHP函数call_user_func_array用法
                 </a>
@@ -641,106 +743,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/22/深入理解PHP原理之foreach/" itemprop="url">
-                  深入理解PHP原理之foreach
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T10:17:37+08:00" content="2016-08-22">
-              2016-08-22
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>我们走得太快，灵魂都跟不上了 …<br></blockquote><br>今天偶然看到鸟哥(php)的博客‘ 深入理解PHP原理之foreach’，可惜自己功力尚欠，内部的机理看不明白，但也稍微记录一下，毕竟这个问题自己以前从来没有考虑过。</p>
-<h4 id="以下内容摘自鸟哥的博客"><a href="#以下内容摘自鸟哥的博客" class="headerlink" title="以下内容摘自鸟哥的博客"></a>以下内容摘自鸟哥的博客</h4><p>经常会有人问我, PHP的数组, 如果用foreach来访问, 遍历的顺序是固定的么? 以什么顺序遍历呢?<br>比如:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$arr[<span class="string">'laruence'</span>] = <span class="string">'huixinchen'</span>;</div><div class="line">$arr[<span class="string">'yahoo'</span>]    = <span class="number">2007</span>;</div><div class="line">$arr[<span class="string">'baidu'</span>]    = <span class="number">2008</span>;</div><div class="line"><span class="keyword">foreach</span> ($arr <span class="keyword">as</span> $key =&gt; $val) &#123;</div><div class="line"><span class="comment">//结果是什么?</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>结果：<br>huixinchen20072008</p>
-<p>又比如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$arr[<span class="number">2</span>] = <span class="string">'huixinchen'</span>;</div><div class="line">$arr[<span class="number">1</span>]  = <span class="number">2007</span>;</div><div class="line">$arr[<span class="number">0</span>]  = <span class="number">2008</span>;</div><div class="line"><span class="keyword">foreach</span> ($arr <span class="keyword">as</span> $key =&gt; $val) &#123;</div><div class="line"><span class="comment">//现在结果又是什么?</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>结果：<br>huixinchen 2007 2008</p>
-<p>要完全了解清楚这个问题, 我想首先应该要大家了解PHP数组的内部实现结构………<br>在PHP中, 数组是用一种HASH结构(HashTable)来实现的, PHP使用了一些机制, 使得可以在O(1)的时间复杂度下实现数组的增删, 并同时支持线性遍历和随机访问.</p>
-<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>PHP中遍历数组的顺序, 是和元素的添加先后相关的；<br>所以, 如果你想在数字索引的数组中按照索引大小遍历, 那么你就应该使用for, 而不是foreach<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>($i=<span class="number">0</span>,$l=count($arr); $i&lt;$l; $i++) &#123;</div><div class="line"> <span class="comment">//这个时候,不能认为是顺序遍历(线性遍历)</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -786,7 +788,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">69</span>
+              <span class="site-state-item-count">70</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
