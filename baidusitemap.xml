@@ -901,11 +901,11 @@
         <title>ssdb一个高性能的nosql数据库</title>
         <pubTime>2016-08-11T14:26:19.000Z</pubTime>
         
+        <tag>redis</tag>
+         
         <tag>nosql</tag>
          
         <tag>ssdb</tag>
-         
-        <tag>redis</tag>
          
          
            
@@ -1264,11 +1264,11 @@
         <title>centos下搭建laravel运行环境</title>
         <pubTime>2016-07-23T08:13:44.000Z</pubTime>
         
-        <tag>php7</tag>
-         
         <tag>linux</tag>
          
         <tag>laravel</tag>
+         
+        <tag>php7</tag>
          
          
            
