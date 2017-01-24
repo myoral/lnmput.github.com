@@ -1,0 +1,606 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="laravel,PHP," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="我 曾经 喜欢 过 你已经多次遇到过自定义任务调度进程，替换init进程的情况了。自定义的任务调度进程，方便统一监控管理，报警，观察输出等。
+Linux机器上的计划任务是由系统进程init根据cron文件调度的，计划任务作为子进程执行任务，共享机器的cpu，内存等资源。于是，可以提供一个守护进程脚本替代系统进程，根据后台管理的数据库文件，拉取本机的cron配置，fork子进程来执行任务。这样子进程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义任务调度进程">
+<meta property="og:url" content="http://yangguoqi.me/2016/08/23/自定义任务调度进程/index.html">
+<meta property="og:site_name" content="杨子鳄">
+<meta property="og:description" content="我 曾经 喜欢 过 你已经多次遇到过自定义任务调度进程，替换init进程的情况了。自定义的任务调度进程，方便统一监控管理，报警，观察输出等。
+Linux机器上的计划任务是由系统进程init根据cron文件调度的，计划任务作为子进程执行任务，共享机器的cpu，内存等资源。于是，可以提供一个守护进程脚本替代系统进程，根据后台管理的数据库文件，拉取本机的cron配置，fork子进程来执行任务。这样子进程">
+<meta property="og:image" content="http://7nj3d5.com1.z0.glb.clouddn.com/tr.png">
+<meta property="og:updated_time" content="2016-08-23T07:30:44.785Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义任务调度进程">
+<meta name="twitter:description" content="我 曾经 喜欢 过 你已经多次遇到过自定义任务调度进程，替换init进程的情况了。自定义的任务调度进程，方便统一监控管理，报警，观察输出等。
+Linux机器上的计划任务是由系统进程init根据cron文件调度的，计划任务作为子进程执行任务，共享机器的cpu，内存等资源。于是，可以提供一个守护进程脚本替代系统进程，根据后台管理的数据库文件，拉取本机的cron配置，fork子进程来执行任务。这样子进程">
+<meta name="twitter:image" content="http://7nj3d5.com1.z0.glb.clouddn.com/tr.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 自定义任务调度进程 | 杨子鳄 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨子鳄</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                自定义任务调度进程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-23T15:22:32+08:00" content="2016-08-23">
+              2016-08-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><blockquote class="blockquote-center"><br>我 曾经 喜欢 过 你<br></blockquote><br>已经多次遇到过自定义任务调度进程，替换init进程的情况了。自定义的任务调度进程，方便统一监控管理，报警，观察输出等。</p>
+<p>Linux机器上的计划任务是由系统进程init根据cron文件调度的，计划任务作为子进程执行任务，共享机器的cpu，内存等资源。于是，可以提供一个守护进程脚本替代系统进程，根据后台管理的数据库文件，拉取本机的cron配置，fork子进程来执行任务。这样子进程的状态，输出等都可以自定义控制。</p>
+<p><img src="http://7nj3d5.com1.z0.glb.clouddn.com/tr.png" alt="alt text"></p>
+<p>任务调度流程图<br>php版本的实现，需要用到pcntl与posix两个扩展，通过pcntl_fork生成子进程，posix_kill进行进程通信，pcntl_wait回收子进程。还需要考虑，网络状况等问题可能造成的异常，例如：忽略SIGPIPE信号等。</p>
+<p>解析crontab格式的表达式，可以使用这个库：<a href="https://github.com/mtdowling/cron-expression" target="_blank" rel="external">https://github.com/mtdowling/cron-expression</a></p>
+<p>子进程的杀死操作，可以使用上一篇文章里的shell进行，也可以通过php的posix_getppid等函数做，但是要注意杀死整个进程树。</p>
+<p>通过修改fork子进程的脚本，可以很容易实现，基于多进程的对阻塞队列的并发消费，用来处理高负载的消息队列。以后再写文章概述。</p>
+<blockquote>
+<p><a href="http://it.taocms.org/08/5384.htm" target="_blank" rel="external">http://it.taocms.org/08/5384.htm</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/laravel/" rel="tag">#laravel</a>
+          
+            <a href="/tags/PHP/" rel="tag">#PHP</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/23/PHP中的随机性——你觉得自己幸运吗？/" rel="next" title="PHP中的随机性——你觉得自己幸运吗？">
+                <i class="fa fa-chevron-left"></i> PHP中的随机性——你觉得自己幸运吗？
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/24/PHP大量数据循环时内存耗尽问题的解决方案/" rel="prev" title="PHP大量数据循环时内存耗尽问题的解决方案">
+                PHP大量数据循环时内存耗尽问题的解决方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lnmput@gmail.com" />
+          <p class="site-author-name" itemprop="name">lnmput@gmail.com</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">75</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lnmput" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="點燈坊" target="_blank">點燈坊</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.turn.tw/" title="轉個彎日誌" target="_blank">轉個彎日誌</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lnmput@gmail.com</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
