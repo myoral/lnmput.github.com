@@ -240,6 +240,101 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/10/使用redis记录产品的每日浏览量/" itemprop="url">
+                  使用redis记录产品的每日浏览量
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-10T12:05:44+08:00" content="2017-01-10">
+              2017-01-10
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>全体听令，除我之外~冲锋！<br></blockquote></p>
+<h3 id="配置文件database-php"><a href="#配置文件database-php" class="headerlink" title="配置文件database.php"></a>配置文件database.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="string">'redis'</span> =&gt; [</div><div class="line"></div><div class="line">       <span class="string">'cluster'</span> =&gt; <span class="keyword">false</span>,</div><div class="line"></div><div class="line">       <span class="string">'default'</span> =&gt; [</div><div class="line">           <span class="string">'host'</span>     =&gt; env(<span class="string">'REDIS_HOST'</span>, <span class="string">'localhost'</span>),</div><div class="line">           <span class="string">'password'</span> =&gt; env(<span class="string">'REDIS_PASSWORD'</span>, <span class="keyword">null</span>),</div><div class="line">           <span class="string">'port'</span>     =&gt; env(<span class="string">'REDIS_PORT'</span>, <span class="number">6379</span>),</div><div class="line">           <span class="string">'database'</span> =&gt; <span class="number">0</span>,</div><div class="line">       ],</div><div class="line"></div><div class="line">       <span class="string">'product'</span> =&gt; [</div><div class="line">           <span class="string">'host'</span>     =&gt; <span class="string">'localhost'</span>,</div><div class="line">           <span class="string">'password'</span> =&gt;  <span class="keyword">null</span>,</div><div class="line">           <span class="string">'port'</span>     =&gt;  <span class="number">6379</span>,</div><div class="line">           <span class="string">'database'</span> =&gt; <span class="number">1</span>,</div><div class="line">       ]</div><div class="line">   ],</div></pre></td></tr></table></figure>
+<h3 id="连接存储"><a href="#连接存储" class="headerlink" title="连接存储"></a>连接存储</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 连接</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">connectDatabase</span><span class="params">($name)</span></span></div><div class="line">&#123;</div><div class="line">   <span class="keyword">return</span> Redis::connection($name);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 存储</span></div><div class="line">$redisConnection = <span class="keyword">parent</span>::getRedisConnectName();</div><div class="line">$redis = RedisHelper::connectDatabase($redisConnection[<span class="string">'store'</span>]);</div><div class="line">$redis-&gt;rpush(<span class="string">'productView'</span>, $product_id);</div><div class="line"></div><div class="line"><span class="comment">// 取出</span></div><div class="line">$products = array_count_values($redis-&gt;lrange(<span class="string">'productView'</span>,<span class="number">0</span>,<span class="number">-1</span>));</div><div class="line"></div><div class="line"><span class="comment">// 删除</span></div><div class="line">$redis-&gt;del(<span class="string">'productView'</span>);</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/30/linux的输出定向/" itemprop="url">
                   linux的输出定向
                 </a>
@@ -656,112 +751,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/13/用matplotlib绘制精美的图表/" itemprop="url">
-                  用matplotlib绘制精美的图表
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-13T15:40:10+08:00" content="2016-12-13">
-              2016-12-13
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>如果你爱一个人，一定要告诉他，不是为了要他报答，而是让他在以后黑暗的日子里，否定自己的时候，想起世界上还有人这么爱他，他并非一无是处。<br></blockquote></p>
-<h3 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install matplotlib</div></pre></td></tr></table></figure>
-<h3 id="绘制一元函数图像y-ax-b"><a href="#绘制一元函数图像y-ax-b" class="headerlink" title="绘制一元函数图像y=ax+b"></a>绘制一元函数图像y=ax+b</h3><p>创建single_variable.py，内容如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding( <span class="string">"utf-8"</span> )</div><div class="line"></div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">plt.figure() <span class="comment"># 实例化作图变量</span></div><div class="line">plt.title(<span class="string">'single variable'</span>) <span class="comment"># 图像标题</span></div><div class="line">plt.xlabel(<span class="string">'x'</span>) <span class="comment"># x轴文本</span></div><div class="line">plt.ylabel(<span class="string">'y'</span>) <span class="comment"># y轴文本</span></div><div class="line">plt.axis([<span class="number">0</span>, <span class="number">5</span>, <span class="number">0</span>, <span class="number">10</span>]) <span class="comment"># x轴范围0-5，y轴范围0-10</span></div><div class="line">plt.grid(<span class="keyword">True</span>) <span class="comment"># 是否绘制网格线</span></div><div class="line">xx = np.linspace(<span class="number">0</span>, <span class="number">5</span>, <span class="number">10</span>) <span class="comment"># 在0-5之间生成10个点的向量</span></div><div class="line">plt.plot(xx, <span class="number">2</span>*xx, <span class="string">'g-'</span>) <span class="comment"># 绘制y=2x图像，颜色green，形式为线条</span></div><div class="line">plt.show() <span class="comment"># 展示图像</span></div></pre></td></tr></table></figure></p>
-<h3 id="绘制正弦曲线y-sin-x"><a href="#绘制正弦曲线y-sin-x" class="headerlink" title="绘制正弦曲线y=sin(x)"></a>绘制正弦曲线y=sin(x)</h3><p>创建sinx.py，内容如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding( <span class="string">"utf-8"</span> )</div><div class="line"></div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">plt.figure() <span class="comment"># 实例化作图变量</span></div><div class="line">plt.title(<span class="string">'single variable'</span>) <span class="comment"># 图像标题</span></div><div class="line">plt.xlabel(<span class="string">'x'</span>) <span class="comment"># x轴文本</span></div><div class="line">plt.ylabel(<span class="string">'y'</span>) <span class="comment"># y轴文本</span></div><div class="line">plt.axis([<span class="number">-12</span>, <span class="number">12</span>, <span class="number">-1</span>, <span class="number">1</span>]) <span class="comment"># x轴范围-12到12，y轴范围-1到1</span></div><div class="line">plt.grid(<span class="keyword">True</span>) <span class="comment"># 是否绘制网格线</span></div><div class="line">xx = np.linspace(<span class="number">-12</span>, <span class="number">12</span>, <span class="number">1000</span>) <span class="comment"># 在-12到12之间生成1000个点的向量</span></div><div class="line">plt.plot(xx, np.sin(xx), <span class="string">'g-'</span>, label=<span class="string">"$sin(x)$"</span>) <span class="comment"># 绘制y=sin(x)图像，颜色green，形式为线条</span></div><div class="line">plt.plot(xx, np.cos(xx), <span class="string">'r--'</span>, label=<span class="string">"$cos(x)$"</span>) <span class="comment"># 绘制y=cos(x)图像，颜色red，形式为虚线</span></div><div class="line">plt.legend() <span class="comment"># 绘制图例</span></div><div class="line">plt.show() <span class="comment"># 展示图像</span></div></pre></td></tr></table></figure></p>
-<h3 id="绘制多轴图"><a href="#绘制多轴图" class="headerlink" title="绘制多轴图"></a>绘制多轴图</h3><p>创建multi_axis.py内容如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding( <span class="string">"utf-8"</span> )</div><div class="line"></div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw</span><span class="params">(plt)</span>:</span></div><div class="line">    plt.axis([<span class="number">-12</span>, <span class="number">12</span>, <span class="number">-1</span>, <span class="number">1</span>]) <span class="comment"># x轴范围-12到12，y轴范围-1到1</span></div><div class="line">    plt.grid(<span class="keyword">True</span>) <span class="comment"># 是否绘制网格线</span></div><div class="line">    xx = np.linspace(<span class="number">-12</span>, <span class="number">12</span>, <span class="number">1000</span>) <span class="comment"># 在-12到12之间生成1000个点的向量</span></div><div class="line">    plt.plot(xx, np.sin(xx), <span class="string">'g-'</span>, label=<span class="string">"$sin(x)$"</span>) <span class="comment"># 绘制y=sin(x)图像，颜色green，形式为线条</span></div><div class="line">    plt.plot(xx, np.cos(xx), <span class="string">'r--'</span>, label=<span class="string">"$cos(x)$"</span>) <span class="comment"># 绘制y=cos(x)图像，颜色red，形式为虚线</span></div><div class="line">    plt.legend() <span class="comment"># 绘制图例</span></div><div class="line"></div><div class="line">plt.figure() <span class="comment"># 实例化作图变量</span></div><div class="line">plt1 = plt.subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>) <span class="comment"># 两行两列中的第1张图</span></div><div class="line">draw(plt1)</div><div class="line">plt2 = plt.subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>) <span class="comment"># 两行两列中的第2张图</span></div><div class="line">draw(plt2)</div><div class="line">plt3 = plt.subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>) <span class="comment"># 两行两列中的第3张图</span></div><div class="line">draw(plt3)</div><div class="line">plt4 = plt.subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">4</span>) <span class="comment"># 两行两列中的第4张图</span></div><div class="line">draw(plt4)</div><div class="line"></div><div class="line">plt.show() <span class="comment"># 展示图像</span></div></pre></td></tr></table></figure></p>
-<h3 id="绘制3D图像"><a href="#绘制3D图像" class="headerlink" title="绘制3D图像"></a>绘制3D图像</h3><p>创建plot_3d.py，内容如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding( <span class="string">"utf-8"</span> )</div><div class="line"></div><div class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line">fig = plt.figure()</div><div class="line">ax = fig.add_subplot(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,projection=<span class="string">'3d'</span>)</div><div class="line">theta = np.linspace(<span class="number">-4</span> * np.pi, <span class="number">4</span> * np.pi, <span class="number">500</span>) <span class="comment"># theta旋转角从-4pi到4pi，相当于两圈</span></div><div class="line">z = np.linspace(<span class="number">0</span>, <span class="number">2</span>, <span class="number">500</span>) <span class="comment"># z轴从下到上,从-2到2之间画100个点</span></div><div class="line">r = z <span class="comment"># 半径设置为z大小</span></div><div class="line">x = r * np.sin(theta) <span class="comment"># x和y画圆</span></div><div class="line">y = r * np.cos(theta) <span class="comment"># x和y画圆</span></div><div class="line">ax.plot(x, y, z, label=<span class="string">'curve'</span>)</div><div class="line">ax.legend()</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
-<h3 id="3D散点图"><a href="#3D散点图" class="headerlink" title="3D散点图"></a>3D散点图</h3><p>创建plot_3d_scatter.py，内容如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding( <span class="string">"utf-8"</span> )</div><div class="line"></div><div class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line">fig = plt.figure()</div><div class="line">ax = fig.add_subplot(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,projection=<span class="string">'3d'</span>)</div><div class="line">xx = np.linspace(<span class="number">0</span>, <span class="number">5</span>, <span class="number">10</span>) <span class="comment"># 在0-5之间生成10个点的向量</span></div><div class="line">yy = np.linspace(<span class="number">0</span>, <span class="number">5</span>, <span class="number">10</span>) <span class="comment"># 在0-5之间生成10个点的向量</span></div><div class="line">zz1 = xx</div><div class="line">zz2 = <span class="number">2</span>*xx</div><div class="line">zz3 = <span class="number">3</span>*xx</div><div class="line">ax.scatter(xx, yy, zz1, c=<span class="string">'red'</span>, marker=<span class="string">'o'</span>) <span class="comment"># o型符号</span></div><div class="line">ax.scatter(xx, yy, zz2, c=<span class="string">'green'</span>, marker=<span class="string">'^'</span>) <span class="comment"># 三角型符号</span></div><div class="line">ax.scatter(xx, yy, zz3, c=<span class="string">'black'</span>, marker=<span class="string">'*'</span>) <span class="comment"># 星型符号</span></div><div class="line">ax.legend()</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
-<h3 id="绘制3D表面"><a href="#绘制3D表面" class="headerlink" title="绘制3D表面"></a>绘制3D表面</h3><p>创建plot_3d_surface.py，内容如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding( <span class="string">"utf-8"</span> )</div><div class="line"></div><div class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</div><div class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> cm</div><div class="line"><span class="keyword">from</span> matplotlib.ticker <span class="keyword">import</span> LinearLocator, FormatStrFormatter</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">fig = plt.figure()</div><div class="line">ax = fig.gca(projection=<span class="string">'3d'</span>)</div><div class="line"></div><div class="line">X = np.arange(<span class="number">-5</span>, <span class="number">5</span>, <span class="number">0.25</span>)</div><div class="line">Y = np.arange(<span class="number">-5</span>, <span class="number">5</span>, <span class="number">0.25</span>)</div><div class="line">X, Y = np.meshgrid(X, Y)</div><div class="line"></div><div class="line">Z = X**<span class="number">2</span>+Y**<span class="number">2</span></div><div class="line"></div><div class="line">ax.plot_surface(X, Y, Z, rstride=<span class="number">1</span>, cstride=<span class="number">1</span>, cmap=cm.coolwarm, linewidth=<span class="number">0</span>, antialiased=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -802,7 +796,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">75</span>
+              <span class="site-state-item-count">76</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
