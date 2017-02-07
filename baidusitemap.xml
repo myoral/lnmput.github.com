@@ -4,6 +4,40 @@
 
     
   <url>
+    <loc>http://yangguoqi.me/2017/02/07/phpize%E5%AE%89%E8%A3%85php%E6%89%A9%E5%B1%95/</loc>
+    <lastmod>2017-02-07T06:40:39.207Z</lastmod>
+    <data>
+        <display>
+        <title>phpize安装php扩展</title>
+        <pubTime>2017-02-07T06:30:32.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/02/07/%E5%85%B3%E4%BA%8Ephp%E7%9A%84PECL%E5%92%8CPEAR/</loc>
+    <lastmod>2017-02-07T06:40:14.126Z</lastmod>
+    <data>
+        <display>
+        <title>关于php的PECL和PEAR</title>
+        <pubTime>2017-02-07T03:09:44.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yangguoqi.me/2017/02/05/git%E4%B8%A2%E5%BC%83%E6%9C%AC%E5%9C%B0%E4%BF%AE%E6%94%B9%E7%9A%84%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6/</loc>
     <lastmod>2017-02-05T06:31:05.231Z</lastmod>
     <data>
@@ -121,9 +155,9 @@
         <title>linux的输出定向</title>
         <pubTime>2016-12-30T05:37:17.000Z</pubTime>
         
-        <tag>linux</tag>
-         
         <tag>laravel</tag>
+         
+        <tag>linux</tag>
          
          
            
@@ -174,9 +208,9 @@
         <title>跨域资源共享CORS</title>
         <pubTime>2016-12-20T06:08:08.000Z</pubTime>
         
-        <tag>前端</tag>
-         
         <tag>ajax</tag>
+         
+        <tag>前端</tag>
          
          
            
@@ -935,9 +969,9 @@
         <title>自定义任务调度进程</title>
         <pubTime>2016-08-23T07:22:32.000Z</pubTime>
         
-        <tag>PHP</tag>
-         
         <tag>laravel</tag>
+         
+        <tag>PHP</tag>
          
          
            
@@ -971,11 +1005,11 @@
         <title>ssdb一个高性能的nosql数据库</title>
         <pubTime>2016-08-11T14:26:19.000Z</pubTime>
         
+        <tag>redis</tag>
+         
         <tag>nosql</tag>
          
         <tag>ssdb</tag>
-         
-        <tag>redis</tag>
          
          
            
@@ -1334,11 +1368,11 @@
         <title>centos下搭建laravel运行环境</title>
         <pubTime>2016-07-23T08:13:44.000Z</pubTime>
         
+        <tag>laravel</tag>
+         
         <tag>php7</tag>
          
         <tag>linux</tag>
-         
-        <tag>laravel</tag>
          
          
            
