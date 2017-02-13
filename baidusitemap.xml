@@ -4,6 +4,42 @@
 
     
   <url>
+    <loc>http://yangguoqi.me/2017/02/13/workerman%E8%81%8A%E5%A4%A9%E5%AE%A4/</loc>
+    <lastmod>2017-02-13T07:42:36.445Z</lastmod>
+    <data>
+        <display>
+        <title>workerman聊天室</title>
+        <pubTime>2017-02-13T07:40:20.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+        <tag>workerman</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/02/13/python%E6%88%AA%E5%9B%BE/</loc>
+    <lastmod>2017-02-13T07:39:12.142Z</lastmod>
+    <data>
+        <display>
+        <title>python截图</title>
+        <pubTime>2017-02-13T07:34:29.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yangguoqi.me/2017/02/07/phpize%E5%AE%89%E8%A3%85php%E6%89%A9%E5%B1%95/</loc>
     <lastmod>2017-02-07T06:40:39.207Z</lastmod>
     <data>
@@ -208,9 +244,9 @@
         <title>跨域资源共享CORS</title>
         <pubTime>2016-12-20T06:08:08.000Z</pubTime>
         
-        <tag>ajax</tag>
-         
         <tag>前端</tag>
+         
+        <tag>ajax</tag>
          
          
            
@@ -1240,9 +1276,9 @@
         <title>关于出现php-m和phpinfo不一致的问题</title>
         <pubTime>2016-07-28T01:44:23.000Z</pubTime>
         
-        <tag>转载</tag>
-         
         <tag>php</tag>
+         
+        <tag>转载</tag>
          
          
            
