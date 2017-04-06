@@ -110,7 +110,7 @@ CMake是一个跨平台的安装(编译)工具,可以用简单的语句来描述
 安装编译器yum install gcc gcc-c++ -y
 
 安装图像函数库yum install ncurses ncurses-devel -y">
-<meta property="og:updated_time" content="2017-03-22T08:55:24.212Z">
+<meta property="og:updated_time" content="2017-03-27T01:23:54.778Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译安装mysql">
 <meta name="twitter:description" content="等一个不爱你的人，就像在机场等一艘船
@@ -328,7 +328,13 @@ CMake是一个跨平台的安装(编译)工具,可以用简单的语句来描述
 <li><p>开始编译<br>make<br>make install</p>
 </li>
 </ul>
-<h3 id="编译完成"><a href="#编译完成" class="headerlink" title="编译完成"></a>编译完成</h3>
+<h3 id="编译完成"><a href="#编译完成" class="headerlink" title="编译完成"></a>编译完成</h3><ul>
+<li>增加一个mysql用户(useradd mysql -M -s /sbin/nologin)</li>
+<li>配置文件位置(/etc/my.cnf)</li>
+<li>初始化(mysqld –initialize –user=mysql –basedir=/var/lib/mysql –datadir=/var/lib/mysql/data)</li>
+</ul>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)<br>解决方案:<br>在mysql的配置文件中加入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[mysql]</div><div class="line">socket=/<span class="keyword">var</span>/lib/mysql/mysql.sock</div></pre></td></tr></table></figure></p>
+
       
     </div>
 
@@ -365,6 +371,10 @@ CMake是一个跨平台的安装(编译)工具,可以用简单的语句来描述
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/27/nginx的反向代理和负载均衡实践/" rel="prev" title="nginx的反向代理和负载均衡实践">
+                nginx的反向代理和负载均衡实践 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -432,7 +442,7 @@ CMake是一个跨平台的安装(编译)工具,可以用简单的语句来描述
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">95</span>
+              <span class="site-state-item-count">98</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -500,7 +510,7 @@ CMake是一个跨平台的安装(编译)工具,可以用简单的语句来描述
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装环境"><span class="nav-number">1.</span> <span class="nav-text">安装环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装过程"><span class="nav-number">2.</span> <span class="nav-text">安装过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译完成"><span class="nav-number">3.</span> <span class="nav-text">编译完成</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装环境"><span class="nav-number">1.</span> <span class="nav-text">安装环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装过程"><span class="nav-number">2.</span> <span class="nav-text">安装过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译完成"><span class="nav-number">3.</span> <span class="nav-text">编译完成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">4.</span> <span class="nav-text">问题</span></a></li></ol></div>
             
           </div>
         </section>

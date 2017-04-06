@@ -4,14 +4,65 @@
 
     
   <url>
+    <loc>http://yangguoqi.me/2017/04/06/php%E6%95%B0%E5%AD%A6%E6%89%A9%E5%B1%95bcmath/</loc>
+    <lastmod>2017-04-06T09:19:23.408Z</lastmod>
+    <data>
+        <display>
+        <title>php数学扩展bcmath</title>
+        <pubTime>2017-04-06T09:14:54.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/04/06/Laravel%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95sql/</loc>
+    <lastmod>2017-04-06T09:13:20.664Z</lastmod>
+    <data>
+        <display>
+        <title>Laravel开发记录sql</title>
+        <pubTime>2017-04-06T09:09:54.000Z</pubTime>
+        
+        <tag>laravel</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yangguoqi.me/2017/03/22/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85mysql/</loc>
-    <lastmod>2017-03-22T08:55:24.212Z</lastmod>
+    <lastmod>2017-03-27T01:23:54.778Z</lastmod>
     <data>
         <display>
         <title>编译安装mysql</title>
         <pubTime>2017-03-22T07:25:32.000Z</pubTime>
         
         <tag>mysql</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/03/27/nginx%E7%9A%84%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%AE%9E%E8%B7%B5/</loc>
+    <lastmod>2017-03-27T01:16:03.448Z</lastmod>
+    <data>
+        <display>
+        <title>nginx的反向代理和负载均衡实践</title>
+        <pubTime>2017-03-27T00:58:36.000Z</pubTime>
+        
+        <tag>nginx</tag>
          
          
            
@@ -1661,9 +1712,9 @@
         <title>centos下搭建laravel运行环境</title>
         <pubTime>2016-07-23T08:13:44.000Z</pubTime>
         
-        <tag>php7</tag>
-         
         <tag>laravel</tag>
+         
+        <tag>php7</tag>
          
         <tag>linux</tag>
          
