@@ -3,6 +3,73 @@
 
 
     
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/04/12/Http%E5%8D%8F%E8%AE%AE%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/</loc>
+    <lastmod>2017-04-12T06:55:28.551Z</lastmod>
+    <data>
+        <display>
+        <title>Http协议浏览器缓存缓存机制</title>
+        <pubTime>2017-04-12T06:51:08.000Z</pubTime>
+        
+        <tag>http</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/04/12/cache/</loc>
+    <lastmod>2017-04-12T06:49:02.288Z</lastmod>
+    <data>
+        <display>
+        <title>cache</title>
+        <pubTime>2017-04-12T06:49:02.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/04/10/mysql%E7%9A%84sql-mode%E5%90%88%E7%90%86%E8%AE%BE%E7%BD%AE/</loc>
+    <lastmod>2017-04-10T02:08:52.248Z</lastmod>
+    <data>
+        <display>
+        <title>mysql的sql_mode合理设置</title>
+        <pubTime>2017-04-10T02:03:42.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/04/10/mysql%E7%9A%84%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-04-10T01:21:21.551Z</lastmod>
+    <data>
+        <display>
+        <title>mysql的严格模式</title>
+        <pubTime>2017-04-10T01:15:08.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>http://yangguoqi.me/2017/04/06/php%E6%95%B0%E5%AD%A6%E6%89%A9%E5%B1%95bcmath/</loc>
     <lastmod>2017-04-06T09:19:23.408Z</lastmod>
@@ -755,7 +822,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>http://yangguoqi.me/2016/11/30/chrome%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E5%AE%9E%E4%BE%8B/</loc>

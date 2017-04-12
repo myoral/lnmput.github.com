@@ -240,6 +240,394 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/27/如何使用Presenter模式/" itemprop="url">
+                  如何使用Presenter模式?
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-27T13:59:35+08:00" content="2017-02-27">
+              2017-02-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>岁月不饶人，我亦未曾饶过岁月。<br></blockquote><br>避免在模板中使用过多的复杂的判断,@inject 的用法</p>
+<h3 id="新建文件-app-Presenters-UserPresenter-php"><a href="#新建文件-app-Presenters-UserPresenter-php" class="headerlink" title="新建文件 app\Presenters\UserPresenter.php"></a>新建文件 app\Presenters\UserPresenter.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Presenters</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserPresenter</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">($name)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> ($name == <span class="string">'Laurine Deckow'</span>)</div><div class="line">            $fullName = <span class="string">'Mr. '</span> . $name;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            $fullName = <span class="string">'Mrs. '</span> . $name;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> $fullName;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="控制器-app-Http-Controllers-UserController-php"><a href="#控制器-app-Http-Controllers-UserController-php" class="headerlink" title="控制器 app\Http\Controllers\UserController.php"></a>控制器 app\Http\Controllers\UserController.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">User</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line">&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        $users = User::all();</div><div class="line">        <span class="keyword">return</span> view(<span class="string">'home/user'</span>,[<span class="string">'users'</span>=&gt;$users]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="视图-resources-views-home-user-blade-php"><a href="#视图-resources-views-home-user-blade-php" class="headerlink" title="视图 resources\views\home\user.blade.php"></a>视图 resources\views\home\user.blade.php</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list-group"</span>&gt;</span></div><div class="line">    @inject('UserPresenter','App\Presenters\UserPresenter')</div><div class="line">    @foreach($users as $user)</div><div class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-group-item"</span>&gt;</span></div><div class="line">            &#123;&#123; $UserPresenter-&gt;setName($user-&gt;name) &#125;&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    @endforeach</div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/27/laravel的中大型架构/" itemprop="url">
+                  laravel的中大型架构
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-27T11:40:41+08:00" content="2017-02-27">
+              2017-02-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>孤独到死是一个天才最好的归宿，毕竟，这个世界配不上他<br></blockquote><br>解决我们的控制器,模型过于肥大的问题<br>那我們該怎麼寫呢？別將我們的思維侷限在 MVC 內 :<br>Model : 僅當成 Eloquent class。<br>Repository : 輔助 model，處理資料庫邏輯，然後注入到 service。<br>Service : 輔助 controller，處理商業邏輯，然後注入到 controller。<br>Controller : 接收 HTTP request，調用其他 service。<br>Presenter : 處理顯示邏輯，然後注入到 view。<br>View : 使用 blade 將資料 binding 到 HTML。</p>
+<blockquote>
+<p><a href="http://oomusou.io/laravel/laravel-architecture" target="_blank" rel="external">http://oomusou.io/laravel/laravel-architecture</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/27/如何使用Repository模式/" itemprop="url">
+                  如何使用Repository模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-27T10:58:16+08:00" content="2017-02-27">
+              2017-02-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。<br></blockquote><br>这里我们介绍一种laravel开发的模式,用于解决控制器过于肥大的问题.</p>
+<h3 id="路由-routes-php"><a href="#路由-routes-php" class="headerlink" title="路由 routes.php"></a>路由 routes.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">Route::get(<span class="string">'/user'</span>, <span class="string">'UserController@getUser'</span>);</div></pre></td></tr></table></figure>
+<h3 id="控制器-app-Http-Controllers-UserController-php"><a href="#控制器-app-Http-Controllers-UserController-php" class="headerlink" title="控制器 app\Http\Controllers\UserController.php"></a>控制器 app\Http\Controllers\UserController.php</h3><p>将新建的库依赖注入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Repository</span>\<span class="title">UserRepository</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">protected</span> $userRepository;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(UserRepository $userRepository)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;userRepository = $userRepository;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;userRepository-&gt;getUser();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="模型-app-User-php"><a href="#模型-app-User-php" class="headerlink" title="模型 app\User.php"></a>模型 app\User.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Auth</span>\<span class="title">User</span> <span class="title">as</span> <span class="title">Authenticatable</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Authenticatable</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * The attributes that are mass assignable.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@var</span> array</div><div class="line">     */</div><div class="line">    <span class="keyword">protected</span> $fillable = [</div><div class="line">        <span class="string">'name'</span>, <span class="string">'email'</span>, <span class="string">'password'</span>,</div><div class="line">    ];</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * The attributes excluded from the model's JSON form.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@var</span> array</div><div class="line">     */</div><div class="line">    <span class="keyword">protected</span> $hidden = [</div><div class="line">        <span class="string">'password'</span>, <span class="string">'remember_token'</span>,</div><div class="line">    ];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="新建库-app-Repository-UserRepository-php"><a href="#新建库-app-Repository-UserRepository-php" class="headerlink" title="新建库 app\Repository\UserRepository.php"></a>新建库 app\Repository\UserRepository.php</h3><p>将模型依赖注入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Repository</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">User</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserRepository</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">protected</span> $user;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(User $user)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;user = $user;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;user-&gt;all();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/24/翻译-重建laravel-自动加载/" itemprop="url">
+                  [翻译]重建laravel-自动加载
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-24T17:59:32+08:00" content="2017-02-24">
+              2017-02-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>谢谢那些喜欢我的人<br></blockquote><br>我认为请求的入口<code>public/index.php</code>,应该是最好的开始的地方…</p>
+<h3 id="重写规则"><a href="#重写规则" class="headerlink" title="重写规则"></a>重写规则</h3><p>我们知道请求第一次到达我们的程序index.php,是因为laravel使用了这个重写规则.htaccess;<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;IfModule mod_rewrite.c&gt;</div><div class="line">  &lt;IfModule mod_negotiation.c&gt;</div><div class="line">    Options -MultiViews</div><div class="line">  &lt;/IfModule&gt;</div><div class="line"></div><div class="line">  RewriteEngine On</div><div class="line"></div><div class="line">  <span class="comment"># Redirect Trailing Slashes...</span></div><div class="line">  RewriteRule ^(.*)/$ /$<span class="number">1</span> [L,R=<span class="number">301</span>]</div><div class="line"></div><div class="line">  <span class="comment"># Handle Front Controller...</span></div><div class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !-d</div><div class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</div><div class="line">  RewriteRule ^ index.php [L]</div><div class="line">&lt;/IfModule&gt;</div></pre></td></tr></table></figure></p>
+<p>来自<code>public/.htaccess</code></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/24/如何理解web语义化/" itemprop="url">
                   如何理解web语义化
                 </a>
@@ -318,408 +706,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/24/ios设备中web开发的一些问题/" itemprop="url">
-                  ios设备中web开发的一些问题
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-24T09:47:10+08:00" content="2017-02-24">
-              2017-02-24
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>今天翻的是书，明天数的是钱。<br></blockquote></p>
-<h3 id="时间格式"><a href="#时间格式" class="headerlink" title="时间格式"></a>时间格式</h3><p>ios设备目前不支持这种时间格式:yyyy-mm-dd hh:mm:ss<br>但是支持这种:mm/dd/yyyy hh:mm:ss,使用的时候注意移动设备上的格式化问题\</p>
-<h3 id="input框自定义ios键盘"><a href="#input框自定义ios键盘" class="headerlink" title="input框自定义ios键盘"></a>input框自定义ios键盘</h3><p>如果类型是search的话，需要把input放在一个action为空的form中，例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"search"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/21/centos系统python版本升级从2-6到2-7/" itemprop="url">
-                  centos系统python版本升级从2.6到2.7
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-21T09:22:36+08:00" content="2017-02-21">
-              2017-02-21
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote class="blockquote-center"><br>你喜欢的姑娘在学习<br></blockquote>
-
-<h3 id="查看python的版本"><a href="#查看python的版本" class="headerlink" title="查看python的版本"></a>查看python的版本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#python  -V    </span></div><div class="line">Python <span class="number">2.6</span><span class="number">.6</span></div></pre></td></tr></table></figure>
-<h3 id="下载Python-2-7-3"><a href="#下载Python-2-7-3" class="headerlink" title="下载Python-2.7.3"></a>下载Python-2.7.3</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#wget http://python.org/ftp/python/2.7.3/Python-2.7.3.tar.bz2</span></div></pre></td></tr></table></figure>
-<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#tar -jxvf Python-2.7.3.tar.bz2</span></div></pre></td></tr></table></figure>
-<h3 id="更改工作目录"><a href="#更改工作目录" class="headerlink" title="更改工作目录"></a>更改工作目录</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#cd Python-2.7.3</span></div></pre></td></tr></table></figure>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#./configure  </span></div><div class="line"><span class="comment">#make all             </span></div><div class="line"><span class="comment">#make install  </span></div><div class="line"><span class="comment">#make clean  </span></div><div class="line"><span class="comment">#make distclean</span></div></pre></td></tr></table></figure>
-<h3 id="查看版本信息"><a href="#查看版本信息" class="headerlink" title="查看版本信息"></a>查看版本信息</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#/usr/local/bin/python2.7 -V</span></div></pre></td></tr></table></figure>
-<h3 id="建立软连接，使系统默认的-python指向-python2-7"><a href="#建立软连接，使系统默认的-python指向-python2-7" class="headerlink" title="建立软连接，使系统默认的 python指向 python2.7"></a>建立软连接，使系统默认的 python指向 python2.7</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#mv /usr/bin/python /usr/bin/python2.6.6  </span></div><div class="line"><span class="comment">#ln -s /usr/local/bin/python2.7 /usr/bin/python</span></div></pre></td></tr></table></figure>
-<h3 id="重新检验Python-版本"><a href="#重新检验Python-版本" class="headerlink" title="重新检验Python 版本"></a>重新检验Python 版本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#python -V</span></div></pre></td></tr></table></figure>
-<p>解决系统 Python 软链接指向 Python2.7 版本后，因为yum是不兼容 Python 2.7的，所以yum不能正常工作，我们需要指定 yum 的Python版本<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#vi /usr/bin/yum</span></div></pre></td></tr></table></figure></p>
-<p>将文件头部的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div></pre></td></tr></table></figure></p>
-<p>改成<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python2.6</span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/13/workerman聊天室/" itemprop="url">
-                  workerman聊天室
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-13T15:40:20+08:00" content="2017-02-13">
-              2017-02-13
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>穷人什么苦都能吃就是吃不了学习的苦.<br></blockquote></p>
-<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="comment">// 创建一个Socket实例</span></div><div class="line"><span class="keyword">var</span> socket =<span class="literal">null</span>;<span class="comment">//初始是null</span></div><div class="line"><span class="keyword">var</span> isLogin=<span class="literal">false</span>;<span class="comment">//是否登录到服务器上</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">send</span>(<span class="params"></span>)</span></div><div class="line">        &#123;</div><div class="line"><span class="keyword">if</span>(!isLogin)</div><div class="line">            &#123;</div><div class="line">alert(<span class="string">"请先服务器验证"</span>);</div><div class="line"><span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> msg=<span class="built_in">document</span>.getElementById(<span class="string">"txtmsg"</span>).value;</div><div class="line">socket.send(<span class="string">"msg:"</span>+msg);</div><div class="line"><span class="comment">//在div 中显示我们的行为</span></div><div class="line"><span class="keyword">var</span> p=<span class="built_in">document</span>.createElement(<span class="string">"P"</span>);</div><div class="line">p.innerHTML=<span class="string">"&lt;span&gt;发送消息&lt;/span&gt;"</span>+msg</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"txtcontent"</span>).appendChild(p);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">connectServer</span>(<span class="params"></span>)</span></div><div class="line">        &#123;</div><div class="line"><span class="keyword">var</span> userName=<span class="built_in">document</span>.getElementById(<span class="string">"username"</span>).value;</div><div class="line"><span class="keyword">if</span>(userName==<span class="string">""</span>)</div><div class="line">            &#123;</div><div class="line">alert(<span class="string">"用户昵称必填 "</span>);</div><div class="line"><span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line">socket=<span class="keyword">new</span> WebSocket(<span class="string">'ws://121.42.176.99:9091/'</span>);</div><div class="line"><span class="comment">// 打开Socket</span></div><div class="line">socket.onopen = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">socket.send(<span class="string">"login:"</span>+userName);</div><div class="line">&#125;;</div><div class="line">socket.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line"></div><div class="line"><span class="keyword">var</span> getMsg=event.data;</div><div class="line"><span class="keyword">if</span>(<span class="regexp">/^notice:success$/</span>.test(getMsg)) <span class="comment">//服务器验证通过,后面做任何发送操作</span></div><div class="line">&#123;</div><div class="line">isLogin=<span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(<span class="regexp">/^msg:/</span>.test(getMsg)) <span class="comment">//代表是普通消息</span></div><div class="line">&#123;</div><div class="line"><span class="comment">//&lt;p&gt;xxxxooo&lt;/p&gt;</span></div><div class="line"><span class="keyword">var</span> p=<span class="built_in">document</span>.createElement(<span class="string">"P"</span>);</div><div class="line">p.innerHTML=<span class="string">"&lt;span&gt;收到消息&lt;/span&gt;"</span>+getMsg.replace(<span class="string">"msg:"</span>,<span class="string">""</span>);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"txtcontent"</span>).appendChild(p);</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(<span class="regexp">/^users:/</span>.test(getMsg))</div><div class="line">                &#123;<span class="comment">//显示当前已登录用户</span></div><div class="line">getMsg=getMsg.replace(<span class="string">"users:"</span>,<span class="string">""</span>);</div><div class="line">getMsg=<span class="built_in">eval</span>(<span class="string">"("</span>+getMsg+<span class="string">")"</span>);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"listusers"</span>).innerHTML=<span class="string">""</span>;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> getMsg)</div><div class="line">                    &#123;</div><div class="line"><span class="keyword">var</span> option=<span class="built_in">document</span>.createElement(<span class="string">"OPTION"</span>);</div><div class="line">option.value=key;<span class="comment">//IP</span></div><div class="line">option.innerHTML=getMsg[key];<span class="comment">//昵称</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"listusers"</span>).appendChild(option);</div><div class="line">&#125;</div><div class="line">                &#125;</div><div class="line"><span class="keyword">else</span></div><div class="line">&#123;</div><div class="line"></div><div class="line">                &#125;</div><div class="line">            &#125;;</div><div class="line"><span class="comment">// 监听Socket的关闭</span></div><div class="line">socket.onclose = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">isLogin=<span class="literal">false</span>;</div><div class="line"></div><div class="line">&#125;;</div><div class="line">&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"txtcontent"</span> <span class="attr">style</span>=<span class="string">"width:500px;height:250px;border: solid 1px gray"</span>&gt;</span></div><div class="line"></div><div class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>所有用户:<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"listusers"</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>你的昵称:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"username"</span>/&gt;</span> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">消息内容:</div><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">style</span>=<span class="string">"width:500px;height:100px"</span> <span class="attr">id</span>=<span class="string">"txtmsg"</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"connectServer()"</span>&gt;</span>连接服务器<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"send()"</span>&gt;</span>发送消息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="comment">//本机ip 121.42.176.99</span></div><div class="line"> <span class="comment">//等下 要监听  9091端口</span></div><div class="line"></div><div class="line"><span class="keyword">require_once</span> <span class="keyword">__DIR__</span> . <span class="string">'/Workerman/Autoloader.php'</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Workerman</span>\<span class="title">Worker</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Workerman</span>\<span class="title">Connection</span>\<span class="title">AsyncTcpConnection</span>;</div><div class="line"></div><div class="line"><span class="comment">// 创建一个Worker监听2345端口，使用http协议通讯</span></div><div class="line">$tcp_worker = <span class="keyword">new</span> Worker(<span class="string">"websocket://121.42.176.99:9091"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 启动1个进程对外提供服务</span></div><div class="line">$tcp_worker-&gt;count = <span class="number">1</span>;</div><div class="line">$clients=[];<span class="comment">//保存客户端信息</span></div><div class="line"></div><div class="line">$tcp_worker-&gt;onMessage = <span class="function"><span class="keyword">function</span><span class="params">($connection, $data)</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">global</span> $clients;</div><div class="line"><span class="keyword">if</span>(preg_match(<span class="string">"/^login:(\w&#123;3,20&#125;)/i"</span>,$data,$result))<span class="comment">//代表是客户端认证</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">if</span>(!array_key_exists($connection-&gt;getRemoteIp(),$clients)) <span class="comment">//必须是之前没有记录过</span></div><div class="line">&#123;</div><div class="line"><span class="comment">// $clients[$connection-&gt;getRemoteIp()]=$result[1];//保存所有客户端   格式为 ip=&gt;昵称</span></div><div class="line">$clients[$connection-&gt;getRemoteIp()]=[<span class="string">"ip"</span>=&gt;$connection-&gt;getRemoteIp(),<span class="string">"name"</span>=&gt;$result[<span class="number">1</span>],<span class="string">"conn"</span>=&gt;$connection];</div><div class="line"></div><div class="line">$connection-&gt;send(<span class="string">"notice:success"</span>);<span class="comment">//代表给客户端一个连接提示</span></div><div class="line">$connection-&gt;send(<span class="string">"msg:welcome back "</span>.$result[<span class="number">1</span>]);<span class="comment">//代表是发送普通文字消息</span></div><div class="line"><span class="keyword">echo</span> $connection-&gt;getRemoteIp().<span class="string">":"</span>.$result[<span class="number">1</span>].<span class="string">" login"</span>.PHP_EOL;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//$connection-&gt;send("users:".json_encode($clients));</span></div><div class="line">$users=<span class="string">"users:"</span>.json_encode(array_column($clients,<span class="string">"name"</span>,<span class="string">"ip"</span>));</div><div class="line"><span class="keyword">foreach</span>($clients <span class="keyword">as</span> $ip=&gt;$set)</div><div class="line">            &#123;</div><div class="line">$set[<span class="string">"conn"</span>]-&gt;send($users);</div><div class="line">&#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(preg_match(<span class="string">"/^msg:(.*?)/isU"</span>,$data,$msgset)) <span class="comment">//代表 是客户端发送普通消息</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">if</span>(array_key_exists($connection-&gt;getRemoteIp(),$clients)) <span class="comment">//必须已经认证过得客户端</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">echo</span> <span class="string">"get msg :"</span>.$msgset[<span class="number">1</span>];</div><div class="line">&#125;</div><div class="line">    &#125;</div><div class="line">$connection-&gt;onClose=<span class="function"><span class="keyword">function</span> <span class="params">($connection)</span>//客户端主动关闭</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">global</span> $clients;</div><div class="line"><span class="keyword">unset</span>($clients[$connection-&gt;getRemoteIp()]);</div><div class="line">&#125;;</div><div class="line">&#125;;</div><div class="line">$tcp_worker-&gt;onClose=<span class="function"><span class="keyword">function</span> <span class="params">($connection)</span> <span class="title">use</span><span class="params">($clients)</span></span></div><div class="line">&#123;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 运行worker</span></div><div class="line">Worker::runAll();</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/13/python截图/" itemprop="url">
-                  python截图
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-13T15:34:29+08:00" content="2017-02-13">
-              2017-02-13
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>你不能把这个世界，让给你所鄙视的人。<br></blockquote></p>
-<h3 id="简单的三行代码就可以实现"><a href="#简单的三行代码就可以实现" class="headerlink" title="简单的三行代码就可以实现:"></a>简单的三行代码就可以实现:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageGrab</div><div class="line">pic = ImageGrab.grab()</div><div class="line">pic.save(<span class="string">'1.jpg'</span>)</div></pre></td></tr></table></figure>
-<h3 id="使用-selenium"><a href="#使用-selenium" class="headerlink" title="使用 selenium"></a>使用 selenium</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line">browser = webdriver.Chrome()</div><div class="line">browser.get(<span class="string">'http://news.baidu.com/'</span>)</div><div class="line">browser.save_screenshot(<span class="string">'capture.png'</span>)</div><div class="line">browser.close()</div></pre></td></tr></table></figure>
-<h3 id="加载js-使网页显示完全"><a href="#加载js-使网页显示完全" class="headerlink" title="加载js,使网页显示完全"></a>加载js,使网页显示完全</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">take_screenshot</span><span class="params">(url, save_fn=<span class="string">"capture.png"</span>)</span>:</span></div><div class="line">browser = webdriver.Chrome() <span class="comment"># Get local session of firefox</span></div><div class="line">browser.set_window_size(<span class="number">1200</span>, <span class="number">900</span>)</div><div class="line">browser.get(url) <span class="comment"># Load page</span></div><div class="line">browser.execute_script(<span class="string">"""</span></div><div class="line">        (function () &#123;</div><div class="line">            var y = 0;</div><div class="line">            var step = 100;</div><div class="line">            window.scroll(0, 0);</div><div class="line"></div><div class="line">            function f() &#123;</div><div class="line">                if (y &lt; document.body.scrollHeight) &#123;</div><div class="line">                    y += step;</div><div class="line">                    window.scroll(0, y);</div><div class="line">                    setTimeout(f, 100);</div><div class="line">                &#125; else &#123;</div><div class="line">                    window.scroll(0, 0);</div><div class="line">                    document.title += "scroll-done";</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            setTimeout(f, 1000);</div><div class="line">        &#125;)();</div><div class="line">    """)</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">30</span>):</div><div class="line"><span class="keyword">if</span> <span class="string">"scroll-done"</span> <span class="keyword">in</span> browser.title:</div><div class="line"><span class="keyword">break</span></div><div class="line">time.sleep(<span class="number">10</span>)</div><div class="line"></div><div class="line">browser.save_screenshot(save_fn)</div><div class="line">browser.close()</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line"></div><div class="line">take_screenshot(<span class="string">"http://codingpy.com"</span>)</div></pre></td></tr></table></figure>
-<h3 id="使用-PhantomJS-效果不太好"><a href="#使用-PhantomJS-效果不太好" class="headerlink" title="使用 PhantomJS(效果不太好)"></a>使用 PhantomJS(效果不太好)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line">br = webdriver.PhantomJS()</div><div class="line">br.get(<span class="string">'http://www.baidu.com'</span>)</div><div class="line">br.save_screenshot(<span class="string">'screenshot.png'</span>)</div><div class="line">br.quit()</div></pre></td></tr></table></figure>
-<h3 id="升级版"><a href="#升级版" class="headerlink" title="升级版"></a>升级版</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> StringIO</div><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line"></div><div class="line"><span class="comment"># Install instructions</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># npm install phantomjs</span></div><div class="line"><span class="comment"># sudo apt-get install libjpeg-dev</span></div><div class="line"><span class="comment"># pip install selenium pillow</span></div><div class="line"></div><div class="line"></div><div class="line">driver = webdriver.PhantomJS()</div><div class="line">driver.set_window_size(<span class="number">1366</span>, <span class="number">728</span>)  <span class="comment"># optional</span></div><div class="line">driver.get(<span class="string">'http://hassyon.com'</span>)</div><div class="line">driver.save_screenshot(<span class="string">'screen_hires.png'</span>)</div><div class="line"></div><div class="line">screen = driver.get_screenshot_as_png()</div><div class="line"></div><div class="line"><span class="comment"># Crop it back to the window size (it may be taller)</span></div><div class="line">box = (<span class="number">0</span>, <span class="number">0</span>, <span class="number">1366</span>, <span class="number">728</span>)</div><div class="line">im = Image.open(StringIO.StringIO(screen))</div><div class="line">region = im.crop(box)</div><div class="line">region.save(<span class="string">'screen_lores.jpg'</span>, <span class="string">'JPEG'</span>, optimize=<span class="keyword">True</span>, quality=<span class="number">95</span>)</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -760,7 +751,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">98</span>
+              <span class="site-state-item-count">102</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
