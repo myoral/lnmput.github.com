@@ -240,6 +240,325 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/08/git撤销commit的三个方法/" itemprop="url">
+                  git撤销commit的三个方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-08T21:33:53+08:00" content="2016-10-08">
+              2016-10-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>當我們懂得珍惜平凡的幸福時，就已經成了人生的贏家。<br></blockquote><br>撤销commit有很多方法，个人比较推荐用 reset 或 rebase -i，底下将会同时介绍 revert 和 reset 的方法。</p>
+<p>commit 如下</p>
+<p>A -&gt; B -&gt; C -&gt; D -&gt; E<br>想要还原到 commit C 之后的状态 (也就是把 D 和 E 回退)</p>
+<h3 id="revert"><a href="#revert" class="headerlink" title="revert"></a>revert</h3><p>用：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git revert E</div><div class="line">git revert D</div></pre></td></tr></table></figure></p>
+<p>结果：</p>
+<p>A -&gt; B -&gt; C -&gt; D -&gt; E -&gt; F -&gt; G<br>F 是还原 commit E 修改结果的 commit</p>
+<p>G 是还原 commit D 修改结果的 commit</p>
+<p>因此，revert 只会让 commit 继续往前</p>
+<p>优点是可以针对某个 commit 进行还原，并且留下还原记录</p>
+<h3 id="rebase-i"><a href="#rebase-i" class="headerlink" title="rebase -i"></a>rebase -i</h3><p>假如想要抽掉某个 commit 又不想留下记录, rebase -i 就很好用了</p>
+<p>假如只想要还原 D 变成：</p>
+<p>A -&gt; B -&gt; C -&gt; E</p>
+<p>则用命令<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git rebase -i C</div></pre></td></tr></table></figure></p>
+<p>这时候会出现文字编辑<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pick D xxx</div><div class="line">pick E ooo</div></pre></td></tr></table></figure></p>
+<p>把 pick D xxx 整列移除后储存就可以了，若中间有遇到冲突，则必须自行修正后再继续<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git rebase --<span class="keyword">continue</span></div></pre></td></tr></table></figure></p>
+<h3 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h3><p>用于做整段 commits 的还原</p>
+<p>例如希望还原到 B commit 以后的状态变成</p>
+<p>A -&gt; B<br>则<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset B</div></pre></td></tr></table></figure></p>
+<p>那么 git 会将 log 中的 C, D, E 都清除</p>
+<p>但档案内容没有任何变动，因此会看到 C, D, E 修改的档案处在 unstaged 阶段</p>
+<p>若针对部分档案还原可以用<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout [file path]</div></pre></td></tr></table></figure></p>
+<p>若要全部还原可用<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git checkout -f</div></pre></td></tr></table></figure></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>还没 push 前，个人倾向不产生太多 commit。因此我都会用 rebase -i 进行编修, 顺便合并或reword 一些 commit</p>
+<p>某个特殊情况, 例如发现某个 commit 里面包含了不相干的档案, 欲重新 commit 时，就会先用 rebase -i 把欲修改的 commit 换到后面(较新), 然后再用 reset 重新 stage + commit。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/31/深入理解PHP原理之Opcodes/" itemprop="url">
+                  深入理解PHP原理之Opcodes
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-31T09:49:23+08:00" content="2016-08-31">
+              2016-08-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>低头要有勇气，抬头要有底气<br></blockquote><br>Opcode是一种PHP脚本编译后的中间语言，就像Java的ByteCode,或者.NET的MSL，举个例子，比如你写下了如下的PHP代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> <span class="meta">&lt;?php</span></div><div class="line">   <span class="keyword">echo</span> <span class="string">"Hello World"</span>;</div><div class="line">   $a = <span class="number">1</span> + <span class="number">1</span>;</div><div class="line">   <span class="keyword">echo</span> $a;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>PHP执行这段代码会经过如下4个步骤(确切的来说，应该是PHP的语言引擎Zend)</p>
+<ul>
+<li>1.Scanning(Lexing) ,将PHP代码转换为语言片段(Tokens)</li>
+<li>2.Parsing, 将Tokens转换成简单而有意义的表达式</li>
+<li>3.Compilation, 将表达式编译成Opocdes</li>
+<li>4.Execution, 顺次执行Opcodes，每次一条，从而实现PHP脚本的功能。</li>
+</ul>
+<p>题外话:现在有的Cache比如APC,可以使得PHP缓存住Opcodes，这样，每次有请求来临的时候，就不需要重复执行前面3步，从而能大幅的提高PHP的执行速度。</p>
+<p>那什么是Lexing? 学过编译原理的同学都应该对编译原理中的词法分析步骤有所了解，Lex就是一个词法分析的依据表。 Zend/zend_language_scanner.c会根据Zend/zend_language_scanner.l(Lex文件),来输入的 PHP代码进行词法分析，从而得到一个一个的“词”，PHP4.2开始提供了一个函数叫token_get_all,这个函数就可以讲一段PHP代码 Scanning成Tokens；</p>
+<blockquote>
+<p><a href="http://www.laruence.com/2008/06/18/221.html" target="_blank" rel="external">http://www.laruence.com/2008/06/18/221.html</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/28/video/" itemprop="url">
+                  video
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-28T22:38:29+08:00" content="2016-08-28">
+              2016-08-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>学习，成长，进步<br></blockquote></p>
+<blockquote>
+<h2 id="需要视频教程的同学留言了，写下你需要的视频资源-找到后第一时间发给你"><a href="#需要视频教程的同学留言了，写下你需要的视频资源-找到后第一时间发给你" class="headerlink" title="需要视频教程的同学留言了，写下你需要的视频资源,找到后第一时间发给你"></a>需要视频教程的同学留言了，写下你需要的视频资源,找到后第一时间发给你</h2><h4 id="视频资源更新QQ群：481968179"><a href="#视频资源更新QQ群：481968179" class="headerlink" title="视频资源更新QQ群：481968179"></a>视频资源更新QQ群：<code>481968179</code></h4><h4 id="微信公众号：-xfdoors"><a href="#微信公众号：-xfdoors" class="headerlink" title="微信公众号： xfdoors"></a>微信公众号： <code>xfdoors</code></h4><h4 id="个人QQ号：1192414556"><a href="#个人QQ号：1192414556" class="headerlink" title="个人QQ号：1192414556"></a>个人QQ号：<code>1192414556</code></h4></blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/26/单点登录的三种实现方式/" itemprop="url">
                   单点登录的三种实现方式
                 </a>
@@ -406,314 +725,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/24/PHP反射类ReflectionClass/" itemprop="url">
-                  PHP反射类ReflectionClass
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-24T14:22:29+08:00" content="2016-08-24">
-              2016-08-24
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>我讨厌变老，当我们力量衰弱的时候如果出现更强的敌人，我会觉得很恐怖，很遗憾。<br></blockquote></p>
-<h3 id="基本说明"><a href="#基本说明" class="headerlink" title="基本说明"></a>基本说明</h3><p>先定义一个User类<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> $username;</div><div class="line">    <span class="keyword">private</span> $password;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"login"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"registert"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>实例化并调用其中的方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$user = <span class="keyword">new</span> User();</div><div class="line">$user-&gt;login();</div></pre></td></tr></table></figure></p>
-<p>实例化User类的反射类并调用其中的一个方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$reUser = <span class="keyword">new</span> \ReflectionClass(<span class="string">'User'</span>);</div><div class="line">var_dump($reUser-&gt;getFileName());</div></pre></td></tr></table></figure></p>
-<p>说明：ReflectionClass类获取类相关信息，如获取属性、方法、文档注释等；</p>
-<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><ul>
-<li>通过_call可以调用类一些不确定的方法，这个时候就可以通过反射类ReflectionClass来判断类方法是否存在，是不是可见可调用的。</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">actionA</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"I'am A\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">actionB</span> <span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"I'am B\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> $objects;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;objects=<span class="keyword">array</span>();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">($t)</span></span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;objects[]=$t;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">pp</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//调用不可见的方法或者没有的方法都会走到这里</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span><span class="params">($name,$args)</span></span>&#123;</div><div class="line">        <span class="keyword">foreach</span>(<span class="keyword">$this</span>-&gt;objects <span class="keyword">as</span> $object)&#123;</div><div class="line">            $class=<span class="keyword">new</span> ReflectionClass($object);</div><div class="line">            <span class="keyword">if</span>(!$class-&gt;hasMethod($name))&#123;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            $method=$class-&gt;getMethod($name);</div><div class="line">            <span class="keyword">if</span>($method&amp;&amp;$method-&gt;isPublic()&amp;&amp;!$method-&gt;isAbstract())&#123;</div><div class="line">                $method-&gt;invoke($object,$args);</div><div class="line">                <span class="keyword">return</span> ;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"not method!\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">$t=<span class="keyword">new</span> test();</div><div class="line">$t-&gt;add(<span class="keyword">new</span> A());</div><div class="line">$t-&gt;add(<span class="keyword">new</span> B());</div><div class="line">$t-&gt;pp(); <span class="comment">//不可见方法</span></div><div class="line">$t-&gt;actionA();</div><div class="line">$t-&gt;actionB();</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/24/PHP函数call-user-func-array用法/" itemprop="url">
-                  PHP函数call_user_func_array用法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-24T12:13:26+08:00" content="2016-08-24">
-              2016-08-24
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>无她，唯手熟尔<br></blockquote></p>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>调用函数<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span><span class="params">($b, $c)</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">echo</span> $b;</div><div class="line">  <span class="keyword">echo</span> $c;</div><div class="line">&#125;</div><div class="line">call_user_func_array(<span class="string">'a'</span>, <span class="keyword">array</span>(<span class="string">"111"</span>, <span class="string">"222"</span>));</div><div class="line"><span class="comment">//显示 111 222</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
-<p>调用静态方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">Class</span> <span class="title">ClassA</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">bc</span><span class="params">($b, $c)</span> </span>&#123;</div><div class="line">	$bc = $b + $c;</div><div class="line">	  <span class="keyword">echo</span> $bc;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">call_user_func_array(<span class="keyword">array</span>(<span class="string">'ClassA'</span>,<span class="string">'bc'</span>), <span class="keyword">array</span>(<span class="string">"111"</span>, <span class="string">"222"</span>));</div><div class="line"><span class="comment">//显示 333</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
-<p>说明：这样就可以用数组的方式给类的方法传入必要的参数</p>
-<p>调用普通方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Hello, World!"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$a = <span class="keyword">new</span> MyClass();</div><div class="line">call_user_func(<span class="keyword">array</span>($a, <span class="string">'hello'</span>));</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/24/PHP大量数据循环时内存耗尽问题的解决方案/" itemprop="url">
-                  PHP大量数据循环时内存耗尽问题的解决方案
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-24T10:52:33+08:00" content="2016-08-24">
-              2016-08-24
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote class="blockquote-center"><br>我的肺功能快衰竭了，没有两天了，请大家不要打钱了，谢谢大家这段时间的帮助，希望来生没有痛苦。—魏则西<br></blockquote>
-
-<p>最近在开发一个PHP程序时遇到了下面的错误：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PHP Fatal error: Allowed memory size of <span class="number">268</span> <span class="number">435</span> <span class="number">456</span> bytes exhausted</div></pre></td></tr></table></figure></p>
-<p>错误信息显示允许的最大内存已经耗尽。遇到这样的错误起初让我很诧异，但转眼一想，也不奇怪，因为我正在开发的这个程序是要用一个foreach循环语句在一个有4万条记录的表里全表搜索具有特定特征的数据，也就是说，一次要把4万条数据取出，然后逐条检查每天数据。可想而知，4万条数据全部加载到内存中，内存不爆才怪。</p>
-<p>毕竟编程这么多年，我隐约记得PHP里提供有非一次全部加载数据的API，是像处理流媒体那样，随用随取随丢、数据并不会积累在内存的查询方法。经过简单的搜索，果然在官方网站上找到的正确的用法。</p>
-<p>这个问题在PHP的官方网站上叫缓冲查询和非缓冲查询(Buffered and Unbuffered queries)。 PHP的查询缺省模式是缓冲模式。也就是说，查询数据结果会一次全部提取到内存里供PHP程序处理。这样给了PHP程序额外的功能，比如说，计算行数，将 指针指向某一行等。更重要的是程序可以对数据集反复进行二次查询和过滤等操作。但这种缓冲查询模式的缺陷就是消耗内存，也就是用空间换速度。</p>
-<p>相对的，另外一种PHP查询模式是非缓冲查询，数据库服务器会一条一条的返回数据，而不是一次全部返回，这样的结果就是PHP程序消耗较少的内存，但却增加了数据库服务器的压力，因为数据库会一直等待PHP来取数据，一直到数据全部取完。</p>
-<p>很显然，缓冲查询模式适用于小数据量查询，而非缓冲查询适应于大数据量查询。</p>
-<p>对于PHP的缓冲模式查询大家都知道，下面列举的例子是如何执行非缓冲查询API。</p>
-<h3 id="非缓冲查询方法一-mysqli"><a href="#非缓冲查询方法一-mysqli" class="headerlink" title="非缓冲查询方法一: mysqli"></a>非缓冲查询方法一: mysqli</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line">$mysqli  = <span class="keyword">new</span> mysqli(<span class="string">"localhost"</span>, <span class="string">"my_user"</span>, <span class="string">"my_password"</span>, <span class="string">"world"</span>); </div><div class="line">$uresult = $mysqli-&gt;query(<span class="string">"SELECT Name FROM City"</span>, MYSQLI_USE_RESULT); </div><div class="line"></div><div class="line"><span class="keyword">if</span> ($uresult) &#123; </div><div class="line">   <span class="keyword">while</span> ($row = $uresult-&gt;fetch_assoc()) &#123; </div><div class="line">       <span class="keyword">echo</span> $row[<span class="string">'Name'</span>] . PHP_EOL; </div><div class="line">   &#125; </div><div class="line">&#125; </div><div class="line">$uresult-&gt;close(); </div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="非缓冲查询方法二-pdo-mysql"><a href="#非缓冲查询方法二-pdo-mysql" class="headerlink" title="非缓冲查询方法二: pdo_mysql"></a>非缓冲查询方法二: pdo_mysql</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line">$pdo = <span class="keyword">new</span> PDO(<span class="string">"mysql:host=localhost;dbname=world"</span>, <span class="string">'my_user'</span>, <span class="string">'my_pass'</span>); </div><div class="line">$pdo-&gt;setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, <span class="keyword">false</span>); </div><div class="line"></div><div class="line">$uresult = $pdo-&gt;query(<span class="string">"SELECT Name FROM City"</span>); </div><div class="line"><span class="keyword">if</span> ($uresult) &#123; </div><div class="line">   <span class="keyword">while</span> ($row = $uresult-&gt;fetch(PDO::FETCH_ASSOC)) &#123; </div><div class="line">       <span class="keyword">echo</span> $row[<span class="string">'Name'</span>] . PHP_EOL; </div><div class="line">   &#125; </div><div class="line">&#125; </div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="非缓冲查询方法三-mysql"><a href="#非缓冲查询方法三-mysql" class="headerlink" title="非缓冲查询方法三: mysql"></a>非缓冲查询方法三: mysql</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line">$conn = mysql_connect(<span class="string">"localhost"</span>, <span class="string">"my_user"</span>, <span class="string">"my_pass"</span>); </div><div class="line">$db   = mysql_select_db(<span class="string">"world"</span>); </div><div class="line"></div><div class="line">$uresult = mysql_unbuffered_query(<span class="string">"SELECT Name FROM City"</span>); </div><div class="line"><span class="keyword">if</span> ($uresult) &#123; </div><div class="line">   <span class="keyword">while</span> ($row = mysql_fetch_assoc($uresult)) &#123; </div><div class="line">       <span class="keyword">echo</span> $row[<span class="string">'Name'</span>] . PHP_EOL; </div><div class="line">   &#125; </div><div class="line">&#125; </div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="http://www.codeceo.com/article/php-foreach-memory.html" target="_blank" rel="external">http://www.codeceo.com/article/php-foreach-memory.html</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -759,7 +770,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">102</span>
+              <span class="site-state-item-count">105</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
