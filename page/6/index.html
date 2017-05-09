@@ -240,6 +240,208 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/24/ios设备中web开发的一些问题/" itemprop="url">
+                  ios设备中web开发的一些问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-24T09:47:10+08:00" content="2017-02-24">
+              2017-02-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>今天翻的是书，明天数的是钱。<br></blockquote></p>
+<h3 id="时间格式"><a href="#时间格式" class="headerlink" title="时间格式"></a>时间格式</h3><p>ios设备目前不支持这种时间格式:yyyy-mm-dd hh:mm:ss<br>但是支持这种:mm/dd/yyyy hh:mm:ss,使用的时候注意移动设备上的格式化问题\</p>
+<h3 id="input框自定义ios键盘"><a href="#input框自定义ios键盘" class="headerlink" title="input框自定义ios键盘"></a>input框自定义ios键盘</h3><p>如果类型是search的话，需要把input放在一个action为空的form中，例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"search"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/21/centos系统python版本升级从2-6到2-7/" itemprop="url">
+                  centos系统python版本升级从2.6到2.7
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-21T09:22:36+08:00" content="2017-02-21">
+              2017-02-21
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote class="blockquote-center"><br>你喜欢的姑娘在学习<br></blockquote>
+
+<h3 id="查看python的版本"><a href="#查看python的版本" class="headerlink" title="查看python的版本"></a>查看python的版本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#python  -V    </span></div><div class="line">Python <span class="number">2.6</span><span class="number">.6</span></div></pre></td></tr></table></figure>
+<h3 id="下载Python-2-7-3"><a href="#下载Python-2-7-3" class="headerlink" title="下载Python-2.7.3"></a>下载Python-2.7.3</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#wget http://python.org/ftp/python/2.7.3/Python-2.7.3.tar.bz2</span></div></pre></td></tr></table></figure>
+<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#tar -jxvf Python-2.7.3.tar.bz2</span></div></pre></td></tr></table></figure>
+<h3 id="更改工作目录"><a href="#更改工作目录" class="headerlink" title="更改工作目录"></a>更改工作目录</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#cd Python-2.7.3</span></div></pre></td></tr></table></figure>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#./configure  </span></div><div class="line"><span class="comment">#make all             </span></div><div class="line"><span class="comment">#make install  </span></div><div class="line"><span class="comment">#make clean  </span></div><div class="line"><span class="comment">#make distclean</span></div></pre></td></tr></table></figure>
+<h3 id="查看版本信息"><a href="#查看版本信息" class="headerlink" title="查看版本信息"></a>查看版本信息</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#/usr/local/bin/python2.7 -V</span></div></pre></td></tr></table></figure>
+<h3 id="建立软连接，使系统默认的-python指向-python2-7"><a href="#建立软连接，使系统默认的-python指向-python2-7" class="headerlink" title="建立软连接，使系统默认的 python指向 python2.7"></a>建立软连接，使系统默认的 python指向 python2.7</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#mv /usr/bin/python /usr/bin/python2.6.6  </span></div><div class="line"><span class="comment">#ln -s /usr/local/bin/python2.7 /usr/bin/python</span></div></pre></td></tr></table></figure>
+<h3 id="重新检验Python-版本"><a href="#重新检验Python-版本" class="headerlink" title="重新检验Python 版本"></a>重新检验Python 版本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#python -V</span></div></pre></td></tr></table></figure>
+<p>解决系统 Python 软链接指向 Python2.7 版本后，因为yum是不兼容 Python 2.7的，所以yum不能正常工作，我们需要指定 yum 的Python版本<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#vi /usr/bin/yum</span></div></pre></td></tr></table></figure></p>
+<p>将文件头部的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div></pre></td></tr></table></figure></p>
+<p>改成<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python2.6</span></div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/13/workerman聊天室/" itemprop="url">
                   workerman聊天室
                 </a>
@@ -520,223 +722,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/07/关于php的PECL和PEAR/" itemprop="url">
-                  关于php的PECL和PEAR
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-07T11:09:44+08:00" content="2017-02-07">
-              2017-02-07
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote class="blockquote-center"><br>总有一天，我会拥有我梦寐以求的6块腹肌，可是我还是先把这个汉堡吃完……<br></blockquote>
-
-<h3 id="什么是PEAR"><a href="#什么是PEAR" class="headerlink" title="什么是PEAR"></a>什么是PEAR</h3><p>PEAR的全称是PHP Extension and Application Repository，是PHP的扩展库，采用PHP语言编写。所以我们可以直接下载，并在我们的代码中包含(include)扩展库。</p>
-<h3 id="什么是PECL"><a href="#什么是PECL" class="headerlink" title="什么是PECL"></a>什么是PECL</h3><p>PECL的全称是PHP Extension Community Library，它也是PHP的扩展库。PECL的扩展都是采用C语言编写的，可以被载入PHP中，给PHP增加额外的功能，比如PHP的Mongo扩展。<br>即 php 的 so 格式的扩展</p>
-<h4 id="centos"><a href="#centos" class="headerlink" title="centos"></a>centos</h4><ul>
-<li>安装: yum install php-pear</li>
-</ul>
-<h4 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h4><ul>
-<li>安装: sudo apt-get install php-pear</li>
-</ul>
-<h3 id="phpize"><a href="#phpize" class="headerlink" title="phpize"></a>phpize</h3><h4 id="centos-1"><a href="#centos-1" class="headerlink" title="centos"></a>centos</h4><ul>
-<li>安装: yum install php-devel</li>
-<li>查看: which phpize</li>
-</ul>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>在网页中打印phpinfo()看到安装了某个扩展，不代表命令行的PHP CLI也安装了对应的扩展。</p>
-<ul>
-<li>如何确定PHP CLI安装了哪些扩展</li>
-</ul>
-<p>运行 <code>php -m</code> 会列出命令行 PHP CLI 已经安装的扩展</p>
-<ul>
-<li>如何确定PHP CLI 的php.ini文件的位置</li>
-</ul>
-<p>可以运行<code>php --ini</code>查找PHP CLI的ini文件位置</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/05/git丢弃本地修改的所有文件/" itemprop="url">
-                  git丢弃本地修改的所有文件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-05T14:28:43+08:00" content="2017-02-05">
-              2017-02-05
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>我喜欢你，像风走了八万里，不问归期。<br></blockquote><br>git checkout . #本地所有修改的。没有的提交的，都返回到原来的状态<br>git stash #把所有没有提交的修改暂存到stash里面。可用git stash pop回复。<br>git reset –hard HASH #返回到某个节点，不保留修改。<br>git reset –soft HASH #返回到某个节点。保留修改</p>
-<p>git clean -df #返回到某个节点<br>git clean 参数<br>    -n 显示 将要 删除的 文件 和  目录<br>    -f 删除 文件<br>    -df 删除 文件 和 目录<br>也可以使用：</p>
-<p>git checkout . &amp;&amp; git clean -xdf</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -777,7 +767,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">105</span>
+              <span class="site-state-item-count">107</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

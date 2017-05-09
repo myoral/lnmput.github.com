@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yangguoqi.me/2017/05/09/Laravel%E4%B8%AD%E7%9A%84%E6%A8%A1%E5%9E%8B%E4%BA%8B%E4%BB%B6/</loc>
+    
+    <lastmod>2017-05-09T08:15:45.697Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yangguoqi.me/2017/05/04/mysql%E4%B8%ADFIND-IN-SET%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2017-05-04T08:47:11.855Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yangguoqi.me/2017/04/27/scrapy%E7%88%AC%E5%8E%BB%E8%A5%BF%E5%88%BAip%E5%88%97%E8%A1%A8/</loc>
     
     <lastmod>2017-04-27T11:03:23.460Z</lastmod>
