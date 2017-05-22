@@ -240,6 +240,400 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/22/深入理解PHP原理之foreach/" itemprop="url">
+                  深入理解PHP原理之foreach
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-22T10:17:37+08:00" content="2016-08-22">
+              2016-08-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>我们走得太快，灵魂都跟不上了 …<br></blockquote><br>今天偶然看到鸟哥(php)的博客‘ 深入理解PHP原理之foreach’，可惜自己功力尚欠，内部的机理看不明白，但也稍微记录一下，毕竟这个问题自己以前从来没有考虑过。</p>
+<h4 id="以下内容摘自鸟哥的博客"><a href="#以下内容摘自鸟哥的博客" class="headerlink" title="以下内容摘自鸟哥的博客"></a>以下内容摘自鸟哥的博客</h4><p>经常会有人问我, PHP的数组, 如果用foreach来访问, 遍历的顺序是固定的么? 以什么顺序遍历呢?<br>比如:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$arr[<span class="string">'laruence'</span>] = <span class="string">'huixinchen'</span>;</div><div class="line">$arr[<span class="string">'yahoo'</span>]    = <span class="number">2007</span>;</div><div class="line">$arr[<span class="string">'baidu'</span>]    = <span class="number">2008</span>;</div><div class="line"><span class="keyword">foreach</span> ($arr <span class="keyword">as</span> $key =&gt; $val) &#123;</div><div class="line"><span class="comment">//结果是什么?</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>结果：<br>huixinchen20072008</p>
+<p>又比如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$arr[<span class="number">2</span>] = <span class="string">'huixinchen'</span>;</div><div class="line">$arr[<span class="number">1</span>]  = <span class="number">2007</span>;</div><div class="line">$arr[<span class="number">0</span>]  = <span class="number">2008</span>;</div><div class="line"><span class="keyword">foreach</span> ($arr <span class="keyword">as</span> $key =&gt; $val) &#123;</div><div class="line"><span class="comment">//现在结果又是什么?</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>结果：<br>huixinchen 2007 2008</p>
+<p>要完全了解清楚这个问题, 我想首先应该要大家了解PHP数组的内部实现结构………<br>在PHP中, 数组是用一种HASH结构(HashTable)来实现的, PHP使用了一些机制, 使得可以在O(1)的时间复杂度下实现数组的增删, 并同时支持线性遍历和随机访问.</p>
+<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>PHP中遍历数组的顺序, 是和元素的添加先后相关的；<br>所以, 如果你想在数字索引的数组中按照索引大小遍历, 那么你就应该使用for, 而不是foreach<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>($i=<span class="number">0</span>,$l=count($arr); $i&lt;$l; $i++) &#123;</div><div class="line"> <span class="comment">//这个时候,不能认为是顺序遍历(线性遍历)</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/21/免费分享视频教程/" itemprop="url">
+                  免费分享视频教程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-21T21:16:25+08:00" content="2016-08-21">
+              2016-08-21
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>每周更新<br></blockquote></p>
+<h3 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h3><blockquote>
+<p>此处视频全部免费分享，密码请进QQ群(481968179)，进群请输入自己的淘宝用户名，谢谢<br>该群只向已经给予好评的亲开放，谢谢<br>若链接失效，联系QQ：1192414556<br>如果您在平时学习的过程中有什么困惑或者需要我帮忙的，也请联系我的QQ</p>
+</blockquote>
+<h3 id="电子书"><a href="#电子书" class="headerlink" title="电子书"></a>电子书</h3><ul>
+<li>PHP 书籍库<br>链接: <a href="http://pan.baidu.com/s/1hrMsFuW" target="_blank" rel="external">http://pan.baidu.com/s/1hrMsFuW</a> 密码: 8jve</li>
+</ul>
+<h3 id="vue-js"><a href="#vue-js" class="headerlink" title="vue js"></a>vue js</h3><ul>
+<li>爱上vue js  (1.1G)<br>链接: <a href="https://pan.baidu.com/s/1qXX46W8" target="_blank" rel="external">https://pan.baidu.com/s/1qXX46W8</a> 密码: <em>**</em></li>
+<li>vue js 和jquery的区别  (199M)<br>链接: <a href="https://pan.baidu.com/s/1gfM7Omn" target="_blank" rel="external">https://pan.baidu.com/s/1gfM7Omn</a> 密码: <em>**</em></li>
+<li>英文视频合集(20多个视频)<br>链接: <a href="https://pan.baidu.com/s/1b4lcYE" target="_blank" rel="external">https://pan.baidu.com/s/1b4lcYE</a> 密码: <em>**</em></li>
+</ul>
+<h3 id="backbone-js"><a href="#backbone-js" class="headerlink" title="backbone js"></a>backbone js</h3><ul>
+<li>电子书分享(2本)<br>链接：<a href="http://pan.baidu.com/s/1c2mgfeS" target="_blank" rel="external">http://pan.baidu.com/s/1c2mgfeS</a> 密码：<em>**</em></li>
+</ul>
+<h3 id="laravel"><a href="#laravel" class="headerlink" title="laravel"></a>laravel</h3><ul>
+<li>离线文档<br>链接: <a href="https://pan.baidu.com/s/1o7P1grK" target="_blank" rel="external">https://pan.baidu.com/s/1o7P1grK</a> 密码: <em>**</em></li>
+</ul>
+<h3 id="php"><a href="#php" class="headerlink" title="php"></a>php</h3><ul>
+<li>phpCon2016 大会完整视频以及ppt<br>链接: <a href="https://pan.baidu.com/s/1i5kAag9" target="_blank" rel="external">https://pan.baidu.com/s/1i5kAag9</a> 密码: <em>**</em></li>
+<li>php7 视频<br>链接: <a href="https://pan.baidu.com/s/1miuFc6k" target="_blank" rel="external">https://pan.baidu.com/s/1miuFc6k</a> 密码: <em>**</em>  </li>
+<li>yii视频教程<br>链接: <a href="http://pan.baidu.com/s/1pKX8BAr" target="_blank" rel="external">http://pan.baidu.com/s/1pKX8BAr</a> 密码: <em>**</em></li>
+<li><p>基于CI的电子商城项目<br>链接: <a href="http://pan.baidu.com/s/1nv6O5cd" target="_blank" rel="external">http://pan.baidu.com/s/1nv6O5cd</a> 密码: <em>**</em></p>
+</li>
+<li><p>php面向对象<br>链接: <a href="https://pan.baidu.com/s/1c1FE9Xm" target="_blank" rel="external">https://pan.baidu.com/s/1c1FE9Xm</a> 密码: <em>**</em></p>
+</li>
+<li><p>smarty3 视频教程<br>链接: <a href="https://pan.baidu.com/s/1o7JxWqm" target="_blank" rel="external">https://pan.baidu.com/s/1o7JxWqm</a> 密码: <em>**</em>  </p>
+</li>
+</ul>
+<h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><ul>
+<li><p>webpack视频<br>链接: <a href="https://pan.baidu.com/s/1jIuc2jG" target="_blank" rel="external">https://pan.baidu.com/s/1jIuc2jG</a> 密码: <em>**</em></p>
+</li>
+<li><p>bootstrap视频教程<br>链接: <a href="https://pan.baidu.com/s/1i4EgZRn" target="_blank" rel="external">https://pan.baidu.com/s/1i4EgZRn</a> 密码: <em>**</em></p>
+</li>
+<li><p>html5 入门视频教程<br>链接：<a href="http://pan.baidu.com/s/1geGlZt5" target="_blank" rel="external">http://pan.baidu.com/s/1geGlZt5</a> 密码：<em>**</em></p>
+</li>
+<li><p>Grunt视频教程<br>链接: <a href="https://pan.baidu.com/s/1qYtQ4KO" target="_blank" rel="external">https://pan.baidu.com/s/1qYtQ4KO</a> 密码: <em>**</em></p>
+</li>
+<li><p>Gulp视频教程<br>链接: <a href="https://pan.baidu.com/s/1bCtIMi" target="_blank" rel="external">https://pan.baidu.com/s/1bCtIMi</a> 密码: <em>**</em></p>
+</li>
+<li><p>Bower视频教程<br>链接: <a href="https://pan.baidu.com/s/1i4VIt05" target="_blank" rel="external">https://pan.baidu.com/s/1i4VIt05</a> 密码: <em>**</em></p>
+</li>
+<li><p>html5 网页设计<br>链接：<a href="http://pan.baidu.com/s/1qXX5gAg" target="_blank" rel="external">http://pan.baidu.com/s/1qXX5gAg</a> 密码：<em>**</em></p>
+</li>
+<li><p>html5 坦克大战小游戏开发视频<br>链接：<a href="http://pan.baidu.com/s/1jINhHlW" target="_blank" rel="external">http://pan.baidu.com/s/1jINhHlW</a> 密码：<em>**</em></p>
+</li>
+<li><p>AngularJs 视频教程<br>链接：<a href="http://pan.baidu.com/s/1skG8evj" target="_blank" rel="external">http://pan.baidu.com/s/1skG8evj</a> 密码：<em>**</em></p>
+</li>
+<li><p>后盾网jquery 视频教程<br>链接：<a href="http://pan.baidu.com/s/1skG8evj" target="_blank" rel="external">http://pan.baidu.com/s/1skG8evj</a> 密码：<em>**</em></p>
+</li>
+<li><p>ajax彻底研究<br>链接: <a href="https://pan.baidu.com/s/1dENedLf" target="_blank" rel="external">https://pan.baidu.com/s/1dENedLf</a> 密码: <em>**</em></p>
+</li>
+<li><p>中级前端面试<br>链接: <a href="http://pan.baidu.com/s/1sleXhQd" target="_blank" rel="external">http://pan.baidu.com/s/1sleXhQd</a> 密码: ghfy</p>
+</li>
+<li><p>Angular 2.0<br>链接: <a href="http://pan.baidu.com/s/1jHYzLWy" target="_blank" rel="external">http://pan.baidu.com/s/1jHYzLWy</a> 密码: 6rn7</p>
+<h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3></li>
+<li>nginx 视频课程<br>链接：<a href="http://pan.baidu.com/s/1jHVF0ay" target="_blank" rel="external">http://pan.baidu.com/s/1jHVF0ay</a> 密码：<em>**</em></li>
+</ul>
+<h3 id="thinkphp"><a href="#thinkphp" class="headerlink" title="thinkphp"></a>thinkphp</h3><ul>
+<li>入门视频这一个就够了<br>链接：<a href="http://pan.baidu.com/s/1gfDevqb" target="_blank" rel="external">http://pan.baidu.com/s/1gfDevqb</a> 密码：<em>**</em></li>
+</ul>
+<h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><ul>
+<li>安卓知识路径图(视频 十多G)<br>链接: <a href="https://pan.baidu.com/s/1o8rm3I6" target="_blank" rel="external">https://pan.baidu.com/s/1o8rm3I6</a> 密码: <em>**</em></li>
+</ul>
+<h3 id="ios"><a href="#ios" class="headerlink" title="ios"></a>ios</h3><ul>
+<li>ios 路径图(视频 十多G)<br>链接: <a href="https://pan.baidu.com/s/1c12fWMc" target="_blank" rel="external">https://pan.baidu.com/s/1c12fWMc</a> 密码: <em>**</em></li>
+</ul>
+<h3 id="微信"><a href="#微信" class="headerlink" title="微信"></a>微信</h3><ul>
+<li>开发视频教程<br>链接: <a href="https://pan.baidu.com/s/1i5hTpdz" target="_blank" rel="external">https://pan.baidu.com/s/1i5hTpdz</a> 密码: <em>**</em></li>
+<li>泰牛微信开发视频<br>链接: <a href="https://pan.baidu.com/s/1mh5n2je" target="_blank" rel="external">https://pan.baidu.com/s/1mh5n2je</a> 密码: <em>**</em></li>
+</ul>
+<h3 id="wordpress相关"><a href="#wordpress相关" class="headerlink" title="wordpress相关"></a>wordpress相关</h3><ul>
+<li>主题相关<br>链接: <a href="http://pan.baidu.com/s/1cDrEtK" target="_blank" rel="external">http://pan.baidu.com/s/1cDrEtK</a> 密码: vpua</li>
+<li>其他<br>链接: <a href="http://pan.baidu.com/s/1dFDl7UT" target="_blank" rel="external">http://pan.baidu.com/s/1dFDl7UT</a> 密码: jksj</li>
+</ul>
+<h3 id="数据存储相关"><a href="#数据存储相关" class="headerlink" title="数据存储相关"></a>数据存储相关</h3><ul>
+<li><p>mycat视频教程<br>链接: <a href="https://pan.baidu.com/s/1minnjAg" target="_blank" rel="external">https://pan.baidu.com/s/1minnjAg</a> 密码: <em>**</em></p>
+</li>
+<li><p>redis视频教程<br>链接: <a href="http://pan.baidu.com/s/1nv6O5cd" target="_blank" rel="external">http://pan.baidu.com/s/1nv6O5cd</a> 密码: <em>**</em></p>
+</li>
+<li><p>memcached分布式集群<br>链接: <a href="https://pan.baidu.com/s/1o88iQE2" target="_blank" rel="external">https://pan.baidu.com/s/1o88iQE2</a> 密码: <em>**</em></p>
+</li>
+</ul>
+<h3 id="后端相关"><a href="#后端相关" class="headerlink" title="后端相关"></a>后端相关</h3><ul>
+<li>go语言视频教程<br>链接: <a href="http://pan.baidu.com/s/1o8o5EK6" target="_blank" rel="external">http://pan.baidu.com/s/1o8o5EK6</a> 密码: <em>**</em></li>
+</ul>
+<h3 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h3><ul>
+<li>网络入侵<br>链接: <a href="https://pan.baidu.com/s/1o8jgvLw" target="_blank" rel="external">https://pan.baidu.com/s/1o8jgvLw</a> 密码: <em>**</em></li>
+</ul>
+<h3 id="娱乐大电影"><a href="#娱乐大电影" class="headerlink" title="娱乐大电影"></a>娱乐大电影</h3><ul>
+<li>8T大电影，该有的应该都有了<br><a href="https://yunpan.cn/cMcYmH6LyBC6b" target="_blank" rel="external">https://yunpan.cn/cMcYmH6LyBC6b</a> （提取码：<em>**</em>）</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/18/laravel-session的使用/" itemprop="url">
+                  laravel-session的使用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-18T20:06:12+08:00" content="2016-08-18">
+              2016-08-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>幸福，不是长生不老，不是大鱼大肉，不是权倾朝野。幸福是每一个微小的生活愿望达成。当你想吃的时候有得吃，想被爱的时候有人来爱你。<br></blockquote><br>Laravel 默认使用 file 的方式来实现 session的。她并不用php原生的$_SESSION（php原生的session要看php.ini的位置），所以忽略php相关的session函数，例如session_start(), $_SESSION。Laravel在运行过程中会在app/storage/session/目录写入session的信息，所以这个目录需要有写权限，否者session就无法写入成功。</p>
+<p>Laravel除了使用默认的file作为session的实现，还支持cookie, Memcached, Redis 和数据库的后端驱动作为session的实现。必要的时候还需要自己实现一个session的实现方式，比如在微信公众账号和用户的交互，这中session就无法直接使用，因为每次都是微信服务器来请求，无法通过请求的来源来辨别用户。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//session的永久保存（在不过期范围内）</span></div><div class="line">Session::put(<span class="string">'key'</span>, <span class="string">'value'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//等同于PHP的原生session</span></div><div class="line">$_SESSION[<span class="string">'key'</span>] = <span class="string">'value'</span>;</div><div class="line"> </div><div class="line"><span class="comment">//get操作</span></div><div class="line">$value = Session::get(<span class="string">'key'</span>, <span class="string">'default'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//去除操作并删除，类似pop概念</span></div><div class="line">$value = Session::pull(<span class="string">'key'</span>, <span class="string">'default'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//检测是否存在key</span></div><div class="line">Session::has(<span class="string">'users'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//删除key</span></div><div class="line">Session::forget(<span class="string">'key'</span>);</div></pre></td></tr></table></figure>
+<h3 id="laravel的session中flash概念"><a href="#laravel的session中flash概念" class="headerlink" title="laravel的session中flash概念"></a>laravel的session中flash概念</h3><p>这个flash两次请求有效（本次和下次请求有效），与本次请求取操作多少次无关。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//保存key，value</span></div><div class="line">Session::flash(<span class="string">'key'</span>, <span class="string">'value'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//取值方法还是一样的</span></div><div class="line">Session::get(<span class="string">'key'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//刷新快闪数据时间，保持到下次请求</span></div><div class="line">Session::keep(<span class="keyword">array</span>(<span class="string">'username'</span>, <span class="string">'email'</span>))</div></pre></td></tr></table></figure>
+<p>这个flash的概念和上面的put的概念不太一样。</p>
+<p>put ：这个对应只要session不过期，基本上是永久保存，下次请求也是存在的。<br>flash ：保存的值，本次请求可以使用，下次http请求可以使用，再下一次就不存在了。<br>也就是说下一次的请求用完就被销毁了，不会让session的值变的越来越大，可以保存一些临时的数据。</p>
+<p>这中情况的使用场景比如有：</p>
+<p>用户请求了页面，出现错误信息，重定向到一个新的页面，需要展示之前的数据。（虽然可以通过url参数来传递，处理不好可能会有xss漏洞）。<br>用户访问了一个页面，过滤器发现没权限，保存当前页面url，重定向到登录页面，登录成功，取出值，重定向到原先的页面。（这里可能需要刷新保存的快闪数据）</p>
+<h3 id="session落地的时间"><a href="#session落地的时间" class="headerlink" title="session落地的时间"></a>session落地的时间</h3><p>我天真的以为使用了Session::put函数就能保存这个变量了。于是我的代码这样写：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoginController</span> </span>&#123;</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span><span class="params">()</span></span>&#123;</div><div class="line">        Session::put(<span class="string">'key'</span>,<span class="string">'value'</span>); </div><div class="line">        print_r( Session::all() ); <span class="comment">//取出来看看是否put成功</span></div><div class="line">        <span class="keyword">exit</span>;   <span class="comment">//习惯性的调试都exit，不执行后续代码</span></div><div class="line">        <span class="comment">//return Redirect::to(/); 框架在return后还会有后续的代码执行的</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>结果下次请求就是找不到本次的Session，而且看app/storage/session目录就是没有文件生成。总感觉不对劲啊。</p>
+<p>后来看到网络上有个方法Session::save()，于是我也用了下，居然发现成功的生成了session的文件。于是我感觉到，Laravel不用php原生的session，那么在controller之后应该做了一些事情，将session写入到文件中，而不是每次put操作都写操作，这样会IO操作太频繁的，影响性能的。<br>可以看见，在调用完controller之后，调用了session-&gt;save()的方法，来主动的保存session。这样session才能落地保存起来，如果在controller或者view里面写了exit;，那么session是不会被保存的，除非主动的写Session::save()才能手工的保存起来。</p>
+<blockquote>
+<p><a href="https://www.chenyudong.com/archives/laravel-session-use.html" target="_blank" rel="external">https://www.chenyudong.com/archives/laravel-session-use.html</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/18/PHP设置会话Session超时过期时间实现登录时间限制/" itemprop="url">
                   PHP设置会话Session超时过期时间实现登录时间限制
                 </a>
@@ -450,305 +844,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/15/预防CSRF攻击/" itemprop="url">
-                  预防CSRF攻击
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-15T19:18:44+08:00" content="2016-08-15">
-              2016-08-15
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote class="blockquote-center"><br>你这么擅长安慰他人，一定度过了很多自己安慰自己的日子吧<br></blockquote>
-
-<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>CSRF（Cross-site request forgery），中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。<br>那么CSRF到底能够干嘛呢？你可以这样简单的理解：攻击者可以盗用你的登陆信息，以你的身份模拟发送各种请求。攻击者只要借助少许的社会工程学的诡计，例如通过QQ等聊天软件发送的链接(有些还伪装成短域名，用户无法分辨)，攻击者就能迫使Web应用的用户去执行攻击者预设的操作。例如，当用户登录网络银行去查看其存款余额，在他没有退出时，就点击了一个QQ好友发来的链接，那么该用户银行帐户中的资金就有可能被转移到攻击者指定的帐户中。<br>所以遇到CSRF攻击时，将对终端用户的数据和操作指令构成严重的威胁；当受攻击的终端用户具有管理员帐户的时候，CSRF攻击将危及整个Web应用程序。</p>
-<h3 id="CSRF的攻击过程"><a href="#CSRF的攻击过程" class="headerlink" title="CSRF的攻击过程"></a>CSRF的攻击过程</h3><p>要完成一次CSRF攻击，受害者必须依次完成两个步骤 ：<br>1.登录受信任网站A，并在本地生成Cookie 。<br>2.在不退出A的情况下，访问危险网站B。<br>看到这里，读者也许会问：“如果我不满足以上两个条件中的任意一个，就不会受到CSRF的攻击”。是的，确实如此，但你不能保证以下情况不会发生：<br>你不能保证你登录了一个网站后，不再打开一个tab页面并访问另外的网站，特别现在浏览器都是支持多tab的。<br>你不能保证你关闭浏览器了后，你本地的Cookie立刻过期，你上次的会话已经结束。<br>上图中所谓的攻击网站，可能是一个存在其他漏洞的可信任的经常被人访问的网站。<br>因此对于用户来说很难避免在登陆一个网站之后不点击一些链接进行其他操作，所以随时可能成为CSRF的受害者。<br>CSRF攻击主要是因为Web的隐式身份验证机制，Web的身份验证机制虽然可以保证一个请求是来自于某个用户的浏览器，但却无法保证该请求是用户批准发送的</p>
-<h3 id="如何预防CSRF"><a href="#如何预防CSRF" class="headerlink" title="如何预防CSRF"></a>如何预防CSRF</h3><p>CSRF的防御可以从服务端和客户端两方面着手，防御效果是从服务端着手效果比较好，现在一般的CSRF防御也都在服务端进行。<br>服务端的预防CSRF攻击的方式方法有多种，但思想上都是差不多的，主要从以下2个方面入手：<br>1、正确使用GET,POST和Cookie；<br>2、在非GET请求中增加伪随机数；</p>
-<p>为每个用户生成一个唯一的cookie token，所有表单都包含同一个伪随机值，这种方案最简单，因为攻击者不能获得第三方的Cookie(理论上)，所以表单中的数据也就构造失败，但是由于用户的Cookie很容易由于网站的XSS漏洞而被盗取，所以这个方案必须要在没有XSS的情况下才安全。<br>每个请求使用验证码，这个方案是完美的，因为要多次输入验证码，所以用户友好性很差，所以不适合实际运用。<br>不同的表单包含一个不同的伪随机值，我们在4.4小节介绍“如何防止表单多次递交”时介绍过此方案，复用相关代码，实现如下：</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/11/git-stash的用法/" itemprop="url">
-                  git-stash的用法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-11T23:50:19+08:00" content="2016-08-11">
-              2016-08-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>生活总是有很多出人意料的事情，比如，你以为我要举个例子。<br></blockquote></p>
-<h3 id="应用前提"><a href="#应用前提" class="headerlink" title="应用前提"></a>应用前提</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">分支里面的代码如果没有提交commit ，那么切换到其他分支下还是可以看</div><div class="line">到(git status)这个分支下的代码.</div><div class="line"></div><div class="line">但是如果我们现在想要切换到别的分支但是同时又不想提交commit我们的代码</div><div class="line">该如何处理？</div></pre></td></tr></table></figure>
-<h3 id="git-stash"><a href="#git-stash" class="headerlink" title="git stash"></a>git stash</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在你切换分支前，运行：git stash 就可以了</div><div class="line">当你在其他分支改好了代码并切换回当前分支的时候，请git stash pop</div></pre></td></tr></table></figure>
-<h3 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">git stash</div><div class="line">保存当前的工作进度。会分别对暂存区和工作区的状态进行保存</div><div class="line"></div><div class="line">git stash save <span class="string">"message..."</span></div><div class="line">这条命令实际上是第一条 git stash 命令的完整版</div><div class="line"></div><div class="line">git stash <span class="keyword">list</span></div><div class="line">显示进度列表。此命令显然暗示了git stash 可以多次保存工作进度，并用在恢复时候进行选择</div><div class="line"></div><div class="line">git stash pop [--index] [&lt;stash&gt;]</div><div class="line">如果不使用任何参数，会恢复最新保存的工作进度，</div><div class="line">并将恢复的工作进度从存储的工作进度列表中清除。</div><div class="line">如果提供参数（来自 git stash <span class="keyword">list</span> 显示的列表），则从该 &lt;stash&gt; 中恢复。恢复完毕也将从进度列表中删除 &lt;stash&gt;。</div><div class="line">选项--index 除了恢复工作区的文件外，还尝试恢复暂存区。</div><div class="line"></div><div class="line">git stash apply [--index] [&lt;stash&gt;]</div><div class="line">除了不删除恢复的进度之外，其余和 git stash pop 命令一样</div><div class="line"></div><div class="line">git stash clear</div><div class="line">删除所有存储的进度</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/11/ssdb一个高性能的nosql数据库/" itemprop="url">
-                  ssdb一个高性能的nosql数据库
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-11T22:26:19+08:00" content="2016-08-11">
-              2016-08-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote class="blockquote-center"><br>某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。<br></blockquote>
-
-<h3 id="简要说明"><a href="#简要说明" class="headerlink" title="简要说明"></a>简要说明</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">一个高性能的支持丰富数据结构的 NoSQL 数据库, 用于替代 Redis.</div><div class="line">基于google/leveldb 开发SSDB是一个开源的高性能数据库服务器, </div><div class="line">使用Google 的 LevelDB作为存储引擎, 大家有可能没听过leveldb的名字，</div><div class="line">但是淘宝的开源nosql tair大家应该有所耳闻吧，他也是基于leveldb做的开发。</div><div class="line">ssdb支持T级别的数据, 同时支持类似Redis中的zset和hash等数据结构,</div><div class="line">在同时需求高性能和大数据的条件下, 是一个可以代替Redis的方案.</div><div class="line">ssdb是一个持久化存储的KV系统，和Memcached、Redis这种内存型的KV系统不同，</div><div class="line">ssdb不会像Redis一样狂吃内存，而是将大部分数据存储到磁盘上。</div></pre></td></tr></table></figure>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate https:<span class="comment">//github.com/ideawu/ssdb/archive/master.zip</span></div><div class="line">unzip master</div><div class="line">cd ssdb-master</div><div class="line">make</div><div class="line"><span class="comment"># optional, install ssdb in /usr/local/ssdb</span></div><div class="line">sudo make install</div></pre></td></tr></table></figure>
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># start master</span></div><div class="line">./ssdb-server ssdb.conf</div><div class="line"></div><div class="line"><span class="comment"># or start as daemon</span></div><div class="line">./ssdb-server -d ssdb.conf</div></pre></td></tr></table></figure>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">require_once</span>(<span class="string">'SSDB.php'</span>);</div><div class="line">$ssdb = <span class="keyword">new</span> SimpleSSDB(<span class="string">'127.0.0.1'</span>, <span class="number">8888</span>);</div><div class="line">$resp = $ssdb-&gt;set(<span class="string">'key'</span>, <span class="string">'123'</span>);</div><div class="line">$resp = $ssdb-&gt;get(<span class="string">'key'</span>);</div><div class="line"><span class="keyword">echo</span> $resp; <span class="comment">// output: 123</span></div></pre></td></tr></table></figure>
-<h3 id="关于leveldb"><a href="#关于leveldb" class="headerlink" title="关于leveldb"></a>关于leveldb</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">LevelDB是google开源的一个key-value存储引擎库，类似于开源的Lucene索引库一样。</div><div class="line">其他的软件开发者可以利用该库做二次开发，来满足定制需求。</div><div class="line">LevelDB采用日志式的写方式来提高写性能，但是牺牲了部分读性能。</div><div class="line">为了弥补牺牲了的读性能，一些人提议使用SSD作为存储介质。</div></pre></td></tr></table></figure>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">修改ssdb.conf文件，把ip改成<span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>，允许外网访问</div><div class="line">高级应用可以查看主从这一块儿</div></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="http://ssdb.io/zh_cn/" target="_blank" rel="external">http://ssdb.io/zh_cn/</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -794,7 +889,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">107</span>
+              <span class="site-state-item-count">110</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -804,7 +899,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">48</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
