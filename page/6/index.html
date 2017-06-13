@@ -240,6 +240,314 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/08/如何优雅地使用StackOverflow/" itemprop="url">
+                  如何优雅地使用StackOverflow
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-08T13:56:57+08:00" content="2017-03-08">
+              2017-03-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>我先起，你再睡一会儿。<br></blockquote><br>一:提问前一定要搜索，先在 Google 搜索，然后在 StackOverFlow 上搜索，当实在找不到答案后再提问。    对于那些靠搜索就能得到答案的问题，StackOverFlow 上的广大群众是毫不留情的，反对票数量蹭蹭得往上加啊。<br>二:学习一些典型的提问/回答习惯，我做了一些笔记。</p>
+<p>提问：</p>
+<ul>
+<li>1，In my limited experience with ..    谦虚表达自己在某方面的经验</li>
+<li>2， I am searching for a long time on net. But no use. Please help or try to give some ideas how to achieve this.   找了很久未果，求助攻</li>
+<li>3，after searching around for a decent XX solution and found that everything out there was difficult to use.  找了N种方法都发现太TM难了。</li>
+<li>4，I’ ve looked around and apparently I’ve got the choice between these libraries/ solutions:   说明自己是努力搜索过的，然后目前有了哪几种方案</li>
+<li>5，which seems it’s a promising solution.  看起来是一个好解决方案</li>
+<li>6，Ive tried multiple variations of this, but none of them seem to work. Any ideas? 试了很多种方法都无效，求助</li>
+<li>7，Wanted to know if it’s good practice to do that and what would be the best way to do that? 我的做法是否正确，是否有更好的法子？</li>
+<li>8，Thanks in advance.  </li>
+</ul>
+<p> 先行谢过回答问题：</p>
+<ul>
+<li>1，If I understand you correctly, you want to xxx      如果我没理解错，你想。</li>
+<li>2，Can you provided more details about your use case ? Can you provide more xml and code setting the url ? </li>
+</ul>
+<p>提供更详细当别人回答你的问题后，你对回答的评论：</p>
+<ul>
+<li>1，thank you for your answer sincerely 感谢回答blabla这些感觉就差不多了，其他说来说去也都是这些套路，回答问题或者提问时多看看别人的表达习惯，也可以做记录，好记性不如烂笔头嘛。说明一下，上面的中文不是翻译，只是一个说明，方便我快速定位的。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/08/Laravel中chunk方法分块处理数据/" itemprop="url">
+                  Laravel中chunk方法分块处理数据
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-08T11:57:41+08:00" content="2017-03-08">
+              2017-03-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>我只说从今往后，不说今日以前。<br></blockquote><br>Let’s imagine the situation: you have a big database table (like 10 000 rows or bigger) and you need to run an update to one column. But you cannot run just SQL query – there is some PHP logic behind it. So foreach loop could potentially take forever or bump into a default 30-second script limit. Luckily, Laravel has a neat solution for it.</p>
+<p>Let’s look at a simple example of a problem I’m talking about:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$users = User::all();</div><div class="line"><span class="keyword">foreach</span> ($users <span class="keyword">as</span> $user) &#123;</div><div class="line">  $some_value = ($user-&gt;some_field &gt; <span class="number">0</span>) ? <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">  <span class="comment">// might be more logic here</span></div><div class="line">  $user-&gt;update([<span class="string">'some_other_field'</span> =&gt; $some_value]);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Do you see the problem? It’s fine for a DB table with 100 or 500 users. But what about 10000? 100000? Million?<br>It’s not only about the speed, but also about storing the data – you are potentially storing the whole database table into variables, you might run out of memory.</p>
+<p>So here’s the thing: there is a function called chunk() which splits all data into separate selects, like pagination.<br>Let’s look at an example:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">User::chunk(<span class="number">100</span>, <span class="function"><span class="keyword">function</span> <span class="params">($users)</span> </span>&#123;</div><div class="line">  <span class="keyword">foreach</span> ($users <span class="keyword">as</span> $user) &#123;</div><div class="line">    $some_value = ($user-&gt;some_field &gt; <span class="number">0</span>) ? <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">    <span class="comment">// might be more logic here</span></div><div class="line">    $user-&gt;update([<span class="string">'some_other_field'</span> =&gt; $some_value]);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><a href="http://www.jianshu.com/p/5dafd0d6e69a" target="_blank" rel="external">http://www.jianshu.com/p/5dafd0d6e69a</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/08/python实现Markdown转html/" itemprop="url">
+                  python实现Markdown转html
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-08T10:31:01+08:00" content="2017-03-08">
+              2017-03-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>女人容颜逝去要十年，男人贬值不过一瞬间。<br></blockquote><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> markdown</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MarkdownToHtml</span>:</span></div><div class="line"></div><div class="line">    headTag = <span class="string">'&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;/head&gt;'</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, cssFilePath = None)</span>:</span></div><div class="line">        <span class="keyword">if</span> cssFilePath != <span class="keyword">None</span>:</div><div class="line">            self.genStyle(cssFilePath)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">genStyle</span><span class="params">(self,cssFilePath)</span>:</span></div><div class="line">        <span class="keyword">with</span> open(cssFilePath,<span class="string">'r'</span>) <span class="keyword">as</span> f:</div><div class="line">            cssString = f.read()</div><div class="line">        self.headTag = self.headTag[:<span class="number">-7</span>] + <span class="string">'&lt;style type="text/css"&gt;&#123;&#125;&lt;/style&gt;'</span>.format(cssString) + self.headTag[<span class="number">-7</span>:]</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">markdownToHtml</span><span class="params">(self,**arguments)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="string">'sourceFilePath'</span> <span class="keyword">in</span> arguments:</div><div class="line">            sourceFilePath = arguments[<span class="string">'sourceFilePath'</span>]</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span></div><div class="line">        <span class="keyword">if</span> <span class="string">'destinationDirectory'</span> <span class="keyword">in</span> arguments:</div><div class="line">            destinationDirectory = arguments[<span class="string">'destinationDirectory'</span>]</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="comment"># 未定义输出目录则将源文件目录(注意要转换为绝对路径)作为输出目录</span></div><div class="line">            destinationDirectory = os.path.dirname(os.path.abspath(sourceFilePath))</div><div class="line">        <span class="keyword">if</span> <span class="string">'outputFileName'</span> <span class="keyword">in</span> arguments:</div><div class="line">            outputFileName = arguments[<span class="string">'outputFileName'</span>]</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="comment"># 未定义输出文件名则沿用输入文件名</span></div><div class="line">            outputFileName = os.path.splitext(os.path.basename(sourceFilePath))[<span class="number">0</span>] + <span class="string">'.html'</span></div><div class="line">        <span class="keyword">if</span> destinationDirectory[<span class="number">-1</span>] != <span class="string">'/'</span>:</div><div class="line">            destinationDirectory += <span class="string">'/'</span></div><div class="line">        <span class="keyword">with</span> open(sourceFilePath,<span class="string">'r'</span>, encoding=<span class="string">'utf8'</span>) <span class="keyword">as</span> f:</div><div class="line">            markdownText = f.read()</div><div class="line">        <span class="comment"># 编译出原始 HTML 文本</span></div><div class="line">        rawHtml = self.headTag + markdown.markdown(markdownText,output_format=<span class="string">'html5'</span>)</div><div class="line">        <span class="comment"># 格式化 HTML 文本为可读性更强的格式</span></div><div class="line">        beautifyHtml = BeautifulSoup(rawHtml,<span class="string">'html5lib'</span>).prettify()</div><div class="line">        <span class="keyword">with</span> open(destinationDirectory + outputFileName, <span class="string">'w'</span>, encoding=<span class="string">'utf8'</span>) <span class="keyword">as</span> f:</div><div class="line">            f.write(beautifyHtml)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    mth = MarkdownToHtml()</div><div class="line">    <span class="comment"># 做一个命令行参数列表的浅拷贝，不包含脚本文件名</span></div><div class="line">    argv = sys.argv[<span class="number">1</span>:]</div><div class="line">    <span class="comment"># 目前列表 argv 可能包含源文件路径之外的元素（即选项信息）</span></div><div class="line">    <span class="comment"># 程序最后遍历列表 argv 进行编译 markdown 时，列表中的元素必须全部是源文件路径</span></div><div class="line">    <span class="keyword">if</span> <span class="string">'-s'</span> <span class="keyword">in</span> argv:</div><div class="line">        cssArgIndex = argv.index(<span class="string">'-s'</span>) +<span class="number">1</span></div><div class="line">        cssFilePath = argv[cssArgIndex]</div><div class="line">        <span class="comment"># 检测样式表文件路径是否有效</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isfile(cssFilePath):</div><div class="line">            print(<span class="string">'Invalid Path: '</span> + cssFilePath)</div><div class="line">            sys.exit()</div><div class="line">        mth.genStyle(cssFilePath)</div><div class="line">        <span class="comment"># POP顺序不能随意变化</span></div><div class="line">        argv.pop(cssArgIndex)</div><div class="line">        argv.pop(cssArgIndex<span class="number">-1</span>)</div><div class="line">    <span class="keyword">if</span> <span class="string">'-o'</span> <span class="keyword">in</span> argv:</div><div class="line">        dirArgIndex = argv.index(<span class="string">'-o'</span>) +<span class="number">1</span></div><div class="line">        outputDirectory = argv[dirArgIndex]</div><div class="line">        <span class="comment"># 检测输出目录是否有效</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(outputDirectory):</div><div class="line">            print(<span class="string">'Invalid Directory: '</span> + outputDirectory)</div><div class="line">            sys.exit()</div><div class="line">        <span class="comment"># POP顺序不能随意变化</span></div><div class="line">        argv.pop(dirArgIndex)</div><div class="line">        argv.pop(dirArgIndex<span class="number">-1</span>)</div><div class="line">        argumentsList = [dict([(<span class="string">'sourceFilePath'</span>,filePath), (<span class="string">'destinationDirectory'</span>,outputDirectory)]) <span class="keyword">for</span> filePath <span class="keyword">in</span> argv]</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        argumentsList = [dict([(<span class="string">'sourceFilePath'</span>,filePath)]) <span class="keyword">for</span> filePath <span class="keyword">in</span> argv]</div><div class="line">    <span class="comment"># 至此，列表 argv 中的元素均是源文件路径</span></div><div class="line">    <span class="keyword">for</span> argument <span class="keyword">in</span> argumentsList:</div><div class="line">        <span class="comment"># 检测文件路径是否有效</span></div><div class="line">        <span class="keyword">if</span> os.path.isfile(argument[<span class="string">'sourceFilePath'</span>]):</div><div class="line">            mth.markdownToHtml(**argument)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            print(<span class="string">'Invalid Path: '</span>+argument[<span class="string">'sourceFilePath'</span>])</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/28/laravel使用Facades中注意的地方/" itemprop="url">
                   laravel使用Facades中注意的地方
                 </a>
@@ -414,302 +722,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/27/laravel的中大型架构/" itemprop="url">
-                  laravel的中大型架构
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-27T11:40:41+08:00" content="2017-02-27">
-              2017-02-27
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>孤独到死是一个天才最好的归宿，毕竟，这个世界配不上他<br></blockquote><br>解决我们的控制器,模型过于肥大的问题<br>那我們該怎麼寫呢？別將我們的思維侷限在 MVC 內 :<br>Model : 僅當成 Eloquent class。<br>Repository : 輔助 model，處理資料庫邏輯，然後注入到 service。<br>Service : 輔助 controller，處理商業邏輯，然後注入到 controller。<br>Controller : 接收 HTTP request，調用其他 service。<br>Presenter : 處理顯示邏輯，然後注入到 view。<br>View : 使用 blade 將資料 binding 到 HTML。</p>
-<blockquote>
-<p><a href="http://oomusou.io/laravel/laravel-architecture" target="_blank" rel="external">http://oomusou.io/laravel/laravel-architecture</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/27/如何使用Repository模式/" itemprop="url">
-                  如何使用Repository模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-27T10:58:16+08:00" content="2017-02-27">
-              2017-02-27
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。<br></blockquote><br>这里我们介绍一种laravel开发的模式,用于解决控制器过于肥大的问题.</p>
-<h3 id="路由-routes-php"><a href="#路由-routes-php" class="headerlink" title="路由 routes.php"></a>路由 routes.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">Route::get(<span class="string">'/user'</span>, <span class="string">'UserController@getUser'</span>);</div></pre></td></tr></table></figure>
-<h3 id="控制器-app-Http-Controllers-UserController-php"><a href="#控制器-app-Http-Controllers-UserController-php" class="headerlink" title="控制器 app\Http\Controllers\UserController.php"></a>控制器 app\Http\Controllers\UserController.php</h3><p>将新建的库依赖注入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Repository</span>\<span class="title">UserRepository</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">protected</span> $userRepository;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(UserRepository $userRepository)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;userRepository = $userRepository;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;userRepository-&gt;getUser();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="模型-app-User-php"><a href="#模型-app-User-php" class="headerlink" title="模型 app\User.php"></a>模型 app\User.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Auth</span>\<span class="title">User</span> <span class="title">as</span> <span class="title">Authenticatable</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Authenticatable</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * The attributes that are mass assignable.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@var</span> array</div><div class="line">     */</div><div class="line">    <span class="keyword">protected</span> $fillable = [</div><div class="line">        <span class="string">'name'</span>, <span class="string">'email'</span>, <span class="string">'password'</span>,</div><div class="line">    ];</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * The attributes excluded from the model's JSON form.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@var</span> array</div><div class="line">     */</div><div class="line">    <span class="keyword">protected</span> $hidden = [</div><div class="line">        <span class="string">'password'</span>, <span class="string">'remember_token'</span>,</div><div class="line">    ];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="新建库-app-Repository-UserRepository-php"><a href="#新建库-app-Repository-UserRepository-php" class="headerlink" title="新建库 app\Repository\UserRepository.php"></a>新建库 app\Repository\UserRepository.php</h3><p>将模型依赖注入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Repository</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">User</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserRepository</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">protected</span> $user;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(User $user)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;user = $user;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;user-&gt;all();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/24/翻译-重建laravel-自动加载/" itemprop="url">
-                  [翻译]重建laravel-自动加载
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-24T17:59:32+08:00" content="2017-02-24">
-              2017-02-24
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>谢谢那些喜欢我的人<br></blockquote><br>我认为请求的入口<code>public/index.php</code>,应该是最好的开始的地方…</p>
-<h3 id="重写规则"><a href="#重写规则" class="headerlink" title="重写规则"></a>重写规则</h3><p>我们知道请求第一次到达我们的程序index.php,是因为laravel使用了这个重写规则.htaccess;<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;IfModule mod_rewrite.c&gt;</div><div class="line">  &lt;IfModule mod_negotiation.c&gt;</div><div class="line">    Options -MultiViews</div><div class="line">  &lt;/IfModule&gt;</div><div class="line"></div><div class="line">  RewriteEngine On</div><div class="line"></div><div class="line">  <span class="comment"># Redirect Trailing Slashes...</span></div><div class="line">  RewriteRule ^(.*)/$ /$<span class="number">1</span> [L,R=<span class="number">301</span>]</div><div class="line"></div><div class="line">  <span class="comment"># Handle Front Controller...</span></div><div class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !-d</div><div class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</div><div class="line">  RewriteRule ^ index.php [L]</div><div class="line">&lt;/IfModule&gt;</div></pre></td></tr></table></figure></p>
-<p>来自<code>public/.htaccess</code></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -750,7 +767,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">113</span>
+              <span class="site-state-item-count">116</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

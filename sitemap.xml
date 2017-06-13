@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yangguoqi.me/2017/06/11/PHP-MySQL%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5-mysql-pconnect/</loc>
+    
+    <lastmod>2017-06-11T03:20:18.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yangguoqi.me/2017/06/11/PHP%E9%AD%94%E6%9C%AF%E5%87%BD%E6%95%B0%E4%B9%8B-sleep%E5%92%8C-wakeup/</loc>
+    
+    <lastmod>2017-06-11T02:28:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yangguoqi.me/2017/06/11/php%E4%B8%ADjson-encode%E5%92%8Cserialize%E5%AF%B9%E6%AF%94/</loc>
+    
+    <lastmod>2017-06-11T02:24:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yangguoqi.me/2017/06/08/WebWorker%E9%80%9A%E4%BF%A1/</loc>
     
     <lastmod>2017-06-08T01:44:16.074Z</lastmod>
