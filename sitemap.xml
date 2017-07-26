@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yangguoqi.me/about/index.html</loc>
+    
+    <lastmod>2017-07-26T03:12:42.911Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yangguoqi.me/2017/07/26/php%E7%9A%84trim%E6%97%A0%E6%B3%95%E5%8E%BB%E6%8E%89%E7%A9%BA%E6%A0%BC/</loc>
+    
+    <lastmod>2017-07-26T02:49:55.952Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yangguoqi.me/2017/07/25/%E4%BD%BF%E7%94%A8swoole%E5%BC%82%E6%AD%A5%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6/</loc>
     
     <lastmod>2017-07-25T07:10:24.258Z</lastmod>
@@ -138,13 +152,6 @@
     <loc>http://yangguoqi.me/2017/06/08/WebWorker%E9%80%9A%E4%BF%A1/</loc>
     
     <lastmod>2017-06-08T01:44:16.074Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yangguoqi.me/about/index.html</loc>
-    
-    <lastmod>2017-05-31T06:25:11.186Z</lastmod>
     
   </url>
   

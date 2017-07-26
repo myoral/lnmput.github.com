@@ -85,11 +85,11 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="杨子鳄">
+<meta property="og:title" content="杨子鳄的小窝">
 <meta property="og:url" content="http://yangguoqi.me/page/16/index.html">
-<meta property="og:site_name" content="杨子鳄">
+<meta property="og:site_name" content="杨子鳄的小窝">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="杨子鳄">
+<meta name="twitter:title" content="杨子鳄的小窝">
 
 
 
@@ -107,7 +107,7 @@
   };
 </script>
 
-  <title> 杨子鳄 </title>
+  <title> 杨子鳄的小窝 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -140,7 +140,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">杨子鳄</span>
+      <span class="site-title">杨子鳄的小窝</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -218,6 +218,103 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/30/chrome消息传递实例/" itemprop="url">
+                  chrome消息传递实例
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-30T16:22:13+08:00" content="2016-11-30">
+              2016-11-30
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>不管我本人多么平庸，我总觉得对你的爱很美。<br></blockquote></p>
+<h3 id="manifest-json"><a href="#manifest-json" class="headerlink" title="manifest.json"></a>manifest.json</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="attr">"name"</span>: <span class="string">"消息传递"</span>,</div><div class="line"><span class="attr">"version"</span>: <span class="string">"1.0"</span>,</div><div class="line"><span class="attr">"manifest_version"</span>: <span class="number">2</span>,</div><div class="line"><span class="attr">"description"</span>: <span class="string">"各个页面JS之间事件的触发和消息的传递"</span>,</div><div class="line"><span class="attr">"browser_action"</span>: &#123;</div><div class="line"><span class="attr">"default_icon"</span>: <span class="string">"images/icon38.png"</span>,</div><div class="line"><span class="attr">"default_popup"</span>: <span class="string">"popup.html"</span></div><div class="line">&#125;,</div><div class="line"><span class="attr">"background"</span>: &#123;</div><div class="line"><span class="attr">"scripts"</span>: [<span class="string">"js/background.js"</span>,<span class="string">"js/jquery.min.js"</span>],</div><div class="line"><span class="attr">"persistent"</span>: <span class="literal">false</span></div><div class="line">&#125;,</div><div class="line"><span class="attr">"permissions"</span>: [<span class="string">"tabs"</span>, <span class="string">"&lt;all_urls&gt;"</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="popup-html"><a href="#popup-html" class="headerlink" title="popup.html"></a>popup.html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/content.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"newtab"</span> &gt;</span>new tab<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="content-js"><a href="#content-js" class="headerlink" title="content.js"></a>content.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">$(<span class="string">"#newtab"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">chrome.runtime.sendMessage(&#123;action:<span class="string">"new_tab"</span>&#125;);</div><div class="line">&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="background-js"><a href="#background-js" class="headerlink" title="background.js"></a>background.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">chrome.runtime.onMessage.addListener(<span class="function"><span class="keyword">function</span> (<span class="params">request, sender, sendResponse</span>) </span>&#123;</div><div class="line"></div><div class="line"><span class="keyword">if</span>(request.action != <span class="string">'new_tab'</span>)&#123;</div><div class="line"><span class="keyword">var</span> newURL = <span class="string">"http://stackoverflow.com/"</span>;</div><div class="line">chrome.tabs.create(&#123; url: newURL &#125;);</div><div class="line">&#125;<span class="keyword">else</span> &#123;</div><div class="line"><span class="keyword">var</span> newURL = <span class="string">"http://www.baidu.com/"</span>;</div><div class="line">chrome.tabs.create(&#123; url: newURL &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -620,101 +717,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/07/Mysql排序规则utf8-unicode-ci与utf8-general-ci的区别/" itemprop="url">
-                  Mysql排序规则utf8_unicode_ci与utf8_general_ci的区别
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-07T09:58:49+08:00" content="2016-11-07">
-              2016-11-07
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。<br></blockquote><br>MySQL支持30多种字符集的70多种 校对规则。字符集和它们的默认校对规则可以通过SHOW CHARACTER SET语句显示；<br>ci是 case insensitive, 即 “大小写不敏感”, a 和 A 会在字符判断中会被当做一样的;<br>bin 是二进制, a 和 A 会别区别对待.<br>例如你运行:<br>SELECT * FROM table WHERE txt = ‘a’<br>那么在utf8_bin中你就找不到 txt = ‘A’ 的那一行, 而 utf8_general_ci 则可以.<br>utf8_general_ci 不区分大小写，这个你在注册用户名和邮箱的时候就要使用。<br>utf8_general_cs 区分大小写，如果用户名和邮箱用这个 就会照成不良后果<br>utf8_bin:字符串每个字符串用二进制数据编译存储。 区分大小写，而且可以存二进制的内容</p>
-<h3 id="一句话"><a href="#一句话" class="headerlink" title="一句话"></a>一句话</h3><p>utf8_unicode_ci比较准确，utf8_general_ci速度比较快。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -760,7 +762,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">129</span>
+              <span class="site-state-item-count">130</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -806,6 +808,18 @@
               友情链接
             </div>
             <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.laruence.com/" title="风雪之隅" target="_blank">风雪之隅</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://tech.youzan.com/" title="有赞技术团队" target="_blank">有赞技术团队</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://tech.meituan.com/archives" title="美团点评技术团队" target="_blank">美团点评技术团队</a>
+                </li>
               
                 <li class="links-of-blogroll-item">
                   <a href="http://macshuo.com/" title="點燈坊" target="_blank">點燈坊</a>

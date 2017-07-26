@@ -85,11 +85,11 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="杨子鳄">
+<meta property="og:title" content="杨子鳄的小窝">
 <meta property="og:url" content="http://yangguoqi.me/index.html">
-<meta property="og:site_name" content="杨子鳄">
+<meta property="og:site_name" content="杨子鳄的小窝">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="杨子鳄">
+<meta name="twitter:title" content="杨子鳄的小窝">
 
 
 
@@ -107,7 +107,7 @@
   };
 </script>
 
-  <title> 杨子鳄 </title>
+  <title> 杨子鳄的小窝 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -140,7 +140,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">杨子鳄</span>
+      <span class="site-title">杨子鳄的小窝</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -218,6 +218,104 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/26/php的trim无法去掉空格/" itemprop="url">
+                  php的trim无法去掉空格
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-26T10:35:52+08:00" content="2017-07-26">
+              2017-07-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>多少次我们无醉不欢<br>咒骂人生太短 唏嘘相见恨晚<br></blockquote></p>
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><p>在php开发过程中，使用trim想去掉空格，不成功；<br>打印出来字符串，后面确实带有空格，在控制台又显示有<code>&amp;nbsp;</code>（此处所指的nbsp是实体，而不是nbsp四个字符）<br>后来改用str_replace来去掉空格，依然失败；<br>到底是什么原因，于是刚开始想到了是不是全角和半角的空格问题；试着换成全角的空格，依然失败；<br>后来又使用escape尝试输出，发现是xa0，于是就想trim($converted, “xa0”)，无果<br>在php手册的trim函数下评论中发现：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">trim($otmp, chr(<span class="number">0xc2</span>) . chr(<span class="number">0xa0</span>))</div></pre></td></tr></table></figure></p>
+<p>使用后，成功去掉空格；另外，str_replace也可使用：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$otmp = str_replace(chr(<span class="number">0xc2</span>) . chr(<span class="number">0xa0</span>), <span class="string">''</span>, $otmp);</div></pre></td></tr></table></figure></p>
+<p>效果一样，成功解决~~~<br>ps:此空格产生的原因是，我在获取到html代码之后strip_tags去掉所有标签，而产生了一些实体空格</p>
+<h3 id="html实体"><a href="#html实体" class="headerlink" title="html实体"></a>html实体</h3><p>在 HTML 中，某些字符是预留的。<br>在 HTML 中不能使用小于号（&lt;）和大于号（&gt;），这是因为浏览器会误认为它们是标签。<br>如果希望正确地显示预留字符，我们必须在 HTML 源代码中使用字符实体（character entities）。<br>字符实体类似这样：&amp;entity_name;或者&amp;#entity_number;<br>如需显示小于号，我们必须这样写： <code>&amp;lt;</code>  或  <code>&amp;#60;</code><br>提示：使用实体名而不是数字的好处是，名称易于记忆。不过坏处是，浏览器也许并不支持所有实体名称（对实体数字的支持却很好）。<br>不间断空格（non-breaking space）<br>HTML 中的常用字符实体是不间断空格( <code>&amp;nbsp;</code> )。<br>浏览器总是会截短 HTML 页面中的空格。如果您在文本中写 10 个空格，在显示该页面之前，浏览器会删除它们中的 9 个。如需在页面中增加空格的数量，您需要使用 <code>&amp;nbsp;</code> 字符实体。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -629,105 +727,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/16/indexeddb的简单使用/" itemprop="url">
-                  indexeddb的简单使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-16T22:00:12+08:00" content="2017-07-16">
-              2017-07-16
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>有一天你会知道，人生没有我并不会不同<br></blockquote><br>存储在IndexedDB里的数据是永久保存，不像cookies那样只是临时的。IndexedDB里提供了查询数据的功能，在online和offline模式下都能使用。你可以用IndexedDB存储大型数据。</p>
-<h3 id="IndexedDB-具有以下特点。"><a href="#IndexedDB-具有以下特点。" class="headerlink" title="IndexedDB 具有以下特点。"></a>IndexedDB 具有以下特点。</h3><p>（1）键值对储存。 IndexedDB 内部采用对象仓库（object store）存放数据。所有类型的数据都可以直接存入，包括 JavaScript 对象。在对象仓库中，数据以“键值对”的形式保存，每一个数据都有对应的键名，键名是独一无二的，不能有重复，否则会抛出一个错误。<br>（2）异步。 IndexedDB 操作时不会锁死浏览器，用户依然可以进行其他操作，这与 LocalStorage 形成对比，后者的操作是同步的。异步设计是为了防止大量数据的读写，拖慢网页的表现。<br>（3）支持事务。 IndexedDB 支持事务（transaction），这意味着一系列操作步骤之中，只要有一步失败，整个事务就都取消，数据库回到事务发生之前的状态，不存在只改写一部分数据的情况。<br>（4）同域限制 IndexedDB 也受到同域限制，每一个数据库对应创建该数据库的域名。来自不同域名的网页，只能访问自身域名下的数据库，而不能访问其他域名下的数据库。<br>（5）储存空间大 IndexedDB 的储存空间比 LocalStorage 大得多，一般来说不少于250MB。IE的储存上限是250MB，Chrome和Opera是剩余空间的某个百分比，Firefox 则没有上限。<br>（6）支持二进制储存。 IndexedDB 不仅可以储存字符串，还可以储存二进制数据。</p>
-<h3 id="API实例"><a href="#API实例" class="headerlink" title="API实例"></a>API实例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">if</span>(<span class="string">'indexedDB'</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</div><div class="line"></div><div class="line">        <span class="keyword">let</span> openRequest = indexedDB.open(<span class="string">"yangzie"</span>,<span class="number">5</span>);</div><div class="line">        <span class="keyword">let</span> db;</div><div class="line">        openRequest.onupgradeneeded = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"数据库更新..."</span>);</div><div class="line">            <span class="comment">//</span></div><div class="line">            db = e.target.result;</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (!db.objectStoreNames.contains(<span class="string">'firstOS'</span>))&#123;</div><div class="line">                db.createObjectStore(<span class="string">"firstOS"</span>);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'表已经存在'</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        openRequest.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"数据路打开成功!"</span>);</div><div class="line"></div><div class="line">            db = e.target.result;</div><div class="line"></div><div class="line">            <span class="comment">// 事务</span></div><div class="line">            <span class="keyword">let</span> transaction = db.transaction([<span class="string">"firstOS"</span>], <span class="string">"readwrite"</span>);</div><div class="line"></div><div class="line">            <span class="keyword">let</span> store = transaction.objectStore(<span class="string">"firstOS"</span>);</div><div class="line"></div><div class="line">            <span class="keyword">let</span> o = &#123;p: <span class="string">"she is a girl"</span>&#125;;</div><div class="line"></div><div class="line">            <span class="comment">// 添加数据</span></div><div class="line">            <span class="keyword">let</span> request = store.add(o,<span class="number">2</span>);</div><div class="line"></div><div class="line">            request.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">"数据添加失败！"</span>);</div><div class="line">            &#125;;</div><div class="line"></div><div class="line">            request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">"数据添加成功！"</span>);</div><div class="line">            &#125;;</div><div class="line"></div><div class="line">            <span class="comment">// 修改数据</span></div><div class="line">            <span class="keyword">let</span> tr = db.transaction([<span class="string">"firstOS"</span>], <span class="string">"readwrite"</span>);</div><div class="line"></div><div class="line">            <span class="keyword">let</span> storess = tr.objectStore(<span class="string">"firstOS"</span>);</div><div class="line">            <span class="keyword">let</span> p = &#123; p:<span class="number">456</span> &#125;;</div><div class="line">            <span class="keyword">let</span> urequest = storess.put(p, <span class="number">1</span>);</div><div class="line"></div><div class="line">            urequest.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">"修改成功"</span>);</div><div class="line">            &#125;;</div><div class="line"></div><div class="line">            urequest.onsucces = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">"修改失败"</span>);</div><div class="line">            &#125;;</div><div class="line"></div><div class="line">            <span class="comment">// 获取数据</span></div><div class="line">            <span class="keyword">let</span> t = db.transaction([<span class="string">"firstOS"</span>], <span class="string">"readonly"</span>);</div><div class="line">            <span class="keyword">let</span> stores = t.objectStore(<span class="string">"firstOS"</span>);</div><div class="line"></div><div class="line">            <span class="keyword">let</span> ob = stores.get(<span class="number">1</span>);</div><div class="line"></div><div class="line">            ob.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">"获取数据成功"</span>);</div><div class="line">                <span class="built_in">console</span>.log(ob);</div><div class="line">            &#125;;</div><div class="line"></div><div class="line">            transaction.oncomplete = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'事务结束'</span>);</div><div class="line">            &#125;;</div><div class="line"></div><div class="line">            <span class="comment">// 删除记录</span></div><div class="line">            <span class="keyword">let</span> tt = db.transaction([<span class="string">"firstOS"</span>], <span class="string">"readwrite"</span>);</div><div class="line">            <span class="keyword">let</span> mrequest = tt.objectStore(<span class="string">"firstOS"</span>).delete(<span class="number">1</span>);</div><div class="line"></div><div class="line">            mrequest.onsuccess = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'删除成功'</span>);</div><div class="line">            &#125;;</div><div class="line"></div><div class="line">            mrequest.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'删除失败'</span>);</div><div class="line">            &#125;;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        openRequest.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"数据库打开错误"</span>);</div><div class="line">        &#125;;</div><div class="line">        </div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'您的浏览器不支持'</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="http://javascript.ruanyifeng.com/bom/indexeddb.html" target="_blank" rel="external">http://javascript.ruanyifeng.com/bom/indexeddb.html</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -773,7 +772,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">129</span>
+              <span class="site-state-item-count">130</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -819,6 +818,18 @@
               友情链接
             </div>
             <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.laruence.com/" title="风雪之隅" target="_blank">风雪之隅</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://tech.youzan.com/" title="有赞技术团队" target="_blank">有赞技术团队</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://tech.meituan.com/archives" title="美团点评技术团队" target="_blank">美团点评技术团队</a>
+                </li>
               
                 <li class="links-of-blogroll-item">
                   <a href="http://macshuo.com/" title="點燈坊" target="_blank">點燈坊</a>
