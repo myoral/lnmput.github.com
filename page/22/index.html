@@ -240,8 +240,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/24/PHP反射类ReflectionClass/" itemprop="url">
-                  PHP反射类ReflectionClass
+                <a class="post-title-link" href="/2016/11/05/php优化/" itemprop="url">
+                  php优化
                 </a>
               
             
@@ -254,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-24T14:22:29+08:00" content="2016-08-24">
-              2016-08-24
+            <time itemprop="dateCreated" datetime="2016-11-05T13:33:12+08:00" content="2016-11-05">
+              2016-11-05
             </time>
           </span>
 
@@ -284,15 +284,16 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>我讨厌变老，当我们力量衰弱的时候如果出现更强的敌人，我会觉得很恐怖，很遗憾。<br></blockquote></p>
-<h3 id="基本说明"><a href="#基本说明" class="headerlink" title="基本说明"></a>基本说明</h3><p>先定义一个User类<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> $username;</div><div class="line">    <span class="keyword">private</span> $password;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"login"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"registert"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>实例化并调用其中的方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$user = <span class="keyword">new</span> User();</div><div class="line">$user-&gt;login();</div></pre></td></tr></table></figure></p>
-<p>实例化User类的反射类并调用其中的一个方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$reUser = <span class="keyword">new</span> \ReflectionClass(<span class="string">'User'</span>);</div><div class="line">var_dump($reUser-&gt;getFileName());</div></pre></td></tr></table></figure></p>
-<p>说明：ReflectionClass类获取类相关信息，如获取属性、方法、文档注释等；</p>
-<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><ul>
-<li>通过_call可以调用类一些不确定的方法，这个时候就可以通过反射类ReflectionClass来判断类方法是否存在，是不是可见可调用的。</li>
+            <p><blockquote class="blockquote-center"><br>曹操：“云长兄。英雄，自然你来当。小人，我来！”<br></blockquote></p>
+<h3 id="测试工具ab"><a href="#测试工具ab" class="headerlink" title="测试工具ab"></a>测试工具ab</h3><p>ab命令会创建很多的并发访问线程，模拟多个访问者同时对某一URL地址进行访问。它的测试目标是基于URL的，因此，既可以用来测试Apache的负载压力，也可以测试nginx、lighthttp、tomcat、IIS等其它Web服务器的压力。<br>ab命令对发出负载的计算机要求很低，既不会占用很高CPU，也不会占用很多内存，但却会给目标服务器造成巨大的负载，其原理类似CC攻击。自己测试使用也须注意，否则一次上太多的负载，可能造成目标服务器因资源耗完，严重时甚至导致死机。</p>
+<h3 id="其他建议"><a href="#其他建议" class="headerlink" title="其他建议"></a>其他建议</h3><ul>
+<li>避免在循环内做运算</li>
+<li>避免计算密集型业务</li>
+<li>减少PHP发起的网络请求</li>
+<li>尽量使用内置函数</li>
+<li>合理的使用缓存</li>
+<li>使用消息队列</li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">actionA</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"I'am A\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">actionB</span> <span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"I'am B\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> $objects;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;objects=<span class="keyword">array</span>();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">($t)</span></span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;objects[]=$t;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">pp</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//调用不可见的方法或者没有的方法都会走到这里</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span><span class="params">($name,$args)</span></span>&#123;</div><div class="line">        <span class="keyword">foreach</span>(<span class="keyword">$this</span>-&gt;objects <span class="keyword">as</span> $object)&#123;</div><div class="line">            $class=<span class="keyword">new</span> ReflectionClass($object);</div><div class="line">            <span class="keyword">if</span>(!$class-&gt;hasMethod($name))&#123;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            $method=$class-&gt;getMethod($name);</div><div class="line">            <span class="keyword">if</span>($method&amp;&amp;$method-&gt;isPublic()&amp;&amp;!$method-&gt;isAbstract())&#123;</div><div class="line">                $method-&gt;invoke($object,$args);</div><div class="line">                <span class="keyword">return</span> ;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"not method!\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">$t=<span class="keyword">new</span> test();</div><div class="line">$t-&gt;add(<span class="keyword">new</span> A());</div><div class="line">$t-&gt;add(<span class="keyword">new</span> B());</div><div class="line">$t-&gt;pp(); <span class="comment">//不可见方法</span></div><div class="line">$t-&gt;actionA();</div><div class="line">$t-&gt;actionB();</div></pre></td></tr></table></figure>
 
           
         
@@ -342,8 +343,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/24/PHP函数call-user-func-array用法/" itemprop="url">
-                  PHP函数call_user_func_array用法
+                <a class="post-title-link" href="/2016/11/01/opcode缓存原理/" itemprop="url">
+                  opcode缓存原理
                 </a>
               
             
@@ -356,8 +357,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-24T12:13:26+08:00" content="2016-08-24">
-              2016-08-24
+            <time itemprop="dateCreated" datetime="2016-11-01T09:11:57+08:00" content="2016-11-01">
+              2016-11-01
             </time>
           </span>
 
@@ -386,12 +387,7 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>无她，唯手熟尔<br></blockquote></p>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>调用函数<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span><span class="params">($b, $c)</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">echo</span> $b;</div><div class="line">  <span class="keyword">echo</span> $c;</div><div class="line">&#125;</div><div class="line">call_user_func_array(<span class="string">'a'</span>, <span class="keyword">array</span>(<span class="string">"111"</span>, <span class="string">"222"</span>));</div><div class="line"><span class="comment">//显示 111 222</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
-<p>调用静态方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">Class</span> <span class="title">ClassA</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">bc</span><span class="params">($b, $c)</span> </span>&#123;</div><div class="line">	$bc = $b + $c;</div><div class="line">	  <span class="keyword">echo</span> $bc;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">call_user_func_array(<span class="keyword">array</span>(<span class="string">'ClassA'</span>,<span class="string">'bc'</span>), <span class="keyword">array</span>(<span class="string">"111"</span>, <span class="string">"222"</span>));</div><div class="line"><span class="comment">//显示 333</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
-<p>说明：这样就可以用数组的方式给类的方法传入必要的参数</p>
-<p>调用普通方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Hello, World!"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$a = <span class="keyword">new</span> MyClass();</div><div class="line">call_user_func(<span class="keyword">array</span>($a, <span class="string">'hello'</span>));</div></pre></td></tr></table></figure></p>
-
+            
           
         
       
@@ -440,8 +436,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/24/PHP大量数据循环时内存耗尽问题的解决方案/" itemprop="url">
-                  PHP大量数据循环时内存耗尽问题的解决方案
+                <a class="post-title-link" href="/2016/10/26/Python-第三方库requests详解/" itemprop="url">
+                  Python-第三方库requests详解
                 </a>
               
             
@@ -454,8 +450,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-24T10:52:33+08:00" content="2016-08-24">
-              2016-08-24
+            <time itemprop="dateCreated" datetime="2016-10-26T23:30:16+08:00" content="2016-10-26">
+              2016-10-26
             </time>
           </span>
 
@@ -484,20 +480,9 @@
       
         
           
-            <blockquote class="blockquote-center"><br>我的肺功能快衰竭了，没有两天了，请大家不要打钱了，谢谢大家这段时间的帮助，希望来生没有痛苦。—魏则西<br></blockquote>
-
-<p>最近在开发一个PHP程序时遇到了下面的错误：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PHP Fatal error: Allowed memory size of <span class="number">268</span> <span class="number">435</span> <span class="number">456</span> bytes exhausted</div></pre></td></tr></table></figure></p>
-<p>错误信息显示允许的最大内存已经耗尽。遇到这样的错误起初让我很诧异，但转眼一想，也不奇怪，因为我正在开发的这个程序是要用一个foreach循环语句在一个有4万条记录的表里全表搜索具有特定特征的数据，也就是说，一次要把4万条数据取出，然后逐条检查每天数据。可想而知，4万条数据全部加载到内存中，内存不爆才怪。</p>
-<p>毕竟编程这么多年，我隐约记得PHP里提供有非一次全部加载数据的API，是像处理流媒体那样，随用随取随丢、数据并不会积累在内存的查询方法。经过简单的搜索，果然在官方网站上找到的正确的用法。</p>
-<p>这个问题在PHP的官方网站上叫缓冲查询和非缓冲查询(Buffered and Unbuffered queries)。 PHP的查询缺省模式是缓冲模式。也就是说，查询数据结果会一次全部提取到内存里供PHP程序处理。这样给了PHP程序额外的功能，比如说，计算行数，将 指针指向某一行等。更重要的是程序可以对数据集反复进行二次查询和过滤等操作。但这种缓冲查询模式的缺陷就是消耗内存，也就是用空间换速度。</p>
-<p>相对的，另外一种PHP查询模式是非缓冲查询，数据库服务器会一条一条的返回数据，而不是一次全部返回，这样的结果就是PHP程序消耗较少的内存，但却增加了数据库服务器的压力，因为数据库会一直等待PHP来取数据，一直到数据全部取完。</p>
-<p>很显然，缓冲查询模式适用于小数据量查询，而非缓冲查询适应于大数据量查询。</p>
-<p>对于PHP的缓冲模式查询大家都知道，下面列举的例子是如何执行非缓冲查询API。</p>
-<h3 id="非缓冲查询方法一-mysqli"><a href="#非缓冲查询方法一-mysqli" class="headerlink" title="非缓冲查询方法一: mysqli"></a>非缓冲查询方法一: mysqli</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line">$mysqli  = <span class="keyword">new</span> mysqli(<span class="string">"localhost"</span>, <span class="string">"my_user"</span>, <span class="string">"my_password"</span>, <span class="string">"world"</span>); </div><div class="line">$uresult = $mysqli-&gt;query(<span class="string">"SELECT Name FROM City"</span>, MYSQLI_USE_RESULT); </div><div class="line"></div><div class="line"><span class="keyword">if</span> ($uresult) &#123; </div><div class="line">   <span class="keyword">while</span> ($row = $uresult-&gt;fetch_assoc()) &#123; </div><div class="line">       <span class="keyword">echo</span> $row[<span class="string">'Name'</span>] . PHP_EOL; </div><div class="line">   &#125; </div><div class="line">&#125; </div><div class="line">$uresult-&gt;close(); </div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="非缓冲查询方法二-pdo-mysql"><a href="#非缓冲查询方法二-pdo-mysql" class="headerlink" title="非缓冲查询方法二: pdo_mysql"></a>非缓冲查询方法二: pdo_mysql</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line">$pdo = <span class="keyword">new</span> PDO(<span class="string">"mysql:host=localhost;dbname=world"</span>, <span class="string">'my_user'</span>, <span class="string">'my_pass'</span>); </div><div class="line">$pdo-&gt;setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, <span class="keyword">false</span>); </div><div class="line"></div><div class="line">$uresult = $pdo-&gt;query(<span class="string">"SELECT Name FROM City"</span>); </div><div class="line"><span class="keyword">if</span> ($uresult) &#123; </div><div class="line">   <span class="keyword">while</span> ($row = $uresult-&gt;fetch(PDO::FETCH_ASSOC)) &#123; </div><div class="line">       <span class="keyword">echo</span> $row[<span class="string">'Name'</span>] . PHP_EOL; </div><div class="line">   &#125; </div><div class="line">&#125; </div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="非缓冲查询方法三-mysql"><a href="#非缓冲查询方法三-mysql" class="headerlink" title="非缓冲查询方法三: mysql"></a>非缓冲查询方法三: mysql</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line">$conn = mysql_connect(<span class="string">"localhost"</span>, <span class="string">"my_user"</span>, <span class="string">"my_pass"</span>); </div><div class="line">$db   = mysql_select_db(<span class="string">"world"</span>); </div><div class="line"></div><div class="line">$uresult = mysql_unbuffered_query(<span class="string">"SELECT Name FROM City"</span>); </div><div class="line"><span class="keyword">if</span> ($uresult) &#123; </div><div class="line">   <span class="keyword">while</span> ($row = mysql_fetch_assoc($uresult)) &#123; </div><div class="line">       <span class="keyword">echo</span> $row[<span class="string">'Name'</span>] . PHP_EOL; </div><div class="line">   &#125; </div><div class="line">&#125; </div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+            <p><blockquote class="blockquote-center"><br>你看那个人好奇怪。是呀，他好像一条狗哦。<br></blockquote></p>
 <blockquote>
-<p><a href="http://www.codeceo.com/article/php-foreach-memory.html" target="_blank" rel="external">http://www.codeceo.com/article/php-foreach-memory.html</a></p>
+<p><a href="http://docs.python-requests.org/zh_CN/latest/user/quickstart.html" target="_blank" rel="external">http://docs.python-requests.org/zh_CN/latest/user/quickstart.html</a></p>
 </blockquote>
 
           
@@ -548,8 +533,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/23/自定义任务调度进程/" itemprop="url">
-                  自定义任务调度进程
+                <a class="post-title-link" href="/2016/10/26/python的多进程和多线程/" itemprop="url">
+                  python的多进程和多线程
                 </a>
               
             
@@ -562,8 +547,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-23T15:22:32+08:00" content="2016-08-23">
-              2016-08-23
+            <time itemprop="dateCreated" datetime="2016-10-26T22:52:57+08:00" content="2016-10-26">
+              2016-10-26
             </time>
           </span>
 
@@ -592,16 +577,22 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>我 曾经 喜欢 过 你<br></blockquote><br>已经多次遇到过自定义任务调度进程，替换init进程的情况了。自定义的任务调度进程，方便统一监控管理，报警，观察输出等。</p>
-<p>Linux机器上的计划任务是由系统进程init根据cron文件调度的，计划任务作为子进程执行任务，共享机器的cpu，内存等资源。于是，可以提供一个守护进程脚本替代系统进程，根据后台管理的数据库文件，拉取本机的cron配置，fork子进程来执行任务。这样子进程的状态，输出等都可以自定义控制。</p>
-<p><img src="http://7nj3d5.com1.z0.glb.clouddn.com/tr.png" alt="alt text"></p>
-<p>任务调度流程图<br>php版本的实现，需要用到pcntl与posix两个扩展，通过pcntl_fork生成子进程，posix_kill进行进程通信，pcntl_wait回收子进程。还需要考虑，网络状况等问题可能造成的异常，例如：忽略SIGPIPE信号等。</p>
-<p>解析crontab格式的表达式，可以使用这个库：<a href="https://github.com/mtdowling/cron-expression" target="_blank" rel="external">https://github.com/mtdowling/cron-expression</a></p>
-<p>子进程的杀死操作，可以使用上一篇文章里的shell进行，也可以通过php的posix_getppid等函数做，但是要注意杀死整个进程树。</p>
-<p>通过修改fork子进程的脚本，可以很容易实现，基于多进程的对阻塞队列的并发消费，用来处理高负载的消息队列。以后再写文章概述。</p>
-<blockquote>
-<p><a href="http://it.taocms.org/08/5384.htm" target="_blank" rel="external">http://it.taocms.org/08/5384.htm</a></p>
-</blockquote>
+            <p><blockquote class="blockquote-center"><br>我曾经听人说过，当你不可以再拥有的时候。你唯一可以做的，就是让自己不要忘记。<br></blockquote></p>
+<h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><p>很多同学都听说过，现代操作系统比如Mac OS X，UNIX，Linux，Windows等，都是支持“多任务”的操作系统。</p>
+<p>什么叫“多任务”呢？简单地说，就是操作系统可以同时运行多个任务。打个比方，你一边在用浏览器上网，一边在听MP3，一边在用Word赶作业，这就是多任务，至少同时有3个任务正在运行。还有很多任务悄悄地在后台同时运行着，只是桌面上没有显示而已。</p>
+<p>现在，多核CPU已经非常普及了，但是，即使过去的单核CPU，也可以执行多任务。由于CPU执行代码都是顺序执行的，那么，单核CPU是怎么执行多任务的呢？</p>
+<p>答案就是操作系统轮流让各个任务交替执行，任务1执行0.01秒，切换到任务2，任务2执行0.01秒，再切换到任务3，执行0.01秒……这样反复执行下去。表面上看，每个任务都是交替执行的，但是，由于CPU的执行速度实在是太快了，我们感觉就像所有任务都在同时执行一样。</p>
+<p>真正的并行执行多任务只能在多核CPU上实现，但是，由于任务数量远远多于CPU的核心数量，所以，操作系统也会自动把很多任务轮流调度到每个核心上执行。</p>
+<p>对于操作系统来说，一个任务就是一个进程（Process），比如打开一个浏览器就是启动一个浏览器进程，打开一个记事本就启动了一个记事本进程，打开两个记事本就启动了两个记事本进程，打开一个Word就启动了一个Word进程。</p>
+<p>有些进程还不止同时干一件事，比如Word，它可以同时进行打字、拼写检查、打印等事情。在一个进程内部，要同时干多件事，就需要同时运行多个“子任务”，我们把进程内的这些“子任务”称为线程（Thread）。</p>
+<p>由于每个进程至少要干一件事，所以，一个进程至少有一个线程。当然，像Word这种复杂的进程可以有多个线程，多个线程可以同时执行，多线程的执行方式和多进程是一样的，也是由操作系统在多个线程之间快速切换，让每个线程都短暂地交替运行，看起来就像同时执行一样。当然，真正地同时执行多线程需要多核CPU才可能实现。</p>
+<p>我们前面编写的所有的Python程序，都是执行单任务的进程，也就是只有一个线程。如果我们要同时执行多个任务怎么办？</p>
+<p>有两种解决方案：</p>
+<p>一种是启动多个进程，每个进程虽然只有一个线程，但多个进程可以一块执行多个任务。</p>
+<p>还有一种方法是启动一个进程，在一个进程内启动多个线程，这样，多个线程也可以一块执行多个任务。</p>
+<p>当然还有第三种方法，就是启动多个进程，每个进程再启动多个线程，这样同时执行的任务就更多了，当然这种模型更复杂，实际很少采用。</p>
+<p>总结一下就是，多任务的实现有3种方式：</p>
+<p>多进程模式；<br>多线程模式；<br>多进程+多线程模式。</p>
 
           
         
@@ -651,8 +642,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/23/PHP中的随机性——你觉得自己幸运吗？/" itemprop="url">
-                  PHP中的随机性——你觉得自己幸运吗？
+                <a class="post-title-link" href="/2016/10/26/python大数据抓取和存储/" itemprop="url">
+                  python大数据抓取和存储
                 </a>
               
             
@@ -665,8 +656,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-23T14:17:06+08:00" content="2016-08-23">
-              2016-08-23
+            <time itemprop="dateCreated" datetime="2016-10-26T20:54:22+08:00" content="2016-10-26">
+              2016-10-26
             </time>
           </span>
 
@@ -695,26 +686,17 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>把一切平凡的事做好即不平凡，把一切简单的事做好即不简单。<br></blockquote><br>PHP 5没有提供一种简单的机制来生成密码学上强壮的随机数，但是PHP 7通过引入几个CSPRNG函数来解决了这个问题。</p>
-<h3 id="什么是CSPRNG"><a href="#什么是CSPRNG" class="headerlink" title="什么是CSPRNG"></a>什么是CSPRNG</h3><p>引用维基百科,一个密码学上安全的伪随机数发生器（Cryptographically Secure Pseudorandom Number Generator 缩写CSPRNG）是一个伪随机数生成器（PRNG）,其生成的伪随机数适用于密码学算法。</p>
-<p>CSPRNG可能主要用于:</p>
-<p>密钥生成（例如,生成复杂的密钥）<br>为新用户产生随机的密码<br>加密系统<br>获得高级别安全性的一个关键方面就是高品质的随机性</p>
-<h3 id="PHP7-中的CSPRNG"><a href="#PHP7-中的CSPRNG" class="headerlink" title="PHP7 中的CSPRNG"></a>PHP7 中的CSPRNG</h3><p>PHP 7引入了两个新函数可以用来实现CSPRNG： random_bytes 和 random_int。</p>
-<p>random_bytes 函数返回一个字符串，接受一个int型入参代表返回结果的字节数。</p>
-<p>例子：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$bytes = random_bytes(<span class="string">'10'</span>);</div><div class="line">var_dump(bin2hex($bytes));</div><div class="line"><span class="comment">//possible ouput: string(20) "7dfab0af960d359388e6"</span></div><div class="line">random_int 函数返回一个指定范围内的int型数字。</div></pre></td></tr></table></figure></p>
-<p>例子：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var_dump(random_int(<span class="number">1</span>, <span class="number">100</span>));</div><div class="line"><span class="comment">//possible output: 27</span></div></pre></td></tr></table></figure></p>
-<h3 id="后台运行环境"><a href="#后台运行环境" class="headerlink" title="后台运行环境"></a>后台运行环境</h3><p>以上函数的随机性不同的取决于环境：</p>
-<p>在window上，CryptGenRandom()总是被使用。<br>在其他平台，arc4random_buf()如果可用会被使用（在BSD系列或者具有libbsd的系统上成立）<br>以上都不成立的话，一个linux系统调用getrandom(2)会被使用。<br>如果还不行，/dev/urandom 会被作为最后一个可使用的工具<br>如果以上都不行，系统会抛出错误<br>一个简单的测试</p>
-<h3 id="PHP5-呢"><a href="#PHP5-呢" class="headerlink" title="PHP5 呢"></a>PHP5 呢</h3><p>缺省情况下，PHP5 不提供强壮的随机数发生器。实际上，还是有选择的比如 openssl_random_pseudo_bytes(), mcrypt_create_iv() 或者直接使用fread()函数来使用 /dev/random 或 /dev/urandom 设备。也有一些包比如 RandomLib 或 libsodium.</p>
-<p>如果你想要开始使用一个更好的随机数发生器并且同时准备好使用PHP7，你可以使用Paragon Initiative Enterprises random_compat 库。 random_compat 库允许你在 PHP 5.x project.使用 random_bytes() and random_int()</p>
-<p>这个库可以通过Composer安装：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">composer <span class="keyword">require</span> paragonie/random_compat</div><div class="line"><span class="keyword">require</span> <span class="string">'vendor/autoload.php'</span>;</div><div class="line">$string = random_bytes(<span class="number">32</span>);</div><div class="line">var_dump(bin2hex($string));</div><div class="line"><span class="comment">// string(64) "8757a27ce421b3b9363b7825104f8bc8cf27c4c3036573e5f0d4a91ad2aaec6f"</span></div><div class="line">$int = random_int(<span class="number">0</span>,<span class="number">255</span>);</div><div class="line">var_dump($int);</div><div class="line"><span class="comment">// int(81)</span></div><div class="line"><span class="comment">//random_compat 库和PHP7使用不同的顺序:</span></div><div class="line"></div><div class="line">fread() /dev/urandom <span class="keyword">if</span> available</div><div class="line">mcrypt_create_iv($bytes, MCRYPT_CREATE_IV)</div><div class="line">COM(<span class="string">'CAPICOM.Utilities.1'</span>)-&gt;GetRandom()</div><div class="line">openssl_random_pseudo_bytes()</div></pre></td></tr></table></figure></p>
-<p>想知道为什么是这个顺序建议阅读 documentation.</p>
-<p>这个库的一个简单应用用来产生密码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$passwordChar = <span class="string">'0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'</span>;</div><div class="line">$passwordLength = <span class="number">8</span>;</div><div class="line">$max = strlen($passwordChar) - <span class="number">1</span>;</div><div class="line">$password = <span class="string">''</span>;</div><div class="line"><span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; $passwordLength; ++$i) &#123;</div><div class="line">    $password .= $passwordChar[random_int(<span class="number">0</span>, $max)];</div><div class="line">&#125;</div><div class="line"><span class="keyword">echo</span> $password;</div><div class="line"><span class="comment">//possible output: 7rgG8GHu</span></div></pre></td></tr></table></figure></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>你总是应该使用一个密码学上安全的伪随机数生成器，random_compat 库提供了一种好的实现。</p>
-<p>如果你想要使用可靠的随机数据源，如你在本文所见，建议尽快使用 random_int 和 random_bytes.</p>
-<blockquote>
-<p><a href="http://www.codeceo.com/article/php-random.html" target="_blank" rel="external">http://www.codeceo.com/article/php-random.html</a></p>
-</blockquote>
+            <p><blockquote class="blockquote-center"><br>愿你梦里有喝不完的酒，<br>醒来后能酩酊大醉地过完这一生。<br>你要照顾好你黑色的头发，<br>挑剔的胃和爱笑的眼睛。<br>我已经原谅了从前的自己，就像谅解了一个野心勃勃的傻逼，体恤了一个笨手笨脚的勇士，释怀了一个难以启齿的秘密。<br></blockquote></p>
+<h3 id="mongodb"><a href="#mongodb" class="headerlink" title="mongodb"></a>mongodb</h3><p>安装这里就不再赘述<br>安装pymongo：</p>
+<ol>
+<li>pip install wheel</li>
+<li>下载找对应 的 whl 文件<br> <a href="https://pypi.python.org/pypi/pymongo#downloads" target="_blank" rel="external">https://pypi.python.org/pypi/pymongo#downloads</a></li>
+<li>pip install whl   文件的正确位置</li>
+</ol>
+<h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span>  pymongo</div><div class="line">client = pymongo.MongoClient(<span class="string">'localhost'</span>,<span class="number">27017</span>)</div><div class="line">dbname = client[<span class="string">'dbname'</span>]</div><div class="line">tbname = dbname[<span class="string">'tbname'</span>]</div><div class="line">path = <span class="string">'demo.txt'</span></div><div class="line"><span class="keyword">with</span> open(path,<span class="string">'r'</span>) <span class="keyword">as</span> f:</div><div class="line">    lines = f.readlines()</div><div class="line">    <span class="keyword">for</span> index,line <span class="keyword">in</span> enumerate(lines):</div><div class="line">        data = &#123;</div><div class="line">            <span class="string">'index'</span>:index,</div><div class="line">            <span class="string">'line'</span>:line,</div><div class="line">            <span class="string">'words'</span>:len(line.split())</div><div class="line">        &#125;</div><div class="line">        tbname.insert_one(data)</div></pre></td></tr></table></figure>
+<h3 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span>  pymongo</div><div class="line">client = pymongo.MongoClient(<span class="string">'localhost'</span>,<span class="number">27017</span>)</div><div class="line">dbname = client[<span class="string">'dbname'</span>]</div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> tbname.find():</div><div class="line">    print(item)</div><div class="line"></div><div class="line"><span class="comment">#或者</span></div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> tbname.find(&#123;<span class="string">'words'</span>:<span class="number">0</span>&#125;):</div><div class="line">    print(item)</div></pre></td></tr></table></figure>
+<h3 id="大数据抓取"><a href="#大数据抓取" class="headerlink" title="大数据抓取"></a>大数据抓取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 一般爬取的有多个列表页和每个列表页下的多个内容页</span></div><div class="line"><span class="comment"># 事先会把需要爬取的URL放到数据库里</span></div><div class="line"><span class="comment"># 一般的错误处理</span></div><div class="line"><span class="comment"># 过滤掉一些不正确的url地址</span></div><div class="line"><span class="comment"># 需要抓取的页面中的元素不存在</span></div><div class="line"><span class="comment"># 页面访问错误，比如404，500这样的错误有可能会引起爬虫报错</span></div><div class="line"><span class="comment"># 监控程序，用于监控已经爬取的数据量的多少或者url的多少</span></div></pre></td></tr></table></figure>
+<h3 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码"></a>实例代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#头部</span></div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> pymongo</div><div class="line"></div><div class="line">client =pymongo.MongoClient(<span class="string">'localhost'</span>,<span class="number">27017</span>)</div><div class="line">db58 = client[<span class="string">'db58'</span>]</div><div class="line">tb58 = db58[<span class="string">'tb58'</span>]</div><div class="line">tb58item = db58[<span class="string">'tb58item'</span>]</div><div class="line"></div><div class="line"><span class="comment"># 读取具体内容</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_links_from</span><span class="params">(channel,pages)</span>:</span></div><div class="line">    list_view = <span class="string">'&#123;&#125;/pn&#123;&#125;'</span>.format(channel,str(pages))</div><div class="line">    wb_data = requests.get(list_view)</div><div class="line">    time.sleep(<span class="number">1</span>)</div><div class="line">    soup = BeautifulSoup(wb_data.text,<span class="string">'lxml'</span>)</div><div class="line">    <span class="keyword">if</span> soup.find(<span class="string">'td'</span>,<span class="string">'t'</span>):</div><div class="line">        <span class="keyword">for</span> link <span class="keyword">in</span> soup.select(<span class="string">'td.t &gt; a.t'</span>):</div><div class="line">            item_link = link.get(<span class="string">'href'</span>).split(<span class="string">'?'</span>)[<span class="number">0</span>]</div><div class="line">            tb58.insert_one(item_link)</div><div class="line">            print(item_link)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">pass</span></div><div class="line"><span class="comment"># 产生多页</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_all_links_from</span><span class="params">(channel)</span>:</span></div><div class="line">    <span class="keyword">for</span> num  <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">101</span>):</div><div class="line">        get_links_from(channel,num)</div><div class="line"></div><div class="line"><span class="comment"># 监控程序，实时显示数据库中的数据量</span></div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">from</span> page_parsing <span class="keyword">import</span> tb58item</div><div class="line"></div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    print(tb58item.find().count())</div><div class="line">    time.sleep(<span class="number">5</span>)</div></pre></td></tr></table></figure>
 
           
         
@@ -747,7 +729,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/23/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/21/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/23/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -788,7 +770,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">135</span>
+              <span class="site-state-item-count">152</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -798,7 +780,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

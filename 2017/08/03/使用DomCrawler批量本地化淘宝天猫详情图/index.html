@@ -1,0 +1,618 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="php,淘宝," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="你没有变强是因为你一直很舒服。
+安装1composer require symfony/dom-crawler
+代码片段12345678910111213141516171819202122232425// october cms$crawler = new Crawler($content);$crawler-&amp;gt;filter(&apos;img&apos;)-&amp;gt;each(function (Crawle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用DomCrawler批量本地化淘宝天猫详情图">
+<meta property="og:url" content="http://yangguoqi.me/2017/08/03/使用DomCrawler批量本地化淘宝天猫详情图/index.html">
+<meta property="og:site_name" content="杨子鳄的小窝">
+<meta property="og:description" content="你没有变强是因为你一直很舒服。
+安装1composer require symfony/dom-crawler
+代码片段12345678910111213141516171819202122232425// october cms$crawler = new Crawler($content);$crawler-&amp;gt;filter(&apos;img&apos;)-&amp;gt;each(function (Crawle">
+<meta property="og:updated_time" content="2017-08-03T02:31:48.149Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用DomCrawler批量本地化淘宝天猫详情图">
+<meta name="twitter:description" content="你没有变强是因为你一直很舒服。
+安装1composer require symfony/dom-crawler
+代码片段12345678910111213141516171819202122232425// october cms$crawler = new Crawler($content);$crawler-&amp;gt;filter(&apos;img&apos;)-&amp;gt;each(function (Crawle">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 使用DomCrawler批量本地化淘宝天猫详情图 | 杨子鳄的小窝 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨子鳄的小窝</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用DomCrawler批量本地化淘宝天猫详情图
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-03T10:21:43+08:00" content="2017-08-03">
+              2017-08-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><blockquote class="blockquote-center"><br>你没有变强是因为你一直很舒服。<br></blockquote></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer <span class="keyword">require</span> symfony/dom-crawler</div></pre></td></tr></table></figure>
+<h3 id="代码片段"><a href="#代码片段" class="headerlink" title="代码片段"></a>代码片段</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// october cms</span></div><div class="line">$crawler = <span class="keyword">new</span> Crawler($content);</div><div class="line">$crawler-&gt;filter(<span class="string">'img'</span>)-&gt;each(<span class="function"><span class="keyword">function</span> <span class="params">(Crawler $node)</span> <span class="title">use</span><span class="params">($pid)</span> </span>&#123;</div><div class="line">    $sourceSrc = explode(<span class="string">'?'</span>,$node-&gt;attr(<span class="string">'src'</span>))[<span class="number">0</span>];</div><div class="line">    $sourceSrc = str_replace(<span class="string">'https'</span>, <span class="string">'http'</span>, $sourceSrc);</div><div class="line">    <span class="keyword">if</span> (!starts_with($sourceSrc, <span class="string">'http'</span>)) &#123;</div><div class="line">        $sourceSrc = <span class="string">"http:"</span>.$sourceSrc;</div><div class="line">    &#125;</div><div class="line">    $imageManager = <span class="keyword">new</span> ImageManager([<span class="string">'driver'</span> =&gt; <span class="string">'gd'</span>]);</div><div class="line">    $temPath = storage_path() . <span class="string">'/temp/'</span> .time().basename($sourceSrc);</div><div class="line">    $imageManager-&gt;make($sourceSrc)-&gt;save($temPath);</div><div class="line">    $attachment_type = <span class="string">'Jason\Ccmall\Models\Product'</span>;</div><div class="line">    $productImage = <span class="keyword">new</span> File();</div><div class="line">    $productImage-&gt;data = $temPath;</div><div class="line">    $productImage-&gt;field = <span class="string">'content'</span>;</div><div class="line">    $productImage-&gt;attachment_id = $pid;</div><div class="line">    $productImage-&gt;attachment_type = $attachment_type;</div><div class="line">    $productImage-&gt;save();</div><div class="line">    $node-&gt;getNode(<span class="number">0</span>)-&gt;setAttribute(<span class="string">'src'</span>, $productImage-&gt;path);</div><div class="line">    @unlink($temPath);</div><div class="line">&#125;);</div><div class="line">$html = $crawler-&gt;html();</div><div class="line">Product::query()-&gt;where(<span class="string">'id'</span>, $pid)-&gt;update([</div><div class="line">    <span class="string">'content'</span> =&gt; $html</div><div class="line">]);</div></pre></td></tr></table></figure>
+<h3 id="实例一"><a href="#实例一" class="headerlink" title="实例一"></a>实例一</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">Symfony</span>\<span class="title">Component</span>\<span class="title">DomCrawler</span>\<span class="title">Crawler</span>;</div><div class="line"></div><div class="line">$html = <span class="string">&lt;&lt;&lt;'HTML'</span></div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">    &lt;body&gt;</div><div class="line">        &lt;p class="message"&gt;Hello World!&lt;/p&gt;</div><div class="line">        &lt;p&gt;Hello Crawler!&lt;/p&gt;</div><div class="line">    &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">HTML;</div><div class="line"></div><div class="line">$crawler = <span class="keyword">new</span> Crawler($html);</div><div class="line"></div><div class="line"><span class="keyword">foreach</span> ($crawler <span class="keyword">as</span> $domElement) &#123;</div><div class="line">    var_dump($domElement-&gt;nodeName);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="实例二"><a href="#实例二" class="headerlink" title="实例二"></a>实例二</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$crawler = <span class="keyword">new</span> Crawler(<span class="string">'&lt;html&gt;&lt;body /&gt;&lt;/html&gt;'</span>);</div><div class="line"></div><div class="line">$crawler-&gt;addHtmlContent(<span class="string">'&lt;html&gt;&lt;body /&gt;&lt;/html&gt;'</span>);</div><div class="line">$crawler-&gt;addXmlContent(<span class="string">'&lt;root&gt;&lt;node /&gt;&lt;/root&gt;'</span>);</div><div class="line"></div><div class="line">$crawler-&gt;addContent(<span class="string">'&lt;html&gt;&lt;body /&gt;&lt;/html&gt;'</span>);</div><div class="line">$crawler-&gt;addContent(<span class="string">'&lt;root&gt;&lt;node /&gt;&lt;/root&gt;'</span>, <span class="string">'text/xml'</span>);</div><div class="line"></div><div class="line">$crawler-&gt;add(<span class="string">'&lt;html&gt;&lt;body /&gt;&lt;/html&gt;'</span>);</div><div class="line">$crawler-&gt;add(<span class="string">'&lt;root&gt;&lt;node /&gt;&lt;/root&gt;'</span>);</div></pre></td></tr></table></figure>
+<h3 id="实例三"><a href="#实例三" class="headerlink" title="实例三"></a>实例三</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$imagesCrawler = $crawler-&gt;selectImage(<span class="string">'Kitten'</span>);</div><div class="line">$image = $imagesCrawler-&gt;image();</div><div class="line"></div><div class="line"><span class="comment">// or do this all at once</span></div><div class="line">$image = $crawler-&gt;selectImage(<span class="string">'Kitten'</span>)-&gt;image();</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="https://symfony.com/doc/current/components/dom_crawler.html" target="_blank" rel="external">https://symfony.com/doc/current/components/dom_crawler.html</a></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag">#php</a>
+          
+            <a href="/tags/淘宝/" rel="tag">#淘宝</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/31/elasticsearch的一些批量操作/" rel="next" title="elasticsearch的一些批量操作">
+                <i class="fa fa-chevron-left"></i> elasticsearch的一些批量操作
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/03/mysql错误Duplicate-entry-4294967295-for-key-PRIMARY/" rel="prev" title="mysql错误Duplicate_entry_4294967295_for_key_PRIMARY">
+                mysql错误Duplicate_entry_4294967295_for_key_PRIMARY <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="lnmput@gmail.com" />
+          <p class="site-author-name" itemprop="name">lnmput@gmail.com</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">152</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">70</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lnmput" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.laruence.com/" title="风雪之隅" target="_blank">风雪之隅</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://tech.youzan.com/" title="有赞技术团队" target="_blank">有赞技术团队</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://tech.meituan.com/archives" title="美团点评技术团队" target="_blank">美团点评技术团队</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="點燈坊" target="_blank">點燈坊</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.turn.tw/" title="轉個彎日誌" target="_blank">轉個彎日誌</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码片段"><span class="nav-number">2.</span> <span class="nav-text">代码片段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例一"><span class="nav-number">3.</span> <span class="nav-text">实例一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例二"><span class="nav-number">4.</span> <span class="nav-text">实例二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例三"><span class="nav-number">5.</span> <span class="nav-text">实例三</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lnmput@gmail.com</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

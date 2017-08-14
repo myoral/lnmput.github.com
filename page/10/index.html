@@ -240,8 +240,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/08/Laravel中chunk方法分块处理数据/" itemprop="url">
-                  Laravel中chunk方法分块处理数据
+                <a class="post-title-link" href="/2017/05/10/php和python中的正则表达式/" itemprop="url">
+                  php和python中的正则表达式
                 </a>
               
             
@@ -254,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-08T11:57:41+08:00" content="2017-03-08">
-              2017-03-08
+            <time itemprop="dateCreated" datetime="2017-05-10T15:10:33+08:00" content="2017-05-10">
+              2017-05-10
             </time>
           </span>
 
@@ -284,13 +284,15 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>我只说从今往后，不说今日以前。<br></blockquote><br>Let’s imagine the situation: you have a big database table (like 10 000 rows or bigger) and you need to run an update to one column. But you cannot run just SQL query – there is some PHP logic behind it. So foreach loop could potentially take forever or bump into a default 30-second script limit. Luckily, Laravel has a neat solution for it.</p>
-<p>Let’s look at a simple example of a problem I’m talking about:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$users = User::all();</div><div class="line"><span class="keyword">foreach</span> ($users <span class="keyword">as</span> $user) &#123;</div><div class="line">  $some_value = ($user-&gt;some_field &gt; <span class="number">0</span>) ? <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">  <span class="comment">// might be more logic here</span></div><div class="line">  $user-&gt;update([<span class="string">'some_other_field'</span> =&gt; $some_value]);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Do you see the problem? It’s fine for a DB table with 100 or 500 users. But what about 10000? 100000? Million?<br>It’s not only about the speed, but also about storing the data – you are potentially storing the whole database table into variables, you might run out of memory.</p>
-<p>So here’s the thing: there is a function called chunk() which splits all data into separate selects, like pagination.<br>Let’s look at an example:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">User::chunk(<span class="number">100</span>, <span class="function"><span class="keyword">function</span> <span class="params">($users)</span> </span>&#123;</div><div class="line">  <span class="keyword">foreach</span> ($users <span class="keyword">as</span> $user) &#123;</div><div class="line">    $some_value = ($user-&gt;some_field &gt; <span class="number">0</span>) ? <span class="number">1</span> : <span class="number">0</span>;</div><div class="line">    <span class="comment">// might be more logic here</span></div><div class="line">    $user-&gt;update([<span class="string">'some_other_field'</span> =&gt; $some_value]);</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p><a href="http://www.jianshu.com/p/5dafd0d6e69a" target="_blank" rel="external">http://www.jianshu.com/p/5dafd0d6e69a</a></p>
-</blockquote>
+            <p><blockquote class="blockquote-center"><br>现在的孩子越来越早熟才炖了5分钟就烂了<br></blockquote></p>
+<h2 id="php"><a href="#php" class="headerlink" title="php"></a>php</h2><h3 id="preg-match"><a href="#preg-match" class="headerlink" title="preg_match"></a>preg_match</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$str = <span class="string">'&lt;a&gt;&lt;b&gt;&lt;c&gt;'</span>;</div><div class="line">preg_match(<span class="string">"/&lt;(\w)+&gt;/"</span>, $str, $abc);</div><div class="line">dd($abc);</div></pre></td></tr></table></figure>
+<p>结果: <code>[&#39;&lt;a&gt;&#39;, &#39;a&#39;]</code></p>
+<h3 id="preg-match-all"><a href="#preg-match-all" class="headerlink" title="preg_match_all"></a>preg_match_all</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$str = <span class="string">'&lt;a&gt;&lt;b&gt;&lt;c&gt;'</span>;</div><div class="line">preg_match_all(<span class="string">"/&lt;(\w)+&gt;/"</span>, $str, $abc);</div><div class="line">dd($abc);</div></pre></td></tr></table></figure>
+<p>结果: <code>[[&#39;&lt;a&gt;&#39;,&#39;&lt;b&gt;&#39;,&#39;&lt;c&gt;&#39;],[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]]</code></p>
+<h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><h3 id="re-match"><a href="#re-match" class="headerlink" title="re.match"></a>re.match</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> re</div><div class="line"></div><div class="line">line = <span class="string">'&lt;a&gt;&lt;b&gt;&lt;c&gt;'</span></div><div class="line">reg = <span class="string">"&lt;(\w)&gt;"</span></div><div class="line">res = re.match(reg, line)</div><div class="line"><span class="keyword">if</span> res:</div><div class="line">print(res.group(<span class="number">1</span>))</div></pre></td></tr></table></figure>
+<p>结果: <code>a</code></p>
+<h3 id="re-findall"><a href="#re-findall" class="headerlink" title="re.findall"></a>re.findall</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> re</div><div class="line"></div><div class="line">line = <span class="string">'&lt;a&gt;&lt;b&gt;&lt;c&gt;'</span></div><div class="line">reg = <span class="string">"&lt;(\w)&gt;"</span></div><div class="line">res = re.findall(reg, line)</div><div class="line"><span class="keyword">if</span> res:</div><div class="line">print(res)</div></pre></td></tr></table></figure>
+<p>结果: <code>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</code></p>
 
           
         
@@ -340,8 +342,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/08/python实现Markdown转html/" itemprop="url">
-                  python实现Markdown转html
+                <a class="post-title-link" href="/2017/05/09/Laravel中的模型事件/" itemprop="url">
+                  Laravel中的模型事件
                 </a>
               
             
@@ -354,8 +356,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-08T10:31:01+08:00" content="2017-03-08">
-              2017-03-08
+            <time itemprop="dateCreated" datetime="2017-05-09T15:59:46+08:00" content="2017-05-09">
+              2017-05-09
             </time>
           </span>
 
@@ -384,7 +386,24 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>女人容颜逝去要十年，男人贬值不过一瞬间。<br></blockquote><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> markdown</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MarkdownToHtml</span>:</span></div><div class="line"></div><div class="line">    headTag = <span class="string">'&lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;/head&gt;'</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, cssFilePath = None)</span>:</span></div><div class="line">        <span class="keyword">if</span> cssFilePath != <span class="keyword">None</span>:</div><div class="line">            self.genStyle(cssFilePath)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">genStyle</span><span class="params">(self,cssFilePath)</span>:</span></div><div class="line">        <span class="keyword">with</span> open(cssFilePath,<span class="string">'r'</span>) <span class="keyword">as</span> f:</div><div class="line">            cssString = f.read()</div><div class="line">        self.headTag = self.headTag[:<span class="number">-7</span>] + <span class="string">'&lt;style type="text/css"&gt;&#123;&#125;&lt;/style&gt;'</span>.format(cssString) + self.headTag[<span class="number">-7</span>:]</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">markdownToHtml</span><span class="params">(self,**arguments)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="string">'sourceFilePath'</span> <span class="keyword">in</span> arguments:</div><div class="line">            sourceFilePath = arguments[<span class="string">'sourceFilePath'</span>]</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span></div><div class="line">        <span class="keyword">if</span> <span class="string">'destinationDirectory'</span> <span class="keyword">in</span> arguments:</div><div class="line">            destinationDirectory = arguments[<span class="string">'destinationDirectory'</span>]</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="comment"># 未定义输出目录则将源文件目录(注意要转换为绝对路径)作为输出目录</span></div><div class="line">            destinationDirectory = os.path.dirname(os.path.abspath(sourceFilePath))</div><div class="line">        <span class="keyword">if</span> <span class="string">'outputFileName'</span> <span class="keyword">in</span> arguments:</div><div class="line">            outputFileName = arguments[<span class="string">'outputFileName'</span>]</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="comment"># 未定义输出文件名则沿用输入文件名</span></div><div class="line">            outputFileName = os.path.splitext(os.path.basename(sourceFilePath))[<span class="number">0</span>] + <span class="string">'.html'</span></div><div class="line">        <span class="keyword">if</span> destinationDirectory[<span class="number">-1</span>] != <span class="string">'/'</span>:</div><div class="line">            destinationDirectory += <span class="string">'/'</span></div><div class="line">        <span class="keyword">with</span> open(sourceFilePath,<span class="string">'r'</span>, encoding=<span class="string">'utf8'</span>) <span class="keyword">as</span> f:</div><div class="line">            markdownText = f.read()</div><div class="line">        <span class="comment"># 编译出原始 HTML 文本</span></div><div class="line">        rawHtml = self.headTag + markdown.markdown(markdownText,output_format=<span class="string">'html5'</span>)</div><div class="line">        <span class="comment"># 格式化 HTML 文本为可读性更强的格式</span></div><div class="line">        beautifyHtml = BeautifulSoup(rawHtml,<span class="string">'html5lib'</span>).prettify()</div><div class="line">        <span class="keyword">with</span> open(destinationDirectory + outputFileName, <span class="string">'w'</span>, encoding=<span class="string">'utf8'</span>) <span class="keyword">as</span> f:</div><div class="line">            f.write(beautifyHtml)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    mth = MarkdownToHtml()</div><div class="line">    <span class="comment"># 做一个命令行参数列表的浅拷贝，不包含脚本文件名</span></div><div class="line">    argv = sys.argv[<span class="number">1</span>:]</div><div class="line">    <span class="comment"># 目前列表 argv 可能包含源文件路径之外的元素（即选项信息）</span></div><div class="line">    <span class="comment"># 程序最后遍历列表 argv 进行编译 markdown 时，列表中的元素必须全部是源文件路径</span></div><div class="line">    <span class="keyword">if</span> <span class="string">'-s'</span> <span class="keyword">in</span> argv:</div><div class="line">        cssArgIndex = argv.index(<span class="string">'-s'</span>) +<span class="number">1</span></div><div class="line">        cssFilePath = argv[cssArgIndex]</div><div class="line">        <span class="comment"># 检测样式表文件路径是否有效</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isfile(cssFilePath):</div><div class="line">            print(<span class="string">'Invalid Path: '</span> + cssFilePath)</div><div class="line">            sys.exit()</div><div class="line">        mth.genStyle(cssFilePath)</div><div class="line">        <span class="comment"># POP顺序不能随意变化</span></div><div class="line">        argv.pop(cssArgIndex)</div><div class="line">        argv.pop(cssArgIndex<span class="number">-1</span>)</div><div class="line">    <span class="keyword">if</span> <span class="string">'-o'</span> <span class="keyword">in</span> argv:</div><div class="line">        dirArgIndex = argv.index(<span class="string">'-o'</span>) +<span class="number">1</span></div><div class="line">        outputDirectory = argv[dirArgIndex]</div><div class="line">        <span class="comment"># 检测输出目录是否有效</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(outputDirectory):</div><div class="line">            print(<span class="string">'Invalid Directory: '</span> + outputDirectory)</div><div class="line">            sys.exit()</div><div class="line">        <span class="comment"># POP顺序不能随意变化</span></div><div class="line">        argv.pop(dirArgIndex)</div><div class="line">        argv.pop(dirArgIndex<span class="number">-1</span>)</div><div class="line">        argumentsList = [dict([(<span class="string">'sourceFilePath'</span>,filePath), (<span class="string">'destinationDirectory'</span>,outputDirectory)]) <span class="keyword">for</span> filePath <span class="keyword">in</span> argv]</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        argumentsList = [dict([(<span class="string">'sourceFilePath'</span>,filePath)]) <span class="keyword">for</span> filePath <span class="keyword">in</span> argv]</div><div class="line">    <span class="comment"># 至此，列表 argv 中的元素均是源文件路径</span></div><div class="line">    <span class="keyword">for</span> argument <span class="keyword">in</span> argumentsList:</div><div class="line">        <span class="comment"># 检测文件路径是否有效</span></div><div class="line">        <span class="keyword">if</span> os.path.isfile(argument[<span class="string">'sourceFilePath'</span>]):</div><div class="line">            mth.markdownToHtml(**argument)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            print(<span class="string">'Invalid Path: '</span>+argument[<span class="string">'sourceFilePath'</span>])</div></pre></td></tr></table></figure></p>
+            <p><blockquote class="blockquote-center"><br>人生本无意义，唯有寻趣。<br></blockquote></p>
+<h3 id="一个简单的例子"><a href="#一个简单的例子" class="headerlink" title="一个简单的例子"></a>一个简单的例子</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Event::listen(<span class="string">'eloquent.created: App\User'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">Log::info(<span class="string">'haha'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Route::get(<span class="string">'hehe'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">\App\User::forceCreate([</div><div class="line"><span class="string">'name'</span> =&gt; <span class="string">'yangzie'</span>,</div><div class="line"><span class="string">'email'</span> =&gt; <span class="string">'yang11@qq.ttt'</span>,</div><div class="line"><span class="string">'password'</span> =&gt;bcrypt(str_random(<span class="number">6</span>))</div><div class="line">    ]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="比较规整的写法"><a href="#比较规整的写法" class="headerlink" title="比较规整的写法"></a>比较规整的写法</h3><ul>
+<li><p>在Providers\EventServiceProvider.php 添加:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">protected</span> $listen = [</div><div class="line">	<span class="string">'App\Events\UserCreated'</span> =&gt; [</div><div class="line">	<span class="string">'App\Listeners\NotifyAdminUserCreated'</span>,</div><div class="line">	],</div><div class="line">];</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行命令:<br>会生成两个文件<br>Events/UserCreated.php<br>Listeners/NotifyAdminUserCreated.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan event:generate</div></pre></td></tr></table></figure>
+</li>
+<li><p>在User 模型中:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Events</span>\<span class="title">UserCreated</span>;</div><div class="line"></div><div class="line"><span class="keyword">protected</span> $events = [</div><div class="line">	<span class="string">'created'</span> =&gt; UserCreated::class</div><div class="line">];</div></pre></td></tr></table></figure>
+</li>
+<li><p>在监听文件中<br>app\Listeners\NotifyAdminUserCreated.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">(UserCreated $event)</span></span></div><div class="line">&#123;</div><div class="line">	$post = $event-&gt;post;</div><div class="line">	\Log::info($post);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在事件文件中:<br>app\Events\UserCreated.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> $post;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($post)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">$this</span>-&gt;post = $post;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ul>
 
           
         
@@ -434,8 +453,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/28/laravel使用Facades中注意的地方/" itemprop="url">
-                  laravel使用Facades中注意的地方
+                <a class="post-title-link" href="/2017/05/04/mysql中FIND-IN-SET的使用方法/" itemprop="url">
+                  mysql中FIND_IN_SET的使用方法
                 </a>
               
             
@@ -448,8 +467,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-28T10:01:35+08:00" content="2017-02-28">
-              2017-02-28
+            <time itemprop="dateCreated" datetime="2017-05-04T16:41:47+08:00" content="2017-05-04">
+              2017-05-04
             </time>
           </span>
 
@@ -478,11 +497,12 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>你为什么从事喜剧行业？人们总是嘲笑我，所以我想，去他妈的，干脆收他们点儿钱！<br></blockquote><br>sLaravel facades 就是服务容器里那些基类的「静态代理」，相比于传统的静态方法调用，facades 在提供更简洁且丰富的语法的同时，还有更好的可测试性和扩展性。</p>
-<p>所有的 Laravel facades 都在 Illuminate\Support\Facades 这个命名空间下。所以我们可以用类似下面的代码轻松调用：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Facades</span>\<span class="title">Cache</span>;</div><div class="line"></div><div class="line">Route::get(<span class="string">'/cache'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> Cache::get(<span class="string">'key'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<h3 id="使用注意"><a href="#使用注意" class="headerlink" title="使用注意"></a>使用注意</h3><p>使用 facades 最主要的风险就是会引起类的体积的膨胀。由于 facades 使用起来非常简单而且不需要注入，我们会不经意间在单个类中大量使用。不像是使用依赖注入，用得越多，构造方法会越长，在视觉上就会引起注意，提醒你这个类有点太庞大了。所以，在使用 facades 时，要特别注意把类的体积控制在一个合理的范围。<br>在开发第三方扩展包时，如果需要使用和 Laravel 交互的扩展包，最好是注入 Laravel contracts 而不是使用 facades，因为扩展包不是在 Laravel 内部使用的，无法使用 Laravel 的 facades 的测试辅助函数。</p>
-<h3 id="Laravel-contracts"><a href="#Laravel-contracts" class="headerlink" title="Laravel contracts"></a>Laravel contracts</h3><p>Laravel 中的 Contract 是一组定义了框架核心服务的接口。例如，<code>Illuminate\Contracts\Queue\Queue contract</code> 定义了实现队列任务所需实现的方法，而 <code>Illuminate\Contracts\Mail\Mailer</code> contract 定义了发送邮件所需要实现的方法。</p>
-<p>框架为每个 contract 都提供了一个相对应的实现。例如，Laravel 为队列提供了各种驱动的实现，以及基于 SwiftMailer 对邮件功能的实现。</p>
+            <p><blockquote class="blockquote-center"><br>我想用余生为你暖一盏茶，晚风微扬时勿忘归家。<br></blockquote></p>
+<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>在mysql中，有时我们在做数据库查询时，需要得到某字段中包含某个值的记录，但是它也不是用like能解决的，使用like可能查到我们不想要的记录，它比like更精准，这时候mysql的FIND_IN_SET函数就派上用场了.</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>str 要查询的字符串</p>
+<p>area 字段名 参数以”,”分隔 如 (1,2,6,8)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">where</span> FIND_IN_SET(<span class="string">'1'</span>,area)</div></pre></td></tr></table></figure>
+<h3 id="FIND-IN-SET和like的区别"><a href="#FIND-IN-SET和like的区别" class="headerlink" title="FIND_IN_SET和like的区别"></a>FIND_IN_SET和like的区别</h3><p>like是广泛的模糊匹配，字符串中没有分隔符，Find_IN_SET 是精确匹配，字段值以英文”,”分隔，Find_IN_SET查询的结果要小于like查询的结果。</p>
 
           
         
@@ -532,8 +552,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/27/如何使用Presenter模式/" itemprop="url">
-                  如何使用Presenter模式?
+                <a class="post-title-link" href="/2017/04/27/mysql去除重复数据/" itemprop="url">
+                  mysql去除重复数据
                 </a>
               
             
@@ -546,8 +566,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-27T13:59:35+08:00" content="2017-02-27">
-              2017-02-27
+            <time itemprop="dateCreated" datetime="2017-04-27T18:55:44+08:00" content="2017-04-27">
+              2017-04-27
             </time>
           </span>
 
@@ -576,10 +596,9 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>岁月不饶人，我亦未曾饶过岁月。<br></blockquote><br>避免在模板中使用过多的复杂的判断,@inject 的用法</p>
-<h3 id="新建文件-app-Presenters-UserPresenter-php"><a href="#新建文件-app-Presenters-UserPresenter-php" class="headerlink" title="新建文件 app\Presenters\UserPresenter.php"></a>新建文件 app\Presenters\UserPresenter.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Presenters</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserPresenter</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">($name)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> ($name == <span class="string">'Laurine Deckow'</span>)</div><div class="line">            $fullName = <span class="string">'Mr. '</span> . $name;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            $fullName = <span class="string">'Mrs. '</span> . $name;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> $fullName;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="控制器-app-Http-Controllers-UserController-php"><a href="#控制器-app-Http-Controllers-UserController-php" class="headerlink" title="控制器 app\Http\Controllers\UserController.php"></a>控制器 app\Http\Controllers\UserController.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">User</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line">&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        $users = User::all();</div><div class="line">        <span class="keyword">return</span> view(<span class="string">'home/user'</span>,[<span class="string">'users'</span>=&gt;$users]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="视图-resources-views-home-user-blade-php"><a href="#视图-resources-views-home-user-blade-php" class="headerlink" title="视图 resources\views\home\user.blade.php"></a>视图 resources\views\home\user.blade.php</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list-group"</span>&gt;</span></div><div class="line">    @inject('UserPresenter','App\Presenters\UserPresenter')</div><div class="line">    @foreach($users as $user)</div><div class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-group-item"</span>&gt;</span></div><div class="line">            &#123;&#123; $UserPresenter-&gt;setName($user-&gt;name) &#125;&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    @endforeach</div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+            <p><blockquote class="blockquote-center"><br>悟已往之不谏，知来者之可追。实迷途其未远，觉今是而昨非。<br></blockquote></p>
+<h3 id="保留ID最小的"><a href="#保留ID最小的" class="headerlink" title="保留ID最小的"></a>保留ID最小的</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">NAMES</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> <span class="keyword">NOT</span> <span class="keyword">IN</span>( <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> <span class="keyword">MIN</span>(n.id)<span class="keyword">FROM</span> <span class="keyword">NAMES</span> n GROUPBY n.name) x)</div></pre></td></tr></table></figure>
+<h3 id="保留ID最大的"><a href="#保留ID最大的" class="headerlink" title="保留ID最大的"></a>保留ID最大的</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">NAMES</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> <span class="keyword">NOT</span> <span class="keyword">IN</span>( <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> <span class="keyword">MAX</span>(n.id)<span class="keyword">FROM</span> <span class="keyword">NAMES</span> n GROUPBY n.name) x)</div></pre></td></tr></table></figure>
 
           
         
@@ -629,8 +648,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/27/laravel的中大型架构/" itemprop="url">
-                  laravel的中大型架构
+                <a class="post-title-link" href="/2017/04/27/scrapy爬去西刺ip列表/" itemprop="url">
+                  scrapy爬去西刺ip列表
                 </a>
               
             
@@ -643,8 +662,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-27T11:40:41+08:00" content="2017-02-27">
-              2017-02-27
+            <time itemprop="dateCreated" datetime="2017-04-27T18:48:20+08:00" content="2017-04-27">
+              2017-04-27
             </time>
           </span>
 
@@ -673,10 +692,12 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>孤独到死是一个天才最好的归宿，毕竟，这个世界配不上他<br></blockquote><br>解决我们的控制器,模型过于肥大的问题<br>那我們該怎麼寫呢？別將我們的思維侷限在 MVC 內 :<br>Model : 僅當成 Eloquent class。<br>Repository : 輔助 model，處理資料庫邏輯，然後注入到 service。<br>Service : 輔助 controller，處理商業邏輯，然後注入到 controller。<br>Controller : 接收 HTTP request，調用其他 service。<br>Presenter : 處理顯示邏輯，然後注入到 view。<br>View : 使用 blade 將資料 binding 到 HTML。</p>
-<blockquote>
-<p><a href="http://oomusou.io/laravel/laravel-architecture" target="_blank" rel="external">http://oomusou.io/laravel/laravel-architecture</a></p>
-</blockquote>
+            <p><blockquote class="blockquote-center"><br>零落成泥碾作尘，只有香如故。<br></blockquote></p>
+<h3 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h3><p>执行命令:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrapy startproject xici</div></pre></td></tr></table></figure></p>
+<h3 id="新建爬虫"><a href="#新建爬虫" class="headerlink" title="新建爬虫"></a>新建爬虫</h3><p>进入到xici目录执行命令<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrapy genspider aixici www.xicidaili.com</div></pre></td></tr></table></figure></p>
+<h3 id="编写items"><a href="#编写items" class="headerlink" title="编写items"></a>编写items</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> scrapy</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">XiciItem</span><span class="params">(scrapy.Item)</span>:</span></div><div class="line"><span class="comment"># define the fields for your item here like:</span></div><div class="line"><span class="comment"># name = scrapy.Field()</span></div><div class="line">ip         = scrapy.Field()</div><div class="line">port       = scrapy.Field()</div><div class="line">possion    = scrapy.Field()</div><div class="line">type       = scrapy.Field()</div><div class="line">speed      = scrapy.Field()</div><div class="line">last_time  = scrapy.Field()</div></pre></td></tr></table></figure>
+<h3 id="编写爬虫"><a href="#编写爬虫" class="headerlink" title="编写爬虫"></a>编写爬虫</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">import</span> scrapy</div><div class="line"><span class="keyword">from</span> xici.items <span class="keyword">import</span>  XiciItem</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AixiciSpider</span><span class="params">(scrapy.Spider)</span>:</span></div><div class="line">name = <span class="string">"aixici"</span></div><div class="line">allowed_domains = [<span class="string">"www.xicidaili.com"</span>]</div><div class="line">start_urls = [<span class="string">'http://www.xicidaili.com/'</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></div><div class="line">reqs = []</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">10</span>):</div><div class="line">req = scrapy.Request(<span class="string">'http://www.xicidaili.com/nn/%s'</span>%i)</div><div class="line">reqs.append(req)</div><div class="line"></div><div class="line"><span class="keyword">return</span> reqs</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></div><div class="line">ip_list = response.xpath(<span class="string">'//*[@id="ip_list"]'</span>)</div><div class="line">trs = ip_list[<span class="number">0</span>].xpath(<span class="string">'tr'</span>)</div><div class="line">items = []</div><div class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> trs[<span class="number">1</span>:]:</div><div class="line">pre_item = XiciItem()</div><div class="line">pre_item[<span class="string">'ip'</span>] = ip.xpath(<span class="string">'td[2]/text()'</span>)[<span class="number">0</span>].extract()</div><div class="line">pre_item[<span class="string">'port'</span>] = ip.xpath(<span class="string">'td[3]/text()'</span>)[<span class="number">0</span>].extract()</div><div class="line">pre_item[<span class="string">'possion'</span>] = ip.xpath(<span class="string">'td[4]'</span>)[<span class="number">0</span>].extract().strip()</div><div class="line">pre_item[<span class="string">'type'</span>] = ip.xpath(<span class="string">'td[6]/text()'</span>)[<span class="number">0</span>].extract()</div><div class="line">pre_item[<span class="string">'speed'</span>] = ip.xpath(<span class="string">'td[7]/div[@class="bar"]/@title'</span>).re(<span class="string">'\d&#123;0,2&#125;\.\d&#123;0,&#125;'</span>)[<span class="number">0</span>]</div><div class="line">pre_item[<span class="string">'last_time'</span>] = ip.xpath(<span class="string">'td[10]/text()'</span>)[<span class="number">0</span>].extract()</div><div class="line">items.append(pre_item)</div><div class="line"><span class="keyword">return</span> items</div></pre></td></tr></table></figure>
+<h3 id="运行爬虫"><a href="#运行爬虫" class="headerlink" title="运行爬虫"></a>运行爬虫</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrapy crawl aixici -o item.json</div></pre></td></tr></table></figure>
 
           
         
@@ -709,7 +730,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -750,7 +771,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">135</span>
+              <span class="site-state-item-count">152</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -760,7 +781,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

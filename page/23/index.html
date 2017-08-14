@@ -240,8 +240,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/22/深入理解PHP原理之foreach/" itemprop="url">
-                  深入理解PHP原理之foreach
+                <a class="post-title-link" href="/2016/10/25/python的一些抽象理解/" itemprop="url">
+                  python的一些抽象理解
                 </a>
               
             
@@ -254,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T10:17:37+08:00" content="2016-08-22">
-              2016-08-22
+            <time itemprop="dateCreated" datetime="2016-10-25T09:02:11+08:00" content="2016-10-25">
+              2016-10-25
             </time>
           </span>
 
@@ -284,13 +284,314 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>我们走得太快，灵魂都跟不上了 …<br></blockquote><br>今天偶然看到鸟哥(php)的博客‘ 深入理解PHP原理之foreach’，可惜自己功力尚欠，内部的机理看不明白，但也稍微记录一下，毕竟这个问题自己以前从来没有考虑过。</p>
-<h4 id="以下内容摘自鸟哥的博客"><a href="#以下内容摘自鸟哥的博客" class="headerlink" title="以下内容摘自鸟哥的博客"></a>以下内容摘自鸟哥的博客</h4><p>经常会有人问我, PHP的数组, 如果用foreach来访问, 遍历的顺序是固定的么? 以什么顺序遍历呢?<br>比如:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$arr[<span class="string">'laruence'</span>] = <span class="string">'huixinchen'</span>;</div><div class="line">$arr[<span class="string">'yahoo'</span>]    = <span class="number">2007</span>;</div><div class="line">$arr[<span class="string">'baidu'</span>]    = <span class="number">2008</span>;</div><div class="line"><span class="keyword">foreach</span> ($arr <span class="keyword">as</span> $key =&gt; $val) &#123;</div><div class="line"><span class="comment">//结果是什么?</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>结果：<br>huixinchen20072008</p>
-<p>又比如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$arr[<span class="number">2</span>] = <span class="string">'huixinchen'</span>;</div><div class="line">$arr[<span class="number">1</span>]  = <span class="number">2007</span>;</div><div class="line">$arr[<span class="number">0</span>]  = <span class="number">2008</span>;</div><div class="line"><span class="keyword">foreach</span> ($arr <span class="keyword">as</span> $key =&gt; $val) &#123;</div><div class="line"><span class="comment">//现在结果又是什么?</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>结果：<br>huixinchen 2007 2008</p>
-<p>要完全了解清楚这个问题, 我想首先应该要大家了解PHP数组的内部实现结构………<br>在PHP中, 数组是用一种HASH结构(HashTable)来实现的, PHP使用了一些机制, 使得可以在O(1)的时间复杂度下实现数组的增删, 并同时支持线性遍历和随机访问.</p>
-<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>PHP中遍历数组的顺序, 是和元素的添加先后相关的；<br>所以, 如果你想在数字索引的数组中按照索引大小遍历, 那么你就应该使用for, 而不是foreach<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>($i=<span class="number">0</span>,$l=count($arr); $i&lt;$l; $i++) &#123;</div><div class="line"> <span class="comment">//这个时候,不能认为是顺序遍历(线性遍历)</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+            <p><blockquote class="blockquote-center"><br>除了现实中的蝇营狗苟，我的心中还住着星辰大海<br></blockquote></p>
+<h3 id="关于导入"><a href="#关于导入" class="headerlink" title="关于导入"></a>关于导入</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> urlopen</div><div class="line"><span class="comment"># 在urllib库里查找request模块，只导入一个urlopen函数</span></div></pre></td></tr></table></figure>
+<h3 id="range用法"><a href="#range用法" class="headerlink" title="range用法"></a>range用法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#代表从1到5(不包含5)</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">5</span>):</div><div class="line">    print(i)</div><div class="line"></div><div class="line"><span class="comment">#代表从1到5，间隔2(不包含5)</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">5</span>,<span class="number">2</span>):</div><div class="line">    print(i)</div><div class="line"></div><div class="line"><span class="comment">#代表从0到5(不包含5)</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</div><div class="line">    print(i)</div></pre></td></tr></table></figure>
+<h3 id="时间的用法"><a href="#时间的用法" class="headerlink" title="时间的用法"></a>时间的用法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 格式化当前时间</span></div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">print</span> (time.strftime(<span class="string">"%Y-%m-%d %H:%M:%S"</span>, time.localtime()))</div><div class="line"></div><div class="line"><span class="comment"># 休息间隔2秒</span></div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">7</span>):</div><div class="line">    time.sleep(<span class="number">2</span>)</div><div class="line">    print(i)</div><div class="line"></div><div class="line"><span class="comment"># 当前时间戳</span></div><div class="line"><span class="keyword">import</span> time</div><div class="line">print(time.time())</div></pre></td></tr></table></figure>
+<h3 id="format-格式化"><a href="#format-格式化" class="headerlink" title="format 格式化"></a>format 格式化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_links_from</span><span class="params">(channel,pages)</span>:</span></div><div class="line">    list_view = <span class="string">'&#123;&#125;/pn&#123;&#125;'</span>.format(channel,str(pages))</div><div class="line">    wb_data = requests.get(list_view)</div><div class="line">    time.sleep(<span class="number">1</span>)</div><div class="line">    soup = BeautifulSoup(wb_data.text,<span class="string">'lxml'</span>)</div><div class="line">    <span class="keyword">if</span> soup.find(<span class="string">'td'</span>,<span class="string">'t'</span>):</div><div class="line">        <span class="keyword">for</span> link <span class="keyword">in</span> soup.select(<span class="string">'td.t &gt; a.t'</span>):</div><div class="line">            item_link = link.get(<span class="string">'href'</span>).split(<span class="string">'?'</span>)[<span class="number">0</span>]</div><div class="line">            tb58.insert_one(item_link)</div><div class="line">            print(item_link)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">pass</span></div></pre></td></tr></table></figure>
+<h3 id="if-else-结构"><a href="#if-else-结构" class="headerlink" title="if else 结构"></a>if else 结构</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">number = <span class="number">23</span></div><div class="line">guess = int(input(<span class="string">'请输入一个整数：'</span>))      <span class="comment">#等待输入整数</span></div><div class="line"><span class="keyword">if</span> guess == number:</div><div class="line">    print(<span class="string">'恭喜，你猜对了。'</span>)    <span class="comment"># 新块从这里开始</span></div><div class="line">    print(<span class="string">'(但你没有获得任何奖品！)'</span>)    <span class="comment"># 新块在这里结束</span></div><div class="line"><span class="keyword">elif</span> guess &lt; number:</div><div class="line">    print(<span class="string">'不对，你猜的有点儿小'</span>)    <span class="comment"># 另一个块</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">    print(<span class="string">'不对，你猜的有点大'</span>)</div><div class="line">print(<span class="string">'完成'</span>)</div><div class="line"><span class="comment"># if语句执行完后，最后的语句总是被执行</span></div></pre></td></tr></table></figure>
+<h3 id="pass"><a href="#pass" class="headerlink" title="pass"></a>pass</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#1、空语句 do nothing</span></div><div class="line"><span class="comment">#2、保证格式完整</span></div><div class="line"><span class="comment">#3、保证语义完整</span></div><div class="line">以<span class="keyword">if</span>语句为例，在c或c++/java中：</div><div class="line"><span class="keyword">if</span>(true)  </div><div class="line">;//do nothing  </div><div class="line"><span class="keyword">else</span>  </div><div class="line">&#123;  </div><div class="line">//do something  </div><div class="line">&#125;  </div><div class="line"><span class="comment"># 而在python中</span></div><div class="line"><span class="keyword">if</span> true:  </div><div class="line"><span class="keyword">pass</span> <span class="comment">#do nothing  </span></div><div class="line"><span class="keyword">else</span>:  </div><div class="line"><span class="comment">#do something</span></div></pre></td></tr></table></figure>
+<h3 id="map函数"><a href="#map函数" class="headerlink" title="map函数"></a>map函数</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># map()函数接收两个参数，一个是函数，一个是序列，map将传入的函数依次作</span></div><div class="line"><span class="comment">#用到序列的每个元素并把结果作为新的list返回。</span></div><div class="line"><span class="comment">#在python3里面，map()的返回值已经不再是list,而是iterators</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(x)</span>:</span></div><div class="line">    <span class="keyword">return</span> x * x</div><div class="line">a = map(f, [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>])</div><div class="line">print(list(a))</div></pre></td></tr></table></figure>
+<h3 id="导入函数和变量"><a href="#导入函数和变量" class="headerlink" title="导入函数和变量"></a>导入函数和变量</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 位于同一个文件夹下两个py文件</span></div><div class="line"><span class="comment"># demo.py,定义一个函数和变量</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">haha</span><span class="params">()</span>:</span></div><div class="line">    print(<span class="string">'haha'</span>)</div><div class="line">list = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line"></div><div class="line"><span class="comment"># test.py,调用这个函数和变量</span></div><div class="line"><span class="keyword">import</span> demo</div><div class="line">test.haha()</div><div class="line">print(test.list)</div><div class="line"></div><div class="line"><span class="comment"># 也可以选择仅仅导入函数或者变量</span></div><div class="line"><span class="keyword">from</span> test <span class="keyword">import</span> haha</div><div class="line">haha()</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/24/BeautifulSoup的一写用法/" itemprop="url">
+                  BeautifulSoup的一写用法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-24T23:05:16+08:00" content="2016-10-24">
+              2016-10-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>世界上最廉价的东西就是男人一事无成时的温柔。<br></blockquote></p>
+<h3 id="strings-和-stripped-strings"><a href="#strings-和-stripped-strings" class="headerlink" title=".strings 和 stripped_strings"></a>.strings 和 stripped_strings</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#如果tag中包含多个字符串,可以使用 .strings 来循环获取:</span></div><div class="line"><span class="comment">#输出的字符串中可能包含了很多空格或空行,使用 .stripped_strings </span></div><div class="line"><span class="comment">#可以去除多余空白内容:</span></div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span>  requests</div><div class="line">url = <span class="string">'http://www.tripadvisor.cn/Attractions-g60763-Activities-New_York_City_New_York.html'</span></div><div class="line">wbData = requests.get(url)</div><div class="line">response = BeautifulSoup(wbData.text,<span class="string">'lxml'</span>)</div><div class="line">titles = response.select(<span class="string">'div.property_title &gt; a[target="_blank"]'</span>)</div><div class="line">images = response.select(<span class="string">'img[width:"160"]'</span>)</div><div class="line">cates = response.select(<span class="string">'div.p13n_reasoning_v2'</span>)</div><div class="line"><span class="keyword">for</span> title,image,cate <span class="keyword">in</span> zip(titles,images,cates):</div><div class="line">    data = &#123;</div><div class="line">        <span class="string">'title'</span>:title.get_text(),</div><div class="line">        <span class="string">'image'</span>:image.get(<span class="string">'src'</span>),</div><div class="line">        <span class="string">'cate'</span>:list(cate.stripped_strings)</div><div class="line">    &#125;</div><div class="line">    print(data)</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/24/python字符串操作/" itemprop="url">
+                  python字符串操作
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-24T21:48:09+08:00" content="2016-10-24">
+              2016-10-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>你那能叫活着么？你那只能叫没死。<br></blockquote></p>
+<h3 id="去空格"><a href="#去空格" class="headerlink" title="去空格"></a>去空格</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#strip 同时去掉左右两边的空格</span></div><div class="line"><span class="comment">#lstrip 去掉左边的空格</span></div><div class="line"><span class="comment">#rstrip 去掉右边的空格</span></div><div class="line">s = <span class="string">'  yang guo qi   '</span></div><div class="line">s= s.strip()</div><div class="line">print(s)</div></pre></td></tr></table></figure>
+<h3 id="去一些特殊符号"><a href="#去一些特殊符号" class="headerlink" title="去一些特殊符号"></a>去一些特殊符号</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">s = <span class="string">'  yang guo qi  , '</span></div><div class="line">s= s.strip().strip(<span class="string">','</span>)</div><div class="line">print(s)</div></pre></td></tr></table></figure>
+<h3 id="计算长度"><a href="#计算长度" class="headerlink" title="计算长度"></a>计算长度</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">s = <span class="string">'  yang guo qi  , '</span></div><div class="line">s= len(s)</div><div class="line">print(s)</div></pre></td></tr></table></figure>
+<h3 id="大小写转换"><a href="#大小写转换" class="headerlink" title="大小写转换"></a>大小写转换</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">s = <span class="string">'  yang guo qi  , '</span></div><div class="line">s= s.upper()</div><div class="line">print(s)</div><div class="line"></div><div class="line">s = <span class="string">'  Yang guo qi  , '</span></div><div class="line">s= s.lower()</div><div class="line">print(s)</div></pre></td></tr></table></figure>
+<h3 id="反转字符串"><a href="#反转字符串" class="headerlink" title="反转字符串"></a>反转字符串</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">s = <span class="string">'  Yang guo qi  , '</span></div><div class="line">s= s[::<span class="number">-1</span>]</div><div class="line">print(s)</div></pre></td></tr></table></figure>
+<h3 id="查找字符串"><a href="#查找字符串" class="headerlink" title="查找字符串"></a>查找字符串</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">s = <span class="string">'  Yang guo qi  , '</span></div><div class="line">d = <span class="string">'qi'</span></div><div class="line">print(s.find(d))</div><div class="line"><span class="comment"># 返回位置</span></div></pre></td></tr></table></figure>
+<h3 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">str = ’<span class="number">0123456789</span>′</div><div class="line"><span class="keyword">print</span> (str[<span class="number">0</span>:<span class="number">3</span>]) <span class="comment">#截取第一位到第三位的字符</span></div><div class="line"><span class="keyword">print</span> (str[:]) <span class="comment">#截取字符串的全部字符</span></div><div class="line"><span class="keyword">print</span> (str[<span class="number">6</span>:]) <span class="comment">#截取第七个字符到结尾</span></div><div class="line"><span class="keyword">print</span> (str[:<span class="number">-3</span>]) <span class="comment">#截取从头开始到倒数第三个字符之前</span></div><div class="line"><span class="keyword">print</span> (str[<span class="number">2</span>]) <span class="comment">#截取第三个字符</span></div><div class="line"><span class="keyword">print</span> (str[<span class="number">-1</span>]) <span class="comment">#截取倒数第一个字符</span></div><div class="line"><span class="keyword">print</span> (str[::<span class="number">-1</span>]) <span class="comment">#创造一个与原字符串顺序相反的字符串</span></div><div class="line"><span class="keyword">print</span> (str[<span class="number">-3</span>:<span class="number">-1</span>]) <span class="comment">#截取倒数第三位与倒数第一位之前的字符</span></div><div class="line"><span class="keyword">print</span> (str[<span class="number">-3</span>:]) <span class="comment">#截取倒数第三位到结尾</span></div><div class="line"><span class="keyword">print</span> (str[:<span class="number">-5</span>:<span class="number">-3</span>]) <span class="comment">#逆序截取，具体啥意思没搞明白？</span></div></pre></td></tr></table></figure>
+<h3 id="分割字符串"><a href="#分割字符串" class="headerlink" title="分割字符串"></a>分割字符串</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">s = <span class="string">'Yang,guo qi'</span></div><div class="line">d = s.split(<span class="string">','</span>)</div><div class="line">print(d)</div><div class="line"></div><div class="line">sStr1 = <span class="string">'ab,cde,fgh,ijk'</span></div><div class="line">sStr2 = <span class="string">','</span></div><div class="line">sStr1 = sStr1[sStr1.find(sStr2) + <span class="number">1</span>:]</div><div class="line">print(sStr1)</div></pre></td></tr></table></figure>
+<h3 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span></div><div class="line">s = <span class="string">'this is my &#123;&#125;'</span>.format(<span class="string">'dog'</span>)</div><div class="line">print(s)</div><div class="line"><span class="number">2.</span></div><div class="line">s = <span class="string">'this is my &#123;&#125; and &#123;&#125;'</span>.format(<span class="string">'dog'</span>,<span class="string">'cat'</span>)</div><div class="line">print(s)</div><div class="line"><span class="number">3.</span> 语法求解释</div><div class="line">urls = [<span class="string">'oa&#123;&#125;-New_York'</span>.format(str(i)) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">30</span>,<span class="number">930</span>,<span class="number">30</span>)]</div><div class="line">print(urls)</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/24/python爬虫第一周/" itemprop="url">
+                  python爬虫第一周
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-24T21:32:09+08:00" content="2016-10-24">
+              2016-10-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>身不饥寒，天未曾负我；学无长进，我何以对天<br></blockquote></p>
+<h3 id="安装lxml"><a href="#安装lxml" class="headerlink" title="安装lxml"></a>安装lxml</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> 首先安装pip install wheel</div><div class="line"><span class="number">2.</span> 在这里下载对应的.whl文件，注意别改文件名！</div><div class="line">   http://www.lfd.uci.edu/~gohlke/pythonlibs/<span class="comment">#lxml</span></div><div class="line">   cp后面是Python的版本号，<span class="number">27</span>表示<span class="number">2.7</span>，根据你的Python版本选择下载。</div><div class="line"><span class="number">3.</span> pip install 带后缀的完整文件名</div></pre></td></tr></table></figure>
+<h3 id="例子-一"><a href="#例子-一" class="headerlink" title="例子(一)"></a>例子(一)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span>  urlopen</div><div class="line">resp = urlopen(<span class="string">'http://www.tooopen.com/img/87.aspx'</span>).read().decode(<span class="string">'utf-8'</span>)</div><div class="line">Soup = BeautifulSoup(resp,<span class="string">'lxml'</span>)</div><div class="line">images = Soup.select(<span class="string">'title'</span>)</div><div class="line"><span class="keyword">for</span> image <span class="keyword">in</span> images:</div><div class="line">    print(image.get_text())</div></pre></td></tr></table></figure>
+<h3 id="例子-二"><a href="#例子-二" class="headerlink" title="例子(二)"></a>例子(二)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span>  urlopen</div><div class="line">resp = urlopen(<span class="string">'http://www.tooopen.com/img/87.aspx'</span>).read().decode(<span class="string">'utf-8'</span>)</div><div class="line">Soup = BeautifulSoup(resp,<span class="string">'lxml'</span>)</div><div class="line">images = Soup.select(<span class="string">'img'</span>)</div><div class="line"><span class="keyword">for</span> image <span class="keyword">in</span> images:</div><div class="line">    print(image.get(<span class="string">'src'</span>))</div></pre></td></tr></table></figure>
+<h3 id="例子-三"><a href="#例子-三" class="headerlink" title="例子(三)"></a>例子(三)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> requests</div><div class="line">url = <span class="string">'http://zhuanzhuan.58.com/detail/789842404801118212z.shtml'</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getInfo</span><span class="params">(url)</span>:</span></div><div class="line">    wpData = requests.get(url)</div><div class="line">    soup = BeautifulSoup(wpData.text,<span class="string">'lxml'</span>)</div><div class="line">    title = soup.title.text</div><div class="line">    price = soup.select(<span class="string">'.price_now &gt; i'</span>)</div><div class="line">    tags = soup.select(<span class="string">'.qual_label'</span>)</div><div class="line">    <span class="keyword">return</span> tags</div><div class="line"></div><div class="line">data = getInfo(url)</div><div class="line"><span class="keyword">for</span> tag <span class="keyword">in</span> data:</div><div class="line">    print(tag.text)</div></pre></td></tr></table></figure>
+<h3 id="传递http头部"><a href="#传递http头部" class="headerlink" title="传递http头部"></a>传递http头部</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span>  requests</div><div class="line">url = <span class="string">'http://www.tripadvisor.cn/Saves#525792'</span></div><div class="line">headers = &#123;</div><div class="line">    <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWeb....36'</span>,</div><div class="line">    <span class="string">'Cookie'</span>:<span class="string">'TASSK=eNs%2BEc2TG.....0N9BrZpKwsTH%2BAwg%3D...; NPID='</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">wpData = requests.get(url,headers = headers)</div><div class="line">soup = BeautifulSoup(wpData.text,<span class="string">'lxml'</span>)</div><div class="line">titles = soup.select(<span class="string">'div.title'</span>)</div><div class="line">print(soup)</div></pre></td></tr></table></figure>
+<h3 id="构建多页数延迟访问"><a href="#构建多页数延迟访问" class="headerlink" title="构建多页数延迟访问"></a>构建多页数延迟访问</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span>  requests</div><div class="line"><span class="keyword">import</span> time</div><div class="line">urls = [<span class="string">'http://www.tripadvisor.cn/...-oa&#123;&#125;-New_Y...rk.html#ATTRACTION_LIST'</span>.format(str(i)) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">30</span>,<span class="number">930</span>,<span class="number">30</span>)]</div><div class="line"><span class="keyword">for</span> url <span class="keyword">in</span> urls:</div><div class="line">    time.sleep(<span class="number">2</span>)</div><div class="line">    print(url)</div></pre></td></tr></table></figure>
+<h3 id="异步加载"><a href="#异步加载" class="headerlink" title="异步加载"></a>异步加载</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在 chrome 浏览器中找到有规律的，xhr请求链接</div></pre></td></tr></table></figure>
+<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ul>
+<li>一般PC端的数据如果不能直接拿到，可以尝试访问手机端从而直接达到目的</li>
+</ul>
 
           
         
@@ -340,8 +641,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/21/免费分享视频教程/" itemprop="url">
-                  免费分享视频教程
+                <a class="post-title-link" href="/2016/10/24/laravel中如何打印sql/" itemprop="url">
+                  laravel中如何打印sql
                 </a>
               
             
@@ -354,8 +655,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-21T21:16:25+08:00" content="2016-08-21">
-              2016-08-21
+            <time itemprop="dateCreated" datetime="2016-10-24T10:13:28+08:00" content="2016-10-24">
+              2016-10-24
             </time>
           </span>
 
@@ -384,439 +685,12 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>每周更新<br></blockquote></p>
-<h3 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h3><blockquote>
-<p>此处视频全部免费分享，密码请进QQ群(481968179)，进群请输入自己的淘宝用户名，谢谢<br>该群只向已经给予好评的亲开放，谢谢<br>若链接失效，联系QQ：1192414556<br>如果您在平时学习的过程中有什么困惑或者需要我帮忙的，也请联系我的QQ</p>
-</blockquote>
-<h3 id="电子书"><a href="#电子书" class="headerlink" title="电子书"></a>电子书</h3><ul>
-<li>PHP 书籍库<br>链接: <a href="http://pan.baidu.com/s/1hrMsFuW" target="_blank" rel="external">http://pan.baidu.com/s/1hrMsFuW</a> 密码: 8jve</li>
-</ul>
-<h3 id="vue-js"><a href="#vue-js" class="headerlink" title="vue js"></a>vue js</h3><ul>
-<li>爱上vue js  (1.1G)<br>链接: <a href="https://pan.baidu.com/s/1qXX46W8" target="_blank" rel="external">https://pan.baidu.com/s/1qXX46W8</a> 密码: <em>**</em></li>
-<li>vue js 和jquery的区别  (199M)<br>链接: <a href="https://pan.baidu.com/s/1gfM7Omn" target="_blank" rel="external">https://pan.baidu.com/s/1gfM7Omn</a> 密码: <em>**</em></li>
-<li>英文视频合集(20多个视频)<br>链接: <a href="https://pan.baidu.com/s/1b4lcYE" target="_blank" rel="external">https://pan.baidu.com/s/1b4lcYE</a> 密码: <em>**</em></li>
-</ul>
-<h3 id="backbone-js"><a href="#backbone-js" class="headerlink" title="backbone js"></a>backbone js</h3><ul>
-<li>电子书分享(2本)<br>链接：<a href="http://pan.baidu.com/s/1c2mgfeS" target="_blank" rel="external">http://pan.baidu.com/s/1c2mgfeS</a> 密码：<em>**</em></li>
-</ul>
-<h3 id="laravel"><a href="#laravel" class="headerlink" title="laravel"></a>laravel</h3><ul>
-<li>离线文档<br>链接: <a href="https://pan.baidu.com/s/1o7P1grK" target="_blank" rel="external">https://pan.baidu.com/s/1o7P1grK</a> 密码: <em>**</em></li>
-</ul>
-<h3 id="php"><a href="#php" class="headerlink" title="php"></a>php</h3><ul>
-<li>phpCon2016 大会完整视频以及ppt<br>链接: <a href="https://pan.baidu.com/s/1i5kAag9" target="_blank" rel="external">https://pan.baidu.com/s/1i5kAag9</a> 密码: <em>**</em></li>
-<li>php7 视频<br>链接: <a href="https://pan.baidu.com/s/1miuFc6k" target="_blank" rel="external">https://pan.baidu.com/s/1miuFc6k</a> 密码: <em>**</em>  </li>
-<li>yii视频教程<br>链接: <a href="http://pan.baidu.com/s/1pKX8BAr" target="_blank" rel="external">http://pan.baidu.com/s/1pKX8BAr</a> 密码: <em>**</em></li>
-<li><p>基于CI的电子商城项目<br>链接: <a href="http://pan.baidu.com/s/1nv6O5cd" target="_blank" rel="external">http://pan.baidu.com/s/1nv6O5cd</a> 密码: <em>**</em></p>
-</li>
-<li><p>php面向对象<br>链接: <a href="https://pan.baidu.com/s/1c1FE9Xm" target="_blank" rel="external">https://pan.baidu.com/s/1c1FE9Xm</a> 密码: <em>**</em></p>
-</li>
-<li><p>smarty3 视频教程<br>链接: <a href="https://pan.baidu.com/s/1o7JxWqm" target="_blank" rel="external">https://pan.baidu.com/s/1o7JxWqm</a> 密码: <em>**</em>  </p>
-</li>
-</ul>
-<h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><ul>
-<li><p>webpack视频<br>链接: <a href="https://pan.baidu.com/s/1jIuc2jG" target="_blank" rel="external">https://pan.baidu.com/s/1jIuc2jG</a> 密码: <em>**</em></p>
-</li>
-<li><p>bootstrap视频教程<br>链接: <a href="https://pan.baidu.com/s/1i4EgZRn" target="_blank" rel="external">https://pan.baidu.com/s/1i4EgZRn</a> 密码: <em>**</em></p>
-</li>
-<li><p>html5 入门视频教程<br>链接：<a href="http://pan.baidu.com/s/1geGlZt5" target="_blank" rel="external">http://pan.baidu.com/s/1geGlZt5</a> 密码：<em>**</em></p>
-</li>
-<li><p>Grunt视频教程<br>链接: <a href="https://pan.baidu.com/s/1qYtQ4KO" target="_blank" rel="external">https://pan.baidu.com/s/1qYtQ4KO</a> 密码: <em>**</em></p>
-</li>
-<li><p>Gulp视频教程<br>链接: <a href="https://pan.baidu.com/s/1bCtIMi" target="_blank" rel="external">https://pan.baidu.com/s/1bCtIMi</a> 密码: <em>**</em></p>
-</li>
-<li><p>Bower视频教程<br>链接: <a href="https://pan.baidu.com/s/1i4VIt05" target="_blank" rel="external">https://pan.baidu.com/s/1i4VIt05</a> 密码: <em>**</em></p>
-</li>
-<li><p>html5 网页设计<br>链接：<a href="http://pan.baidu.com/s/1qXX5gAg" target="_blank" rel="external">http://pan.baidu.com/s/1qXX5gAg</a> 密码：<em>**</em></p>
-</li>
-<li><p>html5 坦克大战小游戏开发视频<br>链接：<a href="http://pan.baidu.com/s/1jINhHlW" target="_blank" rel="external">http://pan.baidu.com/s/1jINhHlW</a> 密码：<em>**</em></p>
-</li>
-<li><p>AngularJs 视频教程<br>链接：<a href="http://pan.baidu.com/s/1skG8evj" target="_blank" rel="external">http://pan.baidu.com/s/1skG8evj</a> 密码：<em>**</em></p>
-</li>
-<li><p>后盾网jquery 视频教程<br>链接：<a href="http://pan.baidu.com/s/1skG8evj" target="_blank" rel="external">http://pan.baidu.com/s/1skG8evj</a> 密码：<em>**</em></p>
-</li>
-<li><p>ajax彻底研究<br>链接: <a href="https://pan.baidu.com/s/1dENedLf" target="_blank" rel="external">https://pan.baidu.com/s/1dENedLf</a> 密码: <em>**</em></p>
-</li>
-<li><p>中级前端面试<br>链接: <a href="http://pan.baidu.com/s/1sleXhQd" target="_blank" rel="external">http://pan.baidu.com/s/1sleXhQd</a> 密码: ghfy</p>
-</li>
-<li><p>Angular 2.0<br>链接: <a href="http://pan.baidu.com/s/1jHYzLWy" target="_blank" rel="external">http://pan.baidu.com/s/1jHYzLWy</a> 密码: 6rn7</p>
-<h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3></li>
-<li>nginx 视频课程<br>链接：<a href="http://pan.baidu.com/s/1jHVF0ay" target="_blank" rel="external">http://pan.baidu.com/s/1jHVF0ay</a> 密码：<em>**</em></li>
-</ul>
-<h3 id="thinkphp"><a href="#thinkphp" class="headerlink" title="thinkphp"></a>thinkphp</h3><ul>
-<li>入门视频这一个就够了<br>链接：<a href="http://pan.baidu.com/s/1gfDevqb" target="_blank" rel="external">http://pan.baidu.com/s/1gfDevqb</a> 密码：<em>**</em></li>
-</ul>
-<h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><ul>
-<li>安卓知识路径图(视频 十多G)<br>链接: <a href="https://pan.baidu.com/s/1o8rm3I6" target="_blank" rel="external">https://pan.baidu.com/s/1o8rm3I6</a> 密码: <em>**</em></li>
-</ul>
-<h3 id="ios"><a href="#ios" class="headerlink" title="ios"></a>ios</h3><ul>
-<li>ios 路径图(视频 十多G)<br>链接: <a href="https://pan.baidu.com/s/1c12fWMc" target="_blank" rel="external">https://pan.baidu.com/s/1c12fWMc</a> 密码: <em>**</em></li>
-</ul>
-<h3 id="微信"><a href="#微信" class="headerlink" title="微信"></a>微信</h3><ul>
-<li>开发视频教程<br>链接: <a href="https://pan.baidu.com/s/1i5hTpdz" target="_blank" rel="external">https://pan.baidu.com/s/1i5hTpdz</a> 密码: <em>**</em></li>
-<li>泰牛微信开发视频<br>链接: <a href="https://pan.baidu.com/s/1mh5n2je" target="_blank" rel="external">https://pan.baidu.com/s/1mh5n2je</a> 密码: <em>**</em></li>
-</ul>
-<h3 id="wordpress相关"><a href="#wordpress相关" class="headerlink" title="wordpress相关"></a>wordpress相关</h3><ul>
-<li>主题相关<br>链接: <a href="http://pan.baidu.com/s/1cDrEtK" target="_blank" rel="external">http://pan.baidu.com/s/1cDrEtK</a> 密码: vpua</li>
-<li>其他<br>链接: <a href="http://pan.baidu.com/s/1dFDl7UT" target="_blank" rel="external">http://pan.baidu.com/s/1dFDl7UT</a> 密码: jksj</li>
-</ul>
-<h3 id="数据存储相关"><a href="#数据存储相关" class="headerlink" title="数据存储相关"></a>数据存储相关</h3><ul>
-<li><p>mycat视频教程<br>链接: <a href="https://pan.baidu.com/s/1minnjAg" target="_blank" rel="external">https://pan.baidu.com/s/1minnjAg</a> 密码: <em>**</em></p>
-</li>
-<li><p>redis视频教程<br>链接: <a href="http://pan.baidu.com/s/1nv6O5cd" target="_blank" rel="external">http://pan.baidu.com/s/1nv6O5cd</a> 密码: <em>**</em></p>
-</li>
-<li><p>memcached分布式集群<br>链接: <a href="https://pan.baidu.com/s/1o88iQE2" target="_blank" rel="external">https://pan.baidu.com/s/1o88iQE2</a> 密码: <em>**</em></p>
-</li>
-</ul>
-<h3 id="后端相关"><a href="#后端相关" class="headerlink" title="后端相关"></a>后端相关</h3><ul>
-<li>go语言视频教程<br>链接: <a href="http://pan.baidu.com/s/1o8o5EK6" target="_blank" rel="external">http://pan.baidu.com/s/1o8o5EK6</a> 密码: <em>**</em></li>
-</ul>
-<h3 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h3><ul>
-<li>网络入侵<br>链接: <a href="https://pan.baidu.com/s/1o8jgvLw" target="_blank" rel="external">https://pan.baidu.com/s/1o8jgvLw</a> 密码: <em>**</em></li>
-</ul>
-<h3 id="娱乐大电影"><a href="#娱乐大电影" class="headerlink" title="娱乐大电影"></a>娱乐大电影</h3><ul>
-<li>8T大电影，该有的应该都有了<br><a href="https://yunpan.cn/cMcYmH6LyBC6b" target="_blank" rel="external">https://yunpan.cn/cMcYmH6LyBC6b</a> （提取码：<em>**</em>）</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/18/laravel-session的使用/" itemprop="url">
-                  laravel-session的使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-18T20:06:12+08:00" content="2016-08-18">
-              2016-08-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>幸福，不是长生不老，不是大鱼大肉，不是权倾朝野。幸福是每一个微小的生活愿望达成。当你想吃的时候有得吃，想被爱的时候有人来爱你。<br></blockquote><br>Laravel 默认使用 file 的方式来实现 session的。她并不用php原生的$_SESSION（php原生的session要看php.ini的位置），所以忽略php相关的session函数，例如session_start(), $_SESSION。Laravel在运行过程中会在app/storage/session/目录写入session的信息，所以这个目录需要有写权限，否者session就无法写入成功。</p>
-<p>Laravel除了使用默认的file作为session的实现，还支持cookie, Memcached, Redis 和数据库的后端驱动作为session的实现。必要的时候还需要自己实现一个session的实现方式，比如在微信公众账号和用户的交互，这中session就无法直接使用，因为每次都是微信服务器来请求，无法通过请求的来源来辨别用户。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//session的永久保存（在不过期范围内）</span></div><div class="line">Session::put(<span class="string">'key'</span>, <span class="string">'value'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//等同于PHP的原生session</span></div><div class="line">$_SESSION[<span class="string">'key'</span>] = <span class="string">'value'</span>;</div><div class="line"> </div><div class="line"><span class="comment">//get操作</span></div><div class="line">$value = Session::get(<span class="string">'key'</span>, <span class="string">'default'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//去除操作并删除，类似pop概念</span></div><div class="line">$value = Session::pull(<span class="string">'key'</span>, <span class="string">'default'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//检测是否存在key</span></div><div class="line">Session::has(<span class="string">'users'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//删除key</span></div><div class="line">Session::forget(<span class="string">'key'</span>);</div></pre></td></tr></table></figure>
-<h3 id="laravel的session中flash概念"><a href="#laravel的session中flash概念" class="headerlink" title="laravel的session中flash概念"></a>laravel的session中flash概念</h3><p>这个flash两次请求有效（本次和下次请求有效），与本次请求取操作多少次无关。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//保存key，value</span></div><div class="line">Session::flash(<span class="string">'key'</span>, <span class="string">'value'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//取值方法还是一样的</span></div><div class="line">Session::get(<span class="string">'key'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//刷新快闪数据时间，保持到下次请求</span></div><div class="line">Session::keep(<span class="keyword">array</span>(<span class="string">'username'</span>, <span class="string">'email'</span>))</div></pre></td></tr></table></figure>
-<p>这个flash的概念和上面的put的概念不太一样。</p>
-<p>put ：这个对应只要session不过期，基本上是永久保存，下次请求也是存在的。<br>flash ：保存的值，本次请求可以使用，下次http请求可以使用，再下一次就不存在了。<br>也就是说下一次的请求用完就被销毁了，不会让session的值变的越来越大，可以保存一些临时的数据。</p>
-<p>这中情况的使用场景比如有：</p>
-<p>用户请求了页面，出现错误信息，重定向到一个新的页面，需要展示之前的数据。（虽然可以通过url参数来传递，处理不好可能会有xss漏洞）。<br>用户访问了一个页面，过滤器发现没权限，保存当前页面url，重定向到登录页面，登录成功，取出值，重定向到原先的页面。（这里可能需要刷新保存的快闪数据）</p>
-<h3 id="session落地的时间"><a href="#session落地的时间" class="headerlink" title="session落地的时间"></a>session落地的时间</h3><p>我天真的以为使用了Session::put函数就能保存这个变量了。于是我的代码这样写：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoginController</span> </span>&#123;</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span><span class="params">()</span></span>&#123;</div><div class="line">        Session::put(<span class="string">'key'</span>,<span class="string">'value'</span>); </div><div class="line">        print_r( Session::all() ); <span class="comment">//取出来看看是否put成功</span></div><div class="line">        <span class="keyword">exit</span>;   <span class="comment">//习惯性的调试都exit，不执行后续代码</span></div><div class="line">        <span class="comment">//return Redirect::to(/); 框架在return后还会有后续的代码执行的</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>结果下次请求就是找不到本次的Session，而且看app/storage/session目录就是没有文件生成。总感觉不对劲啊。</p>
-<p>后来看到网络上有个方法Session::save()，于是我也用了下，居然发现成功的生成了session的文件。于是我感觉到，Laravel不用php原生的session，那么在controller之后应该做了一些事情，将session写入到文件中，而不是每次put操作都写操作，这样会IO操作太频繁的，影响性能的。<br>可以看见，在调用完controller之后，调用了session-&gt;save()的方法，来主动的保存session。这样session才能落地保存起来，如果在controller或者view里面写了exit;，那么session是不会被保存的，除非主动的写Session::save()才能手工的保存起来。</p>
-<blockquote>
-<p><a href="https://www.chenyudong.com/archives/laravel-session-use.html" target="_blank" rel="external">https://www.chenyudong.com/archives/laravel-session-use.html</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/18/PHP设置会话Session超时过期时间实现登录时间限制/" itemprop="url">
-                  PHP设置会话Session超时过期时间实现登录时间限制
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-18T19:49:10+08:00" content="2016-08-18">
-              2016-08-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>我亦只有一个一生，不能慷慨赠予我不爱的人。<br></blockquote></p>
-<h3 id="设置php-ini配置文件"><a href="#设置php-ini配置文件" class="headerlink" title="设置php.ini配置文件"></a>设置php.ini配置文件</h3><p>第一种方法即设置php.ini配置文件，设置session.gc_maxlifetime和session.cookie_lifetime节点属性值，当然也可以使用ini_set函数改变当前上下文环境的属性值：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ini_set(<span class="string">'session.gc_maxlifetime'</span>, <span class="string">"3600"</span>); <span class="comment">// 秒</span></div><div class="line">ini_set(<span class="string">"session.cookie_lifetime"</span>,<span class="string">"3600"</span>); <span class="comment">// 秒</span></div></pre></td></tr></table></figure></p>
-<h3 id="设置Session时间戳"><a href="#设置Session时间戳" class="headerlink" title="设置Session时间戳"></a>设置Session时间戳</h3><p>第二种方法即设置Session时间戳，比如下面的办法。<br>在登录成功时设置时间戳为当前时间推后1小时，$_SESSION[‘expiretime’] = time() + 3600;。在检查用户登录情况使用如下代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_SESSION[<span class="string">'expiretime'</span>])) &#123;</div><div class="line">    <span class="keyword">if</span>($_SESSION[<span class="string">'expiretime'</span>] &lt; time()) &#123;</div><div class="line">        <span class="keyword">unset</span>($_SESSION[<span class="string">'expiretime'</span>]);</div><div class="line">        header(<span class="string">'Location: logout.php?TIMEOUT'</span>); <span class="comment">// 登出</span></div><div class="line">        <span class="keyword">exit</span>(<span class="number">0</span>);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        $_SESSION[<span class="string">'expiretime'</span>] = time() + <span class="number">3600</span>; <span class="comment">// 刷新时间戳</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p><a href="http://wangye.org/blog/archives/933/" target="_blank" rel="external">http://wangye.org/blog/archives/933/</a><br><a href="http://www.laruence.com/2012/01/10/2469.html" target="_blank" rel="external">http://www.laruence.com/2012/01/10/2469.html</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/18/请手动释放你的资源/" itemprop="url">
-                  请手动释放你的资源
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-18T19:16:12+08:00" content="2016-08-18">
-              2016-08-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>谢谢那些喜欢我的人<br></blockquote><br>我从来不认为这个问题是个问题, 直到昨天.</p>
-<p>昨天晚上的时候, 我提交了一个RFC, 关于引入finally到PHP, 实现这个功能的出发点很简单, 因为我看见不少人的需求, 另外还有就是Stas说, 一直只看到讨论, 没看到有人实现. 于是我就给实现了.</p>
-<p>发到邮件组以后, 一个开发组的同学Nikita Popov(nikic), 表示强烈反对这个RFC, 当然最初的论点他说了很多, 最后我们在线讨论的时候, 他表达了一个他的观点:</p>
-<p>“PHP在请求结束后会释放所有的资源, 所以我们没有必要调用fclose,或者mysql_close来释放资源, PHP会替我们做”</p>
-<p>并且他表示, 他从来都不会调用fclose, 认为fclose的存在只是为了继承C函数族.</p>
-<p>我很惊讶, 我也不知道还有多少人是和他一样的想法, 所以我决定写这篇文章.</p>
-<p>在PHP5.2以前, PHP使用引用计数(Reference count)来做资源管理, 当一个zval的引用计数为0的时候, 它就会被释放. 虽然存在循环引用(Cycle reference), 但这样的设计对于开发Web脚本来说, 没什么问题, 因为Web脚本的特点和它追求的目标就是执行时间短, 不会长期运行. 对于循环引用造成的资源泄露, 会在请求结束时释放掉. 也就是说, 请求结束时释放资源, 是一种部补救措施(backup).</p>
-<p>然而, 随着PHP被越来越多的人使用, 就有很多人在一些后台脚本使用PHP, 这些脚本的特点是长期运行, 如果存在循环引用, 导致引用计数无法及时释放不用的资源, 则这个脚本最终会内存耗尽退出.</p>
-<p>所以在PHP5.3以后, 我们引入了GC, 也就是说, 我们引入GC是为了解决用户无法解决的问题.</p>
-<p>这个是历史, 我简单介绍下, 现在让我们回头来看开头的问题, 是不是因为PHP会在请求结束后释放所有的资源, 于是我们就可以不用手动释放呢?</p>
-<p>看一个例子:<br>Mysql最大连接数(mysql.max_connections)<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">   $db = mysql_connect() ;</div><div class="line">   $resut = mysql_query();</div><div class="line">   <span class="comment">// process result...</span></div><div class="line">   usleep(<span class="number">500</span>);</div><div class="line"></div><div class="line">   <span class="comment">//mysql_close($db);  let's say, you didn't call to this</span></div><div class="line"></div><div class="line">   <span class="comment">// other logic, assuming it costs 5s</span></div><div class="line">   sleep(<span class="number">5</span>);</div><div class="line"></div><div class="line">   <span class="keyword">exit</span>(<span class="number">0</span>); <span class="comment">//finish</span></div></pre></td></tr></table></figure></p>
-<p>上面的例子, 我们会保持一个和Mysql的连接5秒钟, 这样的脚本对于一般的应用来说没有关系, 但是对于一个请求量很大的脚本来说, 会导致一个致命问题:</p>
-<p>比如一个繁忙的应用, 每秒要处理来自用户的1000个请求, 那么5秒钟请求多少个? 5 * 1000 = 5000, 而Mysql有最大连接数限制(mysql.max_connections), 这个数字一般不超过2000, 默认的会更低:(mysql.max_connections),</p>
-<p>那么, 这样代码会导致你的应用, 根本无法正常提供服务. 而如果我们在对Mysql的处理完成后就关闭这个连接, 那么就不会触发这个问题.</p>
-<p>而我们在实践中, 遇到过一个更加实际的问题, 看下面的例子:</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?PHP</span></div><div class="line">$mmc = <span class="keyword">new</span> Memcached();</div><div class="line">$mysql = mysql_connect();</div><div class="line"><span class="comment">//process</span></div><div class="line">mysql_close($mysql);</div><div class="line">$mmc-&gt;close();</div></pre></td></tr></table></figure>
-<p>这是一个真实的教训, 代码如上面所示, 突然有一天我们的Mysql出现了问题, 导致连接Mysql的耗时增大, 然后就导致, 一个脚本对Memcached连接占用过长, 最后Memcache因为连接数太多, 就拒绝服务了..</p>
-<p>所以, 我们一定要让连接代价最高的资源, 最先初始化.</p>
-<p>系统最大句柄 (/proc/sys/fs/file-max)</p>
-<p>这个很简单, 如果你持续打开句柄, 而不释放, 那么你有可能触发系统最大句柄限制, 对于进程来说, 自己还有进程可打开句柄数限制(ulimit -n).</p>
-<p>系统调用是昂贵的(System call is expensive)</p>
-<p>PHP之所以会在请求结束后正确的释放掉所有的资源, 内存, 这是因为当我们在脚本中使用新的内存的时候, PHP会向OS申请一大块内存(ZEND_MM_SEG_SIZE大小), 然后分给你你需要的合适的一块小内存.</p>
-<p>当你不使用这块小内存的时候, PHP也不会返还给OS, 而是保留下来给后续的处理使用.</p>
-<p>我们知道, malloc(3)会导致系统调用(brk(2))(当然也可能是mmap, 我们此处不考虑这个细节, thanks to 华裔), 而系统调用是昂贵的.</p>
-<p>所以, 如果你使用完了资源不及时释放, 那么后续的逻辑如果请求内存, PHP发现之前申请的一大块内存已经分光了, 它就只好再次向OS发起malloc调用, 得到一块新的大内存. 并且它还需要对这个大内存做一些标记处理..</p>
-<p>而如果你使用完资源, 及时释放的话, 那么下次脚本申请内存的时候, 你之前归还的内存块就可以被重复利用, 那么也许你的整个脚本只需要和OS申请一次内存.</p>
-<p>内存峰值(Memory peak usage)</p>
-<p>这个和上面的有一定的关系, 当你使用完资源就释放, 然后后续又使用这样的资源. 那么PHP的内存占用会是:</p>
-<p>资源+1 -&gt; 资源-1 -&gt; 资源+1 -&gt; 资源-1 (峰值是1)</p>
-<p>而如果你是等到PHP请求结束再释放:</p>
-<p>资源+1 -&gt; 资源 + 1 …. -&gt; 资源 -1 -&gt; 资源 – 1 (峰值是2)</p>
-<p>也就说, 一个良好的编写的脚本可能要比一个瞎写的脚本, 要省很多峰值内存..</p>
-<p>考虑一个极端情况, 对一个很繁忙的服务器来说, 比如有10个PHP进程, 每个PHP进程最大1G内存, 而服务器只有8G内存.</p>
-<p>结论 (conclusion)</p>
-<p>结论很明显, 我开头也说过了, 我从来不认为这个是个问题.</p>
-<p>这里说一句, 如果你买了一本PHP的书, 它告诉你: “不用在PHP主动释放资源, 因为PHP会帮你释放”的话, 我建议你, 烧了它.</p>
-<blockquote>
-<p><a href="http://www.laruence.com/2012/08/06/2681.html" target="_blank" rel="external">http://www.laruence.com/2012/08/06/2681.html</a></p>
-</blockquote>
-
+            <blockquote class="blockquote-center"><br>你也是一片<br>在我胸口颤动的小叶子。<br>生命之风将你吹送至此。<br></blockquote>
+
+<h3 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//in our case,</span></div><div class="line"> DB::table(<span class="string">'users'</span>)-&gt;toSql(); </div><div class="line"><span class="comment">//return</span></div><div class="line">select * from users</div></pre></td></tr></table></figure>
+<h3 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Route::get(<span class="string">'haha'</span>,<span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</div><div class="line">    Event::listen(<span class="string">'illuminate.query'</span>, <span class="function"><span class="keyword">function</span><span class="params">($query, $params, $time, $conn)</span></span></div><div class="line">    &#123;</div><div class="line">        dd(<span class="keyword">array</span>($query, $params, $time, $conn));</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    \RainLab\User\Models\User::whereBetween(<span class="string">'created_at'</span>, </div><div class="line">    	[<span class="string">'2016-05-26 00:00:00'</span>, <span class="string">'2016-06-27 00:00:00'</span>]</div><div class="line">    	)-&gt;get([<span class="string">'email'</span>]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="第三种方法"><a href="#第三种方法" class="headerlink" title="第三种方法"></a>第三种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DB::enableQueryLog();</div><div class="line">   $users = \RainLab\User\Models\User::whereBetween(<span class="string">'created_at'</span>, [<span class="string">'2016-05-26 00:00:00'</span>, <span class="string">'2016-06-27 00:00:00'</span>])-&gt;get();</div><div class="line">   dd(DB::getQueryLog());</div></pre></td></tr></table></figure>
+<h3 id="最后一种方法"><a href="#最后一种方法" class="headerlink" title="最后一种方法"></a>最后一种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//安装 debug</span></div><div class="line">composer <span class="keyword">require</span> barryvdh/laravel-debugbar</div></pre></td></tr></table></figure>
           
         
       
@@ -848,7 +722,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/22/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><span class="page-number current">23</span><a class="page-number" href="/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/24/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -889,7 +763,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">135</span>
+              <span class="site-state-item-count">152</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -899,7 +773,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -240,8 +240,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/28/加密签名原理/" itemprop="url">
-                  加密签名原理
+                <a class="post-title-link" href="/2017/08/14/堆和栈的区别/" itemprop="url">
+                  堆和栈的区别
                 </a>
               
             
@@ -254,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-28T15:18:36+08:00" content="2017-07-28">
-              2017-07-28
+            <time itemprop="dateCreated" datetime="2017-08-14T10:37:33+08:00" content="2017-08-14">
+              2017-08-14
             </time>
           </span>
 
@@ -284,110 +284,27 @@
       
         
           
-            <blockquote class="blockquote-center"><br>“我先起，你再睡一会儿。”<br></blockquote>
-
-<h3 id="文章核心"><a href="#文章核心" class="headerlink" title="文章核心:"></a>文章核心:</h3><p>甲先算出原文的类似于MD5的校验值(数字”指纹”,也称”信息摘要”)，接下来甲用自己的私钥K对MD5进行变形，得到变形C就是甲对合同A的签名。乙拿到源文件后也先算出MD5值，用甲的公钥K2再对签名C进行反运算，变回MD5，看是否与源文件的MD5一样，如果一样 ，则签名是真的，反之签名则为假冒的。 MD5/数字”指纹”是一种单向散列函数,它是完全不可逆的。 加密用公钥，解密是用私钥进行反运算得到原文。 签名用私钥，验证签名是用公钥进行反运算得到原指纹。 不必担心伪造MD5，因为只有用私钥才能进行签名</p>
-<p>一、加密 加密用来保护敏感信息的传输，保证信息的安全性。在一个加密系统中，信息使用加密密钥加密后，得到的密文传送给接收方，接收方使用解密密钥对密文解密得到原文。FF有两种加密体系：秘密密钥加密和公开密钥加密。</p>
-<p>1、秘密密钥加密 秘密密钥加密也称为对称密钥加密，加密和解密使用同一个密钥，即：原文经过密钥K加工（为避免歧意，本文将所有的对信息的变换均称为“加工”，而不区分加密和解密；加工前的信息称“原文”，加工后所得到的信息称为“变形”）后得到变形，而变形经过密钥K加工后又恢复为明文。因此信息的发送方和接收方必须共享一个密钥。 这种加密类型快速牢固，只要密钥足够长（目前128位被认为是“不可破解的”），密文就不可被破解。对称密钥加密的缺陷是密钥本身必须单独进行交换以便接收看能解密数据，如果密钥没有以安全方式传送，它就很可能被他人截获并用于信息解密。</p>
-<p>2、公开密钥加密 公开密钥加密也称为非对称密钥加密。公开密钥加密体系使用两个不同的密钥：一个用主人秘密保存和专用的，主要用于解密和签名，称为私钥；另一个对外公开，主要用于验证签名和加密，称为公钥（公钥体系即因此而得名）。这两个密钥是数学相关的，但仅凭借公钥，人们无法推算出其对应的私钥。原文经过公钥加工后得到变形，该变形经过私钥加工后又复原为原文；反之亦然，原文经过私钥加工后得到变形，该变形经过公钥加工后又复原为原文。下面将要讲到，“先公后私”和“先私后公”这两者看起来差不多，但应用是完全不同的。用某用户的公钥加工后所得的数据只能用该用户的私钥才能复原为原文。因而要求用户的私钥不能透露给自己不信任的任何人。 公钥加密与对称密钥加密相比，其优势在于不需要一把共享的通用密钥，私钥不发往任何地方，由主人秘密保存，而公钥是公开的，不存在管理和保密的问题。但其缺点是计算复杂，不适应于对大量的数据进行加工处理。 FF在具体的应用时，先将秘密密钥用收件人的公钥进行加工，将变形用公开通道（实际上是附加在加密文件当中）传递给收件人，收件人用其私钥对变形进行加工，恢复出秘密密钥，然后再用秘密密钥对密文进行解密。 公钥加密的另一个用处是身份验证。私钥主人用私钥加工了一条信息后，拥有公钥拷贝的任何人都能对其复原，接收者由此可以知道这条信息确实来自于拥有私钥的人，因为除了私钥的主人外，其他人没有私钥，是无法进行“原文经过私钥加工后得到变形”这一操作的，故“先私后公”的操作方式可以进行身份验证，或者称为“数字签名”、“电子签名”。 二、安全的单向散列函数 （Secure Hash） 单向散列函数（简称“H函数”或“Hash函数”）用于对要传输的数据作运算生成信息摘要，它并不是一种加密机制，但却能产生信息的数字”指纹”，它的目的是为了确保数据没有被修改或变化，保证信息的完整性不被破坏。</p>
-<h3 id="单向散列函数有三个主要特点："><a href="#单向散列函数有三个主要特点：" class="headerlink" title="单向散列函数有三个主要特点："></a>单向散列函数有三个主要特点：</h3><p>1．它能处理任意大小的信息，并将其技信息摘要（message digest）方法生成固定大小的数据块（FF是128位，即16字节），对同一个源数据反复执行Hash函数将总是得到同样的结果。<br>2．它是不可预见的。产生的数据块的大小与原始信息的大小没有任何联系，同时源数据和产生的数据块的数据看起来也没有明显关系，源信息的一个微小变化都会对数据块产生很大的影响。<br>3．它是完全不可逆的，没有办法通过生成的数据块直接恢复源数据。</p>
-<p>H函数最主要的用途是数字签名。具体过程为： 甲先用H函数对某个信息（如合同的电子文件）A进行计算，得到128位的结果B，再用私钥K对B进行变形，得到C，该变形C就是甲对合同A的签名。 他人（乙）的验证过程为：乙用H函数对A进行计算，得到结果B1，对签名C用甲的公钥K1进行加工，得到变形B2，如果B1=B2，则签名是真的，反之签名则为假冒的。 原理：只有持有私钥K的人可以完成从A到C的操作。因为 甲虽然可以指责乙捏造了合同A（任何人都可以在计算机上打出一份他想要的合同），乙也的确可以从A计算出B，但从B到C的过程要用到甲的私钥K，该过程只有甲可以完成； 甲也可以指责乙先捏造了签名C，乙也的确可以用甲的公钥从C计算出B，但乙无法从B推算出A，从A到B的H函数是单向的，无法反向计算。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/28/数字签名是什么/" itemprop="url">
-                  数字签名是什么
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-28T09:56:20+08:00" content="2017-07-28">
-              2017-07-28
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>我喜欢钱, 很喜欢, 喜欢的不得了<br></blockquote><br><img src="/images/001.png" alt=""><br>鲍勃有两把钥匙，一把是公钥，另一把是私钥。<br><img src="/images/002.png" alt=""><br>鲍勃把公钥送给他的朋友们—-帕蒂、道格、苏珊—-每人一把。<br><img src="/images/003.png" alt=""><br>苏珊要给鲍勃写一封保密的信。她写完后用鲍勃的公钥加密，就可以达到保密的效果。<br><img src="/images/004.png" alt=""><br>鲍勃收信后，用私钥解密，就看到了信件内容。这里要强调的是，只要鲍勃的私钥不泄露，这封信就是安全的，即使落在别人手里，也无法解密。<br><img src="/images/005.png" alt=""><br>鲍勃给苏珊回信，决定采用”数字签名”。他写完后先用Hash函数，生成信件的摘要（digest）。<br><img src="/images/006.png" alt=""><br>然后，鲍勃使用私钥，对这个摘要加密，生成”数字签名”（signature）。<br><img src="/images/007.png" alt=""><br>鲍勃将这个签名，附在信件下面，一起发给苏珊。<br><img src="/images/008.png" alt=""><br>苏珊收信后，取下数字签名，用鲍勃的公钥解密，得到信件的摘要。由此证明，这封信确实是鲍勃发出的。<br><img src="/images/009.png" alt=""><br>苏珊再对信件本身使用Hash函数，将得到的结果，与上一步得到的摘要进行对比。如果两者一致，就证明这封信未被修改过。<br><img src="/images/010.png" alt=""><br>复杂的情况出现了。道格想欺骗苏珊，他偷偷使用了苏珊的电脑，用自己的公钥换走了鲍勃的公钥。此时，苏珊实际拥有的是道格的公钥，但是还以为这是鲍勃的公钥。因此，道格就可以冒充鲍勃，用自己的私钥做成”数字签名”，写信给苏珊，让苏珊用假的鲍勃公钥进行解密。<br><img src="/images/011.png" alt=""><br>后来，苏珊感觉不对劲，发现自己无法确定公钥是否真的属于鲍勃。她想到了一个办法，要求鲍勃去找”证书中心”（certificate authority，简称CA），为公钥做认证。证书中心用自己的私钥，对鲍勃的公钥和一些相关信息一起加密，生成”数字证书”（Digital Certificate）。<br><img src="/images/012.png" alt=""><br>鲍勃拿到数字证书以后，就可以放心了。以后再给苏珊写信，只要在签名的同时，再附上数字证书就行了。<br><img src="/images/013.png" alt=""><br>苏珊收信后，用CA的公钥解开数字证书，就可以拿到鲍勃真实的公钥了，然后就能证明”数字签名”是否真的是鲍勃签的。</p>
+            <p><blockquote class="blockquote-center"><br>人不能为了尊严连钱都不要了。<br></blockquote></p>
+<h3 id="预备知识—程序的内存分配"><a href="#预备知识—程序的内存分配" class="headerlink" title="预备知识—程序的内存分配"></a>预备知识—程序的内存分配</h3><p>一个由C/C++编译的程序占用的内存分为以下几个部分:</p>
+<ul>
+<li>1、栈区（stack）—  由编译器自动分配释放,存放函数的参数值，局部变量的值等。其<br>操作方式类似于数据结构中的栈。  </li>
+<li>2、堆区（heap） — 一般由程序员分配释放，若程序员不释放，程序结束时可能由OS回<br>收   。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表，呵呵。  </li>
+<li>3、全局区（静态区）（static）—，全局变量和静态变量的存储是放在一块的，初始化的<br>全局变量和静态变量在一块区域，未初始化的全局变量和未初始化的静态变量在相邻的另<br>一块区域。   -   程序结束后由系统释放。  </li>
+<li>4、文字常量区   —常量字符串就是放在这里的。程序结束后由系统释放  </li>
+<li>5、程序代码区—存放函数体的二进制代码。</li>
+</ul>
+<h3 id="例子程序"><a href="#例子程序" class="headerlink" title="例子程序"></a>例子程序</h3><p>这是一个前辈写的，非常详细<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//main.cpp    </span></div><div class="line"><span class="keyword">int</span>   a   =   <span class="number">0</span>; 全局初始化区    </div><div class="line"><span class="keyword">char</span> *p1; 全局未初始化区    </div><div class="line">main()    </div><div class="line">&#123;    </div><div class="line"><span class="keyword">int</span>  b;   <span class="comment">//栈    </span></div><div class="line"><span class="keyword">char</span>   s[]   =   <span class="string">"abc"</span>;   <span class="comment">//栈    </span></div><div class="line"><span class="keyword">char</span>   *p2;   <span class="comment">//栈    </span></div><div class="line"><span class="keyword">char</span>   *p3   =   <span class="string">"123456"</span>;   <span class="comment">//123456/0在常量区，p3在栈上。    </span></div><div class="line"><span class="keyword">static</span>   <span class="keyword">int</span>   c   =<span class="number">0</span>；   <span class="comment">//全局（静态）初始化区    </span></div><div class="line">p1   =   (<span class="keyword">char</span>   *)<span class="built_in">malloc</span>(<span class="number">10</span>);    </div><div class="line">p2   =   (<span class="keyword">char</span>   *)<span class="built_in">malloc</span>(<span class="number">20</span>);    </div><div class="line"><span class="comment">//分配得来得10和20字节的区域就在堆区。    </span></div><div class="line"><span class="built_in">strcpy</span>(p1,   <span class="string">"123456"</span>);   <span class="comment">//123456/0放在常量区，编译器可能会将它与p3所指向的"123456" 优化成一个地方。    </span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="堆和栈的理论知识"><a href="#堆和栈的理论知识" class="headerlink" title="堆和栈的理论知识"></a>堆和栈的理论知识</h3><h4 id="申请方式"><a href="#申请方式" class="headerlink" title="申请方式"></a>申请方式</h4><p>stack:<br>由系统自动分配。例如，声明在函数中一个局部变量int b;系统自动在栈中为b开辟空间<br>heap:<br>需要程序员自己申请，并指明大小，在c中malloc函数<br>如p1 = (char *)malloc(10);<br>在C++中用new运算符<br>如p2 = new char[10];<br>但是注意p1、p2本身是在栈中的。    </p>
+<h4 id="申请后系统的响应"><a href="#申请后系统的响应" class="headerlink" title="申请后系统的响应"></a>申请后系统的响应</h4><p>栈：只要栈的剩余空间大于所申请空间，系统将为程序提供内存，否则将报异常提示栈溢<br>出。<br>堆：首先应该知道操作系统有一个记录空闲内存地址的链表，当系统收到程序的申请时，<br>会遍历该链表，寻找第一个空间大于所申请空间的堆结点，然后将该结点从空闲结点链表<br>中删除，并将该结点的空间分配给程序，另外，对于大多数系统，会在这块内存空间中的<br>首地址处记录本次分配的大小，这样，代码中的delete语句才能正确的释放本内存空间。<br>另外，由于找到的堆结点的大小不一定正好等于申请的大小，系统会自动的将多余的那部<br>分重新放入空闲链表中。    </p>
+<h4 id="申请大小的限制"><a href="#申请大小的限制" class="headerlink" title="申请大小的限制"></a>申请大小的限制</h4><p>栈：在Windows下,栈是向低地址扩展的数据结构，是一块连续的内存的区域。这句话的意<br>思是栈顶的地址和栈的最大容量是系统预先规定好的，在WINDOWS下，栈的大小是2M（也有<br>的说是1M，总之是一个编译时就确定的常数），如果申请的空间超过栈的剩余空间时，将<br>提示overflow。因此，能从栈获得的空间较小。<br>堆：堆是向高地址扩展的数据结构，是不连续的内存区域。这是由于系统是用链表来存储<br>的空闲内存地址的，自然是不连续的，而链表的遍历方向是由低地址向高地址。堆的大小<br>受限于计算机系统中有效的虚拟内存。由此可见，堆获得的空间比较灵活，也比较大。    </p>
+<h4 id="申请效率的比较："><a href="#申请效率的比较：" class="headerlink" title="申请效率的比较："></a>申请效率的比较：</h4><p>栈由系统自动分配，速度较快。但程序员是无法控制的。<br>堆是由new分配的内存，一般速度比较慢，而且容易产生内存碎片,不过用起来最方便.<br>另外，在WINDOWS下，最好的方式是用VirtualAlloc分配内存，他不是在堆，也不是在栈是<br>直接在进程的地址空间中保留一块内存，虽然用起来最不方便。但是速度快，也最灵活。  </p>
+<h4 id="堆和栈中的存储内容"><a href="#堆和栈中的存储内容" class="headerlink" title="堆和栈中的存储内容"></a>堆和栈中的存储内容</h4><p>栈：   在函数调用时，第一个进栈的是主函数中后的下一条指令（函数调用语句的下一条可<br>执行语句）的地址，然后是函数的各个参数，在大多数的C编译器中，参数是由右往左入栈<br>的，然后是函数中的局部变量。注意静态变量是不入栈的。<br>当本次函数调用结束后，局部变量先出栈，然后是参数，最后栈顶指针指向最开始存的地<br>址，也就是主函数中的下一条指令，程序由该点继续运行。<br>堆：一般是在堆的头部用一个字节存放堆的大小。堆中的具体内容由程序员安排。    </p>
+<h4 id="存取效率的比较"><a href="#存取效率的比较" class="headerlink" title="存取效率的比较"></a>存取效率的比较</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span>   s1[]   =   <span class="string">"aaaaaaaaaaaaaaa"</span>;    </div><div class="line"><span class="keyword">char</span>   *s2   =   <span class="string">"bbbbbbbbbbbbbbbbb"</span>;</div></pre></td></tr></table></figure>
+<p>aaaaaaaaaaa是在运行时刻赋值的；<br>而bbbbbbbbbbb是在编译时就确定的；<br>但是，在以后的存取中，在栈上的数组比指针所指向的字符串(例如堆)快。<br>比如：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span>    </span></div><div class="line"><span class="function"><span class="keyword">void</span>   <span class="title">main</span><span class="params">()</span>    </span></div><div class="line">&#123;    </div><div class="line"><span class="keyword">char</span>   a   =   <span class="number">1</span>;    </div><div class="line"><span class="keyword">char</span>   c[]   =   <span class="string">"1234567890"</span>;    </div><div class="line"><span class="keyword">char</span>   *p   =<span class="string">"1234567890"</span>;    </div><div class="line">a   =   c[<span class="number">1</span>];    </div><div class="line">a   =   p[<span class="number">1</span>];    </div><div class="line"><span class="keyword">return</span>;    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>对应的汇编代码<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="number">10</span>:   a   =   c[<span class="number">1</span>];    </div><div class="line"><span class="number">00401067</span>   <span class="number">8</span>A   <span class="number">4</span>D   F1   mov   cl,byte   ptr   [ebp<span class="number">-0</span>Fh]    </div><div class="line"><span class="number">0040106</span>A   <span class="number">88</span>   <span class="number">4</span>D   FC   mov   byte   ptr   [ebp<span class="number">-4</span>],cl    </div><div class="line"><span class="number">11</span>:   a   =   p[<span class="number">1</span>];    </div><div class="line"><span class="number">0040106</span>D   <span class="number">8B</span>   <span class="number">55</span>   EC   mov   edx,dword   ptr   [ebp<span class="number">-14</span>h]    </div><div class="line"><span class="number">00401070</span>   <span class="number">8</span>A   <span class="number">42</span>   <span class="number">01</span>   mov   al,byte   ptr   [edx+<span class="number">1</span>]    </div><div class="line"><span class="number">00401073</span>   <span class="number">88</span>   <span class="number">45</span>   FC   mov   byte   ptr   [ebp<span class="number">-4</span>],al</div></pre></td></tr></table></figure></p>
+<p>第一种在读取时直接就把字符串中的元素读到寄存器cl中，而第二种则要先把指针值读到<br>edx中，再根据edx读取字符，显然慢了。    </p>
 <blockquote>
-<p><a href="http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html</a></p>
+<p><a href="http://blog.csdn.net/hairetz/article/details/4141043" target="_blank" rel="external">http://blog.csdn.net/hairetz/article/details/4141043</a></p>
 </blockquote>
 
           
@@ -438,8 +355,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/27/Mysql常用日期函数/" itemprop="url">
-                  Mysql常用日期函数
+                <a class="post-title-link" href="/2017/08/12/年轻人别穷的心安理得/" itemprop="url">
+                  年轻人别穷的心安理得
                 </a>
               
             
@@ -452,8 +369,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-27T11:02:34+08:00" content="2017-07-27">
-              2017-07-27
+            <time itemprop="dateCreated" datetime="2017-08-12T17:08:02+08:00" content="2017-08-12">
+              2017-08-12
             </time>
           </span>
 
@@ -482,112 +399,52 @@
       
         
           
-            <blockquote class="blockquote-center"><br>身不饥寒，天未曾负我；学无长进，我何以对天<br></blockquote>
-
-<h3 id="获得当前日期-时间"><a href="#获得当前日期-时间" class="headerlink" title="获得当前日期+时间"></a>获得当前日期+时间</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select now();</div><div class="line">mysql&gt; select sysdate();</div></pre></td></tr></table></figure>
-<p>不同之处在于：now() 在执行开始时值就得到了， sysdate() 在函数执行时动态得到值。</p>
-<h3 id="获得当前日期"><a href="#获得当前日期" class="headerlink" title="获得当前日期"></a>获得当前日期</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select curdate();</div></pre></td></tr></table></figure>
-<h3 id="获得当前时间"><a href="#获得当前时间" class="headerlink" title="获得当前时间"></a>获得当前时间</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select curtime();</div></pre></td></tr></table></figure>
-<h3 id="获得当前-UTC-日期时间函数"><a href="#获得当前-UTC-日期时间函数" class="headerlink" title="获得当前 UTC 日期时间函数"></a>获得当前 UTC 日期时间函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select utc_timestamp(), utc_date(), utc_time(), now()</div></pre></td></tr></table></figure>
-<h3 id="MySQL-为日期增加一个时间间隔"><a href="#MySQL-为日期增加一个时间间隔" class="headerlink" title="MySQL 为日期增加一个时间间隔"></a>MySQL 为日期增加一个时间间隔</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">set @dt = now();</div><div class="line">select date_add(@dt, interval 1 day); -- add 1 day</div><div class="line">select date_add(@dt, interval 1 hour); -- add 1 hour</div><div class="line">select date_add(@dt, interval 1 minute); -- ...</div><div class="line">select date_add(@dt, interval 1 second);</div><div class="line">select date_add(@dt, interval 1 microsecond);</div><div class="line">select date_add(@dt, interval 1 week);</div><div class="line">select date_add(@dt, interval 1 month);</div><div class="line">select date_add(@dt, interval 1 quarter);</div><div class="line">select date_add(@dt, interval 1 year);</div><div class="line">select date_add(@dt, interval -1 day); -- sub 1 day</div></pre></td></tr></table></figure>
-<h3 id="MySQL-为日期减去一个时间间隔"><a href="#MySQL-为日期减去一个时间间隔" class="headerlink" title="MySQL 为日期减去一个时间间隔"></a>MySQL 为日期减去一个时间间隔</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select date_sub(&apos;1998-01-01 00:00:00&apos;, interval &apos;1 1:1:1&apos; day_second);</div></pre></td></tr></table></figure>
-<h3 id="DATE-函数返回日期或日期-时间表达式的日期部分"><a href="#DATE-函数返回日期或日期-时间表达式的日期部分" class="headerlink" title="DATE() 函数返回日期或日期/时间表达式的日期部分"></a>DATE() 函数返回日期或日期/时间表达式的日期部分</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DATE(date)</div></pre></td></tr></table></figure>
-<h3 id="前一天"><a href="#前一天" class="headerlink" title="前一天"></a>前一天</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">date_sub(curdate(),interval 1 day);</div></pre></td></tr></table></figure>
-<h3 id="统计日期"><a href="#统计日期" class="headerlink" title="统计日期"></a>统计日期</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span>  <span class="built_in">DATE</span>(updated_at) <span class="keyword">AS</span> dd, <span class="keyword">COUNT</span>(*) <span class="keyword">FROM</span> m_shells <span class="keyword">GROUP</span> <span class="keyword">BY</span> dd</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/27/Mysql索引理解/" itemprop="url">
-                  Mysql索引理解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-27T09:17:30+08:00" content="2017-07-27">
-              2017-07-27
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>我们这么努力 也不过是为了成为一个普通人<br></blockquote></p>
-<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取数据的数据结构。提取句子主干，就可以得到索引的本质：<code>索引是数据结构</code>。<br>我们知道，数据库查询是数据库的最主要功能之一。我们都希望查询数据的速度能尽可能的快，因此数据库系统的设计者会从查询算法的角度进行优化。最基本的查询算法当然是顺序查找（linear search），这种复杂度为O(n)的算法在数据量很大时显然是糟糕的，好在计算机科学的发展提供了很多更优秀的查找算法，例如二分查找（binary search）、二叉树查找（binary tree search）等。如果稍微分析一下会发现，每种查找算法都只能应用于特定的数据结构之上，例如二分查找要求被检索数据有序，而二叉树查找只能应用于二叉查找树上，但是数据本身的组织结构不可能完全满足各种数据结构（例如，理论上不可能同时将两列都按顺序进行组织），所以，在数据之外，数据库系统还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据，这样就可以在这些数据结构上实现高级查找算法。这种数据结构，就是索引。</p>
+            <p>前几天在机场，我和一个老同学擦肩。老同学见面无非就是问问现状，聊聊过往。</p>
+<p>想到那时，我们几个同学初到北京，几个刚毕业的年轻人在大城市打拼，生活动不动就拮据困顿。</p>
+<p>我们一面抱怨贫穷，一面又有些心安理得，不断的安慰自己，年轻时穷一点没什么的，将来一定会好起来的，我们又不是什么富二代，官二代，年轻时穷一点不是理所当然的嘛。</p>
+<p>何况再看看那些成天把钱挂在嘴边的人，要么是在手套厂做会计的小气阿姨，要么是带着大金链子的土肥圆小老板，多么庸俗市侩啊。</p>
+<p>那么多美好的事情等待着我去探索，股票和基金那些枯燥的数字还是留给我35岁以后的人生吧。</p>
+<p>二十几岁的人生大多如此，我们讨厌贫穷，却又心安理得的贫穷着。</p>
+<p>我知道我们都可以找出无数个理由可以说服别人，自己是穷得多么有理有据，理所当然，但是乔克叔叔今天却想说，不管你是20岁，还是30岁，都不要穷的心安理得，年轻人一定要趁早学会挣钱。</p>
+<p>1现实从来不是想象中那样岁月静好</p>
+<p>年轻时总觉得，管他的金钱和房子，做自己喜欢的事，尽情的月光、追星、梦想诗和远方，等过了三十岁自然而然地会关注股票和基金，自然而然的就会有钱买车买房，虽然不至于富甲一方，但也会有个两室两厅的小房子，全家人围在一起吃饭，小孩在旁边吵吵闹闹。</p>
+<p>然而事实是，你过了三十岁，依然一无所有，没有合适的人可以结婚，房子依然离你很遥远，这把年纪再说诗与远方你自己都想吐……</p>
+<p>网上流传着一个故事，一个女人去粥店吃早餐，因为皮蛋瘦肉粥里没有看到瘦肉而和老板争吵起来。</p>
+<p>老板解释说，瘦肉在熬粥的过程中熬化了。女人不信，两人越吵越激动，女人突然大哭起来。</p>
+<p>旁边的人纷纷安慰“为了一碗粥而已，不至于啦”。</p>
+<p>女人哭着说：“我哭的不是这个，我难过的是，为什么我30多岁了还因为这些鸡毛蒜皮跟人争吵，这不是我要的人生啊！”</p>
+<p>是啊，年轻时谁曾想过将来的人生会这样的尴尬不体面，可是眼下，又有多少三四十岁的人那样尴尬不体面的活着。</p>
+<p>现实从来没有我们想象中那样岁月静好，人生也绝不是从青年无产阶级自然过渡到中年中产阶级。</p>
+<p>20多岁不努力，30多岁只会让你成为一个老去10岁的穷人。</p>
+<p>年轻时，穷不是罪过，罪过的是穷的心安理得，不安于现状，却没有努力改变现状。</p>
+<p>2努力赚钱，才有条件去接触更美好的事</p>
+<p>前几天有个23岁的小朋友在后台跟我聊天：“乔克叔叔，我可能得抑郁症了”，然后巴拉巴拉说了一堆。</p>
+<p>听他倾诉完，我说：“你这不是抑郁，你这是想要的太多，拥有的太少，说白了就是没钱太闲综合症”。</p>
+<p>年轻时，最缺的就是钱，最充足的就是时间，于是总能衍生出很多烦恼。</p>
+<p>离家太远，房东人太烂，同事太难相处，日子太无聊，追个剧广告都越来越长…….</p>
+<p>有人说，生活中90%的烦恼都能用钱解决。</p>
+<p>年轻时的烦恼更是如此，你有理想，心怀诗和远方，想和世界上所有美好不期而遇。这很好，与挣钱、与世俗意义上的丰裕生活并不冲突。</p>
+<p>追求钱并不庸俗，经济学、投资学和哲学、诗歌一样浪漫伟大，钱给你节省时间，给你的人生更多选择权，可以更没顾虑的去做想做的事情。</p>
+<p>你可以学想学很久的国画，去帮助更多需要帮助的人，可以去带父母环游世界，可以投资给你认同的事业并为之摇旗呐喊，可以不用在爱情来临时，因为没有房，而和爱情失之交臂……</p>
+<p>3</p>
+<p>把“挣钱”当做一种技能去学</p>
+<p>罗伯特·清崎在《穷爸爸，富爸爸》中说，之所以世界上绝大多数的人，为了财富奋斗终生而不可得，其主要原因在于，虽然他们都曾在各种学校学习多年，却从未真正学习到关于金钱的知识。</p>
+<p>努力挣钱不是不择手段，甚至出卖自己灵魂的挣钱。</p>
+<p>而趁早关注房产、股票等各种投资理财渠道，学习基本的经济学知识，认真审视自己，学习将自己的优势转化成钞票的能力。</p>
+<p>否则，中年以后，你只能每天为生活疲于奔命，整个余生都在和不喜欢的人斗争，做自己不喜欢做的事。</p>
+<p>写到这里，乔克叔叔真的希望能有一条万能准则告诉你们，让看到这篇文章的朋友都能实现财务自由。</p>
+<p>然而事实是，每个人的情况都不一样，也没有这样一条准则可以放之四海皆准。</p>
+<p>我和从事理财专业的朋友聊了聊，然后结合我自己浅薄经验总结一些小Tips，希望对你们有所裨益。</p>
+<p>1学会存钱</p>
+<p>根据自己每月的固定收入，按照合适的比例固定存入一些。</p>
+<p>2养成记账的习惯</p>
+<p>分析自己每月的支出报表，找出每月能省掉的和必须花钱的地方。</p>
+<p>3如工资是收入唯一来源，请做好职业规划</p>
+<p>如果你每月的收入，唯一来自固定的薪水，就要好好规划一下职业发展，怎么完善自己可以有效快速的实现加薪。</p>
+<p>4努力让自己的收入变多元</p>
+<p>丰富自己的收入途径，比如你擅长写文章，写段子，或者画插画，从各种方面把这些优势变现。</p>
+<p>5学习投资理财</p>
+<p>当有一定的存款之后，就开始学习怎么用“钱”赚钱，可以从最安全的货币基金开始，然后再尝试更多。</p>
 
           
         
@@ -637,8 +494,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/26/Mysql常用优化总结/" itemprop="url">
-                  Mysql常用优化总结
+                <a class="post-title-link" href="/2017/08/12/javascript中的事件冒泡理解/" itemprop="url">
+                  javascript中的事件冒泡理解
                 </a>
               
             
@@ -651,8 +508,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-26T15:39:03+08:00" content="2017-07-26">
-              2017-07-26
+            <time itemprop="dateCreated" datetime="2017-08-12T00:39:34+08:00" content="2017-08-12">
+              2017-08-12
             </time>
           </span>
 
@@ -681,32 +538,217 @@
       
         
           
-            <blockquote class="blockquote-center"><br>你这辈子只能靠自己。<br></blockquote>
+            <blockquote class="blockquote-center"><br>　你必须很努力，才能看上去毫不费力<br></blockquote>
 
-<h3 id="Like的参数以通配符开头时"><a href="#Like的参数以通配符开头时" class="headerlink" title="Like的参数以通配符开头时"></a>Like的参数以通配符开头时</h3><p>尽量避免Like的参数以通配符开头，否则数据库引擎会放弃使用索引而进行全表扫描。<br>以通配符开头的sql语句，例如：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_credit_detail <span class="keyword">where</span> Flistid <span class="keyword">like</span> <span class="string">'%0'</span>\G;</div></pre></td></tr></table></figure></p>
-<h3 id="使用！-或-lt-gt-操作符时"><a href="#使用！-或-lt-gt-操作符时" class="headerlink" title="使用！= 或 &lt;&gt; 操作符时"></a>使用！= 或 &lt;&gt; 操作符时</h3><p>尽量避免使用！= 或 &lt;&gt;操作符，否则数据库引擎会放弃使用索引而进行全表扫描。使用&gt;或&lt;会比较高效。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_credit_detail <span class="keyword">where</span> Flistid != <span class="string">'2000000608201108010831508721'</span>\G;</div></pre></td></tr></table></figure></p>
-<h3 id="索引列参与计算"><a href="#索引列参与计算" class="headerlink" title="索引列参与计算"></a>索引列参与计算</h3><p>应尽量避免在 where 子句中对字段进行表达式操作，这将导致引擎放弃使用索引而进行全表扫描。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_credit_detail <span class="keyword">where</span> Flistid +<span class="number">1</span> &gt; <span class="string">'2000000608201108010831508722'</span>\G;</div></pre></td></tr></table></figure></p>
-<h3 id="对字段进行null值判断"><a href="#对字段进行null值判断" class="headerlink" title="对字段进行null值判断"></a>对字段进行null值判断</h3><p>应尽量避免在where子句中对字段进行null值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：<br>低效：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_credit_detail <span class="keyword">where</span> Flistid <span class="keyword">is</span> <span class="literal">null</span>;</div></pre></td></tr></table></figure></p>
-<p>可以在Flistid上设置默认值0，确保表中Flistid列没有null值，然后这样查询：<br>高效：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_credit_detail <span class="keyword">where</span> Flistid =<span class="number">0</span>;</div></pre></td></tr></table></figure></p>
-<h3 id="使用or来连接条件"><a href="#使用or来连接条件" class="headerlink" title="使用or来连接条件"></a>使用or来连接条件</h3><p>应尽量避免在where子句中使用or来连接条件，否则将导致引擎放弃使用索引而进行全表扫描，如：<br>低效：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_credit_detail <span class="keyword">where</span> Flistid = <span class="string">'2000000608201108010831508721'</span> <span class="keyword">or</span> Flistid = <span class="string">'10000200001'</span>;</div></pre></td></tr></table></figure></p>
-<h3 id="避免select"><a href="#避免select" class="headerlink" title="避免select *"></a>避免select *</h3><p>在解析的过程中，会将’*’ 依次转换成所有的列名，这个工作是通过查询数据字典完成的，这意味着将耗费更多的时间。<br>所以，应该养成一个需要什么就取什么的好习惯。</p>
-<h3 id="order-by-语句优化"><a href="#order-by-语句优化" class="headerlink" title="order by 语句优化"></a>order by 语句优化</h3><p>任何在Order by语句的非索引项或者有计算表达式都将降低查询速度。</p>
-<ul>
-<li>1.重写order by语句以使用索引；</li>
-<li>2.为所使用的列建立另外一个索引</li>
-<li>3.绝对避免在order by子句中使用表达式。</li>
-</ul>
-<h3 id="GROUP-BY语句优化"><a href="#GROUP-BY语句优化" class="headerlink" title="GROUP BY语句优化"></a>GROUP BY语句优化</h3><p>提高GROUP BY 语句的效率, 可以通过将不需要的记录在GROUP BY 之前过滤掉</p>
-<p>低效:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> JOB , <span class="keyword">AVG</span>(SAL)</div><div class="line"><span class="keyword">FROM</span> EMP</div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">by</span> JOB</div><div class="line"><span class="keyword">HAVING</span> JOB = ‘PRESIDENT<span class="string">'</span></div><div class="line">OR JOB = ‘MANAGER';</div></pre></td></tr></table></figure></p>
-<p>高效:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> JOB , <span class="keyword">AVG</span>(SAL)</div><div class="line"><span class="keyword">FROM</span> EMP</div><div class="line"><span class="keyword">WHERE</span> JOB = ‘PRESIDENT<span class="string">'</span></div><div class="line">OR JOB = ‘MANAGER'</div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">by</span> JOB;</div></pre></td></tr></table></figure></p>
-<h3 id="用-exists-代替-in"><a href="#用-exists-代替-in" class="headerlink" title="用 exists 代替 in"></a>用 exists 代替 in</h3><p>很多时候用 exists 代替 in 是一个好的选择：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">num</span> <span class="keyword">from</span> a <span class="keyword">where</span> <span class="keyword">num</span> <span class="keyword">in</span>(<span class="keyword">select</span> <span class="keyword">num</span> <span class="keyword">from</span> b);</div></pre></td></tr></table></figure></p>
-<p>用下面的语句替换：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">num</span> <span class="keyword">from</span> a <span class="keyword">where</span> <span class="keyword">exists</span>(<span class="keyword">select</span> <span class="number">1</span> <span class="keyword">from</span> b <span class="keyword">where</span> <span class="keyword">num</span>=a.num);</div></pre></td></tr></table></figure></p>
-<h3 id="使用-varchar-nvarchar-代替-char-nchar"><a href="#使用-varchar-nvarchar-代替-char-nchar" class="headerlink" title="使用 varchar/nvarchar 代替 char/nchar"></a>使用 varchar/nvarchar 代替 char/nchar</h3><p>尽可能的使用 varchar/nvarchar 代替 char/nchar ，因为首先变长字段存储空间小，可以节省存储空间，其次对于查询来说，在一个相对较小的字段内搜索效率显然要高些。</p>
-<h3 id="能用DISTINCT的就不用GROUP-BY"><a href="#能用DISTINCT的就不用GROUP-BY" class="headerlink" title="能用DISTINCT的就不用GROUP BY"></a>能用DISTINCT的就不用GROUP BY</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> OrderID <span class="keyword">FROM</span> Details <span class="keyword">WHERE</span> UnitPrice &gt; <span class="number">10</span> <span class="keyword">GROUP</span> <span class="keyword">BY</span> OrderID;</div></pre></td></tr></table></figure>
-<p>可改为：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> OrderID <span class="keyword">FROM</span> Details <span class="keyword">WHERE</span> UnitPrice &gt; <span class="number">10</span>;</div></pre></td></tr></table></figure></p>
-<h3 id="最左前缀匹配原则"><a href="#最左前缀匹配原则" class="headerlink" title="最左前缀匹配原则"></a>最左前缀匹配原则</h3><p>非常重要的原则，mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)就停止匹配，比如a = 1 and b = 2 and c &gt; 3 and d = 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整。</p>
+<h3 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h3><p>点击一个div， 最终弹出 div<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  &lt;p&gt;点我吧&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">  let div = document.querySelector("div");</div><div class="line">  div.onclick=function () &#123;</div><div class="line">      alert('div');</div><div class="line">  &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>在div里的p元素同样也绑定一个点击事件， 那么会先弹出p， 然后再弹出div<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  &lt;p&gt;点我吧&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">  let div = document.querySelector("div");</div><div class="line">  div.onclick=function () &#123;</div><div class="line">      alert('div');</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  let p = document.querySelector("p");</div><div class="line">  p.onclick=function () &#123;</div><div class="line">      alert('p');</div><div class="line">  &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>微软提出了名为事件冒泡(event bubbling)的事件流。事件冒泡可以形象地比喻为把一颗石头投入水中，泡泡会一直从水底冒出水面。也就是说，事件会从最内层的元素开始发生，一直向上传播，直到document对象。</p>
+<p>因此上面的例子在事件冒泡的概念下发生click事件的顺序应该是p -&gt; div -&gt; body -&gt; html -&gt; document</p>
+<h3 id="阻止事件冒泡"><a href="#阻止事件冒泡" class="headerlink" title="阻止事件冒泡"></a>阻止事件冒泡</h3><p>jquery</p>
+<p>这样就不再弹出div了<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"&gt;&lt;/script&gt;</div><div class="line">&lt;div&gt;</div><div class="line">  &lt;p&gt;点我吧&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line">  let div = document.querySelector("div");</div><div class="line">  div.onclick=function (event) &#123;</div><div class="line">      alert('div');</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  let p = document.querySelector("p");</div><div class="line">  p.onclick=function () &#123;</div><div class="line">      alert('p');</div><div class="line">      event.stopPropagation();</div><div class="line">  &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>js</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  &lt;p&gt;点我吧&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line">  let div = document.querySelector("div");</div><div class="line">  div.onclick=function (event) &#123;</div><div class="line">      alert('div');</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  let p = document.querySelector("p");</div><div class="line">  p.onclick=function (e) &#123;</div><div class="line">      alert('p');</div><div class="line">      if ( e &amp;&amp; e.stopPropagation )</div><div class="line">          e.stopPropagation();</div><div class="line">      else</div><div class="line">          window.event.cancelBubble = true;</div><div class="line">  &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h3 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h3><p>网景提出另一种事件流名为事件捕获(event capturing)。与事件冒泡相反，事件会从最外层开始发生，直到最具体的元素。</p>
+<p>上面的例子在事件捕获的概念下发生click事件的顺序应该是document -&gt; html -&gt; body -&gt; div -&gt; p</p>
+<p>addEventListener的第三个参数<br>第一个参数是需要绑定的事件，第二个参数是触发事件后要执行的函数。<br>而第三个参数默认值是false，表示在事件冒泡的阶段调用事件处理函数，如果参数为true，则表示在事件捕获阶段调用处理函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">element.addEventListener(event, <span class="function"><span class="keyword">function</span>, <span class="title">useCapture</span>)</span></div></pre></td></tr></table></figure></p>
+<h3 id="拓展浏览器的默认事件"><a href="#拓展浏览器的默认事件" class="headerlink" title="拓展浏览器的默认事件"></a>拓展浏览器的默认事件</h3><p>下面这段代码我们点击后超链链是会发送跳转的</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  &lt;a href="http://www.google.com"&gt;点我吧&lt;/a&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line">  let div = document.querySelector("div");</div><div class="line">  div.onclick=function (event) &#123;</div><div class="line">      alert('div');</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  let p = document.querySelector("p");</div><div class="line">  p.onclick=function (e) &#123;</div><div class="line">      alert('p');</div><div class="line">      if ( e &amp;&amp; e.stopPropagation )</div><div class="line">          e.stopPropagation();</div><div class="line">      else</div><div class="line">          window.event.cancelBubble = true;</div><div class="line">  &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>如果我们仅仅想点击，而不想让发送跳转呢？</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;</div><div class="line">  &lt;a href="http://www.google.com"&gt;点我吧&lt;/a&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line">  let div = document.querySelector("div");</div><div class="line">  div.onclick=function (event) &#123;</div><div class="line">      alert('div');</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  let a = document.querySelector("a");</div><div class="line">  a.onclick=function (e) &#123;</div><div class="line">      alert('a');</div><div class="line">      if ( e &amp;&amp; e.preventDefault )</div><div class="line">          e.preventDefault();</div><div class="line">      else</div><div class="line">          window.event.returnValue = false;</div><div class="line">      return false;</div><div class="line">  &#125;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/11/laravel队列使用注意问题/" itemprop="url">
+                  laravel队列使用注意问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-11T07:53:58+08:00" content="2017-08-11">
+              2017-08-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/11/转载PHP实现异步调用方法研究/" itemprop="url">
+                  转载PHP实现异步调用方法研究
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-11T07:45:57+08:00" content="2017-08-11">
+              2017-08-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>Yesterday you said tomorrow.<br></blockquote></p>
+<h3 id="嵌入AJAX调用"><a href="#嵌入AJAX调用" class="headerlink" title="嵌入AJAX调用"></a>嵌入AJAX调用</h3><p> 最简单的办法，就是在返回给客户端的HTML代码中，嵌入AJAX调用，或者，嵌入一个img标签，src指向要执行的耗时脚本。<br>这种方法最简单，也最快。服务器端不用做任何的调用。<br>但是缺点是，一般来说Ajax都应该在onLoad以后触发，也就是说，用户点开页面后，就关闭，那就不会触发我们的后台脚本了。<br>而使用img标签的话，这种方式不能称为严格意义上的异步执行。用户浏览器会长时间等待php脚本的执行完成，也就是用户浏览器的状态栏一直显示还在load。<br>当然，还可以使用其他的类似原理的方法，比如script标签等等。</p>
+<h3 id="popen"><a href="#popen" class="headerlink" title="popen()"></a>popen()</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">resource popen ( string command, string mode );</div><div class="line"><span class="comment">//打开一个指向进程的管道，该进程由派生给定的 command 命令执行而产生。打开一个指向进程的管道，该进程由派生给定的 command 命令执行而产生。</span></div></pre></td></tr></table></figure>
+<p>所以可以通过调用它，但忽略它的输出。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pclose(popen(<span class="string">"/home/xinchen/backend.php &amp;"</span>, <span class="string">'r'</span>));</div></pre></td></tr></table></figure></p>
+<p>这个方法避免了第一个方法的缺点，并且也很快。但是问题是，这种方法不能通过HTTP协议请求另外的一个WebService，只能执行本地的脚本文件。并且只能单向打开，无法穿大量参数给被调用脚本。<br>并且如果，访问量很高的时候，会产生大量的进程。如果使用到了外部资源，还要自己考虑竞争。</p>
+<h3 id="使用CURL"><a href="#使用CURL" class="headerlink" title="使用CURL"></a>使用CURL</h3><p>这个方法，设置CUROPT_TIMEOUT为1（最小为1，郁闷）。也就是说，客户端至少必须等待1秒钟。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ch = curl_init();</div><div class="line"> </div><div class="line">$curl_opt = <span class="keyword">array</span>(CURLOPT_URL, <span class="string">'http://www.example.com/backend.php'</span>,</div><div class="line">                CURLOPT_RETURNTRANSFER, <span class="number">1</span>,</div><div class="line">                CURLOPT_TIMEOUT, <span class="number">1</span>,);</div><div class="line">curl_setopt_array($ch, $curl_opt);</div><div class="line">curl_exec($ch);</div><div class="line">curl_close($ch);</div></pre></td></tr></table></figure></p>
+<h3 id="使用fsockopen"><a href="#使用fsockopen" class="headerlink" title="使用fsockopen"></a>使用fsockopen</h3><p>这个方法应该是最完美的，但是缺点是，你需要自己拼出HTTP的header部分。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$fp = fsockopen(<span class="string">"www.example.com"</span>, <span class="number">80</span>, $errno, $errstr, <span class="number">30</span>);</div><div class="line"><span class="keyword">if</span> (!$fp) &#123;</div><div class="line">    <span class="keyword">echo</span> <span class="string">"$errstr ($errno)&lt;br /&gt;\n"</span>;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    $out = <span class="string">"GET /backend.php  / HTTP/1.1\r\n"</span>;</div><div class="line">    $out .= <span class="string">"Host: www.example.com\r\n"</span>;</div><div class="line">    $out .= <span class="string">"Connection: Close\r\n\r\n"</span>;</div><div class="line"> </div><div class="line">    fwrite($fp, $out);</div><div class="line">    <span class="comment">/*忽略执行结果</span></div><div class="line">    while (!feof($fp)) &#123;</div><div class="line">        echo fgets($fp, 128);</div><div class="line">    &#125;*/</div><div class="line">    fclose($fp);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <blockquote>
-<p><a href="https://cloud.tencent.com/community/article/382852" target="_blank" rel="external">https://cloud.tencent.com/community/article/382852</a></p>
+<p><a href="http://www.laruence.com/2008/04/14/318.html" target="_blank" rel="external">http://www.laruence.com/2008/04/14/318.html</a></p>
 </blockquote>
 
           
@@ -740,7 +782,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -781,7 +823,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">135</span>
+              <span class="site-state-item-count">152</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -791,7 +833,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

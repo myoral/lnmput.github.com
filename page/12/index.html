@@ -240,8 +240,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/13/workerman聊天室/" itemprop="url">
-                  workerman聊天室
+                <a class="post-title-link" href="/2017/04/06/php数学扩展bcmath/" itemprop="url">
+                  php数学扩展bcmath
                 </a>
               
             
@@ -254,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-13T15:40:20+08:00" content="2017-02-13">
-              2017-02-13
+            <time itemprop="dateCreated" datetime="2017-04-06T17:14:54+08:00" content="2017-04-06">
+              2017-04-06
             </time>
           </span>
 
@@ -284,213 +284,11 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>穷人什么苦都能吃就是吃不了学习的苦.<br></blockquote></p>
-<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="comment">// 创建一个Socket实例</span></div><div class="line"><span class="keyword">var</span> socket =<span class="literal">null</span>;<span class="comment">//初始是null</span></div><div class="line"><span class="keyword">var</span> isLogin=<span class="literal">false</span>;<span class="comment">//是否登录到服务器上</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">send</span>(<span class="params"></span>)</span></div><div class="line">        &#123;</div><div class="line"><span class="keyword">if</span>(!isLogin)</div><div class="line">            &#123;</div><div class="line">alert(<span class="string">"请先服务器验证"</span>);</div><div class="line"><span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> msg=<span class="built_in">document</span>.getElementById(<span class="string">"txtmsg"</span>).value;</div><div class="line">socket.send(<span class="string">"msg:"</span>+msg);</div><div class="line"><span class="comment">//在div 中显示我们的行为</span></div><div class="line"><span class="keyword">var</span> p=<span class="built_in">document</span>.createElement(<span class="string">"P"</span>);</div><div class="line">p.innerHTML=<span class="string">"&lt;span&gt;发送消息&lt;/span&gt;"</span>+msg</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"txtcontent"</span>).appendChild(p);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">connectServer</span>(<span class="params"></span>)</span></div><div class="line">        &#123;</div><div class="line"><span class="keyword">var</span> userName=<span class="built_in">document</span>.getElementById(<span class="string">"username"</span>).value;</div><div class="line"><span class="keyword">if</span>(userName==<span class="string">""</span>)</div><div class="line">            &#123;</div><div class="line">alert(<span class="string">"用户昵称必填 "</span>);</div><div class="line"><span class="keyword">return</span>;</div><div class="line">&#125;</div><div class="line">socket=<span class="keyword">new</span> WebSocket(<span class="string">'ws://121.42.176.99:9091/'</span>);</div><div class="line"><span class="comment">// 打开Socket</span></div><div class="line">socket.onopen = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">socket.send(<span class="string">"login:"</span>+userName);</div><div class="line">&#125;;</div><div class="line">socket.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line"></div><div class="line"><span class="keyword">var</span> getMsg=event.data;</div><div class="line"><span class="keyword">if</span>(<span class="regexp">/^notice:success$/</span>.test(getMsg)) <span class="comment">//服务器验证通过,后面做任何发送操作</span></div><div class="line">&#123;</div><div class="line">isLogin=<span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(<span class="regexp">/^msg:/</span>.test(getMsg)) <span class="comment">//代表是普通消息</span></div><div class="line">&#123;</div><div class="line"><span class="comment">//&lt;p&gt;xxxxooo&lt;/p&gt;</span></div><div class="line"><span class="keyword">var</span> p=<span class="built_in">document</span>.createElement(<span class="string">"P"</span>);</div><div class="line">p.innerHTML=<span class="string">"&lt;span&gt;收到消息&lt;/span&gt;"</span>+getMsg.replace(<span class="string">"msg:"</span>,<span class="string">""</span>);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"txtcontent"</span>).appendChild(p);</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(<span class="regexp">/^users:/</span>.test(getMsg))</div><div class="line">                &#123;<span class="comment">//显示当前已登录用户</span></div><div class="line">getMsg=getMsg.replace(<span class="string">"users:"</span>,<span class="string">""</span>);</div><div class="line">getMsg=<span class="built_in">eval</span>(<span class="string">"("</span>+getMsg+<span class="string">")"</span>);</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"listusers"</span>).innerHTML=<span class="string">""</span>;</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> getMsg)</div><div class="line">                    &#123;</div><div class="line"><span class="keyword">var</span> option=<span class="built_in">document</span>.createElement(<span class="string">"OPTION"</span>);</div><div class="line">option.value=key;<span class="comment">//IP</span></div><div class="line">option.innerHTML=getMsg[key];<span class="comment">//昵称</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"listusers"</span>).appendChild(option);</div><div class="line">&#125;</div><div class="line">                &#125;</div><div class="line"><span class="keyword">else</span></div><div class="line">&#123;</div><div class="line"></div><div class="line">                &#125;</div><div class="line">            &#125;;</div><div class="line"><span class="comment">// 监听Socket的关闭</span></div><div class="line">socket.onclose = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">isLogin=<span class="literal">false</span>;</div><div class="line"></div><div class="line">&#125;;</div><div class="line">&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"txtcontent"</span> <span class="attr">style</span>=<span class="string">"width:500px;height:250px;border: solid 1px gray"</span>&gt;</span></div><div class="line"></div><div class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>所有用户:<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"listusers"</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>你的昵称:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"username"</span>/&gt;</span> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">消息内容:</div><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">style</span>=<span class="string">"width:500px;height:100px"</span> <span class="attr">id</span>=<span class="string">"txtmsg"</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"connectServer()"</span>&gt;</span>连接服务器<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"send()"</span>&gt;</span>发送消息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="comment">//本机ip 121.42.176.99</span></div><div class="line"> <span class="comment">//等下 要监听  9091端口</span></div><div class="line"></div><div class="line"><span class="keyword">require_once</span> <span class="keyword">__DIR__</span> . <span class="string">'/Workerman/Autoloader.php'</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Workerman</span>\<span class="title">Worker</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Workerman</span>\<span class="title">Connection</span>\<span class="title">AsyncTcpConnection</span>;</div><div class="line"></div><div class="line"><span class="comment">// 创建一个Worker监听2345端口，使用http协议通讯</span></div><div class="line">$tcp_worker = <span class="keyword">new</span> Worker(<span class="string">"websocket://121.42.176.99:9091"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 启动1个进程对外提供服务</span></div><div class="line">$tcp_worker-&gt;count = <span class="number">1</span>;</div><div class="line">$clients=[];<span class="comment">//保存客户端信息</span></div><div class="line"></div><div class="line">$tcp_worker-&gt;onMessage = <span class="function"><span class="keyword">function</span><span class="params">($connection, $data)</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">global</span> $clients;</div><div class="line"><span class="keyword">if</span>(preg_match(<span class="string">"/^login:(\w&#123;3,20&#125;)/i"</span>,$data,$result))<span class="comment">//代表是客户端认证</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">if</span>(!array_key_exists($connection-&gt;getRemoteIp(),$clients)) <span class="comment">//必须是之前没有记录过</span></div><div class="line">&#123;</div><div class="line"><span class="comment">// $clients[$connection-&gt;getRemoteIp()]=$result[1];//保存所有客户端   格式为 ip=&gt;昵称</span></div><div class="line">$clients[$connection-&gt;getRemoteIp()]=[<span class="string">"ip"</span>=&gt;$connection-&gt;getRemoteIp(),<span class="string">"name"</span>=&gt;$result[<span class="number">1</span>],<span class="string">"conn"</span>=&gt;$connection];</div><div class="line"></div><div class="line">$connection-&gt;send(<span class="string">"notice:success"</span>);<span class="comment">//代表给客户端一个连接提示</span></div><div class="line">$connection-&gt;send(<span class="string">"msg:welcome back "</span>.$result[<span class="number">1</span>]);<span class="comment">//代表是发送普通文字消息</span></div><div class="line"><span class="keyword">echo</span> $connection-&gt;getRemoteIp().<span class="string">":"</span>.$result[<span class="number">1</span>].<span class="string">" login"</span>.PHP_EOL;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//$connection-&gt;send("users:".json_encode($clients));</span></div><div class="line">$users=<span class="string">"users:"</span>.json_encode(array_column($clients,<span class="string">"name"</span>,<span class="string">"ip"</span>));</div><div class="line"><span class="keyword">foreach</span>($clients <span class="keyword">as</span> $ip=&gt;$set)</div><div class="line">            &#123;</div><div class="line">$set[<span class="string">"conn"</span>]-&gt;send($users);</div><div class="line">&#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(preg_match(<span class="string">"/^msg:(.*?)/isU"</span>,$data,$msgset)) <span class="comment">//代表 是客户端发送普通消息</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">if</span>(array_key_exists($connection-&gt;getRemoteIp(),$clients)) <span class="comment">//必须已经认证过得客户端</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">echo</span> <span class="string">"get msg :"</span>.$msgset[<span class="number">1</span>];</div><div class="line">&#125;</div><div class="line">    &#125;</div><div class="line">$connection-&gt;onClose=<span class="function"><span class="keyword">function</span> <span class="params">($connection)</span>//客户端主动关闭</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">global</span> $clients;</div><div class="line"><span class="keyword">unset</span>($clients[$connection-&gt;getRemoteIp()]);</div><div class="line">&#125;;</div><div class="line">&#125;;</div><div class="line">$tcp_worker-&gt;onClose=<span class="function"><span class="keyword">function</span> <span class="params">($connection)</span> <span class="title">use</span><span class="params">($clients)</span></span></div><div class="line">&#123;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 运行worker</span></div><div class="line">Worker::runAll();</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/13/python截图/" itemprop="url">
-                  python截图
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-13T15:34:29+08:00" content="2017-02-13">
-              2017-02-13
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>你不能把这个世界，让给你所鄙视的人。<br></blockquote></p>
-<h3 id="简单的三行代码就可以实现"><a href="#简单的三行代码就可以实现" class="headerlink" title="简单的三行代码就可以实现:"></a>简单的三行代码就可以实现:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageGrab</div><div class="line">pic = ImageGrab.grab()</div><div class="line">pic.save(<span class="string">'1.jpg'</span>)</div></pre></td></tr></table></figure>
-<h3 id="使用-selenium"><a href="#使用-selenium" class="headerlink" title="使用 selenium"></a>使用 selenium</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line">browser = webdriver.Chrome()</div><div class="line">browser.get(<span class="string">'http://news.baidu.com/'</span>)</div><div class="line">browser.save_screenshot(<span class="string">'capture.png'</span>)</div><div class="line">browser.close()</div></pre></td></tr></table></figure>
-<h3 id="加载js-使网页显示完全"><a href="#加载js-使网页显示完全" class="headerlink" title="加载js,使网页显示完全"></a>加载js,使网页显示完全</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">import</span> time</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">take_screenshot</span><span class="params">(url, save_fn=<span class="string">"capture.png"</span>)</span>:</span></div><div class="line">browser = webdriver.Chrome() <span class="comment"># Get local session of firefox</span></div><div class="line">browser.set_window_size(<span class="number">1200</span>, <span class="number">900</span>)</div><div class="line">browser.get(url) <span class="comment"># Load page</span></div><div class="line">browser.execute_script(<span class="string">"""</span></div><div class="line">        (function () &#123;</div><div class="line">            var y = 0;</div><div class="line">            var step = 100;</div><div class="line">            window.scroll(0, 0);</div><div class="line"></div><div class="line">            function f() &#123;</div><div class="line">                if (y &lt; document.body.scrollHeight) &#123;</div><div class="line">                    y += step;</div><div class="line">                    window.scroll(0, y);</div><div class="line">                    setTimeout(f, 100);</div><div class="line">                &#125; else &#123;</div><div class="line">                    window.scroll(0, 0);</div><div class="line">                    document.title += "scroll-done";</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            setTimeout(f, 1000);</div><div class="line">        &#125;)();</div><div class="line">    """)</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(<span class="number">30</span>):</div><div class="line"><span class="keyword">if</span> <span class="string">"scroll-done"</span> <span class="keyword">in</span> browser.title:</div><div class="line"><span class="keyword">break</span></div><div class="line">time.sleep(<span class="number">10</span>)</div><div class="line"></div><div class="line">browser.save_screenshot(save_fn)</div><div class="line">browser.close()</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line"></div><div class="line">take_screenshot(<span class="string">"http://codingpy.com"</span>)</div></pre></td></tr></table></figure>
-<h3 id="使用-PhantomJS-效果不太好"><a href="#使用-PhantomJS-效果不太好" class="headerlink" title="使用 PhantomJS(效果不太好)"></a>使用 PhantomJS(效果不太好)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line">br = webdriver.PhantomJS()</div><div class="line">br.get(<span class="string">'http://www.baidu.com'</span>)</div><div class="line">br.save_screenshot(<span class="string">'screenshot.png'</span>)</div><div class="line">br.quit()</div></pre></td></tr></table></figure>
-<h3 id="升级版"><a href="#升级版" class="headerlink" title="升级版"></a>升级版</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> StringIO</div><div class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</div><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line"></div><div class="line"><span class="comment"># Install instructions</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># npm install phantomjs</span></div><div class="line"><span class="comment"># sudo apt-get install libjpeg-dev</span></div><div class="line"><span class="comment"># pip install selenium pillow</span></div><div class="line"></div><div class="line"></div><div class="line">driver = webdriver.PhantomJS()</div><div class="line">driver.set_window_size(<span class="number">1366</span>, <span class="number">728</span>)  <span class="comment"># optional</span></div><div class="line">driver.get(<span class="string">'http://hassyon.com'</span>)</div><div class="line">driver.save_screenshot(<span class="string">'screen_hires.png'</span>)</div><div class="line"></div><div class="line">screen = driver.get_screenshot_as_png()</div><div class="line"></div><div class="line"><span class="comment"># Crop it back to the window size (it may be taller)</span></div><div class="line">box = (<span class="number">0</span>, <span class="number">0</span>, <span class="number">1366</span>, <span class="number">728</span>)</div><div class="line">im = Image.open(StringIO.StringIO(screen))</div><div class="line">region = im.crop(box)</div><div class="line">region.save(<span class="string">'screen_lores.jpg'</span>, <span class="string">'JPEG'</span>, optimize=<span class="keyword">True</span>, quality=<span class="number">95</span>)</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/07/phpize安装php扩展/" itemprop="url">
-                  phpize安装php扩展
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-07T14:30:32+08:00" content="2017-02-07">
-              2017-02-07
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>这十年来做过的事，能令你无悔骄傲吗？<br>那时候你所相信的事，应该没动摇吧？<br></blockquote><br>如果要安装的扩展在php源码ext目录中没有，那么这个扩展需要到<a href="http://pecl.php.net" target="_blank" rel="external">http://pecl.php.net</a> 搜索下载</p>
-<p>以安装libevent扩展为例（假设系统安装了libevent-dev库）</p>
-<h3 id="1、下载libevent扩展文件压缩包（在当前系统哪个目录下载随意）"><a href="#1、下载libevent扩展文件压缩包（在当前系统哪个目录下载随意）" class="headerlink" title="1、下载libevent扩展文件压缩包（在当前系统哪个目录下载随意）"></a>1、下载libevent扩展文件压缩包（在当前系统哪个目录下载随意）</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">~<span class="comment"># wget http://pecl.php.net/get/libevent-0.1.0.tgz</span></div><div class="line">-<span class="number">-2015</span><span class="number">-05</span><span class="number">-26</span> <span class="number">21</span>:<span class="number">43</span>:<span class="number">40</span>--  http:<span class="comment">//pecl.php.net/get/libevent-0.1.0.tgz</span></div><div class="line">Resolving pecl.php.net... <span class="number">104.236</span><span class="number">.228</span><span class="number">.160</span></div><div class="line">Connecting to pecl.php.net|<span class="number">104.236</span><span class="number">.228</span><span class="number">.160</span>|:<span class="number">80.</span>.. connected.</div><div class="line">HTTP request sent, awaiting response... <span class="number">200</span> OK</div><div class="line">Length: <span class="number">9806</span> (<span class="number">9.6</span>K) [application/octet-stream]</div><div class="line">Saving to: “libevent<span class="number">-0.1</span><span class="number">.0</span>.tgz”</div><div class="line"></div><div class="line"><span class="number">100</span>%[=======================================================&gt;] <span class="number">9</span>,<span class="number">806</span>       <span class="number">41.4</span>K/s   in <span class="number">0.2</span>s</div></pre></td></tr></table></figure>
-<h3 id="2、解压扩展文件压缩包"><a href="#2、解压扩展文件压缩包" class="headerlink" title="2、解压扩展文件压缩包"></a>2、解压扩展文件压缩包</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">~<span class="comment"># tar -zxvf libevent-0.1.0.tgz</span></div><div class="line">package.xml</div><div class="line">libevent<span class="number">-0.1</span><span class="number">.0</span>/config.m4</div><div class="line">libevent<span class="number">-0.1</span><span class="number">.0</span>/CREDITS</div><div class="line">libevent<span class="number">-0.1</span><span class="number">.0</span>/libevent.c</div><div class="line">....</div></pre></td></tr></table></figure>
-<h3 id="3、进入到源码目录"><a href="#3、进入到源码目录" class="headerlink" title="3、进入到源码目录"></a>3、进入到源码目录</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~<span class="comment"># cd libevent-0.1.0/</span></div></pre></td></tr></table></figure>
-<h3 id="4、运行phpize命令"><a href="#4、运行phpize命令" class="headerlink" title="4、运行phpize命令"></a>4、运行phpize命令</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">~<span class="comment"># phpize</span></div><div class="line">Configuring <span class="keyword">for</span>:</div><div class="line">PHP Api Version:         <span class="number">20090626</span></div><div class="line">Zend Module Api No:      <span class="number">20090626</span></div><div class="line">Zend Extension Api No:   <span class="number">220090626</span></div></pre></td></tr></table></figure>
-<h3 id="5、运行configure命令"><a href="#5、运行configure命令" class="headerlink" title="5、运行configure命令"></a>5、运行configure命令</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">~<span class="comment"># ./configure</span></div><div class="line">checking <span class="keyword">for</span> grep that handles long lines <span class="keyword">and</span> -e... /bin/grep</div><div class="line">checking <span class="keyword">for</span> egrep... /bin/grep -E</div><div class="line">checking <span class="keyword">for</span> a sed that does not truncate output... /bin/sed</div><div class="line">checking <span class="keyword">for</span> cc... cc</div><div class="line">checking whether the C compiler works... yes</div><div class="line">...</div></pre></td></tr></table></figure>
-<h3 id="6、运行make命令"><a href="#6、运行make命令" class="headerlink" title="6、运行make命令"></a>6、运行make命令</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">~<span class="comment"># /bin/bash /data/test/libevent-0.1.0/libtool --mode=compile cc  -I. -I/data/test/libevent-0.1.0 -DPHP_ATOM_INC -I/data/test/libevent-0.1.0/include</span></div><div class="line">...</div></pre></td></tr></table></figure>
-<h3 id="7、运行make-install命令"><a href="#7、运行make-install命令" class="headerlink" title="7、运行make install命令"></a>7、运行make install命令</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">~<span class="comment"># make install</span></div><div class="line">Installing shared extensions:     /usr/lib/php5/<span class="number">20090626</span>/</div></pre></td></tr></table></figure>
-<h3 id="8、配置ini文件"><a href="#8、配置ini文件" class="headerlink" title="8、配置ini文件"></a>8、配置ini文件</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">通过运行 php --ini查找php.ini文件位置，然后在文件中添加extension=libevent.so</div></pre></td></tr></table></figure>
+            <p><blockquote class="blockquote-center"><br>我在这里准备了一百口棺材，九十九口留给贪官，一口留给自己。<br></blockquote></p>
+<h3 id="BC-数学-函数"><a href="#BC-数学-函数" class="headerlink" title="BC 数学 函数"></a>BC 数学 函数</h3><p>  ● bcadd — 2个任意精度数字的加法计算<br>  ● bccomp — 比较两个任意精度的数字<br>  ● bcdiv — 2个任意精度的数字除法计算<br>  ● bcmod — 对一个任意精度数字取模<br>  ● bcmul — 2个任意精度数字乘法计算<br>  ● bcpow — 任意精度数字的乘方<br>  ● bcpowmod — Raise an arbitrary precision number to another, reduced by a specified modulus<br>  ● bcscale — 设置所有bc数学函数的默认小数点保留位数<br>  ● bcsqrt — 任意精度数字的二次方根<br>  ● bcsub — 2个任意精度数字的减法</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$re = intval(<span class="number">18.99</span>*<span class="number">100</span>)/<span class="number">100</span>;</div><div class="line"><span class="keyword">echo</span> $re;</div><div class="line"><span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</div><div class="line">$gg = bcdiv(bcmul(<span class="string">'18.99'</span>,<span class="string">'100'</span>), <span class="string">'100'</span>,<span class="number">2</span>);</div><div class="line"><span class="keyword">echo</span> $gg;</div></pre></td></tr></table></figure>
 <blockquote>
-<p><a href="http://doc3.workerman.net/appendices/install-extension.html" target="_blank" rel="external">http://doc3.workerman.net/appendices/install-extension.html</a></p>
+<p><a href="http://php.net/manual/zh/book.bc.php" target="_blank" rel="external">http://php.net/manual/zh/book.bc.php</a></p>
 </blockquote>
 
           
@@ -541,8 +339,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/07/关于php的PECL和PEAR/" itemprop="url">
-                  关于php的PECL和PEAR
+                <a class="post-title-link" href="/2017/04/06/Laravel开发记录sql/" itemprop="url">
+                  Laravel开发记录sql
                 </a>
               
             
@@ -555,8 +353,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-07T11:09:44+08:00" content="2017-02-07">
-              2017-02-07
+            <time itemprop="dateCreated" datetime="2017-04-06T17:09:54+08:00" content="2017-04-06">
+              2017-04-06
             </time>
           </span>
 
@@ -585,29 +383,9 @@
       
         
           
-            <blockquote class="blockquote-center"><br>总有一天，我会拥有我梦寐以求的6块腹肌，可是我还是先把这个汉堡吃完……<br></blockquote>
-
-<h3 id="什么是PEAR"><a href="#什么是PEAR" class="headerlink" title="什么是PEAR"></a>什么是PEAR</h3><p>PEAR的全称是PHP Extension and Application Repository，是PHP的扩展库，采用PHP语言编写。所以我们可以直接下载，并在我们的代码中包含(include)扩展库。</p>
-<h3 id="什么是PECL"><a href="#什么是PECL" class="headerlink" title="什么是PECL"></a>什么是PECL</h3><p>PECL的全称是PHP Extension Community Library，它也是PHP的扩展库。PECL的扩展都是采用C语言编写的，可以被载入PHP中，给PHP增加额外的功能，比如PHP的Mongo扩展。<br>即 php 的 so 格式的扩展</p>
-<h4 id="centos"><a href="#centos" class="headerlink" title="centos"></a>centos</h4><ul>
-<li>安装: yum install php-pear</li>
-</ul>
-<h4 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h4><ul>
-<li>安装: sudo apt-get install php-pear</li>
-</ul>
-<h3 id="phpize"><a href="#phpize" class="headerlink" title="phpize"></a>phpize</h3><h4 id="centos-1"><a href="#centos-1" class="headerlink" title="centos"></a>centos</h4><ul>
-<li>安装: yum install php-devel</li>
-<li>查看: which phpize</li>
-</ul>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>在网页中打印phpinfo()看到安装了某个扩展，不代表命令行的PHP CLI也安装了对应的扩展。</p>
-<ul>
-<li>如何确定PHP CLI安装了哪些扩展</li>
-</ul>
-<p>运行 <code>php -m</code> 会列出命令行 PHP CLI 已经安装的扩展</p>
-<ul>
-<li>如何确定PHP CLI 的php.ini文件的位置</li>
-</ul>
-<p>可以运行<code>php --ini</code>查找PHP CLI的ini文件位置</p>
+            <p><blockquote class="blockquote-center"><br>啊 这瞌睡 这瞌睡像十除以三<br></blockquote></p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">trace_sql</span><span class="params">($dump = false)</span></span></div><div class="line">&#123;</div><div class="line">    DB::listen(<span class="function"><span class="keyword">function</span> <span class="params">($event)</span> <span class="title">use</span><span class="params">($dump)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> ($dump) &#123;</div><div class="line">            dump($event-&gt;sql);</div><div class="line">            dump($event-&gt;bindings);</div><div class="line">        &#125;</div><div class="line">        Log::info($event-&gt;sql);</div><div class="line">        Log::info($event-&gt;bindings);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    trace_sql();</div><div class="line">    $query = Order::query();</div><div class="line">    <span class="comment">//$query-&gt;whereBetween('updated_at',[Carbon::today(), Carbon::tomorrow()]);</span></div><div class="line">    $query-&gt;whereHas(<span class="string">'incomeExpenditure'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($query)</span> </span>&#123;</div><div class="line">       $query-&gt;whereBetween(<span class="string">'created_at'</span>,[Carbon::today(), Carbon::tomorrow()])-&gt;where(<span class="string">'value'</span>, <span class="string">'&gt;'</span>, <span class="number">0</span>);</div><div class="line">    &#125;);</div><div class="line">    $orders = $query-&gt;where(<span class="string">'status'</span>, <span class="string">'paid'</span>)-&gt;with(<span class="string">'products'</span>)-&gt;orderBy(<span class="string">'updated_at'</span>, <span class="string">'desc'</span>)-&gt;paginate(<span class="number">1000</span>);</div><div class="line">    $datas = <span class="keyword">$this</span>-&gt;todayStatistics();</div><div class="line">    <span class="keyword">return</span> view(<span class="string">'home.index'</span>, [<span class="string">'orders'</span> =&gt; $orders, <span class="string">'datas'</span> =&gt; $datas]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -657,8 +435,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/05/git丢弃本地修改的所有文件/" itemprop="url">
-                  git丢弃本地修改的所有文件
+                <a class="post-title-link" href="/2017/03/27/nginx的反向代理和负载均衡实践/" itemprop="url">
+                  nginx的反向代理和负载均衡实践
                 </a>
               
             
@@ -671,8 +449,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-05T14:28:43+08:00" content="2017-02-05">
-              2017-02-05
+            <time itemprop="dateCreated" datetime="2017-03-27T08:58:36+08:00" content="2017-03-27">
+              2017-03-27
             </time>
           </span>
 
@@ -701,9 +479,236 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>我喜欢你，像风走了八万里，不问归期。<br></blockquote><br>git checkout . #本地所有修改的。没有的提交的，都返回到原来的状态<br>git stash #把所有没有提交的修改暂存到stash里面。可用git stash pop回复。<br>git reset –hard HASH #返回到某个节点，不保留修改。<br>git reset –soft HASH #返回到某个节点。保留修改</p>
-<p>git clean -df #返回到某个节点<br>git clean 参数<br>    -n 显示 将要 删除的 文件 和  目录<br>    -f 删除 文件<br>    -df 删除 文件 和 目录<br>也可以使用：</p>
-<p>git checkout . &amp;&amp; git clean -xdf</p>
+            <p><blockquote class="blockquote-center"><br>有些人让你对明天充满期许，却再也没有出现在你的明天里。<br></blockquote></p>
+<h3 id="apache的配置"><a href="#apache的配置" class="headerlink" title="apache的配置"></a>apache的配置</h3><p>使用 Apache 模拟出两个站点,分别使用8081和8082端口<br>访问:<br><a href="http://121.42.176.99:8081/" target="_blank" rel="external">http://121.42.176.99:8081/</a><br><a href="http://121.42.176.99:8082/" target="_blank" rel="external">http://121.42.176.99:8082/</a><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">Listen <span class="number">8081</span></div><div class="line">&lt;VirtualHost *:<span class="number">8081</span>&gt;</div><div class="line">    ServerAdmin webmaster@dummy-host2.example.com</div><div class="line">    DocumentRoot <span class="string">"/usr/local/httpd/htdocs/test"</span></div><div class="line">    DirectoryIndex index.html index.php</div><div class="line">    ServerName <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></div><div class="line">    ErrorLog <span class="string">"logs/dummy-host2.example.com-error_log"</span></div><div class="line">    CustomLog <span class="string">"logs/dummy-host2.example.com-access_log"</span> common</div><div class="line">&lt;/VirtualHost&gt;</div><div class="line">&lt;Directory <span class="string">"/usr/local/httpd/htdocs/test"</span>&gt;</div><div class="line">    Options FollowSymLinks</div><div class="line">    AllowOverride  all</div><div class="line">    allow from all</div><div class="line">    <span class="keyword">Require</span> all granted</div><div class="line">&lt;/Directory&gt;</div><div class="line">Listen <span class="number">8082</span></div><div class="line">&lt;VirtualHost *:<span class="number">8082</span>&gt;</div><div class="line">    ServerAdmin webmaster@dummy-host2.example.com</div><div class="line">    DocumentRoot <span class="string">"/usr/local/httpd/htdocs/test1"</span></div><div class="line">    DirectoryIndex index.html index.php</div><div class="line">    ServerName <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></div><div class="line">    ErrorLog <span class="string">"logs/dummy-host2.example.com-error_log"</span></div><div class="line">    CustomLog <span class="string">"logs/dummy-host2.example.com-access_log"</span> common</div><div class="line">&lt;/VirtualHost&gt;</div><div class="line">&lt;Directory <span class="string">"/usr/local/httpd/htdocs/test"</span>&gt;</div><div class="line">    Options FollowSymLinks</div><div class="line">    AllowOverride  all</div><div class="line">    allow from all</div><div class="line">    <span class="keyword">Require</span> all granted</div><div class="line">&lt;/Directory&gt;</div></pre></td></tr></table></figure></p>
+<p>网站的内容index.php 打印出服务器变量: var_export($_SERVER);</p>
+<h3 id="反向代理nginx"><a href="#反向代理nginx" class="headerlink" title="反向代理nginx"></a>反向代理nginx</h3><p>nginx 默认使用80端口,<a href="http://121.42.176.99/" target="_blank" rel="external">http://121.42.176.99/</a><br>配置:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">location / &#123;</div><div class="line">    proxy_passs http:<span class="comment">//localhost:8081</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>之后重启nginx<br>这时候访问<a href="http://121.42.176.99/,就会访问的是apache的8081端口" target="_blank" rel="external">http://121.42.176.99/,就会访问的是apache的8081端口</a></p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>我们发现获取到的服务器信息不正确:<br> 1、HTTP_HOST:localhost:8081<br> 2、REMOTE_ADDR：127.0.0.1 (客户端的IP）<br>这会对我们的开发造成“迷茫”，因此要在nginx配置里加入<br>1、proxy_set_header Host $host;<br>2、proxy_set_header  X-Real-IP $remote_addr;</p>
+<p>其他的一些设置请google;</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/22/编译安装mysql/" itemprop="url">
+                  编译安装mysql
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-22T15:25:32+08:00" content="2017-03-22">
+              2017-03-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>等一个不爱你的人，就像在机场等一艘船<br></blockquote></p>
+<h3 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h3><ul>
+<li>centos6.8 64</li>
+<li>mysql 5.7.17</li>
+</ul>
+<h3 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h3><ul>
+<li><p>CMake是一个跨平台的安装(编译)工具,可以用简单的语句来描述所有平台的安装(编译过程)<br>yum install cmake -y</p>
+</li>
+<li><p>安装编译器<br>yum install gcc gcc-c++ -y</p>
+</li>
+<li><p>安装图像函数库<br>yum install ncurses ncurses-devel -y</p>
+</li>
+<li><p>解压并进入到目录,执行<br>cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DSYSCONFDIR=/etc -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DMYSQL_DATADIR=/var/lib/mysql/data -DWITH_BOOST=boost </p>
+</li>
+<li><p>开始编译<br>make<br>make install</p>
+</li>
+</ul>
+<h3 id="编译完成"><a href="#编译完成" class="headerlink" title="编译完成"></a>编译完成</h3><ul>
+<li>增加一个mysql用户(useradd mysql -M -s /sbin/nologin)</li>
+<li>配置文件位置(/etc/my.cnf)</li>
+<li>初始化(mysqld –initialize –user=mysql –basedir=/var/lib/mysql –datadir=/var/lib/mysql/data)</li>
+</ul>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)<br>解决方案:<br>在mysql的配置文件中加入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[mysql]</div><div class="line">socket=/<span class="keyword">var</span>/lib/mysql/mysql.sock</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/22/编译安装php/" itemprop="url">
+                  编译安装php
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-22T15:25:15+08:00" content="2017-03-22">
+              2017-03-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>多赚钱,离傻逼们远一点<br></blockquote></p>
+<h3 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h3><ul>
+<li>centos6.8 64</li>
+<li>php 5.6.30</li>
+</ul>
+<h3 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h3><ul>
+<li><p>下载<br><a href="http://php.net/get/php-5.6.30.tar.xz/from/a/mirror" target="_blank" rel="external">http://php.net/get/php-5.6.30.tar.xz/from/a/mirror</a></p>
+</li>
+<li><p>预安装<br>yum -y install libxml2  libxml2-devel</p>
+</li>
+<li><p>解压编译<br>./configure –prefix=/usr/local/php –with-apxs2=/usr/local/httpd/bin/apxs<br>make<br>make install</p>
+</li>
+</ul>
+<h3 id="安装完成"><a href="#安装完成" class="headerlink" title="安装完成"></a>安装完成</h3><p>apache不认识xxx.php后缀<br>打开apache配置文件,增加<br>AddType application/x-httpd-php .php</p>
 
           
         
@@ -736,7 +741,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -777,7 +782,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">135</span>
+              <span class="site-state-item-count">152</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -787,7 +792,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

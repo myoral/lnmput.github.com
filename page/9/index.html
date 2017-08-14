@@ -240,8 +240,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/22/编译安装mysql/" itemprop="url">
-                  编译安装mysql
+                <a class="post-title-link" href="/2017/06/08/WebWorker通信/" itemprop="url">
+                  WebWorker通信
                 </a>
               
             
@@ -254,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-22T15:25:32+08:00" content="2017-03-22">
-              2017-03-22
+            <time itemprop="dateCreated" datetime="2017-06-08T09:37:06+08:00" content="2017-06-08">
+              2017-06-08
             </time>
           </span>
 
@@ -284,29 +284,12 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>等一个不爱你的人，就像在机场等一艘船<br></blockquote></p>
-<h3 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h3><ul>
-<li>centos6.8 64</li>
-<li>mysql 5.7.17</li>
-</ul>
-<h3 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h3><ul>
-<li><p>CMake是一个跨平台的安装(编译)工具,可以用简单的语句来描述所有平台的安装(编译过程)<br>yum install cmake -y</p>
-</li>
-<li><p>安装编译器<br>yum install gcc gcc-c++ -y</p>
-</li>
-<li><p>安装图像函数库<br>yum install ncurses ncurses-devel -y</p>
-</li>
-<li><p>解压并进入到目录,执行<br>cmake . -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DSYSCONFDIR=/etc -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DMYSQL_DATADIR=/var/lib/mysql/data -DWITH_BOOST=boost </p>
-</li>
-<li><p>开始编译<br>make<br>make install</p>
-</li>
-</ul>
-<h3 id="编译完成"><a href="#编译完成" class="headerlink" title="编译完成"></a>编译完成</h3><ul>
-<li>增加一个mysql用户(useradd mysql -M -s /sbin/nologin)</li>
-<li>配置文件位置(/etc/my.cnf)</li>
-<li>初始化(mysqld –initialize –user=mysql –basedir=/var/lib/mysql –datadir=/var/lib/mysql/data)</li>
-</ul>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)<br>解决方案:<br>在mysql的配置文件中加入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[mysql]</div><div class="line">socket=/<span class="keyword">var</span>/lib/mysql/mysql.sock</div></pre></td></tr></table></figure></p>
+            <p><blockquote class="blockquote-center"><br>生活就是这样，<br>在你最糟的时候，会遇到最好的人。<br></blockquote></p>
+<h3 id="Web-Worker是什么"><a href="#Web-Worker是什么" class="headerlink" title="Web Worker是什么"></a>Web Worker是什么</h3><p>Web Worker 是HTML5标准的一部分，这一规范定义了一套 API，它允许一段JavaScript程序运行在主线程之外的另外一个线程中。Web Worker 规范中定义了两类工作线程，分别是专用线程Dedicated Worker和共享线程 Shared Worker，其中，Dedicated Worker只能为一个页面所使用，而Shared Worker则可以被多个页面所共享，本文示例为专用线程Dedicated Worker。<br>web worker 是运行在后台的 JavaScript，不会影响页面的性能。</p>
+<h3 id="例子一-简单通信"><a href="#例子一-简单通信" class="headerlink" title="例子一: 简单通信"></a>例子一: 简单通信</h3><p>index.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.bootcss.com/socket.io/1.7.2/socket.io.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"></div><div class="line">var worker = new Worker("task.js");</div><div class="line">worker.postMessage(</div><div class="line">        &#123;</div><div class="line">id:1,</div><div class="line">msg:'Hello World'</div><div class="line">&#125;</div><div class="line">    );</div><div class="line">worker.onmessage=function(message)&#123;</div><div class="line">var data = message.data;</div><div class="line">console.log(JSON.stringify(data));</div><div class="line">worker.terminate();</div><div class="line">&#125;;</div><div class="line">worker.onerror=function(error)&#123;</div><div class="line">console.log(error.filename,error.lineno,error.message);</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>task.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">onmessage= <span class="function"><span class="keyword">function</span>(<span class="params">message</span>)</span>&#123;</div><div class="line"><span class="keyword">var</span> data=message.data;</div><div class="line">data.msg = <span class="string">'Hi from task.js'</span>;</div><div class="line">postMessage(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="例子二-计数功能"><a href="#例子二-计数功能" class="headerlink" title="例子二: 计数功能"></a>例子二: 计数功能</h3><p>index.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="keyword">var</span> worker = <span class="keyword">new</span> Worker(<span class="string">"task.js"</span>);</div><div class="line">worker.onmessage=<span class="function"><span class="keyword">function</span>(<span class="params">message</span>)</span>&#123;</div><div class="line"><span class="keyword">var</span> data = message.data;</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(data));</div><div class="line"><span class="comment">//终止woker</span></div><div class="line">        <span class="comment">//worker.terminate();</span></div><div class="line">&#125;;</div><div class="line">worker.onerror=<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</div><div class="line"><span class="built_in">console</span>.log(error.filename,error.lineno,error.message);</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>task.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i=<span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">timedCount</span>(<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line">i=i+<span class="number">1</span>;</div><div class="line">postMessage(i);</div><div class="line">setTimeout(<span class="string">"timedCount()"</span>,<span class="number">500</span>);</div><div class="line">&#125;</div><div class="line">timedCount();</div></pre></td></tr></table></figure></p>
 
           
         
@@ -356,8 +339,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/22/编译安装php/" itemprop="url">
-                  编译安装php
+                <a class="post-title-link" href="/2017/05/31/增广贤文/" itemprop="url">
+                  增广贤文
                 </a>
               
             
@@ -370,8 +353,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-22T15:25:15+08:00" content="2017-03-22">
-              2017-03-22
+            <time itemprop="dateCreated" datetime="2017-05-31T14:19:59+08:00" content="2017-05-31">
+              2017-05-31
             </time>
           </span>
 
@@ -400,20 +383,7 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>多赚钱,离傻逼们远一点<br></blockquote></p>
-<h3 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h3><ul>
-<li>centos6.8 64</li>
-<li>php 5.6.30</li>
-</ul>
-<h3 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h3><ul>
-<li><p>下载<br><a href="http://php.net/get/php-5.6.30.tar.xz/from/a/mirror" target="_blank" rel="external">http://php.net/get/php-5.6.30.tar.xz/from/a/mirror</a></p>
-</li>
-<li><p>预安装<br>yum -y install libxml2  libxml2-devel</p>
-</li>
-<li><p>解压编译<br>./configure –prefix=/usr/local/php –with-apxs2=/usr/local/httpd/bin/apxs<br>make<br>make install</p>
-</li>
-</ul>
-<h3 id="安装完成"><a href="#安装完成" class="headerlink" title="安装完成"></a>安装完成</h3><p>apache不认识xxx.php后缀<br>打开apache配置文件,增加<br>AddType application/x-httpd-php .php</p>
+            <p><blockquote class="blockquote-center"><br>迷茫…<br></blockquote><br>人情似纸张张薄，世事如棋局局新。贫居闹市无人问，富在深山有远亲。不信但看宴中酒，杯杯先敬富贵人。门前拴上高头马，不是亲来也是亲。门前放根讨饭棍，亲戚故友不上门。世人结交需黄金，黄金不多交不深，纵令然诺暂相许，终是悠悠路行心。有钱有酒多兄弟，急难何曾见一人。酒肉朋友朝朝有，无钱无势亲不亲。相逢好比初相识，到老终无怨恨心。胜者为王败者寇，只重衣冠不重人。三贫三富不到老，十年兴败多少人。在官三日人问我，离官三日我问人。古人不见今时月，今月曾经照古人。近水楼台先得月，向阳花木易为春。谁人背后无人说，那个人前不说人。百炼化身成铁汉，三缄其口学金人。十分伶俐使七分，常留三分与儿孙。如若十分都使尽，远在儿孙近在身。长江后浪推前浪，世上新人赶旧人。君子乐得做君子，小人枉自做小人。山中自有千年树，世上难逢百岁人。岂无远道思亲泪，不及高堂念子心。堂上二老是活佛，何用灵山朝世尊。平生不作皱眉事，世上应无切齿人。越奸越狡越贫穷，奸狡原来天不容。富贵若从奸狡起，世间呆汉喝西风。求人须求大丈夫，济人须济急时无。茫茫四海人无数，那个男儿是丈夫。人情似水分高下，世事如云任卷舒。入山不怕伤人虎，只怕人情两面刀。无求到处人情好，不饮随它酒价高。知事少时烦恼少，识人多处是非多。秋至满山皆秀色，春来无处不花香。贫无达士将金赠，病有高人说药方。美人卖笑千金易，壮士穷途一饭难。少时总觉为人易，华年方知立业难。用心计较般般错，退步思量事事难。世上闲愁千万斛，不教一点上眉端。毁身每是作恶日，成名皆在行善时。莫把真心空计较，唯有大德享万年。谗言败坏真君子，美色消磨狂少年。神仙难断阴骘命，皇天不昧苦心人。人恶人怕天不怕，人善人欺天不欺。善恶到头终有报，只争来早与来迟。平生不做亏心事，半夜敲门心不惊。万事劝人休瞒昧，举头三尺有神明。鬼神可敬不可谄，怨家宜解不宜结。人生何处不相逢，莫因小怨动声色。好义固为人所钦，贪利乃为鬼所笑。贤者不炫己之长，君子不夺人所好。善业可为须着力，是非闲杂莫劳心。良田不由心田置，产业变为冤业折。千年田地八百主，田是主人人是客。阴地不如心地好，命运在人不在天。有理问得君王倒，有钱难买子孙贤。不求金玉重重贵，但愿儿孙个个贤。枯木逢春犹再岁，人无两度再少年。水暖水寒鱼自知，花开花谢春不管。蜗牛角上校雌雄，石火光中争长短。留心学到古人难，立脚怕随流欲转。少而寡欲颜常好，老不求官梦也闲。妙药难医冤孽病，横财不富命穷人。多情自古空遗恨，好梦由来最易醒。命中只有八合米，走尽天下难满升。知恩报恩天下少，反面无情世间多。荣宠旁边辱等待，贫贱背后福跟随。各人生死各人了，管人闲事受人磨。易涨易退山溪水，易反易覆小人心。红粉佳人休说老，风流浪子莫叫贫。龙游浅水遭虾戏，虎落平阳被犬欺。得食猫儿强似虎，褪毛鸾凤不如鸡。为人莫作千年计，三十河东四十西。当路莫栽荆棘树，它年免挂子孙衣。天上众星皆拱北，世间无水不朝东。笋因落箨方成竹，鱼为奔波始化龙。屋漏偏遭连夜雨，船慢又遇顶头风。记得少年骑竹马，看看又是白头翁。美人绝色原妖物，乱世多财是祸根。畜牲易度人难度，宁度畜牲不度人。天作棋盘星作子，水有源头木有根。昨日花开今日谢，百年人有万年心。北邙荒冢无贫富，玉垒浮云变古今。世事茫茫难自料，清风明月冷看人。守口不谈新旧事，知心难得两三人。欲知世情须尝胆，会尽人情暗点头。是非只为多开口，烦恼皆因强出头。人生七十古来稀，问君还有几春秋。莺花犹怕春光老，岂可教人枉度春。一年之计在于春，一日之计在于晨。一家之计在于和，一生之计在于勤。一朝天子一朝臣，一辈新鲜一辈陈。一苗露水一苗草，一层山水一层人。闷坐书馆闲操心，看来全是论古今。书中有真就有假，世人认假不认真。假作真时真亦假，真作假时假也真。真真假假难分解，假者自假真自真。回忆世情般般假，借假修真破迷津。由来富贵三更梦，何必楚楚苦用心。识透人情惊破胆，看穿世间心胆寒。白璧易埋千古恨，黄金难买一身闲。人生究竟归何处，看破放下随万缘。佛法浩瀚广无边，度尽人间苦和难。开启自性真智慧，笑游清秀山水间。</p>
 
           
         
@@ -463,8 +433,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/22/编译安装apache/" itemprop="url">
-                  编译安装apache
+                <a class="post-title-link" href="/2017/05/27/laravel自定义分页/" itemprop="url">
+                  laravel自定义分页
                 </a>
               
             
@@ -477,8 +447,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-22T15:24:56+08:00" content="2017-03-22">
-              2017-03-22
+            <time itemprop="dateCreated" datetime="2017-05-27T14:13:32+08:00" content="2017-05-27">
+              2017-05-27
             </time>
           </span>
 
@@ -507,31 +477,14 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>梦想使生活得以忍受<br></blockquote></p>
-<h3 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h3><ul>
-<li>centos6.8 64</li>
-<li>httpd2.4.25</li>
-</ul>
-<h3 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h3><ul>
-<li><p>下载httpd</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http:<span class="comment">//apache.fayea.com//httpd/httpd-2.4.25.tar.gz</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>安装apr</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">下载: wget http:<span class="comment">//mirrors.hust.edu.cn/apache//apr/apr-1.5.2.tar.bz2</span></div><div class="line">解压,并进入到目录</div><div class="line">执行 ./configure</div><div class="line">默认安装目录: /usr/local/apr</div><div class="line">make  make install</div></pre></td></tr></table></figure>
-</li>
-<li><p>安装apr-util</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">http:<span class="comment">//mirrors.hust.edu.cn/apache//apr/apr-util-1.5.4.tar.gz</span></div><div class="line"></div><div class="line">./configure --with-apr=/usr/local/apr (需要指明 apr的安装目录)</div></pre></td></tr></table></figure>
-</li>
-<li><p>安装 pcre</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">偷懒安装:</div><div class="line">yum install pcre prce-devel</div></pre></td></tr></table></figure>
-</li>
-<li><p>编译httpd</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./configure --prefix=/usr/local/httpd --enable-MODULE=shared</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="编译完成"><a href="#编译完成" class="headerlink" title="编译完成"></a>编译完成</h3><ul>
-<li>基本操作<br>./apachectl restart<br>./apachectl start<br>./apachectl stop</li>
-</ul>
+            <p><blockquote class="blockquote-center"><br>当斧头来到树林里的时候，好多树都说，至少它的把手是我们自己人。<br></blockquote><br>Let’s say that you have an array of data, e.g results from a search query, and you want to paginate them.</p>
+<p>Laravel provides pagination for Eloquent results out of the box, but for custom data we need to do the pagination manually.</p>
+<p>Let see how in the next example:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Pagination</span>\<span class="title">LengthAwarePaginator</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Collection</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">SearchController</span> <span class="keyword">extends</span> <span class="title">Controller</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">search</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        .</div><div class="line">        .</div><div class="line">        .</div><div class="line"></div><div class="line">        $searchResults = [</div><div class="line">            <span class="string">'item1'</span>,</div><div class="line">            <span class="string">'item2'</span>,</div><div class="line">            <span class="string">'item3'</span>,</div><div class="line">            <span class="string">'item4'</span>,</div><div class="line">            <span class="string">'item5'</span>,</div><div class="line">            <span class="string">'item6'</span>,</div><div class="line">            <span class="string">'item7'</span>,</div><div class="line">            <span class="string">'item8'</span>,</div><div class="line">            <span class="string">'item9'</span>,</div><div class="line">            <span class="string">'item10'</span></div><div class="line">            ];</div><div class="line"></div><div class="line">        <span class="comment">//Get current page form url e.g. &amp;page=6</span></div><div class="line">        $currentPage = LengthAwarePaginator::resolveCurrentPage();</div><div class="line"></div><div class="line">        <span class="comment">//Create a new Laravel collection from the array data</span></div><div class="line">        $collection = <span class="keyword">new</span> Collection($searchResults);</div><div class="line"></div><div class="line">        <span class="comment">//Define how many items we want to be visible in each page</span></div><div class="line">        $perPage = <span class="number">5</span>;</div><div class="line"></div><div class="line">        <span class="comment">//Slice the collection to get the items to display in current page</span></div><div class="line">        $currentPageSearchResults = $collection-&gt;slice($currentPage * $perPage, $perPage)-&gt;all();</div><div class="line"></div><div class="line">        <span class="comment">//Create our paginator and pass it to the view</span></div><div class="line">        $paginatedSearchResults= <span class="keyword">new</span> LengthAwarePaginator($currentPageSearchResults, count($collection), $perPage);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> view(<span class="string">'search'</span>, [<span class="string">'results'</span> =&gt; $paginatedSearchResults]);</div><div class="line">    &#125;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<p>Now in the view add the following:<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@foreach ($results as $result)</div><div class="line">   <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; $result &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">@endforeach</div><div class="line"></div><div class="line"><span class="php"><span class="meta">&lt;?php</span> <span class="keyword">echo</span> $results-&gt;render(); <span class="meta">?&gt;</span></span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><a href="http://psampaz.github.io/custom-data-pagination-with-laravel-5/" target="_blank" rel="external">http://psampaz.github.io/custom-data-pagination-with-laravel-5/</a></p>
+</blockquote>
 
           
         
@@ -581,8 +534,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/21/linux的账号和密码文件/" itemprop="url">
-                  linux的账号和密码文件
+                <a class="post-title-link" href="/2017/05/22/python中的super函数/" itemprop="url">
+                  python中的super函数
                 </a>
               
             
@@ -595,8 +548,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-21T09:35:01+08:00" content="2017-03-21">
-              2017-03-21
+            <time itemprop="dateCreated" datetime="2017-05-22T09:29:06+08:00" content="2017-05-22">
+              2017-05-22
             </time>
           </span>
 
@@ -625,13 +578,9 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>一想到时光匆匆，竟经不起半点挥霍，我就会对时间吝啬起来，因为此刻已过，便永不复还。<br></blockquote><br>Linux系统中，所有用户（包括系统管理员）的账号和密码都可以在/etc/passwd和/etc/shadow这两个文件中找到;</p>
-<h3 id="etc-passwd"><a href="#etc-passwd" class="headerlink" title="/etc/passwd"></a>/etc/passwd</h3><p>通过指令 vi /etc/passwd  打开passwd文件来看看，下面列举部分内容如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">root:x:<span class="number">0</span>:<span class="number">0</span>:root:/root:/bin/bash</div><div class="line">daemon:x:<span class="number">1</span>:<span class="number">1</span>:daemon:/usr/sbin:/bin/sh</div><div class="line">bin:x:<span class="number">2</span>:<span class="number">2</span>:bin:/bin:/bin/sh</div><div class="line">sys:x:<span class="number">3</span>:<span class="number">3</span>:sys:/dev:/bin/sh</div></pre></td></tr></table></figure></p>
-<p>上面每一行都代表一个用户，每一行又通过[:]分为七个部分，下面就说说这七项都代表什么。<br>　　1、账号名称<br>　　2、原先用来保存密码的，现在密码都放在/etc/shadow中，所以这里显示x<br>　　3、UID，也就是使用者ID。默认的系统管理员的UID为0，我们添加用户的时候最好使用1000以上的UID，1-1000范围的UID最好保留给系统用。<br>　　4、GID，也就是群组ID<br>　　5、关于账号的一些说明信息（暂时可以忽略）<br>　　6、账号的家目录，家目录就是你登陆系统后默认的那个目录<br>　　7、账号使用的shell</p>
-<h3 id="etc-shadow"><a href="#etc-shadow" class="headerlink" title="/etc/shadow"></a>/etc/shadow</h3><p>看完/etc/passwd，再来看看/etc/shadow里都有啥？于是在ubuntu的终端中输入 vi /etc/shadow 会出现了下面的错误信息：</p>
-<p><code>“/etc/shadow” [Permission Denied]</code></p>
-<p>忘了ubuntu中默认登陆的不开启root账户，而/etc/shadow文件只有root账户才能够访问，那怎么办呢，只好开启ubunt的root账户了，或者 sudo vi /etc/shadow即可，搞定之后shadow的内容如下面样式：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">root:!:<span class="number">15324</span>:<span class="number">0</span>:<span class="number">99999</span>:<span class="number">7</span>:::</div><div class="line">daemon:*:<span class="number">15259</span>:<span class="number">0</span>:<span class="number">99999</span>:<span class="number">7</span>:::</div><div class="line">bin:*:<span class="number">15259</span>:<span class="number">0</span>:<span class="number">99999</span>:<span class="number">7</span>:::</div></pre></td></tr></table></figure></p>
-<p>letuknowit:$1$cPf/cIvr$sCws95uSip2ljTK052DDB.:15400:5:60:7:2:15490:<br>这里也是由[:]来进行分割，但是这里一共分出来九个栏目，每个栏目的解释如下：<br>　　1、账户名称（密码需要与账户对应的嘛）<br>　　2、加密后的密码（总不能学CSDN放明文密码，是吧），如果这一栏的第一个字符为!或者*的话，说明这是一个不能登录的账户，从上面可以看出，ubuntu默认的就不启用root账户。<br>　　3、最近改动密码的日期（不是日期吗，咋是一堆数字，别急，这个是从1970年1月1日算起的总的天数）。那怎么才能知道今天距1970年1月1日有多少天呢？很简单，你改下密码，然后看下这个栏目中的数字是多少就可以了！<br>　　4、密码不可被变更的天数：设置了这个值，则表示从变更密码的日期算起，多少天内无法再次修改密码，如果是0的话，则没有限制<br>　　5、密码需要重新变更的天数：密码经常更换才能保证安全，为了提醒某些经常不更换密码的用户，可以设置一个天数，强制让用户更换密码，也就是说该用户的密码会在多少天后过期，如果为99999则没有限制<br>　　6、密码过期预警天数：如果在5中设置了密码需要重新变更的天数，则会在密码过期的前多少天进行提醒，提示用户其密码将在多少天后过期<br>　　7、密码过期的宽恕时间：如果在5中设置的日期过后，用户仍然没有修改密码，则该用户还可以继续使用的天数<br>　　8、账号失效日期，过了这个日期账号就不能用了<br>　　9、保留的</p>
+            <p><blockquote class="blockquote-center"><br>不管我本人多么平庸，我总觉得对你的爱很美。<br></blockquote><br>super有三种用法, 第一参数总是召唤父类的那个类, 第二参数可缺(返回非绑定父类对象),也可以是实例对象或该类的子类. 最终返回的都是父类的实例(绑定或非绑定). 在Python3中,super函数多了一种用法是直接super(),相当于super(type,首参), 这个首参就是一般的传入的self实例本身啦. 因为在py2里面常用也是这种写法.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">"inter A"</span>)</div><div class="line">        print(<span class="string">"leave A"</span>)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">demo</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">"demo A"</span>)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">"enter B"</span>)</div><div class="line">        super(B, self).__init__()</div><div class="line">        super(B, self).demo()</div><div class="line"></div><div class="line">b = B()</div><div class="line">print(b)</div></pre></td></tr></table></figure></p>
+<p>以上代码还可以这样写:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">"inter A"</span>)</div><div class="line">        print(<span class="string">"leave A"</span>)</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">demo</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">"demo A"</span>)</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">"enter B"</span>)</div><div class="line">        A.__init__(self)</div><div class="line">        A.demo(self)</div><div class="line"></div><div class="line">b = B()</div><div class="line">print(b)</div></pre></td></tr></table></figure></p>
+<p>如果没有多继承, super其实和通过父类来调用方法差不多. 但, super还有个好处: 当B继承自A, 写成了A.<strong>init</strong>, 如果根据需要进行重构全部要改成继承自 E,那么全部都得改一次! 这样很麻烦而且容易出错! 而使用super()就不用一个一个改了(只需类定义中改一改就好了)</p>
 
           
         
@@ -681,8 +630,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/08/如何优雅地使用StackOverflow/" itemprop="url">
-                  如何优雅地使用StackOverflow
+                <a class="post-title-link" href="/2017/05/15/elasticsearch中的analysis、analyzer、tokenizer、filter/" itemprop="url">
+                  elasticsearch中的analysis、analyzer、tokenizer、filter
                 </a>
               
             
@@ -695,8 +644,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-08T13:56:57+08:00" content="2017-03-08">
-              2017-03-08
+            <time itemprop="dateCreated" datetime="2017-05-15T09:14:50+08:00" content="2017-05-15">
+              2017-05-15
             </time>
           </span>
 
@@ -725,27 +674,12 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>我先起，你再睡一会儿。<br></blockquote><br>一:提问前一定要搜索，先在 Google 搜索，然后在 StackOverFlow 上搜索，当实在找不到答案后再提问。    对于那些靠搜索就能得到答案的问题，StackOverFlow 上的广大群众是毫不留情的，反对票数量蹭蹭得往上加啊。<br>二:学习一些典型的提问/回答习惯，我做了一些笔记。</p>
-<p>提问：</p>
-<ul>
-<li>1，In my limited experience with ..    谦虚表达自己在某方面的经验</li>
-<li>2， I am searching for a long time on net. But no use. Please help or try to give some ideas how to achieve this.   找了很久未果，求助攻</li>
-<li>3，after searching around for a decent XX solution and found that everything out there was difficult to use.  找了N种方法都发现太TM难了。</li>
-<li>4，I’ ve looked around and apparently I’ve got the choice between these libraries/ solutions:   说明自己是努力搜索过的，然后目前有了哪几种方案</li>
-<li>5，which seems it’s a promising solution.  看起来是一个好解决方案</li>
-<li>6，Ive tried multiple variations of this, but none of them seem to work. Any ideas? 试了很多种方法都无效，求助</li>
-<li>7，Wanted to know if it’s good practice to do that and what would be the best way to do that? 我的做法是否正确，是否有更好的法子？</li>
-<li>8，Thanks in advance.  </li>
-</ul>
-<p> 先行谢过回答问题：</p>
-<ul>
-<li>1，If I understand you correctly, you want to xxx      如果我没理解错，你想。</li>
-<li>2，Can you provided more details about your use case ? Can you provide more xml and code setting the url ? </li>
-</ul>
-<p>提供更详细当别人回答你的问题后，你对回答的评论：</p>
-<ul>
-<li>1，thank you for your answer sincerely 感谢回答blabla这些感觉就差不多了，其他说来说去也都是这些套路，回答问题或者提问时多看看别人的表达习惯，也可以做记录，好记性不如烂笔头嘛。说明一下，上面的中文不是翻译，只是一个说明，方便我快速定位的。</li>
-</ul>
+            <p><blockquote class="blockquote-center"><br>这样看你<br>用所有眼睛和所有距离<br>就像风住了<br>风又起<br></blockquote><br>Elasticsearch把每条数据叫做Document，然后提交到Index中。</p>
+<p>简单说，Document中的数据是如何转变成倒排索引的，以及查询语句是如何转换成一个个词(Term)使高效率文本搜索变得可行，这种转换数据的过程就称为文本分析(analysis)。</p>
+<h3 id="analysis-基本概念"><a href="#analysis-基本概念" class="headerlink" title="analysis 基本概念"></a>analysis 基本概念</h3><p>elasticsearch全文搜索引擎会用某种算法(Tokenizer)对要建索引的文档进行分析， 从文档中提取出若干Token(词元)， 这些算法称为Tokenizer(分词器)， 这些Token会被进一步处理， 比如转成小写等， 这些进一步的处理算法被称为Filter(过滤器), 被处理后的结果被称为Term(词)， 文档中包含了几个这样的Term被称为Frequency(词频)。 引擎会建立Term和原文档的Inverted Index(倒排索引)， 这样就能根据Term很快到找到源文档了。</p>
+<p>文本分析(analysis)工作由analyzer(分析器)组件负责。analyzer由一个分词器(tokenizer)和0个或者多个过滤器(filter)组成,也可能会有0个或者多个字符映射器(character mappers)组成。</p>
+<p>tokenizer用来把文本拆分成一个个的Token。Token包含了比较多的信息，比如Term在文本的中的位置及Term原始文本，以及Term的长度。文本经过tokenizer处理后的结果称为token stream。token stream其实就是一个个Token的顺序排列。token stream将等待着filter来处理。</p>
+<p>filter链将用来处理Token Stream中的每一个token。这些处理方式包括删除Token,改变Token，甚至添加新的Token。比如变小写，去掉里面的HTML标记， 这些处理的算法被称为Character Filter(字符过滤器)，Elasticsearch中内置了许多filter，读者也可以轻松地自己实现一个filter。<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"settings"</span>: &#123;</div><div class="line">    <span class="attr">"analysis"</span>: &#123;</div><div class="line">      <span class="attr">"filter"</span>: &#123;</div><div class="line">        <span class="attr">"autocomplete_filter"</span>: &#123;</div><div class="line">          <span class="attr">"type"</span>: <span class="string">"edge_ngram"</span>,</div><div class="line">          <span class="attr">"min_gram"</span>: <span class="number">1</span>,</div><div class="line">          <span class="attr">"max_gram"</span>: <span class="number">20</span></div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      <span class="attr">"analyzer"</span>: &#123;</div><div class="line">        <span class="attr">"autocomplete"</span>: &#123;</div><div class="line">          <span class="attr">"type"</span>: <span class="string">"custom"</span>,</div><div class="line">          <span class="attr">"tokenizer"</span>: <span class="string">"standard"</span>,</div><div class="line">          <span class="attr">"filter"</span>: [</div><div class="line">            <span class="string">"lowercase"</span>,</div><div class="line">            <span class="string">"autocomplete_filter"</span></div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
           
         
@@ -778,7 +712,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -819,7 +753,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">135</span>
+              <span class="site-state-item-count">152</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -829,7 +763,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

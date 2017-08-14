@@ -240,8 +240,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/10/mysql的sql-mode合理设置/" itemprop="url">
-                  mysql的sql_mode合理设置
+                <a class="post-title-link" href="/2017/06/15/php使用fsockopen传送post到别的url并取得回应的内容/" itemprop="url">
+                  php使用fsockopen传送post到别的url并取得回应的内容
                 </a>
               
             
@@ -254,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-10T10:03:42+08:00" content="2017-04-10">
-              2017-04-10
+            <time itemprop="dateCreated" datetime="2017-06-15T14:49:22+08:00" content="2017-06-15">
+              2017-06-15
             </time>
           </span>
 
@@ -284,19 +284,12 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>以大部分人努力程度之低，根本轮不到去拼天赋<br></blockquote><br>MySQL的sql_mode合理设置<br>sql_mode是个很容易被忽视的变量，默认值是空值，在这种设置下是可以允许一些非法操作的，比如允许一些非法数据的插入。在生产环境必须将这个值设置为严格模式，所以开发、测试环境的数据库也必须要设置，这样在开发测试阶段就可以发现问题 </p>
-<p>sql_mode常用值如下：<br>ONLY_FULL_GROUP_BY：<br>对于GROUP BY聚合操作，如果在SELECT中的列，没有在GROUP BY中出现，那么这个SQL是不合法的，因为列不在GROUP BY从句中</p>
-<p>NO_AUTO_VALUE_ON_ZERO：<br>该值影响自增长列的插入。默认设置下，插入0或NULL代表生成下一个自增长值。如果用户 希望插入的值为0，而该列又是自增长的，那么这个选项就有用了。</p>
-<p>STRICT_TRANS_TABLES：<br>在该模式下，如果一个值不能插入到一个事务表中，则中断当前的操作，对非事务表不做限制<br>NO_ZERO_IN_DATE：<br>在严格模式下，不允许日期和月份为零</p>
-<p>NO_ZERO_DATE：<br>设置该值，mysql数据库不允许插入零日期，插入零日期会抛出错误而不是警告。</p>
-<p>ERROR_FOR_DIVISION_BY_ZERO：<br>在INSERT或UPDATE过程中，如果数据被零除，则产生错误而非警告。如 果未给出该模式，那么数据被零除时MySQL返回NULL</p>
-<p>NO_AUTO_CREATE_USER：<br>禁止GRANT创建密码为空的用户</p>
-<p>NO_ENGINE_SUBSTITUTION：<br>如果需要的存储引擎被禁用或未编译，那么抛出错误。不设置此值时，用默认的存储引擎替代，并抛出一个异常</p>
-<p>PIPES_AS_CONCAT：<br>将”||”视为字符串的连接操作符而非或运算符，这和Oracle数据库是一样的，也和字符串的拼接函数Concat相类似</p>
-<p>ANSI_QUOTES：<br>启用ANSI_QUOTES后，不能用双引号来引用字符串，因为它被解释为识别符</p>
-<p>ORACLE的sql_mode设置等同：PIPES_AS_CONCAT, ANSI_QUOTES, IGNORE_SPACE, NO_KEY_OPTIONS, NO_TABLE_OPTIONS, NO_FIELD_OPTIONS, NO_AUTO_CREATE_USER.</p>
+            <p><blockquote class="blockquote-center"><br>几年前踏上火车那一刻都还没有意识到，从此故乡只有冬夏，再无春秋。<br></blockquote><br>如果不需要傳送參數或是使用GET method傳送</p>
+<p>可以直接使用fopen()或是file_get_contents()函式獲得回應內容<br>但是如果需要不經過表單就送出POST給某URL<br>就需要使用curl相關函式或是fsockopen()傳送</p>
+<p>curl的用法比較簡單<br>可以咕狗看看(但是php必須要先安裝curl才可以用)<br>這邊要講的是fsockopen()</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//接收POST參數的URL</span></div><div class="line">$url = <span class="string">'http://www.google.com'</span>;</div><div class="line"><span class="comment">//POST參數,在這個陣列裡,索引是name,值是value,沒有限定組數</span></div><div class="line">$postdata = <span class="keyword">array</span>(<span class="string">'post_name'</span>=&gt;<span class="string">'post_value'</span>,<span class="string">'acc'</span>=&gt;<span class="string">'hsin'</span>,<span class="string">'nick'</span>=&gt;<span class="string">'joe'</span>);</div><div class="line"><span class="comment">//函式回覆的值就是取得的內容</span></div><div class="line">$result = sendpost($url,$postdata);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendpost</span><span class="params">($url, $data)</span></span>&#123;</div><div class="line"><span class="comment">//先解析url 取得的資訊可以看看http://www.php.net/parse_url</span></div><div class="line">$url = parse_url($url);</div><div class="line">$url_port = $url[<span class="string">'port'</span>]==<span class="string">''</span>?(($url[<span class="string">'scheme'</span>]==<span class="string">'https'</span>)?<span class="number">443</span>:<span class="number">80</span>):$url[<span class="string">'port'</span>];</div><div class="line"><span class="keyword">if</span>(!$url) <span class="keyword">return</span> <span class="string">"couldn't parse url"</span>;</div><div class="line"><span class="comment">//對要傳送的POST參數作處理</span></div><div class="line">$encoded = <span class="string">""</span>;</div><div class="line"><span class="keyword">while</span>(<span class="keyword">list</span>($k,$v)=each($data))&#123;</div><div class="line">  $encoded .= ($encoded?<span class="string">'&amp;'</span>:<span class="string">''</span>);</div><div class="line">  $encoded .= rawurlencode($k).<span class="string">"="</span>.rawurlencode($v);</div><div class="line">&#125;</div><div class="line"><span class="comment">//開啟一個socket</span></div><div class="line">$fp = fsockopen($url[<span class="string">'host'</span>],$url_port);</div><div class="line"><span class="keyword">if</span>(!$fp) <span class="keyword">return</span> <span class="string">"Failed to open socket to "</span>.$url[<span class="string">'host'</span>];</div><div class="line"><span class="comment">//header的資訊</span></div><div class="line">fputs($fp,<span class="string">'POST '</span>.$url[<span class="string">'path'</span>].($url[<span class="string">'query'</span>]?<span class="string">'?'</span>.$url[<span class="string">'query'</span>]:<span class="string">''</span>).<span class="string">" HTTP/1.0rn"</span>);</div><div class="line">fputs($fp,<span class="string">"Host: "</span>.$url[<span class="string">'host'</span>].<span class="string">"n"</span>);</div><div class="line">fputs($fp,<span class="string">"Content-type: application/x-www-form-urlencodedn"</span>);</div><div class="line">fputs($fp,<span class="string">"Content-length: "</span>.strlen($encoded).<span class="string">"n"</span>);</div><div class="line">fputs($fp,<span class="string">"Connection: closenn"</span>);</div><div class="line">fputs($fp,$encoded.<span class="string">"n"</span>);</div><div class="line"><span class="comment">//取得回應的內容</span></div><div class="line">$line = fgets($fp,<span class="number">1024</span>);</div><div class="line"><span class="keyword">if</span>(!eregi(<span class="string">"^HTTP/1.. 200"</span>, $line)) <span class="keyword">return</span>;</div><div class="line">$results = <span class="string">""</span>;</div><div class="line">$inheader = <span class="number">1</span>;</div><div class="line"><span class="keyword">while</span>(!feof($fp))&#123;</div><div class="line">  $line = fgets($fp,<span class="number">2048</span>);</div><div class="line">  <span class="keyword">if</span>($inheader&amp;&amp;($line == <span class="string">"n"</span> || $line == <span class="string">"rn"</span>))&#123;</div><div class="line">    $inheader = <span class="number">0</span>;</div><div class="line">  &#125;<span class="keyword">elseif</span>(!$inheader)&#123;</div><div class="line">    $results .= $line;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">fclose($fp);</div><div class="line"><span class="keyword">return</span> $results;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
-<p><a href="http://blog.csdn.net/wyzxg/article/details/8787878" target="_blank" rel="external">http://blog.csdn.net/wyzxg/article/details/8787878</a></p>
+<p><a href="http://inspiregate.com/programming/php/26-php-to-use-fsockopen-to-send-post-to-another-url-and-get-to-respond-to-the-content.html" target="_blank" rel="external">http://inspiregate.com/programming/php/26-php-to-use-fsockopen-to-send-post-to-another-url-and-get-to-respond-to-the-content.html</a></p>
 </blockquote>
 
           
@@ -347,8 +340,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/10/mysql的严格模式/" itemprop="url">
-                  mysql的严格模式
+                <a class="post-title-link" href="/2017/06/13/php中-POST和php-input的区别/" itemprop="url">
+                  php中$_POST和php://input的区别
                 </a>
               
             
@@ -361,8 +354,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-10T09:15:08+08:00" content="2017-04-10">
-              2017-04-10
+            <time itemprop="dateCreated" datetime="2017-06-13T14:45:11+08:00" content="2017-06-13">
+              2017-06-13
             </time>
           </span>
 
@@ -391,10 +384,15 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>虎豹只会独处，牛羊才会成群。<br></blockquote><br>何为MySQL的严格模式，简单来说就是MySQL自身对数据进行严格的校验（格式、长度、类型等），比如一个整型字段我们写入一个字符串类型的数据，在非严格模式下MySQL不会报错，同样如果定义了char或varchar类型的字段，当写入或更新的数据超过了定义的长度也不会报错。</p>
-<h3 id="如何开启？"><a href="#如何开启？" class="headerlink" title="如何开启？"></a>如何开启？</h3><p>1.可以通过执行SQL语句来开启，但是只对当前连接有效，下面是SQL语句：<br>复制代码 代码如下:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> sql_mode=<span class="string">"STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"</span>;</div></pre></td></tr></table></figure></p>
-<p>2.通过修改MySQL的配置文件，在配置文件中查找sql-mode，将此行修改成为：<br>复制代码 代码如下:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"</div></pre></td></tr></table></figure></p>
-<p>如果查找不到sql-mode=则在[mysqld]下加入即可，推荐第二种方法，可以一劳永逸。</p>
+            <p><blockquote class="blockquote-center"><br>你考95分是因为你的实力只有95分。我考一百分是因为这个卷子只有100分。<br></blockquote></p>
+<h3 id="POST"><a href="#POST" class="headerlink" title="$_POST"></a>$_POST</h3><p>$_POST 是获取表单 POST 过来数据（body部分）的最常用方法，上传的文件信息使用 $_FILES 获取。</p>
+<h3 id="php-input"><a href="#php-input" class="headerlink" title="php://input"></a>php://input</h3><p>可以读取没有处理过的POST数据。<br>相较于$HTTP_RAW_POST_DATA而言，它给内存带来的压力较小，并且不需要特殊的php.ini设置。<br>php://input不能用于enctype=multipart/form-data</p>
+<p>由于 php://input 只是数据流，我们可以使用 <code>file_get_contents()</code> 函数去获取它的内容：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$post_data = file_get_contents(<span class="string">'php://input'</span>);</div><div class="line">print_r($post_data);</div></pre></td></tr></table></figure></p>
+<p>获取到的内容和 <code>$HTTP_RAW_POST_DATA</code> 是一样的。</p>
+<h3 id="原始数据"><a href="#原始数据" class="headerlink" title="原始数据"></a>原始数据</h3><p>当浏览器从表单发送 POST 请求的时候，默认的 media type 是 “application/x-www-form-urlencoded”，意思就是字段名和值都编码了，每个 key-value 对使用 ‘&amp;’ 字符分隔开，key 和 value 使用 ‘=’ 分开，并且 key 和 value 中的空格都会被替换成 + ，其他特殊字符都会被使用 urlencode 方式进行编码。<br>比如下面的 key-value 对：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">name: Jonathan Doe</div><div class="line">age: <span class="number">23</span></div><div class="line">formula: a + b == <span class="number">13</span>%!</div></pre></td></tr></table></figure></p>
+<p>会被编码下面的原始数据：<br><code>name=Jonathan+Doe&amp;age=23&amp;formula=a+%2B+b+%3D%3D+13%25%21</code><br>PHP 会解析这些原始的 POST 数据，并且格式化成数组，填充到 $_POST 中：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">Array</span></div><div class="line">(</div><div class="line">    [name] =&gt; Jonathan Doe</div><div class="line">    [age] =&gt; <span class="number">23</span></div><div class="line">    [formula] =&gt; a + b == <span class="number">13</span>%!</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>很多时候，接收到不是网页 POST 过来的数据，而是可能通过其他方式 POST 过来的 “text/xml” 格式的数据，这些内容无法解析成 $_POST 数组，这个时候我们就需要原始的 POST 数据进行处理。</p>
+<h3 id="重要"><a href="#重要" class="headerlink" title="重要"></a>重要</h3><p>PHP 7 已经取消了 $HTTP_RAW_POST_DATA，请用 php://input 代替。</p>
 
           
         
@@ -444,8 +442,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/06/php数学扩展bcmath/" itemprop="url">
-                  php数学扩展bcmath
+                <a class="post-title-link" href="/2017/06/11/PHP-MySQL持久连接-mysql-pconnect/" itemprop="url">
+                  PHP-MySQL持久连接-mysql_pconnect
                 </a>
               
             
@@ -458,8 +456,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-06T17:14:54+08:00" content="2017-04-06">
-              2017-04-06
+            <time itemprop="dateCreated" datetime="2017-06-11T11:12:05+08:00" content="2017-06-11">
+              2017-06-11
             </time>
           </span>
 
@@ -488,12 +486,10 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>我在这里准备了一百口棺材，九十九口留给贪官，一口留给自己。<br></blockquote></p>
-<h3 id="BC-数学-函数"><a href="#BC-数学-函数" class="headerlink" title="BC 数学 函数"></a>BC 数学 函数</h3><p>  ● bcadd — 2个任意精度数字的加法计算<br>  ● bccomp — 比较两个任意精度的数字<br>  ● bcdiv — 2个任意精度的数字除法计算<br>  ● bcmod — 对一个任意精度数字取模<br>  ● bcmul — 2个任意精度数字乘法计算<br>  ● bcpow — 任意精度数字的乘方<br>  ● bcpowmod — Raise an arbitrary precision number to another, reduced by a specified modulus<br>  ● bcscale — 设置所有bc数学函数的默认小数点保留位数<br>  ● bcsqrt — 任意精度数字的二次方根<br>  ● bcsub — 2个任意精度数字的减法</p>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$re = intval(<span class="number">18.99</span>*<span class="number">100</span>)/<span class="number">100</span>;</div><div class="line"><span class="keyword">echo</span> $re;</div><div class="line"><span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</div><div class="line">$gg = bcdiv(bcmul(<span class="string">'18.99'</span>,<span class="string">'100'</span>), <span class="string">'100'</span>,<span class="number">2</span>);</div><div class="line"><span class="keyword">echo</span> $gg;</div></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="http://php.net/manual/zh/book.bc.php" target="_blank" rel="external">http://php.net/manual/zh/book.bc.php</a></p>
-</blockquote>
+            <p><blockquote class="blockquote-center"><br>别人说你变了，是因为你没有按照他的想法活罢了。。。<br></blockquote><br>先来一段 PHP 连接 MySQL 的经典代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$con = mysql_connect(<span class="string">"localhost"</span>, <span class="string">"root"</span>, <span class="string">"123456"</span>);</div><div class="line"><span class="keyword">if</span> (!$con) &#123;</div><div class="line">    <span class="keyword">die</span>(<span class="string">"Could not connect: "</span> . mysql_error());</div><div class="line">&#125;</div><div class="line"><span class="comment">// some code</span></div><div class="line">mysql_close($con);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="mysql-pconnect"><a href="#mysql-pconnect" class="headerlink" title="mysql_pconnect"></a>mysql_pconnect</h3><p>首先，当连接的时候本函数将先尝试寻找一个在同一个主机上用同样的用户名和密码已经打开的（持久）连接，如果找到，则返回此连接标识而不打开新连接。</p>
+<p>其次，当脚本执行完毕后到 SQL 服务器的连接不会被关闭，此连接将保持打开以备以后使用（mysql_close() 不会关闭由 mysql_pconnect() 建立的连接）。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">// pconnect.php</span></div><div class="line">$con = mysql_pconnect(<span class="string">"localhost"</span>, <span class="string">"root"</span>, <span class="string">"123456"</span>);</div><div class="line"><span class="comment">// connect.php</span></div><div class="line"><span class="comment">// $con = mysql_connect("localhost","root","123456");</span></div><div class="line"><span class="keyword">if</span> (!$con) &#123;</div><div class="line">  <span class="keyword">die</span>(<span class="string">'Could not connect: '</span> . mysql_error());</div><div class="line">&#125;</div><div class="line">sleep(<span class="number">10</span>)</div></pre></td></tr></table></figure></p>
+<p>注意，此种连接仅能用于模块版本的 PHP。(我用的是 Nginx+PHP-FPM 模式，而非 Apache+php_module 模式。 )</p>
 
           
         
@@ -543,8 +539,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/06/Laravel开发记录sql/" itemprop="url">
-                  Laravel开发记录sql
+                <a class="post-title-link" href="/2017/06/11/PHP魔术函数之-sleep和-wakeup/" itemprop="url">
+                  PHP魔术函数之__sleep和__wakeup
                 </a>
               
             
@@ -557,8 +553,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-06T17:09:54+08:00" content="2017-04-06">
-              2017-04-06
+            <time itemprop="dateCreated" datetime="2017-06-11T10:25:53+08:00" content="2017-06-11">
+              2017-06-11
             </time>
           </span>
 
@@ -587,10 +583,9 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>啊 这瞌睡 这瞌睡像十除以三<br></blockquote></p>
-<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">trace_sql</span><span class="params">($dump = false)</span></span></div><div class="line">&#123;</div><div class="line">    DB::listen(<span class="function"><span class="keyword">function</span> <span class="params">($event)</span> <span class="title">use</span><span class="params">($dump)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> ($dump) &#123;</div><div class="line">            dump($event-&gt;sql);</div><div class="line">            dump($event-&gt;bindings);</div><div class="line">        &#125;</div><div class="line">        Log::info($event-&gt;sql);</div><div class="line">        Log::info($event-&gt;bindings);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">index</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    trace_sql();</div><div class="line">    $query = Order::query();</div><div class="line">    <span class="comment">//$query-&gt;whereBetween('updated_at',[Carbon::today(), Carbon::tomorrow()]);</span></div><div class="line">    $query-&gt;whereHas(<span class="string">'incomeExpenditure'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($query)</span> </span>&#123;</div><div class="line">       $query-&gt;whereBetween(<span class="string">'created_at'</span>,[Carbon::today(), Carbon::tomorrow()])-&gt;where(<span class="string">'value'</span>, <span class="string">'&gt;'</span>, <span class="number">0</span>);</div><div class="line">    &#125;);</div><div class="line">    $orders = $query-&gt;where(<span class="string">'status'</span>, <span class="string">'paid'</span>)-&gt;with(<span class="string">'products'</span>)-&gt;orderBy(<span class="string">'updated_at'</span>, <span class="string">'desc'</span>)-&gt;paginate(<span class="number">1000</span>);</div><div class="line">    $datas = <span class="keyword">$this</span>-&gt;todayStatistics();</div><div class="line">    <span class="keyword">return</span> view(<span class="string">'home.index'</span>, [<span class="string">'orders'</span> =&gt; $orders, <span class="string">'datas'</span> =&gt; $datas]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+            <p><blockquote class="blockquote-center"><br>最重要的东西,用眼睛是看不见的。<br></blockquote><br>在PHP5中有两个魔术方法<strong>sleep()方法和</strong>wakeup()方法，在对象串行化的时候，会调用一个<strong>sleep()方法来完成一 些睡前的事情；而在重新醒来，即由二进制串重新组成一个对象的时候，则会自动调用PHP的另一个函数</strong>wakeup()，做一些对象醒来就要做的动作。</p>
+<p><strong>sleep()函数不接受任何参数， 但返回一个数组，其中包含需要串行化的属性。末被包含的属性将在串行化时被忽略，如果没有</strong>sleep()方法，PHP将保存所有属性。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//下面是人的成员属性</span></div><div class="line">    <span class="keyword">var</span> $name;  <span class="comment">//人的名子</span></div><div class="line">    <span class="keyword">var</span> $sex;   <span class="comment">//人的性别</span></div><div class="line">    <span class="keyword">var</span> $age;   <span class="comment">//人的年龄</span></div><div class="line"></div><div class="line">    <span class="comment">//定义一个构造方法参数为属性姓名$name、性别$sex和年龄$age进行赋值</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($name = <span class="string">""</span>, $sex = <span class="string">""</span>, $age = <span class="string">""</span>)</span></span></div><div class="line">    &#123;</div><div class="line"></div><div class="line">        <span class="keyword">$this</span>-&gt;name = $name;</div><div class="line">        <span class="keyword">$this</span>-&gt;sex = $sex;</div><div class="line">        <span class="keyword">$this</span>-&gt;age = $age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//这个人可以说话的方法, 说出自己的属性</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"我的名子叫："</span> . <span class="keyword">$this</span>-&gt;name . <span class="string">" 性别："</span> . <span class="keyword">$this</span>-&gt;sex . <span class="string">" 我的年龄是："</span> . <span class="keyword">$this</span>-&gt;age . <span class="string">"&lt;br&gt;"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__sleep</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">// <span class="doctag">TODO:</span> Implement __sleep() method.</span></div><div class="line">        $arr = <span class="keyword">array</span>(<span class="string">"name"</span>, <span class="string">"age"</span>); <span class="comment">// 此时，属性$sex将被删除！！！</span></div><div class="line">        <span class="keyword">return</span> $arr;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">// <span class="doctag">TODO:</span> Implement __wakeup() method.</span></div><div class="line">        <span class="keyword">$this</span>-&gt;age = <span class="number">40</span>;  <span class="comment">//重新生成对象时，并重新赋值$age为40</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">$p1 = <span class="keyword">new</span> Person(<span class="string">"张三"</span>, <span class="string">"男"</span>, <span class="number">20</span>);</div><div class="line">$p1_string = serialize($p1);    <span class="comment">//把一个对象串行化，返一个字符串</span></div><div class="line"><span class="keyword">echo</span> $p1_string . <span class="string">"&lt;br&gt;"</span>;     <span class="comment">//串行化的字符串我们通常不去解析</span></div><div class="line">$p2 = unserialize($p1_string);  <span class="comment">//把一个串行化的字符串反串行化形成对象$p2</span></div><div class="line">$p2-&gt;say();</div></pre></td></tr></table></figure>
           
         
       
@@ -639,8 +634,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/27/nginx的反向代理和负载均衡实践/" itemprop="url">
-                  nginx的反向代理和负载均衡实践
+                <a class="post-title-link" href="/2017/06/11/php中json-encode和serialize对比/" itemprop="url">
+                  php中json_encode和serialize对比
                 </a>
               
             
@@ -653,8 +648,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-27T08:58:36+08:00" content="2017-03-27">
-              2017-03-27
+            <time itemprop="dateCreated" datetime="2017-06-11T09:55:24+08:00" content="2017-06-11">
+              2017-06-11
             </time>
           </span>
 
@@ -683,13 +678,13 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>有些人让你对明天充满期许，却再也没有出现在你的明天里。<br></blockquote></p>
-<h3 id="apache的配置"><a href="#apache的配置" class="headerlink" title="apache的配置"></a>apache的配置</h3><p>使用 Apache 模拟出两个站点,分别使用8081和8082端口<br>访问:<br><a href="http://121.42.176.99:8081/" target="_blank" rel="external">http://121.42.176.99:8081/</a><br><a href="http://121.42.176.99:8082/" target="_blank" rel="external">http://121.42.176.99:8082/</a><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">Listen <span class="number">8081</span></div><div class="line">&lt;VirtualHost *:<span class="number">8081</span>&gt;</div><div class="line">    ServerAdmin webmaster@dummy-host2.example.com</div><div class="line">    DocumentRoot <span class="string">"/usr/local/httpd/htdocs/test"</span></div><div class="line">    DirectoryIndex index.html index.php</div><div class="line">    ServerName <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></div><div class="line">    ErrorLog <span class="string">"logs/dummy-host2.example.com-error_log"</span></div><div class="line">    CustomLog <span class="string">"logs/dummy-host2.example.com-access_log"</span> common</div><div class="line">&lt;/VirtualHost&gt;</div><div class="line">&lt;Directory <span class="string">"/usr/local/httpd/htdocs/test"</span>&gt;</div><div class="line">    Options FollowSymLinks</div><div class="line">    AllowOverride  all</div><div class="line">    allow from all</div><div class="line">    <span class="keyword">Require</span> all granted</div><div class="line">&lt;/Directory&gt;</div><div class="line">Listen <span class="number">8082</span></div><div class="line">&lt;VirtualHost *:<span class="number">8082</span>&gt;</div><div class="line">    ServerAdmin webmaster@dummy-host2.example.com</div><div class="line">    DocumentRoot <span class="string">"/usr/local/httpd/htdocs/test1"</span></div><div class="line">    DirectoryIndex index.html index.php</div><div class="line">    ServerName <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></div><div class="line">    ErrorLog <span class="string">"logs/dummy-host2.example.com-error_log"</span></div><div class="line">    CustomLog <span class="string">"logs/dummy-host2.example.com-access_log"</span> common</div><div class="line">&lt;/VirtualHost&gt;</div><div class="line">&lt;Directory <span class="string">"/usr/local/httpd/htdocs/test"</span>&gt;</div><div class="line">    Options FollowSymLinks</div><div class="line">    AllowOverride  all</div><div class="line">    allow from all</div><div class="line">    <span class="keyword">Require</span> all granted</div><div class="line">&lt;/Directory&gt;</div></pre></td></tr></table></figure></p>
-<p>网站的内容index.php 打印出服务器变量: var_export($_SERVER);</p>
-<h3 id="反向代理nginx"><a href="#反向代理nginx" class="headerlink" title="反向代理nginx"></a>反向代理nginx</h3><p>nginx 默认使用80端口,<a href="http://121.42.176.99/" target="_blank" rel="external">http://121.42.176.99/</a><br>配置:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">location / &#123;</div><div class="line">    proxy_passs http:<span class="comment">//localhost:8081</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>之后重启nginx<br>这时候访问<a href="http://121.42.176.99/,就会访问的是apache的8081端口" target="_blank" rel="external">http://121.42.176.99/,就会访问的是apache的8081端口</a></p>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>我们发现获取到的服务器信息不正确:<br> 1、HTTP_HOST:localhost:8081<br> 2、REMOTE_ADDR：127.0.0.1 (客户端的IP）<br>这会对我们的开发造成“迷茫”，因此要在nginx配置里加入<br>1、proxy_set_header Host $host;<br>2、proxy_set_header  X-Real-IP $remote_addr;</p>
-<p>其他的一些设置请google;</p>
+            <blockquote class="blockquote-center"><br>如果毫不费力，你就是在浪费时间<br></blockquote>
+
+<h3 id="json-encode"><a href="#json-encode" class="headerlink" title="json_encode"></a>json_encode</h3><p>PHP Version &gt;= 5.0.0<br>Nesting Limit of 20.<br>PHP Version &gt;= 5.2.3<br>Nesting Limit of 128.<br>PHP Version &gt;= 5.3.0<br>Nesting Limit of 512.<br>Small footprint vs PHP’s serialize’d string.<br>serialize() &amp; unserialize()</p>
+<h3 id="serialize"><a href="#serialize" class="headerlink" title="serialize"></a>serialize</h3><p>PHP Version &gt;= 4.0.0<br>You’re storing objects that need to be unserialized as the correct class(反序列化的对象依然可以被正常调用)</p>
+<h3 id="Serialization-of-‘Closure’-is-not-allowed"><a href="#Serialization-of-‘Closure’-is-not-allowed" class="headerlink" title="Serialization of ‘Closure’ is not allowed"></a>Serialization of ‘Closure’ is not allowed</h3><p>Apparently anonymous functions cannot be serialized.(匿名函数不能被序列化)</p>
+<p>Example<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$function = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"ABC"</span>;</div><div class="line">&#125;;</div><div class="line">serialize($function); <span class="comment">// would throw error</span></div></pre></td></tr></table></figure></p>
+<p>You can try this:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">emailCallback</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'ZendMail_'</span> . microtime(<span class="keyword">true</span>) . <span class="string">'.tmp'</span>;</div><div class="line">&#125;</div><div class="line">$callback = <span class="string">"emailCallback"</span> ;</div><div class="line"></div><div class="line">serialize($callback); <span class="comment">// success</span></div></pre></td></tr></table></figure></p>
 
           
         
@@ -722,7 +717,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -763,7 +758,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">135</span>
+              <span class="site-state-item-count">152</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -773,7 +768,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

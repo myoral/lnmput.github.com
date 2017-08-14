@@ -240,8 +240,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/27/mysql去除重复数据/" itemprop="url">
-                  mysql去除重复数据
+                <a class="post-title-link" href="/2017/07/16/mysql中的字符和字节/" itemprop="url">
+                  mysql中的字符和字节
                 </a>
               
             
@@ -254,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-27T18:55:44+08:00" content="2017-04-27">
-              2017-04-27
+            <time itemprop="dateCreated" datetime="2017-07-16T09:49:49+08:00" content="2017-07-16">
+              2017-07-16
             </time>
           </span>
 
@@ -284,9 +284,10 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>悟已往之不谏，知来者之可追。实迷途其未远，觉今是而昨非。<br></blockquote></p>
-<h3 id="保留ID最小的"><a href="#保留ID最小的" class="headerlink" title="保留ID最小的"></a>保留ID最小的</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">NAMES</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> <span class="keyword">NOT</span> <span class="keyword">IN</span>( <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> <span class="keyword">MIN</span>(n.id)<span class="keyword">FROM</span> <span class="keyword">NAMES</span> n GROUPBY n.name) x)</div></pre></td></tr></table></figure>
-<h3 id="保留ID最大的"><a href="#保留ID最大的" class="headerlink" title="保留ID最大的"></a>保留ID最大的</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">NAMES</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> <span class="keyword">NOT</span> <span class="keyword">IN</span>( <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> <span class="keyword">MAX</span>(n.id)<span class="keyword">FROM</span> <span class="keyword">NAMES</span> n GROUPBY n.name) x)</div></pre></td></tr></table></figure>
+            <p><blockquote class="blockquote-center"><br>只是我回首来时路的每一步都走的好孤独。<br></blockquote><br>1.一个汉字占多少长度与编码有关：<br> UTF－8：一个汉字＝3个字节<br> GBK：一个汉字＝2个字节<br>2.varchar(n)表示n个字符，无论汉字和英文，Mysql都能存入n个字符，仅是实际字节长度有所区别</p>
+<p>php 把一个汉字认作几个字节:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">header(<span class="string">'Content-Type:text/html;charset=UTF-8'</span>);</div><div class="line">$str=<span class="string">'我'</span>;</div><div class="line"><span class="keyword">echo</span> strlen($str);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>输出 3 , 证明在 UTF-8编码下, 一个汉字被认作3个字节长度.</p>
+<h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><p>char(2) 和 varchar(2) 都能存储 2个汉字,或者是两个英文字符.</p>
 
           
         
@@ -336,8 +337,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/27/scrapy爬去西刺ip列表/" itemprop="url">
-                  scrapy爬去西刺ip列表
+                <a class="post-title-link" href="/2017/07/15/websql的使用/" itemprop="url">
+                  websql的使用
                 </a>
               
             
@@ -350,8 +351,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-27T18:48:20+08:00" content="2017-04-27">
-              2017-04-27
+            <time itemprop="dateCreated" datetime="2017-07-15T12:30:51+08:00" content="2017-07-15">
+              2017-07-15
             </time>
           </span>
 
@@ -380,12 +381,132 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>零落成泥碾作尘，只有香如故。<br></blockquote></p>
-<h3 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h3><p>执行命令:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrapy startproject xici</div></pre></td></tr></table></figure></p>
-<h3 id="新建爬虫"><a href="#新建爬虫" class="headerlink" title="新建爬虫"></a>新建爬虫</h3><p>进入到xici目录执行命令<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrapy genspider aixici www.xicidaili.com</div></pre></td></tr></table></figure></p>
-<h3 id="编写items"><a href="#编写items" class="headerlink" title="编写items"></a>编写items</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> scrapy</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">XiciItem</span><span class="params">(scrapy.Item)</span>:</span></div><div class="line"><span class="comment"># define the fields for your item here like:</span></div><div class="line"><span class="comment"># name = scrapy.Field()</span></div><div class="line">ip         = scrapy.Field()</div><div class="line">port       = scrapy.Field()</div><div class="line">possion    = scrapy.Field()</div><div class="line">type       = scrapy.Field()</div><div class="line">speed      = scrapy.Field()</div><div class="line">last_time  = scrapy.Field()</div></pre></td></tr></table></figure>
-<h3 id="编写爬虫"><a href="#编写爬虫" class="headerlink" title="编写爬虫"></a>编写爬虫</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">import</span> scrapy</div><div class="line"><span class="keyword">from</span> xici.items <span class="keyword">import</span>  XiciItem</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AixiciSpider</span><span class="params">(scrapy.Spider)</span>:</span></div><div class="line">name = <span class="string">"aixici"</span></div><div class="line">allowed_domains = [<span class="string">"www.xicidaili.com"</span>]</div><div class="line">start_urls = [<span class="string">'http://www.xicidaili.com/'</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></div><div class="line">reqs = []</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">10</span>):</div><div class="line">req = scrapy.Request(<span class="string">'http://www.xicidaili.com/nn/%s'</span>%i)</div><div class="line">reqs.append(req)</div><div class="line"></div><div class="line"><span class="keyword">return</span> reqs</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></div><div class="line">ip_list = response.xpath(<span class="string">'//*[@id="ip_list"]'</span>)</div><div class="line">trs = ip_list[<span class="number">0</span>].xpath(<span class="string">'tr'</span>)</div><div class="line">items = []</div><div class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> trs[<span class="number">1</span>:]:</div><div class="line">pre_item = XiciItem()</div><div class="line">pre_item[<span class="string">'ip'</span>] = ip.xpath(<span class="string">'td[2]/text()'</span>)[<span class="number">0</span>].extract()</div><div class="line">pre_item[<span class="string">'port'</span>] = ip.xpath(<span class="string">'td[3]/text()'</span>)[<span class="number">0</span>].extract()</div><div class="line">pre_item[<span class="string">'possion'</span>] = ip.xpath(<span class="string">'td[4]'</span>)[<span class="number">0</span>].extract().strip()</div><div class="line">pre_item[<span class="string">'type'</span>] = ip.xpath(<span class="string">'td[6]/text()'</span>)[<span class="number">0</span>].extract()</div><div class="line">pre_item[<span class="string">'speed'</span>] = ip.xpath(<span class="string">'td[7]/div[@class="bar"]/@title'</span>).re(<span class="string">'\d&#123;0,2&#125;\.\d&#123;0,&#125;'</span>)[<span class="number">0</span>]</div><div class="line">pre_item[<span class="string">'last_time'</span>] = ip.xpath(<span class="string">'td[10]/text()'</span>)[<span class="number">0</span>].extract()</div><div class="line">items.append(pre_item)</div><div class="line"><span class="keyword">return</span> items</div></pre></td></tr></table></figure>
-<h3 id="运行爬虫"><a href="#运行爬虫" class="headerlink" title="运行爬虫"></a>运行爬虫</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrapy crawl aixici -o item.json</div></pre></td></tr></table></figure>
+            <blockquote class="blockquote-center"><br>白嘉轩后来引以豪壮的是一生里娶过七房女人。<br>——陈忠实《白鹿原》<br></blockquote>
+
+<p>需要注意的是，HTML5已经会放弃Web SQL Database 放弃的原因如下：</p>
+<p>This document was on the W3C Recommendation track but specification work has stopped. The specification reached an impasse: all interested implementors have used the same SQL backend (Sqlite), but we need multiple independent implementations to proceed along a standardisation path.<br>大概意思是：<br>该文件是W3C推荐标准，但规范的制定工作已经停止。该规范陷入僵局：所有感兴趣的实现者都使用了相同的SQL后端（SQLite的），但我们需要多个独立的实现沿着规范化的路径进行。 </p>
+<p>Web SQL Database 是一个运行在Html5环境下可以用Js执行CRUD的Web数据库。<br>在介绍它的使用前，先搞清几个误区： </p>
+<ul>
+<li>1、 webSQL是运行在浏览器环境的一个数据库，其数据持久化在客户端。所以不要试图连接自己的mySQL等真正意义上的数据库。不仅仅是权限，更多的是安全问题。 </li>
+<li>2、对webSQL的修改，只是修改了了本地数据，如果要将数据持久化到远程数据库服务器，还是要走接口的。 </li>
+<li>3、对于简单的数据存储，能用localStorage就，就不要再用webSQL了。除非是处理关系型数据库，这个时候用webSQL最合适不过了。</li>
+</ul>
+<p>在使用webSQL对数据进行增删查改之前，先介绍三个核心方法：</p>
+<ul>
+<li>1、openDatabase：这个方法使用现有数据库或创建新数据库创建数据库对象。</li>
+<li>2、transaction：这个方法允许我们根据情况控制事务提交或回滚。 </li>
+<li>3、executeSql：这个方法用于执行真实的SQL查询。</li>
+</ul>
+<h2 id="第一步：打开连接并创建数据库"><a href="#第一步：打开连接并创建数据库" class="headerlink" title="第一步：打开连接并创建数据库"></a>第一步：打开连接并创建数据库</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> config = &#123;  </div><div class="line">     name: <span class="string">'student'</span>,</div><div class="line">     version: <span class="string">"1.0"</span>,</div><div class="line">     desc: <span class="string">'学生表'</span>,</div><div class="line">     size: <span class="number">1024</span> * <span class="number">1024</span></div><div class="line"> &#125;;</div><div class="line"><span class="keyword">var</span> dataBase = <span class="built_in">window</span>.openDatabase(config.name, config.version, config.desc, config.size,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;);  </div><div class="line"><span class="keyword">if</span> (!dataBase) &#123;  </div><div class="line">    alert(<span class="string">"数据库创建失败！"</span>);</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    alert(<span class="string">"数据库创建成功！"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>解释一下openDatabase方法打开一个已经存在的数据库，如果数据库不存在，它还可以创建数据库。几个参数意义分别是：</p>
+<p>1，数据库名称。<br>2，版本号 目前为1.0(暂时不理解)<br>3，对数据库的描述。<br>4，设置数据的大小。<br>5，回调函数(可省略)。<br>初次调用时创建数据库，以后就是建立连接了。 创建的是一个sqllite数据库，完全可以用sqllite developer 打开文件，可以看到里面的数据。</p>
+<h2 id="第二步：创建数据表"><a href="#第二步：创建数据表" class="headerlink" title="第二步：创建数据表"></a>第二步：创建数据表</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.createTable=<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </div><div class="line">  dataBase.transaction( <span class="function"><span class="keyword">function</span>(<span class="params">tx</span>) </span>&#123; </div><div class="line">    tx.executeSql(</div><div class="line">        <span class="string">"create table if not exists stu (id REAL UNIQUE, name TEXT)"</span>, </div><div class="line">        [], </div><div class="line">        <span class="function"><span class="keyword">function</span>(<span class="params">tx,result</span>)</span>&#123; alert(<span class="string">'创建stu表成功'</span>); &#125;, </div><div class="line">        <span class="function"><span class="keyword">function</span>(<span class="params">tx, error</span>)</span>&#123; alert(<span class="string">'创建stu表失败:'</span> + error.message); </div><div class="line">    &#125;);</div><div class="line"> &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>executeSql函数有四个参数，其意义分别是：<br>1）表示查询的字符串，使用的SQL语言是SQLite 3.6.19。<br>2）插入到查询中问号所在处的字符串数据。<br>3）成功时执行的回调函数。返回两个参数：tx和执行的结果。<br>4）一个失败时执行的回调函数。返回两个参数：tx和失败的错误信息。</p>
+<h2 id="第三步：执行增删改查"><a href="#第三步：执行增删改查" class="headerlink" title="第三步：执行增删改查"></a>第三步：执行增删改查</h2><h3 id="添加数据："><a href="#添加数据：" class="headerlink" title="添加数据："></a>添加数据：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.insert = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </div><div class="line">  dataBase.transaction(<span class="function"><span class="keyword">function</span> (<span class="params">tx</span>) </span>&#123;</div><div class="line">            tx.executeSql(</div><div class="line">        <span class="string">"insert  into  stu (id, name) values(?, ?)"</span>,</div><div class="line">        [id, <span class="string">'徐明祥'</span>],</div><div class="line">        <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; alert(<span class="string">'添加数据成功'</span>); &#125;,</div><div class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">tx, error</span>) </span>&#123; alert(<span class="string">'添加数据失败: '</span> + error.message); </div><div class="line">        &#125; );</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.query = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </div><div class="line">  dataBase.transaction(<span class="function"><span class="keyword">function</span> (<span class="params">tx</span>) </span>&#123;</div><div class="line">            tx.executeSql(</div><div class="line">        <span class="string">"select  *  from  stu"</span>, [],</div><div class="line">         <span class="function"><span class="keyword">function</span> (<span class="params">tx, result</span>) </span>&#123;  <span class="comment">//执行成功的回调函数</span></div><div class="line">             <span class="comment">//在这里对result 做你想要做的事情吧...........</span></div><div class="line">            &#125;,</div><div class="line">         <span class="function"><span class="keyword">function</span> (<span class="params">tx, error</span>) </span>&#123;</div><div class="line">            alert(<span class="string">'查询失败: '</span> + error.message);</div><div class="line">         &#125; );</div><div class="line">      &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面代码中执行成功的回调函数有一参数result。 result：查询出来的数据集。其数据类型为 SQLResultSet ，就如同C#中的DataTable。<br>SQLResultSet 的定义为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">interface SQLResultSet &#123; </div><div class="line">readonly attribute long insertId; </div><div class="line">readonly attribute long rowsAffected; </div><div class="line">readonly attribute SQLResultSetRowList rows; </div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>其中最重要的属性—SQLResultSetRowList 类型的 rows 是数据集的“行” 。<br>rows 有两个属性：length、item 。<br>故，获取查询结果的某一行某一列的值 ：result.rows[i].item[fieldname] 。</p>
+<h3 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.update = <span class="function"><span class="keyword">function</span> (<span class="params">id, name</span>) </span>&#123;  </div><div class="line">    dataBase.transaction(<span class="function"><span class="keyword">function</span> (<span class="params">tx</span>) </span>&#123;</div><div class="line">            tx.executeSql(</div><div class="line">        <span class="string">"update  stu  set  name =  ?  where  id= ?"</span>,</div><div class="line">        [name, id],</div><div class="line">         <span class="function"><span class="keyword">function</span> (<span class="params">tx, result</span>) </span>&#123;</div><div class="line">         &#125;,</div><div class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">tx, error</span>) </span>&#123;</div><div class="line">            alert(<span class="string">'更新失败: '</span> + error.message);</div><div class="line">        &#125;);</div><div class="line">   &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.del = <span class="function"><span class="keyword">function</span> (<span class="params">id</span>) </span>&#123;</div><div class="line">           dataBase.transaction(<span class="function"><span class="keyword">function</span> (<span class="params">tx</span>) </span>&#123;</div><div class="line">           tx.executeSql(</div><div class="line">       <span class="string">"delete  from  stu  where  id= ?"</span>,</div><div class="line">       [id],</div><div class="line">        <span class="function"><span class="keyword">function</span> (<span class="params">tx, result</span>) </span>&#123;</div><div class="line">        &#125;,</div><div class="line">       <span class="function"><span class="keyword">function</span> (<span class="params">tx, error</span>) </span>&#123;</div><div class="line">           alert(<span class="string">'删除失败: '</span> + error.message);</div><div class="line">       &#125;);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h3 id="删除数据表"><a href="#删除数据表" class="headerlink" title="删除数据表"></a>删除数据表</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.dropTable = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">             dataBase.transaction(<span class="function"><span class="keyword">function</span> (<span class="params">tx</span>) </span>&#123;</div><div class="line">           tx.executeSql(<span class="string">'drop  table  stu'</span>);</div><div class="line">       &#125;);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/11/jquery的过滤选择器/" itemprop="url">
+                  jquery的过滤选择器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-11T21:06:55+08:00" content="2017-07-11">
+              2017-07-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>永远年轻，永远热泪盈眶<br></blockquote></p>
+<h3 id="基本过滤选择器-重点掌握下列八个"><a href="#基本过滤选择器-重点掌握下列八个" class="headerlink" title="基本过滤选择器(重点掌握下列八个)"></a>基本过滤选择器(重点掌握下列八个)</h3><p>:first 选取第一个元素 $(“div:first”).css(“color”,”red”);<br>:last 选取最后一个元素 $(“div:last”).css(“color”,”red”);<br>:not 除去指定的选择器外的元素 $(“div:not”).css(“color”,”red”);<br>:even 选取索引号是偶数的元素 $(“div:even”).css(“color”,”red”);<br>:odd 选取索引号是奇数的元素 $(‘div:odd’).css(“color”,”red”);<br>:eq(index) 选取第index个元素 $(‘div:eq(5)’).css(“color”,”red”);<br>:gt(index) 选取索引号大于index的元素 $(‘div:gt(8)’).css(“color”,”red”);<br>:lt(index) 选取索引号小于index的元素$(‘div:lt(3)’).css(“color”,”red”);</p>
+<h3 id="属性过滤选择器（六个必须记住）"><a href="#属性过滤选择器（六个必须记住）" class="headerlink" title="属性过滤选择器（六个必须记住）"></a>属性过滤选择器（六个必须记住）</h3><p>:[attribute] 选取拥有此属性的元素 $(‘div:[attribute]’).css(‘background-color’,’red’);<br>:[attribute=value] 选取属性值为value的元素 $(‘div:[attribute=text]’)<br>:[attribute!=value] 选取属性值不为value的元素 $(‘div:[attribute!=text]’)<br>:[attribute^=value] 选取属性值以value开始的元素 $(‘div:[attribute^=text]’)<br>:[attribute$=value] 选取属性值以value结尾的元素 $(‘div:[attribute$=text]’)<br>:[attribute<em>=value] 选取属性值包含value的元素 $(‘div:[attribute</em>=text]’)</p>
+<h3 id="内容过滤选择器（四个必须记住）"><a href="#内容过滤选择器（四个必须记住）" class="headerlink" title="内容过滤选择器（四个必须记住）"></a>内容过滤选择器（四个必须记住）</h3><p>:contains 选取包含文本的text的元素 $(‘div:contains(.mini)’).css(“color”,”red”);<br>:has(id选择器名称、Class选择器名称) 选取含有选择器所匹配的元素 $(‘div:has(.mini)’).css(“color”,”red”);<br>:empty 选取不包含子元素的元素 $(‘div:empty’).css(“color”,”red”);<br>:parent 选取包含子元素的元素 $(‘div:parent’).css(“color”,”red”);</p>
+<h3 id="子元素过滤选择器（记住八个）"><a href="#子元素过滤选择器（记住八个）" class="headerlink" title="子元素过滤选择器（记住八个）"></a>子元素过滤选择器（记住八个）</h3><p>:nth-child(index) 选取每个父节点下第index个元素、偶数元素或奇数元素。<br><code>$(&#39;div.one :nth-child(8)&#39;).css(&#39;background-color&#39;,&#39;#900&#39;);</code><br>:first-child 选取每个父元素下的第一个子元素 $(‘div.one :first-child(8)’).css(‘color’,’red’);<br>:last-child 选取每个父元素下的最后一个子元素 $(‘div.one :last-child(8)’).css(‘color’,’red’);<br>:only-child 选取只有一个子元素的元素 $(‘div.one :only-child(8)’).css(‘color’,’red’);<br>:enabled 选取所有可用的元素 $(‘#form1 input:enabled’).val(“vaotoo.com”);<br>:disabled 选取所有不可用的元素 $(‘#form1 input:disabled’).val(“vaotoo.com”);<br>:checked 选取所有被选中的元素(一般为（HTML中）RadioButton、CheckBox标记);<br><code>$(&#39;input:checked&#39;).text(&quot;vaotoo.com&quot;);</code><br>:selected 选取被选中的选项元素 select下拉列表标记中的option=select<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'select:selected'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  str += $(<span class="keyword">this</span>).text()+<span class="string">","</span>;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="可见性过滤选择器-两个"><a href="#可见性过滤选择器-两个" class="headerlink" title="可见性过滤选择器(两个)"></a>可见性过滤选择器(两个)</h3><p>:hidden<br>:visibal</p>
 
           
         
@@ -435,8 +556,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/13/php中如何使用引用/" itemprop="url">
-                  php中如何使用引用
+                <a class="post-title-link" href="/2017/06/18/怎样理解阻塞非阻塞与同步异步的区别/" itemprop="url">
+                  怎样理解阻塞非阻塞与同步异步的区别
                 </a>
               
             
@@ -449,8 +570,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-13T09:29:20+08:00" content="2017-04-13">
-              2017-04-13
+            <time itemprop="dateCreated" datetime="2017-06-18T10:47:12+08:00" content="2017-06-18">
+              2017-06-18
             </time>
           </span>
 
@@ -479,10 +600,12 @@
       
         
           
-            <blockquote class="blockquote-center"><br>一想到时光匆匆，竟经不起半点挥霍，我就会对时间吝啬起来，因为此刻已过，便永不复还。<br></blockquote>
-
-<h3 id="实例一"><a href="#实例一" class="headerlink" title="实例一"></a>实例一</h3><p>使用foreach修改数组<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">protected</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">packedData</span><span class="params">($data, $key, $type = <span class="string">'delete'</span>)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">// 删除data中的必要数据</span></div><div class="line">        <span class="keyword">if</span> ($type == <span class="string">'update'</span>) &#123;</div><div class="line">            <span class="keyword">foreach</span> ($data <span class="keyword">as</span> &amp;$order) &#123;</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'useragent'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'ad_id'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'ad_channel'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'ad_url'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'ad_referer'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'ad_referer_host'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'ad_url_param'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'utm_source'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'utm_medium'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'utm_term'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'utm_content'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'utm_campaign'</span>]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> [</div><div class="line">            <span class="string">'key'</span> =&gt; $key,</div><div class="line">            <span class="string">'data'</span> =&gt; $data</div><div class="line">        ];</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<h3 id="实例二"><a href="#实例二" class="headerlink" title="实例二"></a>实例二</h3><p>在没有返回值的情况下修改数组中的值<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Route::get(<span class="string">'hehe'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">    $datas = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</div><div class="line">    haha($datas);</div><div class="line">    dump($datas);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">haha</span><span class="params">(&amp;$datas)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">foreach</span> ($datas <span class="keyword">as</span> $data) &#123;</div><div class="line">        $data = $data * <span class="number">2</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> $datas;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+            <p><blockquote class="blockquote-center"><br>千万不要让你本来努力就能获得的东西因为懈怠而失去了机会。<br></blockquote><br>“阻塞”与”非阻塞”与”同步”与“异步”不能简单的从字面理解，提供一个从分布式系统角度的回答。</p>
+<h3 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h3><p>同步与异步同步和异步关注的是消息通信机制 (synchronous communication/ asynchronous communication)所谓同步，就是在发出一个<em>调用</em>时，在没有得到结果之前，该<em>调用</em>就不返回。但是一旦调用返回，就得到返回值了。换句话说，就是由<em>调用者</em>主动等待这个<em>调用</em>的结果。而异步则是相反，<em>调用</em>在发出之后，这个调用就直接返回了，所以没有返回结果。换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果。而是在<em>调用</em>发出后，<em>被调用者</em>通过状态、通知来通知调用者，或通过回调函数处理这个调用。典型的异步编程模型比如Node.js举个通俗的例子：你打电话问书店老板有没有《分布式系统》这本书，如果是同步通信机制，书店老板会说，你稍等，”我查一下”，然后开始查啊查，等查好了（可能是5秒，也可能是一天）告诉你结果（返回结果）。而异步通信机制，书店老板直接告诉你我查一下啊，查好了打电话给你，然后直接挂电话了（不返回结果）。然后查好了，他会主动打电话给你。在这里老板通过“回电”这种方式来回调。</p>
+<h3 id="阻塞与非阻塞"><a href="#阻塞与非阻塞" class="headerlink" title="阻塞与非阻塞"></a>阻塞与非阻塞</h3><p>阻塞与非阻塞阻塞和非阻塞关注的是程序在等待调用结果（消息，返回值）时的状态.阻塞调用是指调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果之后才会返回。非阻塞调用指在不能立刻得到结果之前，该调用不会阻塞当前线程。还是上面的例子，你打电话问书店老板有没有《分布式系统》这本书，你如果是阻塞式调用，你会一直把自己“挂起”，直到得到这本书有没有的结果，如果是非阻塞式调用，你不管老板有没有告诉你，你自己先一边去玩了， 当然你也要偶尔过几分钟check一下老板有没有返回结果。在这里阻塞与非阻塞与是否同步异步无关。跟老板通过什么方式回答你结果无关。</p>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/19732473/answer/20851256" target="_blank" rel="external">https://www.zhihu.com/question/19732473/answer/20851256</a></p>
+</blockquote>
 
           
         
@@ -532,8 +655,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/12/Http协议浏览器缓存缓存机制/" itemprop="url">
-                  Http协议浏览器缓存缓存机制
+                <a class="post-title-link" href="/2017/06/16/PHP扩展和包的管理PEAR-PECL-Composer/" itemprop="url">
+                  PHP扩展和包的管理PEAR-PECL-Composer
                 </a>
               
             
@@ -546,8 +669,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-12T14:51:08+08:00" content="2017-04-12">
-              2017-04-12
+            <time itemprop="dateCreated" datetime="2017-06-16T10:24:18+08:00" content="2017-06-16">
+              2017-06-16
             </time>
           </span>
 
@@ -576,116 +699,20 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>山家除夕无他事，插了梅花便过年<br></blockquote><br>http缓存一直有在用，也听前辈讲过，今天打算自己总结一下，把不同情况都试了一遍，发现网上有些内容并不全对。</p>
-<p>首先，我们知道，浏览器缓存后，在浏览器的network中看到的状态码分两种情况，304和200 OK from cache</p>
-<h3 id="304"><a href="#304" class="headerlink" title="304"></a>304</h3><p>304是协商缓存，表示请求了服务器，但是内容没有变化，从浏览器本地缓存取数据</p>
-<p>304 是通过按浏览器上的刷新按钮或者按F5刷新得到的状态码</p>
-<p>从下图可以看到，headers中有etag属性，etag是资源的唯一标识，如果内容变了，etag会改变</p>
-<p>Last-Modified 也是用于协商缓存的Last-Modified的值表示内容最后修改时间</p>
-<p>浏览器请求已经缓存的资源时，会把etag和Last-Modified发送给服务器，服务器对比，如果浏览器发送来的和服务器的值相等，说明内容没有变化，服务器返回304给浏览器，浏览器从缓存读取数据</p>
-<h3 id="200-OK-from-cache"><a href="#200-OK-from-cache" class="headerlink" title="200 OK from cache"></a>200 OK from cache</h3><p>200 OK from cache 表示浏览器没有发出网络请求，直接取的本地缓存</p>
-<p>200 OK from cache 是通过在地址栏回车得到的状态码</p>
-<p>如下图，没有etag属性。etag是服务器计算出来的唯一值，因为没有请求服务器，所以也不会有etag标识</p>
-<h3 id="expires、Cache-Control"><a href="#expires、Cache-Control" class="headerlink" title="expires、Cache-Control"></a>expires、Cache-Control</h3><p>expires 表示过期日期，是绝对值。适用于http1.0协议</p>
-<p>Cache-Control 表示缓存的时间，是相对值，比如3600，表示3600秒后失效。适用于http1.1及以上</p>
-<p>如有expires和Cache-Control 同时存在，Cache-Control优先级更高</p>
-<p>Cache-Control: no-cache：这个很容易让人产生误解，使人误以为是响应不被缓存。实际上Cache-Control: no-cache是会被缓存的，只不过每次在向客户端（浏览器）提供响应数据时，缓存都要向服务器评估缓存响应的有效性。</p>
-<p>Cache-Control: no-store：这个才是响应不被缓存的意思。</p>
-<p>Pragma: no-cache：跟Cache-Control: no-cache相同，Pragma: no-cache兼容http 1.0 ，Cache-Control: no-cache是http 1.1提供的。</p>
+            <p><blockquote class="blockquote-center"><br>其实要说梦想的话, 我的梦想就是多赚点儿钱…<br></blockquote><br>扩展（Extension）一般偏底层，包（Application，Package）一般偏应用。不建议做过分的区分，在使用中能够理解和区分即可。<br>对于他们的管理目前有PEAR、PECL、Composer。</p>
+<h3 id="PEAR"><a href="#PEAR" class="headerlink" title="PEAR"></a>PEAR</h3><p>PEAR是PHP扩展与应用库(the PHP Extension and Application Repository)的缩写。<a href="http://pear.php.net/" target="_blank" rel="external">http://pear.php.net/</a><br>Bakken在1999年创立了PEAR项目，目标是试图定义一种标准，帮助开发者编写可移植、可重用的代码，避免重复发明“车轮”。代码均是PHP编写的。<br>涵盖了页面呈现、数据库访问、文件操作、数据结构、缓存操作、网络协议、WebService 等许多方面，用户可以通过下载这些类库，并适当的作一些定制以实现自己需要的功能。<br>但是随着Git、github等发展，其逐渐被Composer包管理替代。</p>
+<h3 id="PECL"><a href="#PECL" class="headerlink" title="PECL"></a>PECL</h3><p>“PHP Extension Community Library”的缩写，即PHP 扩展库。<a href="https://pecl.php.net/" target="_blank" rel="external">https://pecl.php.net/</a><br>PECL是使用C语言开发的，通常用于补充一些用PHP难以完成的底层功能，往往需要重新编译或者在配置文件中设置后才能在用户自己的代码中使用。<br>2种使用方式：<br>命令模式，和pear的命令一致，通过man pecl显示此命令的用法<br>编译模式，即phpize</p>
+<h3 id="Composer"><a href="#Composer" class="headerlink" title="Composer"></a>Composer</h3><p>PHP包管理工具，在“帮助开发者编写可移植、可重用的代码，避免重复发明“车轮””上和PEAR有相同的目标和思想，但是composer的包一般放在github、bitbucket等上，通过packagist 可以浏览上传等</p>
+<h3 id="以Yaml安装使用为例"><a href="#以Yaml安装使用为例" class="headerlink" title="以Yaml安装使用为例"></a>以Yaml安装使用为例</h3><h4 id="pecl安装"><a href="#pecl安装" class="headerlink" title="pecl安装"></a>pecl安装</h4><p><a href="http://php.net/manual/zh/install.pecl.pear.php" target="_blank" rel="external">http://php.net/manual/zh/install.pecl.pear.php</a></p>
+<p>pecl install yaml<br>这将下载 yaml 的源代码，编译之，并将 yaml.so 安装到扩展库目录 extension_dir 中。然后 yaml.so就可以通过 php.ini 加载了。</p>
+<h4 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h4><p><a href="http://php.net/manual/zh/install.pecl.phpize.php" target="_blank" rel="external">http://php.net/manual/zh/install.pecl.phpize.php</a><br>有时候不能用 pecl 安装命令。这可能是因为在防火墙后面，或者是因为想要安装的扩展库还没有 PECL 兼容的包，例如 SVN 中尚未发布的扩展库。<br>如果要编译这种扩展库，可以用更底层的编译工具来手工进行编译。phpize 命令是用来准备 PHP 扩展库的编译环境的。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ wget https:<span class="comment">//pecl.php.net/get/yaml-1.3.0.tgz</span></div><div class="line">$ tar -xzvf yaml<span class="number">-1.3</span><span class="number">.0</span>.tgz</div><div class="line">$ cd yaml<span class="number">-1.3</span><span class="number">.0</span></div><div class="line">$ phpize</div><div class="line">$ ./configure</div><div class="line">$ make</div><div class="line">$ make install</div></pre></td></tr></table></figure></p>
+<p>成功的安装将创建 yaml.so 并放置于 PHP 的扩展库目录 extension_dir 中。需要调整 php.ini 加入 extension=yaml.so 这一行之后才能使用此扩展库。<br>使用 phpize –help 命令可以显示此命令用法。</p>
+<h4 id="composer"><a href="#composer" class="headerlink" title="composer"></a>composer</h4><p>可以参看文档 <a href="http://www.jianshu.com/p/f0b9a319711f" target="_blank" rel="external">http://www.jianshu.com/p/f0b9a319711f</a></p>
+<p>composer require mustangostang/spyc<br>目前主流的方式，对于偏底层的扩展通过编译方式安装，对于偏应用的通过composer方式。</p>
+<blockquote>
+<p><a href="http://www.jianshu.com/p/d8b75dbc852a" target="_blank" rel="external">http://www.jianshu.com/p/d8b75dbc852a</a></p>
+</blockquote>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/12/cache/" itemprop="url">
-                  cache
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-12T14:49:02+08:00" content="2017-04-12">
-              2017-04-12
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
           
         
       
@@ -717,7 +744,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -758,7 +785,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">135</span>
+              <span class="site-state-item-count">152</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -768,7 +795,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

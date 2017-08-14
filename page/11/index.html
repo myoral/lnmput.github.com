@@ -240,8 +240,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/27/如何使用Repository模式/" itemprop="url">
-                  如何使用Repository模式
+                <a class="post-title-link" href="/2017/04/13/php中如何使用引用/" itemprop="url">
+                  php中如何使用引用
                 </a>
               
             
@@ -254,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-27T10:58:16+08:00" content="2017-02-27">
-              2017-02-27
+            <time itemprop="dateCreated" datetime="2017-04-13T09:29:20+08:00" content="2017-04-13">
+              2017-04-13
             </time>
           </span>
 
@@ -284,11 +284,10 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。<br></blockquote><br>这里我们介绍一种laravel开发的模式,用于解决控制器过于肥大的问题.</p>
-<h3 id="路由-routes-php"><a href="#路由-routes-php" class="headerlink" title="路由 routes.php"></a>路由 routes.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">Route::get(<span class="string">'/user'</span>, <span class="string">'UserController@getUser'</span>);</div></pre></td></tr></table></figure>
-<h3 id="控制器-app-Http-Controllers-UserController-php"><a href="#控制器-app-Http-Controllers-UserController-php" class="headerlink" title="控制器 app\Http\Controllers\UserController.php"></a>控制器 app\Http\Controllers\UserController.php</h3><p>将新建的库依赖注入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Repository</span>\<span class="title">UserRepository</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">protected</span> $userRepository;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(UserRepository $userRepository)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;userRepository = $userRepository;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;userRepository-&gt;getUser();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="模型-app-User-php"><a href="#模型-app-User-php" class="headerlink" title="模型 app\User.php"></a>模型 app\User.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Auth</span>\<span class="title">User</span> <span class="title">as</span> <span class="title">Authenticatable</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Authenticatable</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * The attributes that are mass assignable.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@var</span> array</div><div class="line">     */</div><div class="line">    <span class="keyword">protected</span> $fillable = [</div><div class="line">        <span class="string">'name'</span>, <span class="string">'email'</span>, <span class="string">'password'</span>,</div><div class="line">    ];</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * The attributes excluded from the model's JSON form.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@var</span> array</div><div class="line">     */</div><div class="line">    <span class="keyword">protected</span> $hidden = [</div><div class="line">        <span class="string">'password'</span>, <span class="string">'remember_token'</span>,</div><div class="line">    ];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="新建库-app-Repository-UserRepository-php"><a href="#新建库-app-Repository-UserRepository-php" class="headerlink" title="新建库 app\Repository\UserRepository.php"></a>新建库 app\Repository\UserRepository.php</h3><p>将模型依赖注入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Repository</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">User</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserRepository</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">protected</span> $user;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(User $user)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;user = $user;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;user-&gt;all();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+            <blockquote class="blockquote-center"><br>一想到时光匆匆，竟经不起半点挥霍，我就会对时间吝啬起来，因为此刻已过，便永不复还。<br></blockquote>
+
+<h3 id="实例一"><a href="#实例一" class="headerlink" title="实例一"></a>实例一</h3><p>使用foreach修改数组<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">protected</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">packedData</span><span class="params">($data, $key, $type = <span class="string">'delete'</span>)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">// 删除data中的必要数据</span></div><div class="line">        <span class="keyword">if</span> ($type == <span class="string">'update'</span>) &#123;</div><div class="line">            <span class="keyword">foreach</span> ($data <span class="keyword">as</span> &amp;$order) &#123;</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'useragent'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'ad_id'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'ad_channel'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'ad_url'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'ad_referer'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'ad_referer_host'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'ad_url_param'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'utm_source'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'utm_medium'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'utm_term'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'utm_content'</span>]);</div><div class="line">                <span class="keyword">unset</span>($order[<span class="string">'utm_campaign'</span>]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> [</div><div class="line">            <span class="string">'key'</span> =&gt; $key,</div><div class="line">            <span class="string">'data'</span> =&gt; $data</div><div class="line">        ];</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h3 id="实例二"><a href="#实例二" class="headerlink" title="实例二"></a>实例二</h3><p>在没有返回值的情况下修改数组中的值<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Route::get(<span class="string">'hehe'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">    $datas = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</div><div class="line">    haha($datas);</div><div class="line">    dump($datas);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">haha</span><span class="params">(&amp;$datas)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">foreach</span> ($datas <span class="keyword">as</span> $data) &#123;</div><div class="line">        $data = $data * <span class="number">2</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> $datas;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
           
         
@@ -338,8 +337,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/24/翻译-重建laravel-自动加载/" itemprop="url">
-                  [翻译]重建laravel-自动加载
+                <a class="post-title-link" href="/2017/04/12/Http协议浏览器缓存缓存机制/" itemprop="url">
+                  Http协议浏览器缓存缓存机制
                 </a>
               
             
@@ -352,8 +351,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-24T17:59:32+08:00" content="2017-02-24">
-              2017-02-24
+            <time itemprop="dateCreated" datetime="2017-04-12T14:51:08+08:00" content="2017-04-12">
+              2017-04-12
             </time>
           </span>
 
@@ -382,9 +381,22 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>谢谢那些喜欢我的人<br></blockquote><br>我认为请求的入口<code>public/index.php</code>,应该是最好的开始的地方…</p>
-<h3 id="重写规则"><a href="#重写规则" class="headerlink" title="重写规则"></a>重写规则</h3><p>我们知道请求第一次到达我们的程序index.php,是因为laravel使用了这个重写规则.htaccess;<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;IfModule mod_rewrite.c&gt;</div><div class="line">  &lt;IfModule mod_negotiation.c&gt;</div><div class="line">    Options -MultiViews</div><div class="line">  &lt;/IfModule&gt;</div><div class="line"></div><div class="line">  RewriteEngine On</div><div class="line"></div><div class="line">  <span class="comment"># Redirect Trailing Slashes...</span></div><div class="line">  RewriteRule ^(.*)/$ /$<span class="number">1</span> [L,R=<span class="number">301</span>]</div><div class="line"></div><div class="line">  <span class="comment"># Handle Front Controller...</span></div><div class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !-d</div><div class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</div><div class="line">  RewriteRule ^ index.php [L]</div><div class="line">&lt;/IfModule&gt;</div></pre></td></tr></table></figure></p>
-<p>来自<code>public/.htaccess</code></p>
+            <p><blockquote class="blockquote-center"><br>山家除夕无他事，插了梅花便过年<br></blockquote><br>http缓存一直有在用，也听前辈讲过，今天打算自己总结一下，把不同情况都试了一遍，发现网上有些内容并不全对。</p>
+<p>首先，我们知道，浏览器缓存后，在浏览器的network中看到的状态码分两种情况，304和200 OK from cache</p>
+<h3 id="304"><a href="#304" class="headerlink" title="304"></a>304</h3><p>304是协商缓存，表示请求了服务器，但是内容没有变化，从浏览器本地缓存取数据</p>
+<p>304 是通过按浏览器上的刷新按钮或者按F5刷新得到的状态码</p>
+<p>从下图可以看到，headers中有etag属性，etag是资源的唯一标识，如果内容变了，etag会改变</p>
+<p>Last-Modified 也是用于协商缓存的Last-Modified的值表示内容最后修改时间</p>
+<p>浏览器请求已经缓存的资源时，会把etag和Last-Modified发送给服务器，服务器对比，如果浏览器发送来的和服务器的值相等，说明内容没有变化，服务器返回304给浏览器，浏览器从缓存读取数据</p>
+<h3 id="200-OK-from-cache"><a href="#200-OK-from-cache" class="headerlink" title="200 OK from cache"></a>200 OK from cache</h3><p>200 OK from cache 表示浏览器没有发出网络请求，直接取的本地缓存</p>
+<p>200 OK from cache 是通过在地址栏回车得到的状态码</p>
+<p>如下图，没有etag属性。etag是服务器计算出来的唯一值，因为没有请求服务器，所以也不会有etag标识</p>
+<h3 id="expires、Cache-Control"><a href="#expires、Cache-Control" class="headerlink" title="expires、Cache-Control"></a>expires、Cache-Control</h3><p>expires 表示过期日期，是绝对值。适用于http1.0协议</p>
+<p>Cache-Control 表示缓存的时间，是相对值，比如3600，表示3600秒后失效。适用于http1.1及以上</p>
+<p>如有expires和Cache-Control 同时存在，Cache-Control优先级更高</p>
+<p>Cache-Control: no-cache：这个很容易让人产生误解，使人误以为是响应不被缓存。实际上Cache-Control: no-cache是会被缓存的，只不过每次在向客户端（浏览器）提供响应数据时，缓存都要向服务器评估缓存响应的有效性。</p>
+<p>Cache-Control: no-store：这个才是响应不被缓存的意思。</p>
+<p>Pragma: no-cache：跟Cache-Control: no-cache相同，Pragma: no-cache兼容http 1.0 ，Cache-Control: no-cache是http 1.1提供的。</p>
 
           
         
@@ -434,8 +446,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/24/如何理解web语义化/" itemprop="url">
-                  如何理解web语义化
+                <a class="post-title-link" href="/2017/04/12/cache/" itemprop="url">
+                  cache
                 </a>
               
             
@@ -448,8 +460,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-24T09:58:27+08:00" content="2017-02-24">
-              2017-02-24
+            <time itemprop="dateCreated" datetime="2017-04-12T14:49:02+08:00" content="2017-04-12">
+              2017-04-12
             </time>
           </span>
 
@@ -478,11 +490,112 @@
       
         
           
-            <blockquote class="blockquote-center"><br>最大的痛苦，不是失败，是我本可以。<br></blockquote>
+            
+          
+        
+      
+    </div>
 
-<p>什么是语义化？其实简单说来就是让机器可以读懂内容。先随便扯扯。对于当前的 Web 而言，HTML 是联系大多数 Web 资源的纽带，也是内容的载体。在 Web 被刚刚设计出来的时候，Tim Berners-Lee 可能不会想到它现在会达到的规模以及深入到我们生活的那么多方面。也许起初的想法很简单：用来发布 Web 内容和资源的索引，方便人们查看。但是随着 Web 规模的不断扩大，信息量之大已经不在人肉处理的范围之内了。这个时候人们开始用机器来处理 Web 上发布的各种内容，搜索引擎就诞生了。再后来，人们又设计了各种智能程序来对索引好的内容作各种处理和挖掘。所以让机器能够更好地读懂 Web 上发布的各种内容就变得越来越重要。其实 HTML 在刚开始设计出来的时候就是带有一定的「语义」的，包括段落、表格、图片、标题等等，但这些更多地只是方便浏览器等 UA 对它们作合适的处理。但逐渐地，机器也要借助 HTML 提供的语义以及自然语言处理的手段来「读懂」它们从网上获取的 HTML 文档，但它们无法读懂例如「红色的文字」或者是深度嵌套的表格布局中内容的含义，因为太多已有的内容都是专门为了可视化的浏览器设计的。面对这种情况，出现了两种观点：我们可以让机器的理解能力越来越接近人类，人能看懂、听懂的东西，机器也能理解；我们应该在发布内容的时候，就用机器可读的、被广泛认可的语义信息来描述内容，来降低机器处理 Web 内容的难度（HTML 本身就已经是朝这个方向迈出的一小步了）。<br>内容的语义表达能力和 AI 的智能程度决定了机器分析处理 Web 内容能力的高低。上面观点 1 的方向是朝着人类水平的人工智能努力，而观点 2 的方向正是万维网创始人 Tim Berners-Lee 爵士提出的美好愿景：语义网。语义网我就不多说了，简单来说就是让一切内容和包括对关系的描述都成为 Web 上的资源，都可以由唯一的 URI 定义，语义明确、机器可读。显然，两条路都的终极目标都很遥远，第一条路技术上难以实现，而第二条路实施起来障碍太多。我认为我们当前能够看得见摸得着的 Web 语义化，其实就是在往第二条路的方向上，迈出的一小步，即对已经有的被广泛认可的 HTML 标准做改进。我们刚开始意识到，我们必须回归内容本身，将内容本身的语义合理地表述出来，再为不同的用户代理设计不同的样式描述，也就是我们说的内容与样式分离。这样我们在提供内容的时候，首先要做的就是将内容本身进行合理的描述，暂时不用考虑它的最终呈现会是什么样子。HTML 规范其实一直在往语义化的方向上努力，许多元素、属性在设计的时候，就已经考虑了如何让各种用户代理甚至网络爬虫更好地理解 HTML 文档。HTML5 更是在之前规范的基础上，将所有表现层（presentational）的语义描述都进行了修改或者删除，增加了不少可以表达更丰富语义的元素。为什么这样的语义元素是有意义的？因为它们被广泛认可。所谓语义本身就是对符号的一种共识，被认可的程度越高、范围越广，人们就越可以依赖它实现各种各样的功能。HTML5 并非 Web 语义唯一倚仗的规范，除了 W3C 和 WHATWG 外，还有其它的组织在为扩展、标准化 Web 语义做着贡献。只要有浏览器厂商、搜索引擎原意支持，它们的规范一样可以成为通用的基础设施。例如 microformats 社区以及 <a href="http://Schema.org" target="_blank" rel="external">http://Schema.org</a> 上都有对 HTML 以及 Microdata（<a href="http://www.w3.org/TR/html5/microdata.html）" target="_blank" rel="external">http://www.w3.org/TR/html5/microdata.html）</a> 规范的扩展词汇表，Google、Bing、Yahoo! 等搜索引擎以及各个主流浏览器都不同程度地接纳了其中定义的语义扩展，并应用在了生产中。下面举两个 Google 应用扩展语义的例子。Google 的搜索结果，可以根据 microformats 的 hCard 语法从抓取的页面识别出人物信息：</p>
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/10/mysql的sql-mode合理设置/" itemprop="url">
+                  mysql的sql_mode合理设置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-10T10:03:42+08:00" content="2017-04-10">
+              2017-04-10
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>以大部分人努力程度之低，根本轮不到去拼天赋<br></blockquote><br>MySQL的sql_mode合理设置<br>sql_mode是个很容易被忽视的变量，默认值是空值，在这种设置下是可以允许一些非法操作的，比如允许一些非法数据的插入。在生产环境必须将这个值设置为严格模式，所以开发、测试环境的数据库也必须要设置，这样在开发测试阶段就可以发现问题 </p>
+<p>sql_mode常用值如下：<br>ONLY_FULL_GROUP_BY：<br>对于GROUP BY聚合操作，如果在SELECT中的列，没有在GROUP BY中出现，那么这个SQL是不合法的，因为列不在GROUP BY从句中</p>
+<p>NO_AUTO_VALUE_ON_ZERO：<br>该值影响自增长列的插入。默认设置下，插入0或NULL代表生成下一个自增长值。如果用户 希望插入的值为0，而该列又是自增长的，那么这个选项就有用了。</p>
+<p>STRICT_TRANS_TABLES：<br>在该模式下，如果一个值不能插入到一个事务表中，则中断当前的操作，对非事务表不做限制<br>NO_ZERO_IN_DATE：<br>在严格模式下，不允许日期和月份为零</p>
+<p>NO_ZERO_DATE：<br>设置该值，mysql数据库不允许插入零日期，插入零日期会抛出错误而不是警告。</p>
+<p>ERROR_FOR_DIVISION_BY_ZERO：<br>在INSERT或UPDATE过程中，如果数据被零除，则产生错误而非警告。如 果未给出该模式，那么数据被零除时MySQL返回NULL</p>
+<p>NO_AUTO_CREATE_USER：<br>禁止GRANT创建密码为空的用户</p>
+<p>NO_ENGINE_SUBSTITUTION：<br>如果需要的存储引擎被禁用或未编译，那么抛出错误。不设置此值时，用默认的存储引擎替代，并抛出一个异常</p>
+<p>PIPES_AS_CONCAT：<br>将”||”视为字符串的连接操作符而非或运算符，这和Oracle数据库是一样的，也和字符串的拼接函数Concat相类似</p>
+<p>ANSI_QUOTES：<br>启用ANSI_QUOTES后，不能用双引号来引用字符串，因为它被解释为识别符</p>
+<p>ORACLE的sql_mode设置等同：PIPES_AS_CONCAT, ANSI_QUOTES, IGNORE_SPACE, NO_KEY_OPTIONS, NO_TABLE_OPTIONS, NO_FIELD_OPTIONS, NO_AUTO_CREATE_USER.</p>
 <blockquote>
-<p><a href="https://www.zhihu.com/question/20455165" target="_blank" rel="external">https://www.zhihu.com/question/20455165</a></p>
+<p><a href="http://blog.csdn.net/wyzxg/article/details/8787878" target="_blank" rel="external">http://blog.csdn.net/wyzxg/article/details/8787878</a></p>
 </blockquote>
 
           
@@ -533,8 +646,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/24/ios设备中web开发的一些问题/" itemprop="url">
-                  ios设备中web开发的一些问题
+                <a class="post-title-link" href="/2017/04/10/mysql的严格模式/" itemprop="url">
+                  mysql的严格模式
                 </a>
               
             
@@ -547,8 +660,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-24T09:47:10+08:00" content="2017-02-24">
-              2017-02-24
+            <time itemprop="dateCreated" datetime="2017-04-10T09:15:08+08:00" content="2017-04-10">
+              2017-04-10
             </time>
           </span>
 
@@ -577,115 +690,10 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>今天翻的是书，明天数的是钱。<br></blockquote></p>
-<h3 id="时间格式"><a href="#时间格式" class="headerlink" title="时间格式"></a>时间格式</h3><p>ios设备目前不支持这种时间格式:yyyy-mm-dd hh:mm:ss<br>但是支持这种:mm/dd/yyyy hh:mm:ss,使用的时候注意移动设备上的格式化问题\</p>
-<h3 id="input框自定义ios键盘"><a href="#input框自定义ios键盘" class="headerlink" title="input框自定义ios键盘"></a>input框自定义ios键盘</h3><p>如果类型是search的话，需要把input放在一个action为空的form中，例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"search"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/21/centos系统python版本升级从2-6到2-7/" itemprop="url">
-                  centos系统python版本升级从2.6到2.7
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-21T09:22:36+08:00" content="2017-02-21">
-              2017-02-21
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote class="blockquote-center"><br>你喜欢的姑娘在学习<br></blockquote>
-
-<h3 id="查看python的版本"><a href="#查看python的版本" class="headerlink" title="查看python的版本"></a>查看python的版本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#python  -V    </span></div><div class="line">Python <span class="number">2.6</span><span class="number">.6</span></div></pre></td></tr></table></figure>
-<h3 id="下载Python-2-7-3"><a href="#下载Python-2-7-3" class="headerlink" title="下载Python-2.7.3"></a>下载Python-2.7.3</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#wget http://python.org/ftp/python/2.7.3/Python-2.7.3.tar.bz2</span></div></pre></td></tr></table></figure>
-<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#tar -jxvf Python-2.7.3.tar.bz2</span></div></pre></td></tr></table></figure>
-<h3 id="更改工作目录"><a href="#更改工作目录" class="headerlink" title="更改工作目录"></a>更改工作目录</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#cd Python-2.7.3</span></div></pre></td></tr></table></figure>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#./configure  </span></div><div class="line"><span class="comment">#make all             </span></div><div class="line"><span class="comment">#make install  </span></div><div class="line"><span class="comment">#make clean  </span></div><div class="line"><span class="comment">#make distclean</span></div></pre></td></tr></table></figure>
-<h3 id="查看版本信息"><a href="#查看版本信息" class="headerlink" title="查看版本信息"></a>查看版本信息</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#/usr/local/bin/python2.7 -V</span></div></pre></td></tr></table></figure>
-<h3 id="建立软连接，使系统默认的-python指向-python2-7"><a href="#建立软连接，使系统默认的-python指向-python2-7" class="headerlink" title="建立软连接，使系统默认的 python指向 python2.7"></a>建立软连接，使系统默认的 python指向 python2.7</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#mv /usr/bin/python /usr/bin/python2.6.6  </span></div><div class="line"><span class="comment">#ln -s /usr/local/bin/python2.7 /usr/bin/python</span></div></pre></td></tr></table></figure>
-<h3 id="重新检验Python-版本"><a href="#重新检验Python-版本" class="headerlink" title="重新检验Python 版本"></a>重新检验Python 版本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#python -V</span></div></pre></td></tr></table></figure>
-<p>解决系统 Python 软链接指向 Python2.7 版本后，因为yum是不兼容 Python 2.7的，所以yum不能正常工作，我们需要指定 yum 的Python版本<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#vi /usr/bin/yum</span></div></pre></td></tr></table></figure></p>
-<p>将文件头部的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div></pre></td></tr></table></figure></p>
-<p>改成<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python2.6</span></div></pre></td></tr></table></figure></p>
+            <p><blockquote class="blockquote-center"><br>虎豹只会独处，牛羊才会成群。<br></blockquote><br>何为MySQL的严格模式，简单来说就是MySQL自身对数据进行严格的校验（格式、长度、类型等），比如一个整型字段我们写入一个字符串类型的数据，在非严格模式下MySQL不会报错，同样如果定义了char或varchar类型的字段，当写入或更新的数据超过了定义的长度也不会报错。</p>
+<h3 id="如何开启？"><a href="#如何开启？" class="headerlink" title="如何开启？"></a>如何开启？</h3><p>1.可以通过执行SQL语句来开启，但是只对当前连接有效，下面是SQL语句：<br>复制代码 代码如下:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> sql_mode=<span class="string">"STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"</span>;</div></pre></td></tr></table></figure></p>
+<p>2.通过修改MySQL的配置文件，在配置文件中查找sql-mode，将此行修改成为：<br>复制代码 代码如下:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"</div></pre></td></tr></table></figure></p>
+<p>如果查找不到sql-mode=则在[mysqld]下加入即可，推荐第二种方法，可以一劳永逸。</p>
 
           
         
@@ -718,7 +726,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -759,7 +767,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">135</span>
+              <span class="site-state-item-count">152</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -769,7 +777,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

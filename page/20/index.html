@@ -240,8 +240,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/24/python爬虫第一周/" itemprop="url">
-                  python爬虫第一周
+                <a class="post-title-link" href="/2016/12/02/flex布局方式之子元素/" itemprop="url">
+                  flex布局方式之子元素
                 </a>
               
             
@@ -254,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-24T21:32:09+08:00" content="2016-10-24">
-              2016-10-24
+            <time itemprop="dateCreated" datetime="2016-12-02T14:44:04+08:00" content="2016-12-02">
+              2016-12-02
             </time>
           </span>
 
@@ -284,16 +284,125 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>身不饥寒，天未曾负我；学无长进，我何以对天<br></blockquote></p>
-<h3 id="安装lxml"><a href="#安装lxml" class="headerlink" title="安装lxml"></a>安装lxml</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> 首先安装pip install wheel</div><div class="line"><span class="number">2.</span> 在这里下载对应的.whl文件，注意别改文件名！</div><div class="line">   http://www.lfd.uci.edu/~gohlke/pythonlibs/<span class="comment">#lxml</span></div><div class="line">   cp后面是Python的版本号，<span class="number">27</span>表示<span class="number">2.7</span>，根据你的Python版本选择下载。</div><div class="line"><span class="number">3.</span> pip install 带后缀的完整文件名</div></pre></td></tr></table></figure>
-<h3 id="例子-一"><a href="#例子-一" class="headerlink" title="例子(一)"></a>例子(一)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span>  urlopen</div><div class="line">resp = urlopen(<span class="string">'http://www.tooopen.com/img/87.aspx'</span>).read().decode(<span class="string">'utf-8'</span>)</div><div class="line">Soup = BeautifulSoup(resp,<span class="string">'lxml'</span>)</div><div class="line">images = Soup.select(<span class="string">'title'</span>)</div><div class="line"><span class="keyword">for</span> image <span class="keyword">in</span> images:</div><div class="line">    print(image.get_text())</div></pre></td></tr></table></figure>
-<h3 id="例子-二"><a href="#例子-二" class="headerlink" title="例子(二)"></a>例子(二)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span>  urlopen</div><div class="line">resp = urlopen(<span class="string">'http://www.tooopen.com/img/87.aspx'</span>).read().decode(<span class="string">'utf-8'</span>)</div><div class="line">Soup = BeautifulSoup(resp,<span class="string">'lxml'</span>)</div><div class="line">images = Soup.select(<span class="string">'img'</span>)</div><div class="line"><span class="keyword">for</span> image <span class="keyword">in</span> images:</div><div class="line">    print(image.get(<span class="string">'src'</span>))</div></pre></td></tr></table></figure>
-<h3 id="例子-三"><a href="#例子-三" class="headerlink" title="例子(三)"></a>例子(三)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> requests</div><div class="line">url = <span class="string">'http://zhuanzhuan.58.com/detail/789842404801118212z.shtml'</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getInfo</span><span class="params">(url)</span>:</span></div><div class="line">    wpData = requests.get(url)</div><div class="line">    soup = BeautifulSoup(wpData.text,<span class="string">'lxml'</span>)</div><div class="line">    title = soup.title.text</div><div class="line">    price = soup.select(<span class="string">'.price_now &gt; i'</span>)</div><div class="line">    tags = soup.select(<span class="string">'.qual_label'</span>)</div><div class="line">    <span class="keyword">return</span> tags</div><div class="line"></div><div class="line">data = getInfo(url)</div><div class="line"><span class="keyword">for</span> tag <span class="keyword">in</span> data:</div><div class="line">    print(tag.text)</div></pre></td></tr></table></figure>
-<h3 id="传递http头部"><a href="#传递http头部" class="headerlink" title="传递http头部"></a>传递http头部</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span>  requests</div><div class="line">url = <span class="string">'http://www.tripadvisor.cn/Saves#525792'</span></div><div class="line">headers = &#123;</div><div class="line">    <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWeb....36'</span>,</div><div class="line">    <span class="string">'Cookie'</span>:<span class="string">'TASSK=eNs%2BEc2TG.....0N9BrZpKwsTH%2BAwg%3D...; NPID='</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">wpData = requests.get(url,headers = headers)</div><div class="line">soup = BeautifulSoup(wpData.text,<span class="string">'lxml'</span>)</div><div class="line">titles = soup.select(<span class="string">'div.title'</span>)</div><div class="line">print(soup)</div></pre></td></tr></table></figure>
-<h3 id="构建多页数延迟访问"><a href="#构建多页数延迟访问" class="headerlink" title="构建多页数延迟访问"></a>构建多页数延迟访问</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span>  requests</div><div class="line"><span class="keyword">import</span> time</div><div class="line">urls = [<span class="string">'http://www.tripadvisor.cn/...-oa&#123;&#125;-New_Y...rk.html#ATTRACTION_LIST'</span>.format(str(i)) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">30</span>,<span class="number">930</span>,<span class="number">30</span>)]</div><div class="line"><span class="keyword">for</span> url <span class="keyword">in</span> urls:</div><div class="line">    time.sleep(<span class="number">2</span>)</div><div class="line">    print(url)</div></pre></td></tr></table></figure>
-<h3 id="异步加载"><a href="#异步加载" class="headerlink" title="异步加载"></a>异步加载</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在 chrome 浏览器中找到有规律的，xhr请求链接</div></pre></td></tr></table></figure>
-<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ul>
-<li>一般PC端的数据如果不能直接拿到，可以尝试访问手机端从而直接达到目的</li>
+            <p><blockquote class="blockquote-center"><br>　你必须很努力，才能看上去毫不费力<br></blockquote><br>最近学习了微信小程序，才接触到了这一布局方式，大概试了一下，记录之</p>
+<h3 id="1-布局html"><a href="#1-布局html" class="headerlink" title="1. 布局html"></a>1. 布局html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item3"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item4"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item5"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item6"</span>&gt;</span>6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item7"</span>&gt;</span>7<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item8"</span>&gt;</span>8<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item9"</span>&gt;</span>9<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="2-order-属性"><a href="#2-order-属性" class="headerlink" title="2.order 属性"></a>2.order 属性</h3><p>order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.item1</span>&#123;</div><div class="line">	<span class="attribute">order</span>: <span class="number">2</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item2</span>&#123;</div><div class="line">	<span class="attribute">order</span>: <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="3-flex-grow属性"><a href="#3-flex-grow属性" class="headerlink" title="3. flex-grow属性"></a>3. flex-grow属性</h3><p>即如果子元素在父容器的横向上还没有撑满，左或者右都存在空间<br>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.item1</span>&#123;</div><div class="line">	<span class="attribute">order</span>: <span class="number">2</span>;</div><div class="line">	<span class="attribute">flex-grow</span>: <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果三个元素都设置这样的属性，则由这三个元素一起撑满剩余的部分<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.item1</span>&#123;</div><div class="line">	<span class="attribute">flex-grow</span>: <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item2</span>&#123;</div><div class="line">	<span class="attribute">order</span>: <span class="number">1</span>;</div><div class="line">	<span class="attribute">flex-grow</span>: <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item3</span>&#123;</div><div class="line">	<span class="attribute">flex-grow</span>: <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="4-flex-shrink属性"><a href="#4-flex-shrink属性" class="headerlink" title="4. flex-shrink属性"></a>4. flex-shrink属性</h3><p>如果所有的子元素的宽度已经超过了父容器的宽度，而且设置了不能换行，这时候如果某个元素设置了这样的属性，<br>flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.item2</span>&#123;</div><div class="line">	<span class="attribute">flex-shrink</span>: <span class="number">2</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item3</span>&#123;</div><div class="line">	<span class="attribute">flex-shrink</span>: <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/02/flex布局方式之父容器/" itemprop="url">
+                  flex布局方式之父容器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-02T14:43:57+08:00" content="2016-12-02">
+              2016-12-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>没有学到死，就往死里学。<br></blockquote><br>最近学习了微信小程序，才接触到了这一布局方式，大概试了一下，记录：</p>
+<p>使用方式：</p>
+<h3 id="1-html"><a href="#1-html" class="headerlink" title="1. html"></a>1. html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>7<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>8<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>9<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="2-定义基本css样式："><a href="#2-定义基本css样式：" class="headerlink" title="2. 定义基本css样式："></a>2. 定义基本css样式：</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span>&#123;</div><div class="line">	<span class="attribute">background</span>: <span class="number">#c0ffb6</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">150px</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#4cae4c</span>;</div><div class="line">	<span class="attribute">margin</span>: <span class="number">2px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-设置父容器为flex布局："><a href="#3-设置父容器为flex布局：" class="headerlink" title="3. 设置父容器为flex布局："></a>3. 设置父容器为flex布局：</h3><ul>
+<li><p>div 块儿级元素</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">display</span>: flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>或者 行内元素</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">display</span>: inline-flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>设为Flex布局以后，子元素的float、clear和vertical-align属性将失效</p>
+<h3 id="4-flex-direction-属性："><a href="#4-flex-direction-属性：" class="headerlink" title="4. flex-direction 属性："></a>4. flex-direction 属性：</h3><p>决定容器里面元素的排列方式<br>横向排列<br>横向反转排列<br>纵向排列<br>纵向反转排列<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">display</span>: flex;</div><div class="line">	<span class="attribute">flex-direction</span>: column;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="5-flex-wrap-属性"><a href="#5-flex-wrap-属性" class="headerlink" title="5. flex-wrap 属性"></a>5. flex-wrap 属性</h3><p>横向排列的子元素是否换行<br>在子元素的大小超出了父容器的大小以后是换行显示<br>不换行： nowrap  设置了不换行以后，子元素的大小将。。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">display</span>: flex;</div><div class="line">	<span class="attribute">flex-direction</span>: row;</div><div class="line">	<span class="attribute">flex-wrap</span>: nowrap;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">650px</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#4cae4c</span>;</div><div class="line">	<span class="attribute">margin</span>: <span class="number">2px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="6-justify-content-属性"><a href="#6-justify-content-属性" class="headerlink" title="6. justify-content 属性"></a>6. justify-content 属性</h3><p>子元素的对齐方式<br>左对齐<br>右对齐<br>居中显示<br>相等间隔<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">display</span>: flex;</div><div class="line">	<span class="attribute">flex-direction</span>: row;</div><div class="line">	<span class="attribute">flex-wrap</span>: nowrap;</div><div class="line">	<span class="attribute">justify-content</span>: space-around;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="7-align-items"><a href="#7-align-items" class="headerlink" title="7. align-items:"></a>7. align-items:</h3><p>决定子元素在垂直位置上的对齐方式<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">display</span>: flex;</div><div class="line">	<span class="attribute">flex-direction</span>: row;</div><div class="line">	<span class="attribute">flex-wrap</span>: nowrap;</div><div class="line">	<span class="attribute">justify-content</span>: space-around;</div><div class="line">	<span class="attribute">align-items</span>: flex-end;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="8-align-self-属性"><a href="#8-align-self-属性" class="headerlink" title="8. align-self 属性"></a>8. align-self 属性</h3><p>决定当前元素的对齐方式，用于覆盖父容器的align-items 属性<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">display</span>: flex;</div><div class="line">	<span class="attribute">flex-direction</span>: row;</div><div class="line">	<span class="attribute">flex-wrap</span>: nowrap;</div><div class="line">	<span class="attribute">align-items</span>: center;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">450px</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#4cae4c</span>;</div><div class="line">	<span class="attribute">margin</span>: <span class="number">2px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item1</span>&#123;</div><div class="line">	<span class="attribute">height</span>: <span class="number">120px</span>;</div><div class="line">	<span class="attribute">align-self</span>: flex-end;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item2</span>&#123;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item3</span>&#123;</div><div class="line">	<span class="attribute">height</span>: <span class="number">150px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html</a></li>
 </ul>
 
           
@@ -344,8 +453,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/24/laravel中如何打印sql/" itemprop="url">
-                  laravel中如何打印sql
+                <a class="post-title-link" href="/2016/12/01/laravel和nginx的404/" itemprop="url">
+                  laravel和nginx的404
                 </a>
               
             
@@ -358,8 +467,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-24T10:13:28+08:00" content="2016-10-24">
-              2016-10-24
+            <time itemprop="dateCreated" datetime="2016-12-01T09:02:31+08:00" content="2016-12-01">
+              2016-12-01
             </time>
           </span>
 
@@ -388,114 +497,15 @@
       
         
           
-            <blockquote class="blockquote-center"><br>你也是一片<br>在我胸口颤动的小叶子。<br>生命之风将你吹送至此。<br></blockquote>
-
-<h3 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//in our case,</span></div><div class="line"> DB::table(<span class="string">'users'</span>)-&gt;toSql(); </div><div class="line"><span class="comment">//return</span></div><div class="line">select * from users</div></pre></td></tr></table></figure>
-<h3 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Route::get(<span class="string">'haha'</span>,<span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</div><div class="line">    Event::listen(<span class="string">'illuminate.query'</span>, <span class="function"><span class="keyword">function</span><span class="params">($query, $params, $time, $conn)</span></span></div><div class="line">    &#123;</div><div class="line">        dd(<span class="keyword">array</span>($query, $params, $time, $conn));</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    \RainLab\User\Models\User::whereBetween(<span class="string">'created_at'</span>, </div><div class="line">    	[<span class="string">'2016-05-26 00:00:00'</span>, <span class="string">'2016-06-27 00:00:00'</span>]</div><div class="line">    	)-&gt;get([<span class="string">'email'</span>]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h3 id="第三种方法"><a href="#第三种方法" class="headerlink" title="第三种方法"></a>第三种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DB::enableQueryLog();</div><div class="line">   $users = \RainLab\User\Models\User::whereBetween(<span class="string">'created_at'</span>, [<span class="string">'2016-05-26 00:00:00'</span>, <span class="string">'2016-06-27 00:00:00'</span>])-&gt;get();</div><div class="line">   dd(DB::getQueryLog());</div></pre></td></tr></table></figure>
-<h3 id="最后一种方法"><a href="#最后一种方法" class="headerlink" title="最后一种方法"></a>最后一种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//安装 debug</span></div><div class="line">composer <span class="keyword">require</span> barryvdh/laravel-debugbar</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/18/main-：用法解析/" itemprop="url">
-                  __main__：用法解析
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-18T09:58:38+08:00" content="2016-10-18">
-              2016-10-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote class="blockquote-center"><br>我给你瘦落的街道，绝望的日落，荒郊的月亮，我给你一个久久地望着孤月的人的悲哀。<br></blockquote>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"><span class="comment"># Filename: using_name.py</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">	<span class="keyword">print</span> <span class="string">'This program is being run by itself'</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">	<span class="keyword">print</span> <span class="string">'I am being imported from another module'</span></div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ python using_name.py</div><div class="line">This program <span class="keyword">is</span> being run by itself</div><div class="line"></div><div class="line">$ python</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> using_name</div><div class="line">I am being imported <span class="keyword">from</span> another module</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
-<p>When the Python interpreter reads a source file, it executes all of the code found in it.</p>
-<p>Before executing the code, it will define a few special variables. For example, if the python interpreter is running that module (the source file) as the main program, it sets the special <strong>name</strong> variable to have a value “<strong>main</strong>“. If this file is being imported from another module, <strong>name</strong> will be set to the module’s name.</p>
-<p>In the case of your script, let’s assume that it’s executing as the main function, e.g. you said something like</p>
-<p>python threading_example.py<br>on the command line. After setting up the special variables, it will execute the import statement and load those modules. It will then evaluate the def block, creating a function object and creating a variable called myfunction that points to the function object. It will then read the if statement and see that <strong>name</strong> does equal “<strong>main</strong>“, so it will execute the block shown there.</p>
-<p>One of the reasons for doing this is that sometimes you write a module (a .py file) where it can be executed directly. Alternatively, it can also be imported and used in another module. By doing the main check, you can have that code only execute when you want to run the module as a program and not have it execute when someone just wants to import your module and call your functions themselves.</p>
-<p>See this page for some extra details.</p>
+            <p><blockquote class="blockquote-center"><br>是谁来自山川湖海，却囿于昼夜、厨房与爱。<br></blockquote></p>
+<h3 id="laravel的404"><a href="#laravel的404" class="headerlink" title="laravel的404"></a>laravel的404</h3><ul>
+<li>配置404页面<br>在resources\views\errors\404.blade.php，如果配置了该页面，那么访问任何一个不存在的路由，就会显示到该页面，同时返回的状态码也会是404，同样，也可以通过代码<code>abort(404);</code>来展示出404页面，如果在你的视图文件中没有配置404.blade.php 页面，那么访问一个不存在的路由就会引起程序报错。</li>
+</ul>
+<h3 id="nginx的404"><a href="#nginx的404" class="headerlink" title="nginx的404"></a>nginx的404</h3><ul>
+<li>配置404页面<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       <span class="number">80</span>;</div><div class="line">    server_name  www.la51.dev la51.dev;</div><div class="line">    root   <span class="string">"D:/phpStudy/WWW/la51/public"</span>;</div><div class="line">    fastcgi_intercept_errors on;</div><div class="line">    error_page <span class="number">404</span>  /<span class="number">404.</span>html ;</div><div class="line">    location / &#123;</div><div class="line">        index  index.html index.htm index.php;</div><div class="line">        <span class="comment">#autoindex  on;</span></div><div class="line">        try_files $uri $uri/ /index.php?$query_string;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>404.html在网站的根目录下，关键的两句，`fastcgi_intercept_errors on;error_page 404  /404.html ;这样访问一个不存在的页面，即使没有在laravel中做相关的配置，也能在路由不存在时跳转到404页面；</p>
 
           
         
@@ -545,8 +555,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/17/python小实例/" itemprop="url">
-                  python小实例
+                <a class="post-title-link" href="/2016/11/30/chrome消息传递实例/" itemprop="url">
+                  chrome消息传递实例
                 </a>
               
             
@@ -559,8 +569,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-17T14:46:25+08:00" content="2016-10-17">
-              2016-10-17
+            <time itemprop="dateCreated" datetime="2016-11-30T16:22:13+08:00" content="2016-11-30">
+              2016-11-30
             </time>
           </span>
 
@@ -589,10 +599,11 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>自此无心爱良夜，任他明月下西楼。<br></blockquote></p>
-<h3 id="按逗号分隔列表"><a href="#按逗号分隔列表" class="headerlink" title="按逗号分隔列表"></a>按逗号分隔列表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">L = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</div><div class="line">s1 = <span class="string">','</span>.join(str(n) <span class="keyword">for</span> n <span class="keyword">in</span> L)</div><div class="line"><span class="keyword">print</span> s1</div></pre></td></tr></table></figure>
-<h3 id="有1、2、3、4个数字，能组成多少个互不相同且无重复数字的三位数？都是多少？"><a href="#有1、2、3、4个数字，能组成多少个互不相同且无重复数字的三位数？都是多少？" class="headerlink" title="有1、2、3、4个数字，能组成多少个互不相同且无重复数字的三位数？都是多少？"></a>有1、2、3、4个数字，能组成多少个互不相同且无重复数字的三位数？都是多少？</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">5</span>):</div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">5</span>):</div><div class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">5</span>):</div><div class="line">            <span class="keyword">if</span>( i != k ) <span class="keyword">and</span> (i != j) <span class="keyword">and</span> (j != k):</div><div class="line">                <span class="keyword">print</span> i,j,k</div></pre></td></tr></table></figure>
-<h3 id="交换两个变量"><a href="#交换两个变量" class="headerlink" title="交换两个变量"></a>交换两个变量</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">exchange</span><span class="params">(a,b)</span>:</span></div><div class="line">    a,b = b,a</div><div class="line">    <span class="keyword">return</span> (a,b)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    x = <span class="number">10</span></div><div class="line">    y = <span class="number">20</span></div><div class="line">print(<span class="string">'x = %d,y = %d'</span> % (x,y))</div><div class="line"></div><div class="line">x,y = exchange(x,y)</div><div class="line"></div><div class="line">print(<span class="string">'x = %d,y = %d'</span> % (x,y))</div></pre></td></tr></table></figure>
+            <p><blockquote class="blockquote-center"><br>不管我本人多么平庸，我总觉得对你的爱很美。<br></blockquote></p>
+<h3 id="manifest-json"><a href="#manifest-json" class="headerlink" title="manifest.json"></a>manifest.json</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="attr">"name"</span>: <span class="string">"消息传递"</span>,</div><div class="line"><span class="attr">"version"</span>: <span class="string">"1.0"</span>,</div><div class="line"><span class="attr">"manifest_version"</span>: <span class="number">2</span>,</div><div class="line"><span class="attr">"description"</span>: <span class="string">"各个页面JS之间事件的触发和消息的传递"</span>,</div><div class="line"><span class="attr">"browser_action"</span>: &#123;</div><div class="line"><span class="attr">"default_icon"</span>: <span class="string">"images/icon38.png"</span>,</div><div class="line"><span class="attr">"default_popup"</span>: <span class="string">"popup.html"</span></div><div class="line">&#125;,</div><div class="line"><span class="attr">"background"</span>: &#123;</div><div class="line"><span class="attr">"scripts"</span>: [<span class="string">"js/background.js"</span>,<span class="string">"js/jquery.min.js"</span>],</div><div class="line"><span class="attr">"persistent"</span>: <span class="literal">false</span></div><div class="line">&#125;,</div><div class="line"><span class="attr">"permissions"</span>: [<span class="string">"tabs"</span>, <span class="string">"&lt;all_urls&gt;"</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="popup-html"><a href="#popup-html" class="headerlink" title="popup.html"></a>popup.html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/content.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"newtab"</span> &gt;</span>new tab<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="content-js"><a href="#content-js" class="headerlink" title="content.js"></a>content.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">$(<span class="string">"#newtab"</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">chrome.runtime.sendMessage(&#123;action:<span class="string">"new_tab"</span>&#125;);</div><div class="line">&#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="background-js"><a href="#background-js" class="headerlink" title="background.js"></a>background.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">chrome.runtime.onMessage.addListener(<span class="function"><span class="keyword">function</span> (<span class="params">request, sender, sendResponse</span>) </span>&#123;</div><div class="line"></div><div class="line"><span class="keyword">if</span>(request.action != <span class="string">'new_tab'</span>)&#123;</div><div class="line"><span class="keyword">var</span> newURL = <span class="string">"http://stackoverflow.com/"</span>;</div><div class="line">chrome.tabs.create(&#123; url: newURL &#125;);</div><div class="line">&#125;<span class="keyword">else</span> &#123;</div><div class="line"><span class="keyword">var</span> newURL = <span class="string">"http://www.baidu.com/"</span>;</div><div class="line">chrome.tabs.create(&#123; url: newURL &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
           
         
       
@@ -641,8 +652,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/10/17/python学习/" itemprop="url">
-                  python学习
+                <a class="post-title-link" href="/2016/11/29/elasticSearch聚合/" itemprop="url">
+                  elasticSearch聚合
                 </a>
               
             
@@ -655,8 +666,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-17T10:44:26+08:00" content="2016-10-17">
-              2016-10-17
+            <time itemprop="dateCreated" datetime="2016-11-29T23:22:13+08:00" content="2016-11-29">
+              2016-11-29
             </time>
           </span>
 
@@ -685,7 +696,15 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>重要的不是他有多好,而是他对你有多好。<br></blockquote><br>从今天开始学习python<br>给自己一点儿时间<br>以前一直说是要学习<br>可是却一直没能真正的学起来<br>也就是看了一丁点的基础<br>开始吧<br>那种对未来的恐惧感已经来了<br>加油</p>
+            <p><blockquote class="blockquote-center"><br>当斧头来到树林里的时候，好多树都说，至少它的把手是我们自己人。<br></blockquote><br>ES中的聚合被分为两大类：Metric度量和bucket桶（原谅我英语差，找不到合适的词语…..就用单词来说吧！）。说的通俗点，metric很像SQL中的avg、max、min等方法，而bucket就有点类似group by了。</p>
+<h3 id="Sum-求和"><a href="#Sum-求和" class="headerlink" title="Sum 求和"></a>Sum 求和</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">"aggs" : &#123;</div><div class="line">    "intraday_return" : &#123; "sum" : &#123; "field" : "change" &#125; &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h3 id="Min-求最小值"><a href="#Min-求最小值" class="headerlink" title="Min 求最小值"></a>Min 求最小值</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"aggs"</span> : &#123;</div><div class="line">        <span class="attr">"min_price"</span> : &#123; <span class="attr">"min"</span> : &#123; <span class="attr">"field"</span> : <span class="string">"price"</span> &#125; &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="cardinality-求唯一值，即不重复的字段有多少"><a href="#cardinality-求唯一值，即不重复的字段有多少" class="headerlink" title="cardinality 求唯一值，即不重复的字段有多少"></a>cardinality 求唯一值，即不重复的字段有多少</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"aggs"</span> : &#123;</div><div class="line">        <span class="attr">"author_count"</span> : &#123;</div><div class="line">            <span class="attr">"cardinality"</span> : &#123;</div><div class="line">                <span class="attr">"field"</span> : <span class="string">"author"</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="一次性返回所有指标，count，min，max，avg，sum"><a href="#一次性返回所有指标，count，min，max，avg，sum" class="headerlink" title="一次性返回所有指标，count，min，max，avg，sum"></a>一次性返回所有指标，count，min，max，avg，sum</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"aggs"</span> : &#123;</div><div class="line">        <span class="attr">"grades_stats"</span> : &#123; <span class="attr">"stats"</span> : &#123; <span class="attr">"field"</span> : <span class="string">"total_price"</span> &#125; &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="先过滤后聚合"><a href="#先过滤后聚合" class="headerlink" title="先过滤后聚合"></a>先过滤后聚合</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"aggs"</span> : &#123;</div><div class="line">        <span class="attr">"paid_order"</span> : &#123;</div><div class="line">            <span class="attr">"filter"</span> : &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"status_code"</span>: <span class="string">"paid"</span> &#125; &#125;,</div><div class="line">            <span class="attr">"aggs"</span> : &#123;</div><div class="line">                <span class="attr">"avg_price"</span> : &#123; <span class="attr">"avg"</span> : &#123; <span class="attr">"field"</span> : <span class="string">"total_price"</span> &#125; &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="去除结果中的产品"><a href="#去除结果中的产品" class="headerlink" title="去除结果中的产品"></a>去除结果中的产品</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"size"</span>:<span class="number">0</span>,</div><div class="line">    <span class="attr">"aggs"</span> : &#123;</div><div class="line">        <span class="attr">"paid_order"</span> : &#123;</div><div class="line">            <span class="attr">"filter"</span> : &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"status_code"</span>: <span class="string">"paid"</span> &#125; &#125;,</div><div class="line">            <span class="attr">"aggs"</span> : &#123;</div><div class="line">                <span class="attr">"avg_price"</span> : &#123; <span class="attr">"avg"</span> : &#123; <span class="attr">"field"</span> : <span class="string">"total_price"</span> &#125; &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="使用区间统计"><a href="#使用区间统计" class="headerlink" title="使用区间统计"></a>使用区间统计</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"aggs"</span> : &#123;</div><div class="line">        <span class="attr">"prices"</span> : &#123;</div><div class="line">            <span class="attr">"histogram"</span> : &#123;</div><div class="line">                <span class="attr">"field"</span> : <span class="string">"total_price"</span>,</div><div class="line">                <span class="attr">"interval"</span> : <span class="number">1000</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="日期过滤"><a href="#日期过滤" class="headerlink" title="日期过滤"></a>日期过滤</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"aggs"</span>: &#123;</div><div class="line">        <span class="attr">"range"</span>: &#123;</div><div class="line">            <span class="attr">"date_range"</span>: &#123;</div><div class="line">                <span class="attr">"field"</span>: <span class="string">"created_at"</span>,</div><div class="line">                <span class="attr">"format"</span>: <span class="string">"MM-yyy"</span>,</div><div class="line">                    <span class="attr">"ranges"</span>: [</div><div class="line">                        &#123; <span class="attr">"to"</span>: <span class="string">"now-10M/M"</span> &#125;,</div><div class="line">                        &#123; <span class="attr">"from"</span>: <span class="string">"now-10M/M"</span> &#125;</div><div class="line">                    ]</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -718,7 +737,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/21/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/19/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/21/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -759,7 +778,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">135</span>
+              <span class="site-state-item-count">152</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -769,7 +788,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

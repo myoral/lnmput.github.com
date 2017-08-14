@@ -240,8 +240,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/30/linux的输出定向/" itemprop="url">
-                  linux的输出定向
+                <a class="post-title-link" href="/2017/02/28/laravel使用Facades中注意的地方/" itemprop="url">
+                  laravel使用Facades中注意的地方
                 </a>
               
             
@@ -254,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-30T13:37:17+08:00" content="2016-12-30">
-              2016-12-30
+            <time itemprop="dateCreated" datetime="2017-02-28T10:01:35+08:00" content="2017-02-28">
+              2017-02-28
             </time>
           </span>
 
@@ -284,18 +284,11 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>你懂的越多，懂你的越少。<br></blockquote><br>最近laravel文档里的一句配置引起了我的兴趣<br><code>* * * * * php /path/to/artisan schedule:run &gt;&gt; /dev/null 2&gt;&amp;1</code><br>她是什么意思呢？</p>
-<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>shell中可能经常能看到：</p>
-<p>1：&gt; 代表重定向到哪里，例如：echo “123″ &gt; /home/123.txt</p>
-<p>2：/dev/null 代表空设备文件</p>
-<p>3：2&gt; 表示stderr标准错误</p>
-<p>4：&amp; 表示等同于的意思，2&gt;&amp;1，表示2的输出重定向等同于1</p>
-<p>5：1 表示stdout标准输出，系统默认值是1，所以”&gt;/dev/null”等同于 “1&gt;/dev/null”</p>
-<p>分解这个组合：“&gt;/dev/null 2&gt;&amp;1” 为五部分。</p>
-<p>因此，&gt;/dev/null 2&gt;&amp;1也可以写成“1&gt; /dev/null 2&gt; &amp;1”</p>
-<p>那么本文标题的语句执行过程为：</p>
-<p>1&gt;/dev/null ：首先表示标准输出重定向到空设备文件，也就是不输出任何信息到终端，说白了就是不显示任何信息。</p>
-<p>2&gt;&amp;1 ：接着，标准错误输出重定向 到 标准输出，因为之前标准输出已经重定向到了空设备文件，所以标准错误输出也重定向到空设备文件。</p>
+            <p><blockquote class="blockquote-center"><br>你为什么从事喜剧行业？人们总是嘲笑我，所以我想，去他妈的，干脆收他们点儿钱！<br></blockquote><br>sLaravel facades 就是服务容器里那些基类的「静态代理」，相比于传统的静态方法调用，facades 在提供更简洁且丰富的语法的同时，还有更好的可测试性和扩展性。</p>
+<p>所有的 Laravel facades 都在 Illuminate\Support\Facades 这个命名空间下。所以我们可以用类似下面的代码轻松调用：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Facades</span>\<span class="title">Cache</span>;</div><div class="line"></div><div class="line">Route::get(<span class="string">'/cache'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> Cache::get(<span class="string">'key'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="使用注意"><a href="#使用注意" class="headerlink" title="使用注意"></a>使用注意</h3><p>使用 facades 最主要的风险就是会引起类的体积的膨胀。由于 facades 使用起来非常简单而且不需要注入，我们会不经意间在单个类中大量使用。不像是使用依赖注入，用得越多，构造方法会越长，在视觉上就会引起注意，提醒你这个类有点太庞大了。所以，在使用 facades 时，要特别注意把类的体积控制在一个合理的范围。<br>在开发第三方扩展包时，如果需要使用和 Laravel 交互的扩展包，最好是注入 Laravel contracts 而不是使用 facades，因为扩展包不是在 Laravel 内部使用的，无法使用 Laravel 的 facades 的测试辅助函数。</p>
+<h3 id="Laravel-contracts"><a href="#Laravel-contracts" class="headerlink" title="Laravel contracts"></a>Laravel contracts</h3><p>Laravel 中的 Contract 是一组定义了框架核心服务的接口。例如，<code>Illuminate\Contracts\Queue\Queue contract</code> 定义了实现队列任务所需实现的方法，而 <code>Illuminate\Contracts\Mail\Mailer</code> contract 定义了发送邮件所需要实现的方法。</p>
+<p>框架为每个 contract 都提供了一个相对应的实现。例如，Laravel 为队列提供了各种驱动的实现，以及基于 SwiftMailer 对邮件功能的实现。</p>
 
           
         
@@ -345,8 +338,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/28/php-cli的使用/" itemprop="url">
-                  php-cli的使用
+                <a class="post-title-link" href="/2017/02/27/如何使用Presenter模式/" itemprop="url">
+                  如何使用Presenter模式?
                 </a>
               
             
@@ -359,8 +352,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-28T09:22:49+08:00" content="2016-12-28">
-              2016-12-28
+            <time itemprop="dateCreated" datetime="2017-02-27T13:59:35+08:00" content="2017-02-27">
+              2017-02-27
             </time>
           </span>
 
@@ -389,33 +382,107 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>关山难越，谁悲失路之人？<br>萍水相逢，尽是他乡之客。<br></blockquote><br>HP作为一门web开发语言，通常情况下我们都是在Web Server中运行PHP，使用浏览器访问，因此很少关注其命令行操作以及相关参数的使用，但是，特别是在类Unix操作系统上，PHP可以作为一门脚本语言执行与shell类似的处理任务。</p>
+            <p><blockquote class="blockquote-center"><br>岁月不饶人，我亦未曾饶过岁月。<br></blockquote><br>避免在模板中使用过多的复杂的判断,@inject 的用法</p>
+<h3 id="新建文件-app-Presenters-UserPresenter-php"><a href="#新建文件-app-Presenters-UserPresenter-php" class="headerlink" title="新建文件 app\Presenters\UserPresenter.php"></a>新建文件 app\Presenters\UserPresenter.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Presenters</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserPresenter</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">($name)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> ($name == <span class="string">'Laurine Deckow'</span>)</div><div class="line">            $fullName = <span class="string">'Mr. '</span> . $name;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            $fullName = <span class="string">'Mrs. '</span> . $name;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> $fullName;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="控制器-app-Http-Controllers-UserController-php"><a href="#控制器-app-Http-Controllers-UserController-php" class="headerlink" title="控制器 app\Http\Controllers\UserController.php"></a>控制器 app\Http\Controllers\UserController.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">User</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line">&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        $users = User::all();</div><div class="line">        <span class="keyword">return</span> view(<span class="string">'home/user'</span>,[<span class="string">'users'</span>=&gt;$users]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="视图-resources-views-home-user-blade-php"><a href="#视图-resources-views-home-user-blade-php" class="headerlink" title="视图 resources\views\home\user.blade.php"></a>视图 resources\views\home\user.blade.php</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"list-group"</span>&gt;</span></div><div class="line">    @inject('UserPresenter','App\Presenters\UserPresenter')</div><div class="line">    @foreach($users as $user)</div><div class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"list-group-item"</span>&gt;</span></div><div class="line">            &#123;&#123; $UserPresenter-&gt;setName($user-&gt;name) &#125;&#125;</div><div class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    @endforeach</div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/27/laravel的中大型架构/" itemprop="url">
+                  laravel的中大型架构
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-27T11:40:41+08:00" content="2017-02-27">
+              2017-02-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>孤独到死是一个天才最好的归宿，毕竟，这个世界配不上他<br></blockquote><br>解决我们的控制器,模型过于肥大的问题<br>那我們該怎麼寫呢？別將我們的思維侷限在 MVC 內 :<br>Model : 僅當成 Eloquent class。<br>Repository : 輔助 model，處理資料庫邏輯，然後注入到 service。<br>Service : 輔助 controller，處理商業邏輯，然後注入到 controller。<br>Controller : 接收 HTTP request，調用其他 service。<br>Presenter : 處理顯示邏輯，然後注入到 view。<br>View : 使用 blade 將資料 binding 到 HTML。</p>
 <blockquote>
-<p>运行时间：php-cli默认运行时间是无穷，而网页php默认设置是30s。</p>
+<p><a href="http://oomusou.io/laravel/laravel-architecture" target="_blank" rel="external">http://oomusou.io/laravel/laravel-architecture</a></p>
 </blockquote>
-<h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><ul>
-<li><p>运行指定php文件</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">php my_script.php</div><div class="line"> </div><div class="line">php -f  <span class="string">"my_script.php"</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>运行php代码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php -r <span class="string">"print_r(get_defined_constants());"</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>语法检查</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php -l index.php</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看版本信息</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php -v</div></pre></td></tr></table></figure>
-</li>
-<li><p>显示配置文件</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php --ini</div></pre></td></tr></table></figure>
-</li>
-<li><p>接收参数</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">echo</span> <span class="string">'命令行参数个数: '</span> . $argc . <span class="string">"\n"</span>;</div><div class="line"><span class="keyword">echo</span> <span class="string">"命令行参数:\n"</span>;</div><div class="line"><span class="keyword">foreach</span> ($argv <span class="keyword">as</span> $index =&gt; $arg) &#123;</div><div class="line">    <span class="keyword">echo</span> <span class="string">"    &#123;$index&#125; : &#123;$arg&#125;\n"</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 执行命令</span></div><div class="line">php console.php hello world</div></pre></td></tr></table></figure>
-</li>
-<li><p>开启服务器</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 在指定目录下运行该命令，通过url访问http://localhost:8000/hello.php</span></div><div class="line">php -S localhost:<span class="number">8000</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
 
           
         
@@ -465,8 +532,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/26/惊艳的vuejs/" itemprop="url">
-                  惊艳的vuejs
+                <a class="post-title-link" href="/2017/02/27/如何使用Repository模式/" itemprop="url">
+                  如何使用Repository模式
                 </a>
               
             
@@ -479,8 +546,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-26T18:10:54+08:00" content="2016-12-26">
-              2016-12-26
+            <time itemprop="dateCreated" datetime="2017-02-27T10:58:16+08:00" content="2017-02-27">
+              2017-02-27
             </time>
           </span>
 
@@ -509,125 +576,11 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>“大圣，此去欲何？”<br>“踏南天，碎凌霄。”<br>“若一去不回……”<br>“便一去不回！”<br></blockquote></p>
-<h3 id="双向数据绑定"><a href="#双向数据绑定" class="headerlink" title="双向数据绑定"></a>双向数据绑定</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">id</span>=<span class="string">"one"</span> <span class="attr">value</span>=<span class="string">"face"</span> <span class="attr">v-model</span>=<span class="string">"className"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">id</span>=<span class="string">"two"</span> <span class="attr">value</span>=<span class="string">"msg"</span> <span class="attr">v-model</span>=<span class="string">"className"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"&#123;&#123; className&#125;&#125;"</span>&gt;</span></div><div class="line">	    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123; textValue &#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> dataList = &#123;</div><div class="line">		className : <span class="string">'app'</span>,</div><div class="line">		textValue : <span class="string">'你好'</span></div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">new</span> Vue(&#123;</div><div class="line">		el:<span class="string">'#app'</span>,</div><div class="line">		data: dataList</div><div class="line">	&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"&#123;&#123; className &#125;&#125;"</span>&gt;</span></div><div class="line">	    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></div><div class="line">	        a = &#123;&#123;a&#125;&#125;</div><div class="line">	        b = &#123;&#123;b&#125;&#125;</div><div class="line">	    <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> dataList = &#123;</div><div class="line">		className : <span class="string">'app'</span>,</div><div class="line">		textValue : <span class="string">'&lt;i&gt;你好&lt;/i&gt;'</span>,</div><div class="line">		a: <span class="number">1</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</div><div class="line">		el:<span class="string">'#app'</span>,</div><div class="line">		data: dataList,</div><div class="line">		computed: &#123; b: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.a + <span class="number">1</span>;</div><div class="line">	    &#125;&#125;</div><div class="line">	&#125;);</div><div class="line"></div><div class="line">	setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	vm.a = <span class="number">4</span>;</div><div class="line">	&#125;, <span class="number">5000</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="绑定class"><a href="#绑定class" class="headerlink" title="绑定class"></a>绑定class</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"&#123;&#123; className &#125;&#125;"</span>&gt;</span></div><div class="line">	    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"com"</span> <span class="attr">v-bind:class</span>=<span class="string">"&#123;'app': a, 'msg':b&#125;"</span>&gt;</span></div><div class="line">		&#123;&#123; fullName &#125;&#125;</div><div class="line">	<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> dataList = &#123;</div><div class="line">		a : <span class="literal">true</span>,</div><div class="line">		b : <span class="literal">false</span>,</div><div class="line">		fullName: <span class="string">'yangguoqi'</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</div><div class="line">		el:<span class="string">'#app'</span>,</div><div class="line">		data: dataList,</div><div class="line">	&#125;);</div><div class="line">	setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		vm.a = <span class="literal">false</span>;</div><div class="line">		vm.b = <span class="literal">true</span>;</div><div class="line">	&#125;,<span class="number">5000</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/20/跨域资源共享CORS/" itemprop="url">
-                  跨域资源共享CORS
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-20T14:08:08+08:00" content="2016-12-20">
-              2016-12-20
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>我想，最好的感情是两个人都用力的活，一起体验人生的种种趣味，也能包容与鼓励对方。当对方为你打开新的世界，你就没有因为喜欢一个人而拒绝了整个世界。<br></blockquote><br>CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。<br>它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。<br>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。<br>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。<br>因此，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。</p>
-<h3 id="两种请求"><a href="#两种请求" class="headerlink" title="两种请求"></a>两种请求</h3><p>浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）。<br>只要同时满足以下两大条件，就属于简单请求。<br>1.请求方法是以下三种方法之一：</p>
-<ul>
-<li>HEAD</li>
-<li>GET</li>
-<li>POST</li>
-</ul>
-<p>2.HTTP的头信息不超出以下几种字段：</p>
-<ul>
-<li>Accept</li>
-<li>Accept-Language</li>
-<li>Content-Language</li>
-<li>Last-Event-ID<br>Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain<br>凡是不同时满足上面两个条件，就属于非简单请求。<br>浏览器对这两种请求的处理，是不一样的。</li>
-</ul>
-<h3 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h3><p>jquery 请求<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    $.ajax(&#123;</div><div class="line">        type:<span class="string">"POST"</span>,</div><div class="line">        url:<span class="string">"http://www.shop.dev/onValidateEmail"</span>,</div><div class="line">        data:&#123;email:<span class="string">"yangguoqi@olmailorg"</span>&#125;,</div><div class="line">        datatype: <span class="string">"json"</span>,</div><div class="line">        success:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(data);</div><div class="line">        &#125;,</div><div class="line">        error: <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(msg);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
-<p>服务端响应<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Route::post(<span class="string">'/onValidateEmail'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</div><div class="line">    header(<span class="string">"Access-Control-Allow-Origin: *"</span>);</div><div class="line">    header(<span class="string">"Access-Control-Allow-Methods: *"</span>);</div><div class="line">    header(<span class="string">"Content-Type: application/json"</span>);</div><div class="line">    $email = post(<span class="string">'email'</span>,<span class="string">''</span>);</div><div class="line">    $count = \October\Rain\Auth\Models\User::where(<span class="string">'email'</span>,$email)-&gt;count();</div><div class="line">    <span class="keyword">return</span> Response::json([</div><div class="line">        <span class="string">'status'</span> =&gt; <span class="number">200</span>,</div><div class="line">        <span class="string">'data'</span> =&gt; $count</div><div class="line">    ]);</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<h3 id="与JSONP的比较"><a href="#与JSONP的比较" class="headerlink" title="与JSONP的比较"></a>与JSONP的比较</h3><p>CORS与JSONP的使用目的相同，但是比JSONP更强大。<br>JSONP只支持GET请求，CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。</p>
-<ul>
-<li><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2016/04/cors.html</a></li>
-</ul>
+            <p><blockquote class="blockquote-center"><br>某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。<br></blockquote><br>这里我们介绍一种laravel开发的模式,用于解决控制器过于肥大的问题.</p>
+<h3 id="路由-routes-php"><a href="#路由-routes-php" class="headerlink" title="路由 routes.php"></a>路由 routes.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">Route::get(<span class="string">'/user'</span>, <span class="string">'UserController@getUser'</span>);</div></pre></td></tr></table></figure>
+<h3 id="控制器-app-Http-Controllers-UserController-php"><a href="#控制器-app-Http-Controllers-UserController-php" class="headerlink" title="控制器 app\Http\Controllers\UserController.php"></a>控制器 app\Http\Controllers\UserController.php</h3><p>将新建的库依赖注入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Repository</span>\<span class="title">UserRepository</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">protected</span> $userRepository;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(UserRepository $userRepository)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;userRepository = $userRepository;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;userRepository-&gt;getUser();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="模型-app-User-php"><a href="#模型-app-User-php" class="headerlink" title="模型 app\User.php"></a>模型 app\User.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Auth</span>\<span class="title">User</span> <span class="title">as</span> <span class="title">Authenticatable</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Authenticatable</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * The attributes that are mass assignable.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@var</span> array</div><div class="line">     */</div><div class="line">    <span class="keyword">protected</span> $fillable = [</div><div class="line">        <span class="string">'name'</span>, <span class="string">'email'</span>, <span class="string">'password'</span>,</div><div class="line">    ];</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * The attributes excluded from the model's JSON form.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@var</span> array</div><div class="line">     */</div><div class="line">    <span class="keyword">protected</span> $hidden = [</div><div class="line">        <span class="string">'password'</span>, <span class="string">'remember_token'</span>,</div><div class="line">    ];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="新建库-app-Repository-UserRepository-php"><a href="#新建库-app-Repository-UserRepository-php" class="headerlink" title="新建库 app\Repository\UserRepository.php"></a>新建库 app\Repository\UserRepository.php</h3><p>将模型依赖注入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Repository</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">User</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserRepository</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">protected</span> $user;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(User $user)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;user = $user;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;user-&gt;all();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
           
         
@@ -677,8 +630,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/13/用matplotlib绘制精美的图表/" itemprop="url">
-                  用matplotlib绘制精美的图表
+                <a class="post-title-link" href="/2017/02/24/翻译-重建laravel-自动加载/" itemprop="url">
+                  [翻译]重建laravel-自动加载
                 </a>
               
             
@@ -691,8 +644,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-13T15:40:10+08:00" content="2016-12-13">
-              2016-12-13
+            <time itemprop="dateCreated" datetime="2017-02-24T17:59:32+08:00" content="2017-02-24">
+              2017-02-24
             </time>
           </span>
 
@@ -721,14 +674,9 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>如果你爱一个人，一定要告诉他，不是为了要他报答，而是让他在以后黑暗的日子里，否定自己的时候，想起世界上还有人这么爱他，他并非一无是处。<br></blockquote></p>
-<h3 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install matplotlib</div></pre></td></tr></table></figure>
-<h3 id="绘制一元函数图像y-ax-b"><a href="#绘制一元函数图像y-ax-b" class="headerlink" title="绘制一元函数图像y=ax+b"></a>绘制一元函数图像y=ax+b</h3><p>创建single_variable.py，内容如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding( <span class="string">"utf-8"</span> )</div><div class="line"></div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">plt.figure() <span class="comment"># 实例化作图变量</span></div><div class="line">plt.title(<span class="string">'single variable'</span>) <span class="comment"># 图像标题</span></div><div class="line">plt.xlabel(<span class="string">'x'</span>) <span class="comment"># x轴文本</span></div><div class="line">plt.ylabel(<span class="string">'y'</span>) <span class="comment"># y轴文本</span></div><div class="line">plt.axis([<span class="number">0</span>, <span class="number">5</span>, <span class="number">0</span>, <span class="number">10</span>]) <span class="comment"># x轴范围0-5，y轴范围0-10</span></div><div class="line">plt.grid(<span class="keyword">True</span>) <span class="comment"># 是否绘制网格线</span></div><div class="line">xx = np.linspace(<span class="number">0</span>, <span class="number">5</span>, <span class="number">10</span>) <span class="comment"># 在0-5之间生成10个点的向量</span></div><div class="line">plt.plot(xx, <span class="number">2</span>*xx, <span class="string">'g-'</span>) <span class="comment"># 绘制y=2x图像，颜色green，形式为线条</span></div><div class="line">plt.show() <span class="comment"># 展示图像</span></div></pre></td></tr></table></figure></p>
-<h3 id="绘制正弦曲线y-sin-x"><a href="#绘制正弦曲线y-sin-x" class="headerlink" title="绘制正弦曲线y=sin(x)"></a>绘制正弦曲线y=sin(x)</h3><p>创建sinx.py，内容如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding( <span class="string">"utf-8"</span> )</div><div class="line"></div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">plt.figure() <span class="comment"># 实例化作图变量</span></div><div class="line">plt.title(<span class="string">'single variable'</span>) <span class="comment"># 图像标题</span></div><div class="line">plt.xlabel(<span class="string">'x'</span>) <span class="comment"># x轴文本</span></div><div class="line">plt.ylabel(<span class="string">'y'</span>) <span class="comment"># y轴文本</span></div><div class="line">plt.axis([<span class="number">-12</span>, <span class="number">12</span>, <span class="number">-1</span>, <span class="number">1</span>]) <span class="comment"># x轴范围-12到12，y轴范围-1到1</span></div><div class="line">plt.grid(<span class="keyword">True</span>) <span class="comment"># 是否绘制网格线</span></div><div class="line">xx = np.linspace(<span class="number">-12</span>, <span class="number">12</span>, <span class="number">1000</span>) <span class="comment"># 在-12到12之间生成1000个点的向量</span></div><div class="line">plt.plot(xx, np.sin(xx), <span class="string">'g-'</span>, label=<span class="string">"$sin(x)$"</span>) <span class="comment"># 绘制y=sin(x)图像，颜色green，形式为线条</span></div><div class="line">plt.plot(xx, np.cos(xx), <span class="string">'r--'</span>, label=<span class="string">"$cos(x)$"</span>) <span class="comment"># 绘制y=cos(x)图像，颜色red，形式为虚线</span></div><div class="line">plt.legend() <span class="comment"># 绘制图例</span></div><div class="line">plt.show() <span class="comment"># 展示图像</span></div></pre></td></tr></table></figure></p>
-<h3 id="绘制多轴图"><a href="#绘制多轴图" class="headerlink" title="绘制多轴图"></a>绘制多轴图</h3><p>创建multi_axis.py内容如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding( <span class="string">"utf-8"</span> )</div><div class="line"></div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw</span><span class="params">(plt)</span>:</span></div><div class="line">    plt.axis([<span class="number">-12</span>, <span class="number">12</span>, <span class="number">-1</span>, <span class="number">1</span>]) <span class="comment"># x轴范围-12到12，y轴范围-1到1</span></div><div class="line">    plt.grid(<span class="keyword">True</span>) <span class="comment"># 是否绘制网格线</span></div><div class="line">    xx = np.linspace(<span class="number">-12</span>, <span class="number">12</span>, <span class="number">1000</span>) <span class="comment"># 在-12到12之间生成1000个点的向量</span></div><div class="line">    plt.plot(xx, np.sin(xx), <span class="string">'g-'</span>, label=<span class="string">"$sin(x)$"</span>) <span class="comment"># 绘制y=sin(x)图像，颜色green，形式为线条</span></div><div class="line">    plt.plot(xx, np.cos(xx), <span class="string">'r--'</span>, label=<span class="string">"$cos(x)$"</span>) <span class="comment"># 绘制y=cos(x)图像，颜色red，形式为虚线</span></div><div class="line">    plt.legend() <span class="comment"># 绘制图例</span></div><div class="line"></div><div class="line">plt.figure() <span class="comment"># 实例化作图变量</span></div><div class="line">plt1 = plt.subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>) <span class="comment"># 两行两列中的第1张图</span></div><div class="line">draw(plt1)</div><div class="line">plt2 = plt.subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>) <span class="comment"># 两行两列中的第2张图</span></div><div class="line">draw(plt2)</div><div class="line">plt3 = plt.subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>) <span class="comment"># 两行两列中的第3张图</span></div><div class="line">draw(plt3)</div><div class="line">plt4 = plt.subplot(<span class="number">2</span>,<span class="number">2</span>,<span class="number">4</span>) <span class="comment"># 两行两列中的第4张图</span></div><div class="line">draw(plt4)</div><div class="line"></div><div class="line">plt.show() <span class="comment"># 展示图像</span></div></pre></td></tr></table></figure></p>
-<h3 id="绘制3D图像"><a href="#绘制3D图像" class="headerlink" title="绘制3D图像"></a>绘制3D图像</h3><p>创建plot_3d.py，内容如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding( <span class="string">"utf-8"</span> )</div><div class="line"></div><div class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line">fig = plt.figure()</div><div class="line">ax = fig.add_subplot(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,projection=<span class="string">'3d'</span>)</div><div class="line">theta = np.linspace(<span class="number">-4</span> * np.pi, <span class="number">4</span> * np.pi, <span class="number">500</span>) <span class="comment"># theta旋转角从-4pi到4pi，相当于两圈</span></div><div class="line">z = np.linspace(<span class="number">0</span>, <span class="number">2</span>, <span class="number">500</span>) <span class="comment"># z轴从下到上,从-2到2之间画100个点</span></div><div class="line">r = z <span class="comment"># 半径设置为z大小</span></div><div class="line">x = r * np.sin(theta) <span class="comment"># x和y画圆</span></div><div class="line">y = r * np.cos(theta) <span class="comment"># x和y画圆</span></div><div class="line">ax.plot(x, y, z, label=<span class="string">'curve'</span>)</div><div class="line">ax.legend()</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
-<h3 id="3D散点图"><a href="#3D散点图" class="headerlink" title="3D散点图"></a>3D散点图</h3><p>创建plot_3d_scatter.py，内容如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding( <span class="string">"utf-8"</span> )</div><div class="line"></div><div class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line">fig = plt.figure()</div><div class="line">ax = fig.add_subplot(<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,projection=<span class="string">'3d'</span>)</div><div class="line">xx = np.linspace(<span class="number">0</span>, <span class="number">5</span>, <span class="number">10</span>) <span class="comment"># 在0-5之间生成10个点的向量</span></div><div class="line">yy = np.linspace(<span class="number">0</span>, <span class="number">5</span>, <span class="number">10</span>) <span class="comment"># 在0-5之间生成10个点的向量</span></div><div class="line">zz1 = xx</div><div class="line">zz2 = <span class="number">2</span>*xx</div><div class="line">zz3 = <span class="number">3</span>*xx</div><div class="line">ax.scatter(xx, yy, zz1, c=<span class="string">'red'</span>, marker=<span class="string">'o'</span>) <span class="comment"># o型符号</span></div><div class="line">ax.scatter(xx, yy, zz2, c=<span class="string">'green'</span>, marker=<span class="string">'^'</span>) <span class="comment"># 三角型符号</span></div><div class="line">ax.scatter(xx, yy, zz3, c=<span class="string">'black'</span>, marker=<span class="string">'*'</span>) <span class="comment"># 星型符号</span></div><div class="line">ax.legend()</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
-<h3 id="绘制3D表面"><a href="#绘制3D表面" class="headerlink" title="绘制3D表面"></a>绘制3D表面</h3><p>创建plot_3d_surface.py，内容如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding:utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> sys</div><div class="line">reload(sys)</div><div class="line">sys.setdefaultencoding( <span class="string">"utf-8"</span> )</div><div class="line"></div><div class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D</div><div class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> cm</div><div class="line"><span class="keyword">from</span> matplotlib.ticker <span class="keyword">import</span> LinearLocator, FormatStrFormatter</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">fig = plt.figure()</div><div class="line">ax = fig.gca(projection=<span class="string">'3d'</span>)</div><div class="line"></div><div class="line">X = np.arange(<span class="number">-5</span>, <span class="number">5</span>, <span class="number">0.25</span>)</div><div class="line">Y = np.arange(<span class="number">-5</span>, <span class="number">5</span>, <span class="number">0.25</span>)</div><div class="line">X, Y = np.meshgrid(X, Y)</div><div class="line"></div><div class="line">Z = X**<span class="number">2</span>+Y**<span class="number">2</span></div><div class="line"></div><div class="line">ax.plot_surface(X, Y, Z, rstride=<span class="number">1</span>, cstride=<span class="number">1</span>, cmap=cm.coolwarm, linewidth=<span class="number">0</span>, antialiased=<span class="keyword">False</span>)</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure></p>
+            <p><blockquote class="blockquote-center"><br>谢谢那些喜欢我的人<br></blockquote><br>我认为请求的入口<code>public/index.php</code>,应该是最好的开始的地方…</p>
+<h3 id="重写规则"><a href="#重写规则" class="headerlink" title="重写规则"></a>重写规则</h3><p>我们知道请求第一次到达我们的程序index.php,是因为laravel使用了这个重写规则.htaccess;<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;IfModule mod_rewrite.c&gt;</div><div class="line">  &lt;IfModule mod_negotiation.c&gt;</div><div class="line">    Options -MultiViews</div><div class="line">  &lt;/IfModule&gt;</div><div class="line"></div><div class="line">  RewriteEngine On</div><div class="line"></div><div class="line">  <span class="comment"># Redirect Trailing Slashes...</span></div><div class="line">  RewriteRule ^(.*)/$ /$<span class="number">1</span> [L,R=<span class="number">301</span>]</div><div class="line"></div><div class="line">  <span class="comment"># Handle Front Controller...</span></div><div class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !-d</div><div class="line">  RewriteCond %&#123;REQUEST_FILENAME&#125; !-f</div><div class="line">  RewriteRule ^ index.php [L]</div><div class="line">&lt;/IfModule&gt;</div></pre></td></tr></table></figure></p>
+<p>来自<code>public/.htaccess</code></p>
 
           
         
@@ -761,7 +709,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -802,7 +750,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">135</span>
+              <span class="site-state-item-count">152</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -812,7 +760,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">63</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
