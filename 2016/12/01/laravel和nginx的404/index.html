@@ -94,7 +94,7 @@ laravel的404
 <meta property="og:description" content="是谁来自山川湖海，却囿于昼夜、厨房与爱。
 laravel的404
 配置404页面在resources\views\errors\404.blade.php，如果配置了该页面，那么访问任何一个不存在的路由，就会显示到该页面，同时返回的状态码也会是404，同样，也可以通过代码abort(404);来展示出404页面，如果在你的视图文件中没有配置404.blade.php 页面，那么访问一个不存在的路由">
-<meta property="og:updated_time" content="2016-12-01T01:27:46.914Z">
+<meta property="og:updated_time" content="2017-08-16T02:25:15.760Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="laravel和nginx的404">
 <meta name="twitter:description" content="是谁来自山川湖海，却囿于昼夜、厨房与爱。
@@ -292,7 +292,7 @@ laravel的404
 <li>配置404页面<br>在resources\views\errors\404.blade.php，如果配置了该页面，那么访问任何一个不存在的路由，就会显示到该页面，同时返回的状态码也会是404，同样，也可以通过代码<code>abort(404);</code>来展示出404页面，如果在你的视图文件中没有配置404.blade.php 页面，那么访问一个不存在的路由就会引起程序报错。</li>
 </ul>
 <h3 id="nginx的404"><a href="#nginx的404" class="headerlink" title="nginx的404"></a>nginx的404</h3><ul>
-<li>配置404页面<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen       <span class="number">80</span>;</div><div class="line">    server_name  www.la51.dev la51.dev;</div><div class="line">    root   <span class="string">"D:/phpStudy/WWW/la51/public"</span>;</div><div class="line">    fastcgi_intercept_errors on;</div><div class="line">    error_page <span class="number">404</span>  /<span class="number">404.</span>html ;</div><div class="line">    location / &#123;</div><div class="line">        index  index.html index.htm index.php;</div><div class="line">        <span class="comment">#autoindex  on;</span></div><div class="line">        try_files $uri $uri/ /index.php?$query_string;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<li>配置404页面<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen  <span class="number">80</span>;</div><div class="line">    server_name  www.la51.dev la51.dev;</div><div class="line">    root   <span class="string">"D:/phpStudy/WWW/la51/public"</span>;</div><div class="line">    fastcgi_intercept_errors on;</div><div class="line">    error_page <span class="number">404</span>  /<span class="number">404.</span>html ;</div><div class="line">    location / &#123;</div><div class="line">        index  index.html index.htm index.php;</div><div class="line">        <span class="comment">#autoindex  on;</span></div><div class="line">        try_files $uri $uri/ /index.php?$query_string;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>404.html在网站的根目录下，关键的两句，`fastcgi_intercept_errors on;error_page 404  /404.html ;这样访问一个不存在的页面，即使没有在laravel中做相关的配置，也能在路由不存在时跳转到404页面；</p>
@@ -406,7 +406,7 @@ laravel的404
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">152</span>
+              <span class="site-state-item-count">154</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -416,7 +416,7 @@ laravel的404
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">70</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

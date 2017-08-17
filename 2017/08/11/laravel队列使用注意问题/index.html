@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="laravel," />
 
 
 
@@ -84,13 +84,22 @@
 
 
 
+<meta name="description" content="你看了一千个正确答案，还是要一秒一秒的等时间
+任务超时任务可以运行的最大秒数可以使用 Artisan 命令行上的 --timeout 开关指定：1php artisan queue:work --timeout=30
+这个选项指定了 Laravel 队列处理器最多执行多长时间后就应该被关闭掉。有时候一个队列的子进程会因为很多原因僵死，比如一个外部的 HTTP 请求没有响应。这个 –timeout">
 <meta property="og:type" content="article">
 <meta property="og:title" content="laravel队列使用注意问题">
 <meta property="og:url" content="http://yangguoqi.me/2017/08/11/laravel队列使用注意问题/index.html">
 <meta property="og:site_name" content="杨子鳄的小窝">
-<meta property="og:updated_time" content="2017-08-10T23:53:58.000Z">
+<meta property="og:description" content="你看了一千个正确答案，还是要一秒一秒的等时间
+任务超时任务可以运行的最大秒数可以使用 Artisan 命令行上的 --timeout 开关指定：1php artisan queue:work --timeout=30
+这个选项指定了 Laravel 队列处理器最多执行多长时间后就应该被关闭掉。有时候一个队列的子进程会因为很多原因僵死，比如一个外部的 HTTP 请求没有响应。这个 –timeout">
+<meta property="og:updated_time" content="2017-08-15T06:17:39.900Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="laravel队列使用注意问题">
+<meta name="twitter:description" content="你看了一千个正确答案，还是要一秒一秒的等时间
+任务超时任务可以运行的最大秒数可以使用 Artisan 命令行上的 --timeout 开关指定：1php artisan queue:work --timeout=30
+这个选项指定了 Laravel 队列处理器最多执行多长时间后就应该被关闭掉。有时候一个队列的子进程会因为很多原因僵死，比如一个外部的 HTTP 请求没有响应。这个 –timeout">
 
 
 
@@ -278,7 +287,15 @@
       
 
       
-        
+        <p><blockquote class="blockquote-center"><br>你看了一千个正确答案，还是要一秒一秒的等时间<br></blockquote></p>
+<h3 id="任务超时"><a href="#任务超时" class="headerlink" title="任务超时"></a>任务超时</h3><p>任务可以运行的最大秒数可以使用 <code>Artisan</code> 命令行上的 <code>--timeout</code> 开关指定：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan queue:work --timeout=<span class="number">30</span></div></pre></td></tr></table></figure></p>
+<p>这个选项指定了 Laravel 队列处理器最多执行多长时间后就应该被关闭掉。有时候一个队列的子进程会因为很多原因僵死，比如一个外部的 HTTP 请求没有响应。这个 –timeout 选项会移除超出指定事件限制的僵死进程。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Jobs</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProcessPodcast</span> <span class="keyword">implements</span> <span class="title">ShouldQueue</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 任务运行的超时时间。</div><div class="line">     *</div><div class="line">     * <span class="doctag">@var</span> int</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> $timeout = <span class="number">120</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="任务过期"><a href="#任务过期" class="headerlink" title="任务过期"></a>任务过期</h3><p><code>config/queue.php</code> 配置文件里，每一个队列连接都定义了一个 <code>retry_after</code>选项。这个选项指定了任务最多处理多少秒后就被当做失败重试了。比如说，如果这个选项设置为 90，那么当这个任务持续执行了 90 秒而没有被删除，那么它将被释放回队列。通常情况下，你应该把 retry_after 设置为最长耗时的任务所对应的时间。</p>
+<h3 id="二者区别"><a href="#二者区别" class="headerlink" title="二者区别"></a>二者区别</h3><p><code>retry_after</code> 配置选项和 <code>--timeout</code> 命令行选项是不一样的，但是可以同时工作来保证任务不会丢失并且不会重复执行。<br>–timeout 应该永远都要比 retry_after 短至少几秒钟的时间。这样就能保证任务进程总能在失败重试前就被杀死了。如果你的 –timeout 选项大于 retry_after 配置选项，你的任务可能被执行两次。</p>
+<blockquote>
+<p>china.org/docs/5.4/queues</p>
+</blockquote>
+
       
     </div>
 
@@ -296,6 +313,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/laravel/" rel="tag">#laravel</a>
+          
+        </div>
       
 
       
@@ -380,7 +403,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">152</span>
+              <span class="site-state-item-count">154</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -390,7 +413,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">70</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -460,7 +483,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务超时"><span class="nav-number">1.</span> <span class="nav-text">任务超时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任务过期"><span class="nav-number">2.</span> <span class="nav-text">任务过期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二者区别"><span class="nav-number">3.</span> <span class="nav-text">二者区别</span></a></li></ol></div>
             
           </div>
         </section>

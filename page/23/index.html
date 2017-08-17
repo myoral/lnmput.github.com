@@ -240,6 +240,219 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/26/python的多进程和多线程/" itemprop="url">
+                  python的多进程和多线程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-26T22:52:57+08:00" content="2016-10-26">
+              2016-10-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>我曾经听人说过，当你不可以再拥有的时候。你唯一可以做的，就是让自己不要忘记。<br></blockquote></p>
+<h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><p>很多同学都听说过，现代操作系统比如Mac OS X，UNIX，Linux，Windows等，都是支持“多任务”的操作系统。</p>
+<p>什么叫“多任务”呢？简单地说，就是操作系统可以同时运行多个任务。打个比方，你一边在用浏览器上网，一边在听MP3，一边在用Word赶作业，这就是多任务，至少同时有3个任务正在运行。还有很多任务悄悄地在后台同时运行着，只是桌面上没有显示而已。</p>
+<p>现在，多核CPU已经非常普及了，但是，即使过去的单核CPU，也可以执行多任务。由于CPU执行代码都是顺序执行的，那么，单核CPU是怎么执行多任务的呢？</p>
+<p>答案就是操作系统轮流让各个任务交替执行，任务1执行0.01秒，切换到任务2，任务2执行0.01秒，再切换到任务3，执行0.01秒……这样反复执行下去。表面上看，每个任务都是交替执行的，但是，由于CPU的执行速度实在是太快了，我们感觉就像所有任务都在同时执行一样。</p>
+<p>真正的并行执行多任务只能在多核CPU上实现，但是，由于任务数量远远多于CPU的核心数量，所以，操作系统也会自动把很多任务轮流调度到每个核心上执行。</p>
+<p>对于操作系统来说，一个任务就是一个进程（Process），比如打开一个浏览器就是启动一个浏览器进程，打开一个记事本就启动了一个记事本进程，打开两个记事本就启动了两个记事本进程，打开一个Word就启动了一个Word进程。</p>
+<p>有些进程还不止同时干一件事，比如Word，它可以同时进行打字、拼写检查、打印等事情。在一个进程内部，要同时干多件事，就需要同时运行多个“子任务”，我们把进程内的这些“子任务”称为线程（Thread）。</p>
+<p>由于每个进程至少要干一件事，所以，一个进程至少有一个线程。当然，像Word这种复杂的进程可以有多个线程，多个线程可以同时执行，多线程的执行方式和多进程是一样的，也是由操作系统在多个线程之间快速切换，让每个线程都短暂地交替运行，看起来就像同时执行一样。当然，真正地同时执行多线程需要多核CPU才可能实现。</p>
+<p>我们前面编写的所有的Python程序，都是执行单任务的进程，也就是只有一个线程。如果我们要同时执行多个任务怎么办？</p>
+<p>有两种解决方案：</p>
+<p>一种是启动多个进程，每个进程虽然只有一个线程，但多个进程可以一块执行多个任务。</p>
+<p>还有一种方法是启动一个进程，在一个进程内启动多个线程，这样，多个线程也可以一块执行多个任务。</p>
+<p>当然还有第三种方法，就是启动多个进程，每个进程再启动多个线程，这样同时执行的任务就更多了，当然这种模型更复杂，实际很少采用。</p>
+<p>总结一下就是，多任务的实现有3种方式：</p>
+<p>多进程模式；<br>多线程模式；<br>多进程+多线程模式。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/26/python大数据抓取和存储/" itemprop="url">
+                  python大数据抓取和存储
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-26T20:54:22+08:00" content="2016-10-26">
+              2016-10-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>愿你梦里有喝不完的酒，<br>醒来后能酩酊大醉地过完这一生。<br>你要照顾好你黑色的头发，<br>挑剔的胃和爱笑的眼睛。<br>我已经原谅了从前的自己，就像谅解了一个野心勃勃的傻逼，体恤了一个笨手笨脚的勇士，释怀了一个难以启齿的秘密。<br></blockquote></p>
+<h3 id="mongodb"><a href="#mongodb" class="headerlink" title="mongodb"></a>mongodb</h3><p>安装这里就不再赘述<br>安装pymongo：</p>
+<ol>
+<li>pip install wheel</li>
+<li>下载找对应 的 whl 文件<br> <a href="https://pypi.python.org/pypi/pymongo#downloads" target="_blank" rel="external">https://pypi.python.org/pypi/pymongo#downloads</a></li>
+<li>pip install whl   文件的正确位置</li>
+</ol>
+<h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span>  pymongo</div><div class="line">client = pymongo.MongoClient(<span class="string">'localhost'</span>,<span class="number">27017</span>)</div><div class="line">dbname = client[<span class="string">'dbname'</span>]</div><div class="line">tbname = dbname[<span class="string">'tbname'</span>]</div><div class="line">path = <span class="string">'demo.txt'</span></div><div class="line"><span class="keyword">with</span> open(path,<span class="string">'r'</span>) <span class="keyword">as</span> f:</div><div class="line">    lines = f.readlines()</div><div class="line">    <span class="keyword">for</span> index,line <span class="keyword">in</span> enumerate(lines):</div><div class="line">        data = &#123;</div><div class="line">            <span class="string">'index'</span>:index,</div><div class="line">            <span class="string">'line'</span>:line,</div><div class="line">            <span class="string">'words'</span>:len(line.split())</div><div class="line">        &#125;</div><div class="line">        tbname.insert_one(data)</div></pre></td></tr></table></figure>
+<h3 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span>  pymongo</div><div class="line">client = pymongo.MongoClient(<span class="string">'localhost'</span>,<span class="number">27017</span>)</div><div class="line">dbname = client[<span class="string">'dbname'</span>]</div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> tbname.find():</div><div class="line">    print(item)</div><div class="line"></div><div class="line"><span class="comment">#或者</span></div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> tbname.find(&#123;<span class="string">'words'</span>:<span class="number">0</span>&#125;):</div><div class="line">    print(item)</div></pre></td></tr></table></figure>
+<h3 id="大数据抓取"><a href="#大数据抓取" class="headerlink" title="大数据抓取"></a>大数据抓取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 一般爬取的有多个列表页和每个列表页下的多个内容页</span></div><div class="line"><span class="comment"># 事先会把需要爬取的URL放到数据库里</span></div><div class="line"><span class="comment"># 一般的错误处理</span></div><div class="line"><span class="comment"># 过滤掉一些不正确的url地址</span></div><div class="line"><span class="comment"># 需要抓取的页面中的元素不存在</span></div><div class="line"><span class="comment"># 页面访问错误，比如404，500这样的错误有可能会引起爬虫报错</span></div><div class="line"><span class="comment"># 监控程序，用于监控已经爬取的数据量的多少或者url的多少</span></div></pre></td></tr></table></figure>
+<h3 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码"></a>实例代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#头部</span></div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> pymongo</div><div class="line"></div><div class="line">client =pymongo.MongoClient(<span class="string">'localhost'</span>,<span class="number">27017</span>)</div><div class="line">db58 = client[<span class="string">'db58'</span>]</div><div class="line">tb58 = db58[<span class="string">'tb58'</span>]</div><div class="line">tb58item = db58[<span class="string">'tb58item'</span>]</div><div class="line"></div><div class="line"><span class="comment"># 读取具体内容</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_links_from</span><span class="params">(channel,pages)</span>:</span></div><div class="line">    list_view = <span class="string">'&#123;&#125;/pn&#123;&#125;'</span>.format(channel,str(pages))</div><div class="line">    wb_data = requests.get(list_view)</div><div class="line">    time.sleep(<span class="number">1</span>)</div><div class="line">    soup = BeautifulSoup(wb_data.text,<span class="string">'lxml'</span>)</div><div class="line">    <span class="keyword">if</span> soup.find(<span class="string">'td'</span>,<span class="string">'t'</span>):</div><div class="line">        <span class="keyword">for</span> link <span class="keyword">in</span> soup.select(<span class="string">'td.t &gt; a.t'</span>):</div><div class="line">            item_link = link.get(<span class="string">'href'</span>).split(<span class="string">'?'</span>)[<span class="number">0</span>]</div><div class="line">            tb58.insert_one(item_link)</div><div class="line">            print(item_link)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">pass</span></div><div class="line"><span class="comment"># 产生多页</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_all_links_from</span><span class="params">(channel)</span>:</span></div><div class="line">    <span class="keyword">for</span> num  <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">101</span>):</div><div class="line">        get_links_from(channel,num)</div><div class="line"></div><div class="line"><span class="comment"># 监控程序，实时显示数据库中的数据量</span></div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">from</span> page_parsing <span class="keyword">import</span> tb58item</div><div class="line"></div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    print(tb58item.find().count())</div><div class="line">    time.sleep(<span class="number">5</span>)</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/25/python的一些抽象理解/" itemprop="url">
                   python的一些抽象理解
                 </a>
@@ -516,208 +729,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/24/python爬虫第一周/" itemprop="url">
-                  python爬虫第一周
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-24T21:32:09+08:00" content="2016-10-24">
-              2016-10-24
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>身不饥寒，天未曾负我；学无长进，我何以对天<br></blockquote></p>
-<h3 id="安装lxml"><a href="#安装lxml" class="headerlink" title="安装lxml"></a>安装lxml</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> 首先安装pip install wheel</div><div class="line"><span class="number">2.</span> 在这里下载对应的.whl文件，注意别改文件名！</div><div class="line">   http://www.lfd.uci.edu/~gohlke/pythonlibs/<span class="comment">#lxml</span></div><div class="line">   cp后面是Python的版本号，<span class="number">27</span>表示<span class="number">2.7</span>，根据你的Python版本选择下载。</div><div class="line"><span class="number">3.</span> pip install 带后缀的完整文件名</div></pre></td></tr></table></figure>
-<h3 id="例子-一"><a href="#例子-一" class="headerlink" title="例子(一)"></a>例子(一)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span>  urlopen</div><div class="line">resp = urlopen(<span class="string">'http://www.tooopen.com/img/87.aspx'</span>).read().decode(<span class="string">'utf-8'</span>)</div><div class="line">Soup = BeautifulSoup(resp,<span class="string">'lxml'</span>)</div><div class="line">images = Soup.select(<span class="string">'title'</span>)</div><div class="line"><span class="keyword">for</span> image <span class="keyword">in</span> images:</div><div class="line">    print(image.get_text())</div></pre></td></tr></table></figure>
-<h3 id="例子-二"><a href="#例子-二" class="headerlink" title="例子(二)"></a>例子(二)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span>  urlopen</div><div class="line">resp = urlopen(<span class="string">'http://www.tooopen.com/img/87.aspx'</span>).read().decode(<span class="string">'utf-8'</span>)</div><div class="line">Soup = BeautifulSoup(resp,<span class="string">'lxml'</span>)</div><div class="line">images = Soup.select(<span class="string">'img'</span>)</div><div class="line"><span class="keyword">for</span> image <span class="keyword">in</span> images:</div><div class="line">    print(image.get(<span class="string">'src'</span>))</div></pre></td></tr></table></figure>
-<h3 id="例子-三"><a href="#例子-三" class="headerlink" title="例子(三)"></a>例子(三)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> requests</div><div class="line">url = <span class="string">'http://zhuanzhuan.58.com/detail/789842404801118212z.shtml'</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getInfo</span><span class="params">(url)</span>:</span></div><div class="line">    wpData = requests.get(url)</div><div class="line">    soup = BeautifulSoup(wpData.text,<span class="string">'lxml'</span>)</div><div class="line">    title = soup.title.text</div><div class="line">    price = soup.select(<span class="string">'.price_now &gt; i'</span>)</div><div class="line">    tags = soup.select(<span class="string">'.qual_label'</span>)</div><div class="line">    <span class="keyword">return</span> tags</div><div class="line"></div><div class="line">data = getInfo(url)</div><div class="line"><span class="keyword">for</span> tag <span class="keyword">in</span> data:</div><div class="line">    print(tag.text)</div></pre></td></tr></table></figure>
-<h3 id="传递http头部"><a href="#传递http头部" class="headerlink" title="传递http头部"></a>传递http头部</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span>  requests</div><div class="line">url = <span class="string">'http://www.tripadvisor.cn/Saves#525792'</span></div><div class="line">headers = &#123;</div><div class="line">    <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWeb....36'</span>,</div><div class="line">    <span class="string">'Cookie'</span>:<span class="string">'TASSK=eNs%2BEc2TG.....0N9BrZpKwsTH%2BAwg%3D...; NPID='</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">wpData = requests.get(url,headers = headers)</div><div class="line">soup = BeautifulSoup(wpData.text,<span class="string">'lxml'</span>)</div><div class="line">titles = soup.select(<span class="string">'div.title'</span>)</div><div class="line">print(soup)</div></pre></td></tr></table></figure>
-<h3 id="构建多页数延迟访问"><a href="#构建多页数延迟访问" class="headerlink" title="构建多页数延迟访问"></a>构建多页数延迟访问</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span>  requests</div><div class="line"><span class="keyword">import</span> time</div><div class="line">urls = [<span class="string">'http://www.tripadvisor.cn/...-oa&#123;&#125;-New_Y...rk.html#ATTRACTION_LIST'</span>.format(str(i)) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">30</span>,<span class="number">930</span>,<span class="number">30</span>)]</div><div class="line"><span class="keyword">for</span> url <span class="keyword">in</span> urls:</div><div class="line">    time.sleep(<span class="number">2</span>)</div><div class="line">    print(url)</div></pre></td></tr></table></figure>
-<h3 id="异步加载"><a href="#异步加载" class="headerlink" title="异步加载"></a>异步加载</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">在 chrome 浏览器中找到有规律的，xhr请求链接</div></pre></td></tr></table></figure>
-<h3 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h3><ul>
-<li>一般PC端的数据如果不能直接拿到，可以尝试访问手机端从而直接达到目的</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/24/laravel中如何打印sql/" itemprop="url">
-                  laravel中如何打印sql
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-24T10:13:28+08:00" content="2016-10-24">
-              2016-10-24
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote class="blockquote-center"><br>你也是一片<br>在我胸口颤动的小叶子。<br>生命之风将你吹送至此。<br></blockquote>
-
-<h3 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//in our case,</span></div><div class="line"> DB::table(<span class="string">'users'</span>)-&gt;toSql(); </div><div class="line"><span class="comment">//return</span></div><div class="line">select * from users</div></pre></td></tr></table></figure>
-<h3 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Route::get(<span class="string">'haha'</span>,<span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</div><div class="line">    Event::listen(<span class="string">'illuminate.query'</span>, <span class="function"><span class="keyword">function</span><span class="params">($query, $params, $time, $conn)</span></span></div><div class="line">    &#123;</div><div class="line">        dd(<span class="keyword">array</span>($query, $params, $time, $conn));</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    \RainLab\User\Models\User::whereBetween(<span class="string">'created_at'</span>, </div><div class="line">    	[<span class="string">'2016-05-26 00:00:00'</span>, <span class="string">'2016-06-27 00:00:00'</span>]</div><div class="line">    	)-&gt;get([<span class="string">'email'</span>]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h3 id="第三种方法"><a href="#第三种方法" class="headerlink" title="第三种方法"></a>第三种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DB::enableQueryLog();</div><div class="line">   $users = \RainLab\User\Models\User::whereBetween(<span class="string">'created_at'</span>, [<span class="string">'2016-05-26 00:00:00'</span>, <span class="string">'2016-06-27 00:00:00'</span>])-&gt;get();</div><div class="line">   dd(DB::getQueryLog());</div></pre></td></tr></table></figure>
-<h3 id="最后一种方法"><a href="#最后一种方法" class="headerlink" title="最后一种方法"></a>最后一种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//安装 debug</span></div><div class="line">composer <span class="keyword">require</span> barryvdh/laravel-debugbar</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -763,7 +774,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">152</span>
+              <span class="site-state-item-count">154</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -773,7 +784,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">70</span>
+                <span class="site-state-item-count">71</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
