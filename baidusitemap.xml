@@ -4,6 +4,103 @@
 
     
   <url>
+    <loc>http://yangguoqi.me/2017/08/21/%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E7%9A%84%E6%9B%BF%E4%BB%A3%E8%AF%AD%E6%B3%95/</loc>
+    <lastmod>2017-08-21T07:03:56.683Z</lastmod>
+    <data>
+        <display>
+        <title>流程控制的替代语法</title>
+        <pubTime>2017-08-21T06:58:36.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/08/21/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1jquery%E7%9A%84ajax%E8%AF%B7%E6%B1%82%E9%94%99%E8%AF%AF/</loc>
+    <lastmod>2017-08-21T03:27:35.980Z</lastmod>
+    <data>
+        <display>
+        <title>记录一次jquery的ajax请求错误</title>
+        <pubTime>2017-08-21T03:26:59.000Z</pubTime>
+        
+        <tag>jquery</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/08/18/php%E5%A6%82%E4%BD%95%E8%8E%B7%E5%BE%97%E7%94%A8%E6%88%B7%E7%9C%9F%E5%AE%9EIP/</loc>
+    <lastmod>2017-08-20T05:39:36.000Z</lastmod>
+    <data>
+        <display>
+        <title>php如何获得用户真实IP</title>
+        <pubTime>2017-08-18T01:24:01.000Z</pubTime>
+        
+        <tag>PHP</tag>
+         
+        <tag>IP</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2016/12/09/python%E6%8A%95%E7%A5%A8%E5%92%8Cip%E5%9C%B0%E5%9D%80%E7%9A%84%E4%BC%AA%E9%80%A0/</loc>
+    <lastmod>2017-08-18T01:24:20.177Z</lastmod>
+    <data>
+        <display>
+        <title>python投票和ip地址的伪造</title>
+        <pubTime>2016-12-09T02:30:46.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>php</tag>
+         
+        <tag>IP</tag>
+         
+        <tag>python投票</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/08/17/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E7%AC%94%E8%AE%B0ASCII%EF%BC%8CUnicode%E5%92%8CUTF-8/</loc>
+    <lastmod>2017-08-17T07:20:41.380Z</lastmod>
+    <data>
+        <display>
+        <title>字符编码笔记ASCII，Unicode和UTF-8</title>
+        <pubTime>2017-08-17T07:00:22.000Z</pubTime>
+        
+        <tag>转载</tag>
+         
+        <tag>常识</tag>
+         
+        <tag>uft8</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yangguoqi.me/2016/12/01/laravel%E5%92%8Cnginx%E7%9A%84404/</loc>
     <lastmod>2017-08-16T02:25:15.760Z</lastmod>
     <data>
@@ -413,9 +510,9 @@
         
         <tag>PHP</tag>
          
-        <tag>转载</tag>
-         
         <tag>session</tag>
+         
+        <tag>转载</tag>
          
          
            
@@ -1570,9 +1667,9 @@
         
         <tag>laravel</tag>
          
-        <tag>session</tag>
-         
         <tag>redis</tag>
+         
+        <tag>session</tag>
          
          
            
@@ -1698,25 +1795,6 @@
         <pubTime>2016-12-12T08:35:59.000Z</pubTime>
         
         <tag>javascript</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yangguoqi.me/2016/12/09/python%E6%8A%95%E7%A5%A8%E5%92%8Cip%E5%9C%B0%E5%9D%80%E7%9A%84%E4%BC%AA%E9%80%A0/</loc>
-    <lastmod>2016-12-09T02:53:31.668Z</lastmod>
-    <data>
-        <display>
-        <title>python投票和ip地址的伪造</title>
-        <pubTime>2016-12-09T02:30:46.000Z</pubTime>
-        
-        <tag>python</tag>
-         
-        <tag>php</tag>
          
          
            
@@ -2385,11 +2463,11 @@
         <title>ssdb一个高性能的nosql数据库</title>
         <pubTime>2016-08-11T14:26:19.000Z</pubTime>
         
+        <tag>redis</tag>
+         
         <tag>nosql</tag>
          
         <tag>ssdb</tag>
-         
-        <tag>redis</tag>
          
          
            
