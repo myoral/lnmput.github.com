@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="php," />
+  <meta name="keywords" content="php,命令行,cli," />
 
 
 
@@ -84,34 +84,18 @@
 
 
 
-<meta name="description" content="关山难越，谁悲失路之人？萍水相逢，尽是他乡之客。HP作为一门web开发语言，通常情况下我们都是在Web Server中运行PHP，使用浏览器访问，因此很少关注其命令行操作以及相关参数的使用，但是，特别是在类Unix操作系统上，PHP可以作为一门脚本语言执行与shell类似的处理任务。
-
-运行时间：php-cli默认运行时间是无穷，而网页php默认设置是30s。
-
-常用操作
-运行指定php文件
-12">
+<meta name="description" content="关山难越，谁悲失路之人？萍水相逢，尽是他乡之客。HP作为一门web开发语言，通常情况下我们都是在Web Server中运行PHP，使用浏览器访问，因此很少关注其命令行操作以及相关参数的使用，但是，特别是在类Unix操作系统上，PHP可以作为一门脚本语言执行与shell类似的处理任务。  运行时间：php-cli默认运行时间是无穷，而网页php默认设置是30s。  常用操作 运行指定php文件 12">
+<meta name="keywords" content="php,命令行,cli">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php-cli的使用">
 <meta property="og:url" content="http://yangguoqi.me/2016/12/28/php-cli的使用/index.html">
 <meta property="og:site_name" content="杨子鳄的小窝">
-<meta property="og:description" content="关山难越，谁悲失路之人？萍水相逢，尽是他乡之客。HP作为一门web开发语言，通常情况下我们都是在Web Server中运行PHP，使用浏览器访问，因此很少关注其命令行操作以及相关参数的使用，但是，特别是在类Unix操作系统上，PHP可以作为一门脚本语言执行与shell类似的处理任务。
-
-运行时间：php-cli默认运行时间是无穷，而网页php默认设置是30s。
-
-常用操作
-运行指定php文件
-12">
-<meta property="og:updated_time" content="2016-12-28T02:07:28.520Z">
+<meta property="og:description" content="关山难越，谁悲失路之人？萍水相逢，尽是他乡之客。HP作为一门web开发语言，通常情况下我们都是在Web Server中运行PHP，使用浏览器访问，因此很少关注其命令行操作以及相关参数的使用，但是，特别是在类Unix操作系统上，PHP可以作为一门脚本语言执行与shell类似的处理任务。  运行时间：php-cli默认运行时间是无穷，而网页php默认设置是30s。  常用操作 运行指定php文件 12">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-28T01:01:51.494Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php-cli的使用">
-<meta name="twitter:description" content="关山难越，谁悲失路之人？萍水相逢，尽是他乡之客。HP作为一门web开发语言，通常情况下我们都是在Web Server中运行PHP，使用浏览器访问，因此很少关注其命令行操作以及相关参数的使用，但是，特别是在类Unix操作系统上，PHP可以作为一门脚本语言执行与shell类似的处理任务。
-
-运行时间：php-cli默认运行时间是无穷，而网页php默认设置是30s。
-
-常用操作
-运行指定php文件
-12">
+<meta name="twitter:description" content="关山难越，谁悲失路之人？萍水相逢，尽是他乡之客。HP作为一门web开发语言，通常情况下我们都是在Web Server中运行PHP，使用浏览器访问，因此很少关注其命令行操作以及相关参数的使用，但是，特别是在类Unix操作系统上，PHP可以作为一门脚本语言执行与shell类似的处理任务。  运行时间：php-cli默认运行时间是无穷，而网页php默认设置是30s。  常用操作 运行指定php文件 12">
 
 
 
@@ -309,7 +293,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">php my_script.php</div><div class="line"> </div><div class="line">php -f  <span class="string">"my_script.php"</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>运行php代码</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php -r <span class="string">"print_r(get_defined_constants());"</span></div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">php -r <span class="string">"print_r(get_defined_constants());"</span></div><div class="line"><span class="comment">// laravel安装时的一条命令</span></div><div class="line">php -r <span class="string">"file_exists('.env') || copy('.env.example', '.env');"</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>语法检查</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php -l index.php</div></pre></td></tr></table></figure>
@@ -349,6 +333,10 @@
         <div class="post-tags">
           
             <a href="/tags/php/" rel="tag">#php</a>
+          
+            <a href="/tags/命令行/" rel="tag">#命令行</a>
+          
+            <a href="/tags/cli/" rel="tag">#cli</a>
           
         </div>
       
@@ -435,7 +423,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">160</span>
+              <span class="site-state-item-count">165</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -445,7 +433,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

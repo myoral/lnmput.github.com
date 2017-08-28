@@ -84,19 +84,18 @@
 
 
 
-<meta name="description" content="弱国无外交，人弱亦如此
-call_user_func_array123456789101112131415161718&amp;lt;?phpfunction foobar($arg, $arg2) &amp;#123;    echo __FUNCTION__, &quot; got $arg and $arg2\n&quot;;&amp;#125;class foo &amp;#123;    function bar($arg, $arg2">
+<meta name="description" content="弱国无外交，人弱亦如此 call_user_func_array123456789101112131415161718&amp;lt;?phpfunction foobar($arg, $arg2) &amp;#123;    echo __FUNCTION__, &quot; got $arg and $arg2\n&quot;;&amp;#125;class foo &amp;#123;    function bar($arg, $arg2">
+<meta name="keywords" content="php">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php中的一些高级用法">
 <meta property="og:url" content="http://yangguoqi.me/2017/07/31/php中的一些高级用法/index.html">
 <meta property="og:site_name" content="杨子鳄的小窝">
-<meta property="og:description" content="弱国无外交，人弱亦如此
-call_user_func_array123456789101112131415161718&amp;lt;?phpfunction foobar($arg, $arg2) &amp;#123;    echo __FUNCTION__, &quot; got $arg and $arg2\n&quot;;&amp;#125;class foo &amp;#123;    function bar($arg, $arg2">
+<meta property="og:description" content="弱国无外交，人弱亦如此 call_user_func_array123456789101112131415161718&amp;lt;?phpfunction foobar($arg, $arg2) &amp;#123;    echo __FUNCTION__, &quot; got $arg and $arg2\n&quot;;&amp;#125;class foo &amp;#123;    function bar($arg, $arg2">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-07-31T03:00:30.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php中的一些高级用法">
-<meta name="twitter:description" content="弱国无外交，人弱亦如此
-call_user_func_array123456789101112131415161718&amp;lt;?phpfunction foobar($arg, $arg2) &amp;#123;    echo __FUNCTION__, &quot; got $arg and $arg2\n&quot;;&amp;#125;class foo &amp;#123;    function bar($arg, $arg2">
+<meta name="twitter:description" content="弱国无外交，人弱亦如此 call_user_func_array123456789101112131415161718&amp;lt;?phpfunction foobar($arg, $arg2) &amp;#123;    echo __FUNCTION__, &quot; got $arg and $arg2\n&quot;;&amp;#125;class foo &amp;#123;    function bar($arg, $arg2">
 
 
 
@@ -287,7 +286,7 @@ call_user_func_array123456789101112131415161718&amp;lt;?phpfunction foobar($arg,
       
         <p><blockquote class="blockquote-center"><br> 弱国无外交，人弱亦如此<br></blockquote></p>
 <h3 id="call-user-func-array"><a href="#call-user-func-array" class="headerlink" title="call_user_func_array"></a>call_user_func_array</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foobar</span><span class="params">($arg, $arg2)</span> </span>&#123;</div><div class="line">    <span class="keyword">echo</span> <span class="keyword">__FUNCTION__</span>, <span class="string">" got $arg and $arg2\n"</span>;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">foo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span><span class="params">($arg, $arg2)</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="keyword">__METHOD__</span>, <span class="string">" got $arg and $arg2\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// Call the foobar() function with 2 arguments</span></div><div class="line">call_user_func_array(<span class="string">"foobar"</span>, <span class="keyword">array</span>(<span class="string">"one"</span>, <span class="string">"two"</span>));</div><div class="line"></div><div class="line"><span class="comment">// Call the $foo-&gt;bar() method with 2 arguments</span></div><div class="line">$foo = <span class="keyword">new</span> foo;</div><div class="line">call_user_func_array(<span class="keyword">array</span>($foo, <span class="string">"bar"</span>), <span class="keyword">array</span>(<span class="string">"three"</span>, <span class="string">"four"</span>));</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="call-user-func"><a href="#call-user-func" class="headerlink" title="call_user_func"></a>call_user_func</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">increment</span><span class="params">($var)</span></span></div><div class="line">&#123;</div><div class="line">    $var++;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$a = <span class="number">0</span>;</div><div class="line">call_user_func(<span class="string">'increment'</span>, $a);</div><div class="line"><span class="keyword">echo</span> $a.<span class="string">"\n"</span>;</div></pre></td></tr></table></figure>
+<h3 id="call-user-func"><a href="#call-user-func" class="headerlink" title="call_user_func"></a>call_user_func</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">increment</span><span class="params">($var)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    $var++;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$a = <span class="number">0</span>;</div><div class="line">call_user_func(<span class="string">'increment'</span>, $a);</div><div class="line"><span class="keyword">echo</span> $a.<span class="string">"\n"</span>;</div></pre></td></tr></table></figure>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$class= <span class="keyword">new</span> \Jason\Ccshop\Models\Product();</div><div class="line"></div><div class="line"><span class="comment">//返回对象的类名 命名空间</span></div><div class="line">dump(get_class($class));</div><div class="line"></div><div class="line"><span class="comment">// 返回由类的方法名组成的数组</span></div><div class="line">dump(get_class_methods($class));</div><div class="line"></div><div class="line"><span class="comment">// 返回由类的默认属性组成的数组</span></div><div class="line">dump(get_object_vars($class));</div><div class="line">dump(get_class_vars($class));</div><div class="line"></div><div class="line"><span class="comment">// 返回对象或类的父类名</span></div><div class="line">dump(get_parent_class($class));</div><div class="line"></div><div class="line"><span class="comment">//检查类的方法是否存在</span></div><div class="line">dump(method_exists($class, <span class="string">'getMainThumb'</span>));</div><div class="line"></div><div class="line"><span class="comment">//以参数列表的数组，调用用户方法, 在php7 中被废弃</span></div><div class="line">call_user_method_array</div><div class="line"><span class="comment">//call_user_func_array 代替</span></div><div class="line"><span class="comment">//对特定对象调用用户方法 call_user_method 在php7 中被废弃</span></div><div class="line"><span class="comment">// call_user_func 代替</span></div></pre></td></tr></table></figure>
 
       
@@ -397,7 +396,7 @@ call_user_func_array123456789101112131415161718&amp;lt;?phpfunction foobar($arg,
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">160</span>
+              <span class="site-state-item-count">165</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -407,7 +406,7 @@ call_user_func_array123456789101112131415161718&amp;lt;?phpfunction foobar($arg,
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

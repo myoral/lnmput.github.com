@@ -84,22 +84,18 @@
 
 
 
-<meta name="description" content="无她，唯手熟尔
-例子调用函数123456789&amp;lt;?phpfunction a($b, $c)&amp;#123;  echo $b;  echo $c;&amp;#125;call_user_func_array(&apos;a&apos;, array(&quot;111&quot;, &quot;222&quot;));//显示 111 222?&amp;gt;
-调用静态方法1234567891011&amp;lt;?phpClass ClassA&amp;#123;  public">
+<meta name="description" content="无她，唯手熟尔 例子调用函数123456789&amp;lt;?phpfunction a($b, $c)&amp;#123;  echo $b;  echo $c;&amp;#125;call_user_func_array(&apos;a&apos;, array(&quot;111&quot;, &quot;222&quot;));//显示 111 222?&amp;gt; 调用静态方法1234567891011&amp;lt;?phpClass ClassA&amp;#123;  public">
+<meta name="keywords" content="PHP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP函数call_user_func_array用法">
 <meta property="og:url" content="http://yangguoqi.me/2016/08/24/PHP函数call-user-func-array用法/index.html">
 <meta property="og:site_name" content="杨子鳄的小窝">
-<meta property="og:description" content="无她，唯手熟尔
-例子调用函数123456789&amp;lt;?phpfunction a($b, $c)&amp;#123;  echo $b;  echo $c;&amp;#125;call_user_func_array(&apos;a&apos;, array(&quot;111&quot;, &quot;222&quot;));//显示 111 222?&amp;gt;
-调用静态方法1234567891011&amp;lt;?phpClass ClassA&amp;#123;  public">
+<meta property="og:description" content="无她，唯手熟尔 例子调用函数123456789&amp;lt;?phpfunction a($b, $c)&amp;#123;  echo $b;  echo $c;&amp;#125;call_user_func_array(&apos;a&apos;, array(&quot;111&quot;, &quot;222&quot;));//显示 111 222?&amp;gt; 调用静态方法1234567891011&amp;lt;?phpClass ClassA&amp;#123;  public">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-08-24T06:52:15.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP函数call_user_func_array用法">
-<meta name="twitter:description" content="无她，唯手熟尔
-例子调用函数123456789&amp;lt;?phpfunction a($b, $c)&amp;#123;  echo $b;  echo $c;&amp;#125;call_user_func_array(&apos;a&apos;, array(&quot;111&quot;, &quot;222&quot;));//显示 111 222?&amp;gt;
-调用静态方法1234567891011&amp;lt;?phpClass ClassA&amp;#123;  public">
+<meta name="twitter:description" content="无她，唯手熟尔 例子调用函数123456789&amp;lt;?phpfunction a($b, $c)&amp;#123;  echo $b;  echo $c;&amp;#125;call_user_func_array(&apos;a&apos;, array(&quot;111&quot;, &quot;222&quot;));//显示 111 222?&amp;gt; 调用静态方法1234567891011&amp;lt;?phpClass ClassA&amp;#123;  public">
 
 
 
@@ -289,8 +285,8 @@
 
       
         <p><blockquote class="blockquote-center"><br>无她，唯手熟尔<br></blockquote></p>
-<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>调用函数<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span><span class="params">($b, $c)</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">echo</span> $b;</div><div class="line">  <span class="keyword">echo</span> $c;</div><div class="line">&#125;</div><div class="line">call_user_func_array(<span class="string">'a'</span>, <span class="keyword">array</span>(<span class="string">"111"</span>, <span class="string">"222"</span>));</div><div class="line"><span class="comment">//显示 111 222</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
-<p>调用静态方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">Class</span> <span class="title">ClassA</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">bc</span><span class="params">($b, $c)</span> </span>&#123;</div><div class="line">	$bc = $b + $c;</div><div class="line">	  <span class="keyword">echo</span> $bc;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">call_user_func_array(<span class="keyword">array</span>(<span class="string">'ClassA'</span>,<span class="string">'bc'</span>), <span class="keyword">array</span>(<span class="string">"111"</span>, <span class="string">"222"</span>));</div><div class="line"><span class="comment">//显示 333</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>调用函数<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span><span class="params">($b, $c)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">  <span class="keyword">echo</span> $b;</div><div class="line">  <span class="keyword">echo</span> $c;</div><div class="line">&#125;</div><div class="line">call_user_func_array(<span class="string">'a'</span>, <span class="keyword">array</span>(<span class="string">"111"</span>, <span class="string">"222"</span>));</div><div class="line"><span class="comment">//显示 111 222</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>调用静态方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">Class</span> <span class="title">ClassA</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">bc</span><span class="params">($b, $c)</span> </span>&#123;</div><div class="line">	$bc = $b + $c;</div><div class="line">	  <span class="keyword">echo</span> $bc;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">call_user_func_array(<span class="keyword">array</span>(<span class="string">'ClassA'</span>,<span class="string">'bc'</span>), <span class="keyword">array</span>(<span class="string">"111"</span>, <span class="string">"222"</span>));</div><div class="line"><span class="comment">//显示 333</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
 <p>说明：这样就可以用数组的方式给类的方法传入必要的参数</p>
 <p>调用普通方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Hello, World!"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$a = <span class="keyword">new</span> MyClass();</div><div class="line">call_user_func(<span class="keyword">array</span>($a, <span class="string">'hello'</span>));</div></pre></td></tr></table></figure></p>
 
@@ -401,7 +397,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">160</span>
+              <span class="site-state-item-count">165</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -411,7 +407,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

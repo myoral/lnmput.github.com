@@ -84,19 +84,18 @@
 
 
 
-<meta name="description" content="Yesterday you said tomorrow.
-嵌入AJAX调用 最简单的办法，就是在返回给客户端的HTML代码中，嵌入AJAX调用，或者，嵌入一个img标签，src指向要执行的耗时脚本。这种方法最简单，也最快。服务器端不用做任何的调用。但是缺点是，一般来说Ajax都应该在onLoad以后触发，也就是说，用户点开页面后，就关闭，那就不会触发我们的后台脚本了。而使用img标签的话，这种方式">
+<meta name="description" content="Yesterday you said tomorrow. 嵌入AJAX调用 最简单的办法，就是在返回给客户端的HTML代码中，嵌入AJAX调用，或者，嵌入一个img标签，src指向要执行的耗时脚本。这种方法最简单，也最快。服务器端不用做任何的调用。但是缺点是，一般来说Ajax都应该在onLoad以后触发，也就是说，用户点开页面后，就关闭，那就不会触发我们的后台脚本了。而使用img标签的话，这种方式">
+<meta name="keywords" content="php,异步">
 <meta property="og:type" content="article">
 <meta property="og:title" content="转载PHP实现异步调用方法研究">
 <meta property="og:url" content="http://yangguoqi.me/2017/08/11/转载PHP实现异步调用方法研究/index.html">
 <meta property="og:site_name" content="杨子鳄的小窝">
-<meta property="og:description" content="Yesterday you said tomorrow.
-嵌入AJAX调用 最简单的办法，就是在返回给客户端的HTML代码中，嵌入AJAX调用，或者，嵌入一个img标签，src指向要执行的耗时脚本。这种方法最简单，也最快。服务器端不用做任何的调用。但是缺点是，一般来说Ajax都应该在onLoad以后触发，也就是说，用户点开页面后，就关闭，那就不会触发我们的后台脚本了。而使用img标签的话，这种方式">
+<meta property="og:description" content="Yesterday you said tomorrow. 嵌入AJAX调用 最简单的办法，就是在返回给客户端的HTML代码中，嵌入AJAX调用，或者，嵌入一个img标签，src指向要执行的耗时脚本。这种方法最简单，也最快。服务器端不用做任何的调用。但是缺点是，一般来说Ajax都应该在onLoad以后触发，也就是说，用户点开页面后，就关闭，那就不会触发我们的后台脚本了。而使用img标签的话，这种方式">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-08-10T23:52:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="转载PHP实现异步调用方法研究">
-<meta name="twitter:description" content="Yesterday you said tomorrow.
-嵌入AJAX调用 最简单的办法，就是在返回给客户端的HTML代码中，嵌入AJAX调用，或者，嵌入一个img标签，src指向要执行的耗时脚本。这种方法最简单，也最快。服务器端不用做任何的调用。但是缺点是，一般来说Ajax都应该在onLoad以后触发，也就是说，用户点开页面后，就关闭，那就不会触发我们的后台脚本了。而使用img标签的话，这种方式">
+<meta name="twitter:description" content="Yesterday you said tomorrow. 嵌入AJAX调用 最简单的办法，就是在返回给客户端的HTML代码中，嵌入AJAX调用，或者，嵌入一个img标签，src指向要执行的耗时脚本。这种方法最简单，也最快。服务器端不用做任何的调用。但是缺点是，一般来说Ajax都应该在onLoad以后触发，也就是说，用户点开页面后，就关闭，那就不会触发我们的后台脚本了。而使用img标签的话，这种方式">
 
 
 
@@ -291,7 +290,7 @@
 <p>所以可以通过调用它，但忽略它的输出。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pclose(popen(<span class="string">"/home/xinchen/backend.php &amp;"</span>, <span class="string">'r'</span>));</div></pre></td></tr></table></figure></p>
 <p>这个方法避免了第一个方法的缺点，并且也很快。但是问题是，这种方法不能通过HTTP协议请求另外的一个WebService，只能执行本地的脚本文件。并且只能单向打开，无法穿大量参数给被调用脚本。<br>并且如果，访问量很高的时候，会产生大量的进程。如果使用到了外部资源，还要自己考虑竞争。</p>
 <h3 id="使用CURL"><a href="#使用CURL" class="headerlink" title="使用CURL"></a>使用CURL</h3><p>这个方法，设置CUROPT_TIMEOUT为1（最小为1，郁闷）。也就是说，客户端至少必须等待1秒钟。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ch = curl_init();</div><div class="line"> </div><div class="line">$curl_opt = <span class="keyword">array</span>(CURLOPT_URL, <span class="string">'http://www.example.com/backend.php'</span>,</div><div class="line">                CURLOPT_RETURNTRANSFER, <span class="number">1</span>,</div><div class="line">                CURLOPT_TIMEOUT, <span class="number">1</span>,);</div><div class="line">curl_setopt_array($ch, $curl_opt);</div><div class="line">curl_exec($ch);</div><div class="line">curl_close($ch);</div></pre></td></tr></table></figure></p>
-<h3 id="使用fsockopen"><a href="#使用fsockopen" class="headerlink" title="使用fsockopen"></a>使用fsockopen</h3><p>这个方法应该是最完美的，但是缺点是，你需要自己拼出HTTP的header部分。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$fp = fsockopen(<span class="string">"www.example.com"</span>, <span class="number">80</span>, $errno, $errstr, <span class="number">30</span>);</div><div class="line"><span class="keyword">if</span> (!$fp) &#123;</div><div class="line">    <span class="keyword">echo</span> <span class="string">"$errstr ($errno)&lt;br /&gt;\n"</span>;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    $out = <span class="string">"GET /backend.php  / HTTP/1.1\r\n"</span>;</div><div class="line">    $out .= <span class="string">"Host: www.example.com\r\n"</span>;</div><div class="line">    $out .= <span class="string">"Connection: Close\r\n\r\n"</span>;</div><div class="line"> </div><div class="line">    fwrite($fp, $out);</div><div class="line">    <span class="comment">/*忽略执行结果</span></div><div class="line">    while (!feof($fp)) &#123;</div><div class="line">        echo fgets($fp, 128);</div><div class="line">    &#125;*/</div><div class="line">    fclose($fp);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="使用fsockopen"><a href="#使用fsockopen" class="headerlink" title="使用fsockopen"></a>使用fsockopen</h3><p>这个方法应该是最完美的，但是缺点是，你需要自己拼出HTTP的header部分。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$fp = fsockopen(<span class="string">"www.example.com"</span>, <span class="number">80</span>, $errno, $errstr, <span class="number">30</span>);</div><div class="line"><span class="keyword">if</span> (!$fp) &#123;</div><div class="line">    <span class="keyword">echo</span> <span class="string">"$errstr ($errno)&lt;br /&gt;\n"</span>;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    $out = <span class="string">"GET /backend.php  / HTTP/1.1\r\n"</span>;</div><div class="line">    $out .= <span class="string">"Host: www.example.com\r\n"</span>;</div><div class="line">    $out .= <span class="string">"Connection: Close\r\n\r\n"</span>;</div><div class="line"> </div><div class="line">    fwrite($fp, $out);</div><div class="line">    <span class="comment">/*忽略执行结果</span></div><div class="line"><span class="comment">    while (!feof($fp)) &#123;</span></div><div class="line"><span class="comment">        echo fgets($fp, 128);</span></div><div class="line"><span class="comment">    &#125;*/</span></div><div class="line">    fclose($fp);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <blockquote>
 <p><a href="http://www.laruence.com/2008/04/14/318.html" target="_blank" rel="external">http://www.laruence.com/2008/04/14/318.html</a></p>
 </blockquote>
@@ -405,7 +404,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">160</span>
+              <span class="site-state-item-count">165</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -415,7 +414,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

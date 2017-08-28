@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="最初不相识，最终不相认生成器允许你在 foreach 代码块中写代码来迭代一组数据而不需要在内存中创建一个数组, 那会使你的内存达到上限，或者会占据可观的处理时间。相反，你可以写一个生成器函数，就像一个普通的自定义函数一样, 和普通函数只返回一次不同的是, 生成器可以根据需要 yield 多次，以便生成需要迭代的值。一个简单的例子就是使用生成器来重新实现 range() 函数。 标准的 range">
+<meta name="keywords" content="PHP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP生成器的简单理解">
 <meta property="og:url" content="http://yangguoqi.me/2016/08/07/PHP生成器的简单理解/index.html">
 <meta property="og:site_name" content="杨子鳄的小窝">
 <meta property="og:description" content="最初不相识，最终不相认生成器允许你在 foreach 代码块中写代码来迭代一组数据而不需要在内存中创建一个数组, 那会使你的内存达到上限，或者会占据可观的处理时间。相反，你可以写一个生成器函数，就像一个普通的自定义函数一样, 和普通函数只返回一次不同的是, 生成器可以根据需要 yield 多次，以便生成需要迭代的值。一个简单的例子就是使用生成器来重新实现 range() 函数。 标准的 range">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-07-19T10:02:44.231Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP生成器的简单理解">
@@ -300,7 +302,7 @@
 <li>CSV生成器</li>
 </ul>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span>  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getRows</span><span class="params">($file)</span> </span>&#123;  </div><div class="line">    $handle = fopen($file, <span class="string">'rb'</span>);  </div><div class="line">    <span class="keyword">if</span> ($handle === <span class="keyword">false</span>) &#123;  </div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="keyword">Exception</span>();  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">while</span> (feof($handle) === <span class="keyword">false</span>) &#123;  </div><div class="line">        <span class="keyword">yield</span> fgetcsv($handle);  </div><div class="line">    &#125;  </div><div class="line">    fclose($handle);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="keyword">foreach</span> (getRows(<span class="string">'data.csv'</span>) <span class="keyword">as</span> $row) &#123;  </div><div class="line">    print_r($row);  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="接收参数"><a href="#接收参数" class="headerlink" title="接收参数"></a>接收参数</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">printer</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">        printf(<span class="string">"receive: %s\n"</span>, <span class="keyword">yield</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$printer = printer();</div><div class="line"></div><div class="line">$printer-&gt;send(<span class="string">'hello'</span>);</div><div class="line">$printer-&gt;send(<span class="string">'world'</span>);</div></pre></td></tr></table></figure>
+<h3 id="接收参数"><a href="#接收参数" class="headerlink" title="接收参数"></a>接收参数</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">printer</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</div><div class="line">        printf(<span class="string">"receive: %s\n"</span>, <span class="keyword">yield</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$printer = printer();</div><div class="line"></div><div class="line">$printer-&gt;send(<span class="string">'hello'</span>);</div><div class="line">$printer-&gt;send(<span class="string">'world'</span>);</div></pre></td></tr></table></figure>
 <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>生成器的确使用了很少的内存却大大简化了某些任务。如果你需要更强大的功能诸如重置、快进、或者数据集的检索，你最好还是自定义一个实现Iterator interface接口的类，或者使用PHP现成的Standard PHP Library（SPL）迭代器。</p>
 <p><code>yield</code> 和 <code>return</code> 都会返回值，但区别在于一个 return 是返回既定结果，一次返回完毕就不再返回新的结果，而 yield 是不断产出直到无法产出为止。</p>
 <blockquote>
@@ -414,7 +416,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">160</span>
+              <span class="site-state-item-count">165</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -424,7 +426,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

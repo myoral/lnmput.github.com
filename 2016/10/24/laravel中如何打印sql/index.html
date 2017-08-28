@@ -84,25 +84,18 @@
 
 
 
-<meta name="description" content="你也是一片在我胸口颤动的小叶子。生命之风将你吹送至此。
-
-第一种方法1234//in our case, DB::table(&apos;users&apos;)-&amp;gt;toSql(); //returnselect * from users
-第二种方法12345678910Route::get(&apos;haha&apos;,function ()&amp;#123;    Event::listen(&apos;illuminate.query&apos;">
+<meta name="description" content="你也是一片在我胸口颤动的小叶子。生命之风将你吹送至此。  第一种方法1234//in our case, DB::table(&apos;users&apos;)-&amp;gt;toSql(); //returnselect * from users 第二种方法12345678910Route::get(&apos;haha&apos;,function ()&amp;#123;    Event::listen(&apos;illuminate.query&apos;">
+<meta name="keywords" content="laravel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="laravel中如何打印sql">
 <meta property="og:url" content="http://yangguoqi.me/2016/10/24/laravel中如何打印sql/index.html">
 <meta property="og:site_name" content="杨子鳄的小窝">
-<meta property="og:description" content="你也是一片在我胸口颤动的小叶子。生命之风将你吹送至此。
-
-第一种方法1234//in our case, DB::table(&apos;users&apos;)-&amp;gt;toSql(); //returnselect * from users
-第二种方法12345678910Route::get(&apos;haha&apos;,function ()&amp;#123;    Event::listen(&apos;illuminate.query&apos;">
+<meta property="og:description" content="你也是一片在我胸口颤动的小叶子。生命之风将你吹送至此。  第一种方法1234//in our case, DB::table(&apos;users&apos;)-&amp;gt;toSql(); //returnselect * from users 第二种方法12345678910Route::get(&apos;haha&apos;,function ()&amp;#123;    Event::listen(&apos;illuminate.query&apos;">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-10-24T03:34:45.473Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="laravel中如何打印sql">
-<meta name="twitter:description" content="你也是一片在我胸口颤动的小叶子。生命之风将你吹送至此。
-
-第一种方法1234//in our case, DB::table(&apos;users&apos;)-&amp;gt;toSql(); //returnselect * from users
-第二种方法12345678910Route::get(&apos;haha&apos;,function ()&amp;#123;    Event::listen(&apos;illuminate.query&apos;">
+<meta name="twitter:description" content="你也是一片在我胸口颤动的小叶子。生命之风将你吹送至此。  第一种方法1234//in our case, DB::table(&apos;users&apos;)-&amp;gt;toSql(); //returnselect * from users 第二种方法12345678910Route::get(&apos;haha&apos;,function ()&amp;#123;    Event::listen(&apos;illuminate.query&apos;">
 
 
 
@@ -294,7 +287,7 @@
         <blockquote class="blockquote-center"><br>你也是一片<br>在我胸口颤动的小叶子。<br>生命之风将你吹送至此。<br></blockquote>
 
 <h3 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//in our case,</span></div><div class="line"> DB::table(<span class="string">'users'</span>)-&gt;toSql(); </div><div class="line"><span class="comment">//return</span></div><div class="line">select * from users</div></pre></td></tr></table></figure>
-<h3 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Route::get(<span class="string">'haha'</span>,<span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</div><div class="line">    Event::listen(<span class="string">'illuminate.query'</span>, <span class="function"><span class="keyword">function</span><span class="params">($query, $params, $time, $conn)</span></span></div><div class="line">    &#123;</div><div class="line">        dd(<span class="keyword">array</span>($query, $params, $time, $conn));</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    \RainLab\User\Models\User::whereBetween(<span class="string">'created_at'</span>, </div><div class="line">    	[<span class="string">'2016-05-26 00:00:00'</span>, <span class="string">'2016-06-27 00:00:00'</span>]</div><div class="line">    	)-&gt;get([<span class="string">'email'</span>]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Route::get(<span class="string">'haha'</span>,<span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</div><div class="line">    Event::listen(<span class="string">'illuminate.query'</span>, <span class="function"><span class="keyword">function</span><span class="params">($query, $params, $time, $conn)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        dd(<span class="keyword">array</span>($query, $params, $time, $conn));</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    \RainLab\User\Models\User::whereBetween(<span class="string">'created_at'</span>, </div><div class="line">    	[<span class="string">'2016-05-26 00:00:00'</span>, <span class="string">'2016-06-27 00:00:00'</span>]</div><div class="line">    	)-&gt;get([<span class="string">'email'</span>]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <h3 id="第三种方法"><a href="#第三种方法" class="headerlink" title="第三种方法"></a>第三种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DB::enableQueryLog();</div><div class="line">   $users = \RainLab\User\Models\User::whereBetween(<span class="string">'created_at'</span>, [<span class="string">'2016-05-26 00:00:00'</span>, <span class="string">'2016-06-27 00:00:00'</span>])-&gt;get();</div><div class="line">   dd(DB::getQueryLog());</div></pre></td></tr></table></figure>
 <h3 id="最后一种方法"><a href="#最后一种方法" class="headerlink" title="最后一种方法"></a>最后一种方法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//安装 debug</span></div><div class="line">composer <span class="keyword">require</span> barryvdh/laravel-debugbar</div></pre></td></tr></table></figure>
       
@@ -404,7 +397,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">160</span>
+              <span class="site-state-item-count">165</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -414,7 +407,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

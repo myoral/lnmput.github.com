@@ -85,11 +85,13 @@
 
 
 <meta name="description" content="我想，最好的感情是两个人都用力的活，一起体验人生的种种趣味，也能包容与鼓励对方。当对方为你打开新的世界，你就没有因为喜欢一个人而拒绝了整个世界。CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。CORS需要浏览器和服务器同时支持。目前，">
+<meta name="keywords" content="前端,ajax">
 <meta property="og:type" content="article">
 <meta property="og:title" content="跨域资源共享CORS">
 <meta property="og:url" content="http://yangguoqi.me/2016/12/20/跨域资源共享CORS/index.html">
 <meta property="og:site_name" content="杨子鳄的小窝">
 <meta property="og:description" content="我想，最好的感情是两个人都用力的活，一起体验人生的种种趣味，也能包容与鼓励对方。当对方为你打开新的世界，你就没有因为喜欢一个人而拒绝了整个世界。CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。CORS需要浏览器和服务器同时支持。目前，">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-12-20T06:21:27.141Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跨域资源共享CORS">
@@ -296,7 +298,7 @@
 <li>Content-Language</li>
 <li>Last-Event-ID<br>Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain<br>凡是不同时满足上面两个条件，就属于非简单请求。<br>浏览器对这两种请求的处理，是不一样的。</li>
 </ul>
-<h3 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h3><p>jquery 请求<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    $.ajax(&#123;</div><div class="line">        type:<span class="string">"POST"</span>,</div><div class="line">        url:<span class="string">"http://www.shop.dev/onValidateEmail"</span>,</div><div class="line">        data:&#123;email:<span class="string">"yangguoqi@olmailorg"</span>&#125;,</div><div class="line">        datatype: <span class="string">"json"</span>,</div><div class="line">        success:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(data);</div><div class="line">        &#125;,</div><div class="line">        error: <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(msg);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure></p>
+<h3 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h3><p>jquery 请求<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    $.ajax(&#123;</div><div class="line">        type:<span class="string">"POST"</span>,</div><div class="line">        url:<span class="string">"http://www.shop.dev/onValidateEmail"</span>,</div><div class="line">        data:&#123;email:<span class="string">"yangguoqi@olmailorg"</span>&#125;,</div><div class="line">        datatype: <span class="string">"json"</span>,</div><div class="line">        success:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(data);</div><div class="line">        &#125;,</div><div class="line">        error: <span class="function"><span class="keyword">function</span>(<span class="params">msg</span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(msg);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
 <p>服务端响应<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Route::post(<span class="string">'/onValidateEmail'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</div><div class="line">    header(<span class="string">"Access-Control-Allow-Origin: *"</span>);</div><div class="line">    header(<span class="string">"Access-Control-Allow-Methods: *"</span>);</div><div class="line">    header(<span class="string">"Content-Type: application/json"</span>);</div><div class="line">    $email = post(<span class="string">'email'</span>,<span class="string">''</span>);</div><div class="line">    $count = \October\Rain\Auth\Models\User::where(<span class="string">'email'</span>,$email)-&gt;count();</div><div class="line">    <span class="keyword">return</span> Response::json([</div><div class="line">        <span class="string">'status'</span> =&gt; <span class="number">200</span>,</div><div class="line">        <span class="string">'data'</span> =&gt; $count</div><div class="line">    ]);</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
 <h3 id="与JSONP的比较"><a href="#与JSONP的比较" class="headerlink" title="与JSONP的比较"></a>与JSONP的比较</h3><p>CORS与JSONP的使用目的相同，但是比JSONP更强大。<br>JSONP只支持GET请求，CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。</p>
 <ul>
@@ -412,7 +414,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">160</span>
+              <span class="site-state-item-count">165</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -422,7 +424,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

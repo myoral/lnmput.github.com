@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="前端,javascript," />
+  <meta name="keywords" content="javascript,前端," />
 
 
 
@@ -84,22 +84,18 @@
 
 
 
-<meta name="description" content="人总是喜欢自己没有的
-介绍querySelector()是用于接收一个CSS选择符，返回与该模式匹配的第一个元素；querySelectorAll()用于选择匹配到的所有元素。query选择符选出来的元素及元素数组是静态的，而getElement这种方法选出的元素是动态的。
-说明querySelectorlist 是一个静态的 Node List，是一个 li 集合的快照，对文档的任何操作都不会对">
+<meta name="description" content="人总是喜欢自己没有的 介绍querySelector()是用于接收一个CSS选择符，返回与该模式匹配的第一个元素；querySelectorAll()用于选择匹配到的所有元素。query选择符选出来的元素及元素数组是静态的，而getElement这种方法选出的元素是动态的。 说明querySelectorlist 是一个静态的 Node List，是一个 li 集合的快照，对文档的任何操作都不会对">
+<meta name="keywords" content="javascript,前端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="querySelector和getElementById方法的区别">
 <meta property="og:url" content="http://yangguoqi.me/2017/08/08/querySelector和getElementById方法的区别/index.html">
 <meta property="og:site_name" content="杨子鳄的小窝">
-<meta property="og:description" content="人总是喜欢自己没有的
-介绍querySelector()是用于接收一个CSS选择符，返回与该模式匹配的第一个元素；querySelectorAll()用于选择匹配到的所有元素。query选择符选出来的元素及元素数组是静态的，而getElement这种方法选出的元素是动态的。
-说明querySelectorlist 是一个静态的 Node List，是一个 li 集合的快照，对文档的任何操作都不会对">
+<meta property="og:description" content="人总是喜欢自己没有的 介绍querySelector()是用于接收一个CSS选择符，返回与该模式匹配的第一个元素；querySelectorAll()用于选择匹配到的所有元素。query选择符选出来的元素及元素数组是静态的，而getElement这种方法选出的元素是动态的。 说明querySelectorlist 是一个静态的 Node List，是一个 li 集合的快照，对文档的任何操作都不会对">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-08-08T12:42:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="querySelector和getElementById方法的区别">
-<meta name="twitter:description" content="人总是喜欢自己没有的
-介绍querySelector()是用于接收一个CSS选择符，返回与该模式匹配的第一个元素；querySelectorAll()用于选择匹配到的所有元素。query选择符选出来的元素及元素数组是静态的，而getElement这种方法选出的元素是动态的。
-说明querySelectorlist 是一个静态的 Node List，是一个 li 集合的快照，对文档的任何操作都不会对">
+<meta name="twitter:description" content="人总是喜欢自己没有的 介绍querySelector()是用于接收一个CSS选择符，返回与该模式匹配的第一个元素；querySelectorAll()用于选择匹配到的所有元素。query选择符选出来的元素及元素数组是静态的，而getElement这种方法选出的元素是动态的。 说明querySelectorlist 是一个静态的 Node List，是一个 li 集合的快照，对文档的任何操作都不会对">
 
 
 
@@ -290,8 +286,8 @@
       
         <p><blockquote class="blockquote-center"><br>人总是喜欢自己没有的<br></blockquote></p>
 <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>querySelector()是用于接收一个CSS选择符，返回与该模式匹配的第一个元素；<br>querySelectorAll()用于选择匹配到的所有元素。<br>query选择符选出来的元素及元素数组是静态的，而getElement这种方法选出的元素是动态的。</p>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>querySelector<br>list 是一个静态的 Node List，是一个 li 集合的快照，对文档的任何操作都不会对其产生影响。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"></div><div class="line"><span class="keyword">var</span> ul=<span class="built_in">document</span>.querySelector(<span class="string">'ul'</span>);</div><div class="line"><span class="keyword">var</span> list=ul.querySelectorAll(<span class="string">'li'</span>);</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;list.length;i++)&#123;</div><div class="line">    ul.appendChild(<span class="built_in">document</span>.createElement(<span class="string">'li'</span>));</div><div class="line">&#125;</div><div class="line"><span class="comment">//这个时候就创建了3个新的li，添加在ul列表上。</span></div><div class="line"><span class="built_in">console</span>.log(list.length);</div><div class="line"><span class="comment">// 输出的结果仍然是3，不是此时li的数量6</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>getElementById<br>list 是一个动态的 Node List， 每一次调用 lis 都会重新对文档进行查询，导致无限循环的问题。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="keyword">var</span> ul=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'ul'</span>)[<span class="number">0</span>];</div><div class="line"><span class="keyword">var</span> list=ul.getElementsByTagName(<span class="string">'li'</span>);</div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</div><div class="line">    ul.appendChild(<span class="built_in">document</span>.createElement(<span class="string">'li'</span>));</div><div class="line">&#125;   </div><div class="line"><span class="built_in">console</span>.log(list.length)<span class="comment">//此时输出的结果就是3+5=8</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>querySelector<br>list 是一个静态的 Node List，是一个 li 集合的快照，对文档的任何操作都不会对其产生影响。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="keyword">var</span> ul=<span class="built_in">document</span>.querySelector(<span class="string">'ul'</span>);</span></div><div class="line"><span class="javascript"><span class="keyword">var</span> list=ul.querySelectorAll(<span class="string">'li'</span>);</span></div><div class="line"><span class="javascript"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;list.length;i++)&#123;</span></div><div class="line"><span class="javascript">    ul.appendChild(<span class="built_in">document</span>.createElement(<span class="string">'li'</span>));</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="javascript"><span class="comment">//这个时候就创建了3个新的li，添加在ul列表上。</span></span></div><div class="line"><span class="javascript"><span class="built_in">console</span>.log(list.length);</span></div><div class="line"><span class="javascript"><span class="comment">// 输出的结果仍然是3，不是此时li的数量6</span></span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>getElementById<br>list 是一个动态的 Node List， 每一次调用 lis 都会重新对文档进行查询，导致无限循环的问题。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="keyword">var</span> ul=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'ul'</span>)[<span class="number">0</span>];</span></div><div class="line"><span class="javascript"><span class="keyword">var</span> list=ul.getElementsByTagName(<span class="string">'li'</span>);</span></div><div class="line"><span class="javascript"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span></div><div class="line"><span class="javascript">    ul.appendChild(<span class="built_in">document</span>.createElement(<span class="string">'li'</span>));</span></div><div class="line"><span class="undefined">&#125;   </span></div><div class="line"><span class="javascript"><span class="built_in">console</span>.log(list.length)<span class="comment">//此时输出的结果就是3+5=8</span></span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -313,9 +309,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/前端/" rel="tag">#前端</a>
-          
             <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
           
         </div>
       
@@ -402,7 +398,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">160</span>
+              <span class="site-state-item-count">165</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -412,7 +408,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

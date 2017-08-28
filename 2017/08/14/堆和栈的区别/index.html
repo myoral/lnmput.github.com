@@ -84,31 +84,18 @@
 
 
 
-<meta name="description" content="人不能为了尊严连钱都不要了。
-预备知识—程序的内存分配一个由C/C++编译的程序占用的内存分为以下几个部分:
-
-1、栈区（stack）—  由编译器自动分配释放,存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。  
-2、堆区（heap） — 一般由程序员分配释放，若程序员不释放，程序结束时可能由OS回收   。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表，呵呵。  
-3">
+<meta name="description" content="人不能为了尊严连钱都不要了。 预备知识—程序的内存分配一个由C/C++编译的程序占用的内存分为以下几个部分:  1、栈区（stack）—  由编译器自动分配释放,存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。   2、堆区（heap） — 一般由程序员分配释放，若程序员不释放，程序结束时可能由OS回收   。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表，呵呵。   3">
+<meta name="keywords" content="程序设计,内存">
 <meta property="og:type" content="article">
 <meta property="og:title" content="堆和栈的区别">
 <meta property="og:url" content="http://yangguoqi.me/2017/08/14/堆和栈的区别/index.html">
 <meta property="og:site_name" content="杨子鳄的小窝">
-<meta property="og:description" content="人不能为了尊严连钱都不要了。
-预备知识—程序的内存分配一个由C/C++编译的程序占用的内存分为以下几个部分:
-
-1、栈区（stack）—  由编译器自动分配释放,存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。  
-2、堆区（heap） — 一般由程序员分配释放，若程序员不释放，程序结束时可能由OS回收   。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表，呵呵。  
-3">
+<meta property="og:description" content="人不能为了尊严连钱都不要了。 预备知识—程序的内存分配一个由C/C++编译的程序占用的内存分为以下几个部分:  1、栈区（stack）—  由编译器自动分配释放,存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。   2、堆区（heap） — 一般由程序员分配释放，若程序员不释放，程序结束时可能由OS回收   。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表，呵呵。   3">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-08-14T02:56:18.275Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="堆和栈的区别">
-<meta name="twitter:description" content="人不能为了尊严连钱都不要了。
-预备知识—程序的内存分配一个由C/C++编译的程序占用的内存分为以下几个部分:
-
-1、栈区（stack）—  由编译器自动分配释放,存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。  
-2、堆区（heap） — 一般由程序员分配释放，若程序员不释放，程序结束时可能由OS回收   。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表，呵呵。  
-3">
+<meta name="twitter:description" content="人不能为了尊严连钱都不要了。 预备知识—程序的内存分配一个由C/C++编译的程序占用的内存分为以下几个部分:  1、栈区（stack）—  由编译器自动分配释放,存放函数的参数值，局部变量的值等。其操作方式类似于数据结构中的栈。   2、堆区（heap） — 一般由程序员分配释放，若程序员不释放，程序结束时可能由OS回收   。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表，呵呵。   3">
 
 
 
@@ -313,8 +300,8 @@
 <h4 id="申请效率的比较："><a href="#申请效率的比较：" class="headerlink" title="申请效率的比较："></a>申请效率的比较：</h4><p>栈由系统自动分配，速度较快。但程序员是无法控制的。<br>堆是由new分配的内存，一般速度比较慢，而且容易产生内存碎片,不过用起来最方便.<br>另外，在WINDOWS下，最好的方式是用VirtualAlloc分配内存，他不是在堆，也不是在栈是<br>直接在进程的地址空间中保留一块内存，虽然用起来最不方便。但是速度快，也最灵活。  </p>
 <h4 id="堆和栈中的存储内容"><a href="#堆和栈中的存储内容" class="headerlink" title="堆和栈中的存储内容"></a>堆和栈中的存储内容</h4><p>栈：   在函数调用时，第一个进栈的是主函数中后的下一条指令（函数调用语句的下一条可<br>执行语句）的地址，然后是函数的各个参数，在大多数的C编译器中，参数是由右往左入栈<br>的，然后是函数中的局部变量。注意静态变量是不入栈的。<br>当本次函数调用结束后，局部变量先出栈，然后是参数，最后栈顶指针指向最开始存的地<br>址，也就是主函数中的下一条指令，程序由该点继续运行。<br>堆：一般是在堆的头部用一个字节存放堆的大小。堆中的具体内容由程序员安排。    </p>
 <h4 id="存取效率的比较"><a href="#存取效率的比较" class="headerlink" title="存取效率的比较"></a>存取效率的比较</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span>   s1[]   =   <span class="string">"aaaaaaaaaaaaaaa"</span>;    </div><div class="line"><span class="keyword">char</span>   *s2   =   <span class="string">"bbbbbbbbbbbbbbbbb"</span>;</div></pre></td></tr></table></figure>
-<p>aaaaaaaaaaa是在运行时刻赋值的；<br>而bbbbbbbbbbb是在编译时就确定的；<br>但是，在以后的存取中，在栈上的数组比指针所指向的字符串(例如堆)快。<br>比如：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span>    </span></div><div class="line"><span class="function"><span class="keyword">void</span>   <span class="title">main</span><span class="params">()</span>    </span></div><div class="line">&#123;    </div><div class="line"><span class="keyword">char</span>   a   =   <span class="number">1</span>;    </div><div class="line"><span class="keyword">char</span>   c[]   =   <span class="string">"1234567890"</span>;    </div><div class="line"><span class="keyword">char</span>   *p   =<span class="string">"1234567890"</span>;    </div><div class="line">a   =   c[<span class="number">1</span>];    </div><div class="line">a   =   p[<span class="number">1</span>];    </div><div class="line"><span class="keyword">return</span>;    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>对应的汇编代码<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="number">10</span>:   a   =   c[<span class="number">1</span>];    </div><div class="line"><span class="number">00401067</span>   <span class="number">8</span>A   <span class="number">4</span>D   F1   mov   cl,byte   ptr   [ebp<span class="number">-0</span>Fh]    </div><div class="line"><span class="number">0040106</span>A   <span class="number">88</span>   <span class="number">4</span>D   FC   mov   byte   ptr   [ebp<span class="number">-4</span>],cl    </div><div class="line"><span class="number">11</span>:   a   =   p[<span class="number">1</span>];    </div><div class="line"><span class="number">0040106</span>D   <span class="number">8B</span>   <span class="number">55</span>   EC   mov   edx,dword   ptr   [ebp<span class="number">-14</span>h]    </div><div class="line"><span class="number">00401070</span>   <span class="number">8</span>A   <span class="number">42</span>   <span class="number">01</span>   mov   al,byte   ptr   [edx+<span class="number">1</span>]    </div><div class="line"><span class="number">00401073</span>   <span class="number">88</span>   <span class="number">45</span>   FC   mov   byte   ptr   [ebp<span class="number">-4</span>],al</div></pre></td></tr></table></figure></p>
+<p>aaaaaaaaaaa是在运行时刻赋值的；<br>而bbbbbbbbbbb是在编译时就确定的；<br>但是，在以后的存取中，在栈上的数组比指针所指向的字符串(例如堆)快。<br>比如：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span>    </span></div><div class="line"><span class="function"><span class="keyword">void</span>   <span class="title">main</span><span class="params">()</span>    </span></div><div class="line"><span class="function"></span>&#123;    </div><div class="line"><span class="keyword">char</span>   a   =   <span class="number">1</span>;    </div><div class="line"><span class="keyword">char</span>   c[]   =   <span class="string">"1234567890"</span>;    </div><div class="line"><span class="keyword">char</span>   *p   =<span class="string">"1234567890"</span>;    </div><div class="line">a   =   c[<span class="number">1</span>];    </div><div class="line">a   =   p[<span class="number">1</span>];    </div><div class="line"><span class="keyword">return</span>;    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>对应的汇编代码<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="number">10</span>:   a   =   c[<span class="number">1</span>];    </div><div class="line"><span class="number">00401067</span>   <span class="number">8</span>A   <span class="number">4</span>D   F1   mov   cl,byte   ptr   [ebp<span class="number">-0F</span>h]    </div><div class="line"><span class="number">0040106</span>A   <span class="number">88</span>   <span class="number">4</span>D   FC   mov   byte   ptr   [ebp<span class="number">-4</span>],cl    </div><div class="line"><span class="number">11</span>:   a   =   p[<span class="number">1</span>];    </div><div class="line"><span class="number">0040106</span>D   <span class="number">8B</span>   <span class="number">55</span>   EC   mov   edx,dword   ptr   [ebp<span class="number">-14</span>h]    </div><div class="line"><span class="number">00401070</span>   <span class="number">8</span>A   <span class="number">42</span>   <span class="number">01</span>   mov   al,byte   ptr   [edx+<span class="number">1</span>]    </div><div class="line"><span class="number">00401073</span>   <span class="number">88</span>   <span class="number">45</span>   FC   mov   byte   ptr   [ebp<span class="number">-4</span>],al</div></pre></td></tr></table></figure></p>
 <p>第一种在读取时直接就把字符串中的元素读到寄存器cl中，而第二种则要先把指针值读到<br>edx中，再根据edx读取字符，显然慢了。    </p>
 <blockquote>
 <p><a href="http://blog.csdn.net/hairetz/article/details/4141043" target="_blank" rel="external">http://blog.csdn.net/hairetz/article/details/4141043</a></p>
@@ -429,7 +416,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">160</span>
+              <span class="site-state-item-count">165</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -439,7 +426,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

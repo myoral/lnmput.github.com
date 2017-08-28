@@ -88,6 +88,7 @@
 <meta property="og:title" content="杨子鳄的小窝">
 <meta property="og:url" content="http://yangguoqi.me/page/2/index.html">
 <meta property="og:site_name" content="杨子鳄的小窝">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="杨子鳄的小窝">
 
@@ -241,8 +242,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/08/17/字符编码笔记ASCII，Unicode和UTF-8/" itemprop="url">
-                  字符编码笔记ASCII，Unicode和UTF-8
+                <a class="post-title-link" href="/2017/08/23/uv和pv的区别/" itemprop="url">
+                  uv和pv的区别
                 </a>
               
             
@@ -255,8 +256,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-17T15:00:22+08:00" content="2017-08-17">
-              2017-08-17
+            <time itemprop="dateCreated" datetime="2017-08-23T15:53:18+08:00" content="2017-08-23">
+              2017-08-23
             </time>
           </span>
 
@@ -285,16 +286,15 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>生命中所有的灿烂 终究要用寂寞来偿还 -百年孤独<br></blockquote></p>
-<h3 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h3><p>我们知道，在计算机内部，所有的信息最终都表示为一个二进制的字符串。每一个二进制位（bit）有0和1两种状态，因此八个二进制位就可以组合出256种状态，这被称为一个字节（byte）。也就是说，一个字节一共可以用来表示256种不同的状态，每一个状态对应一个符号，就是256个符号，从0000000到11111111。<br>上个世纪60年代，美国制定了一套字符编码，对英语字符与二进制位之间的关系，做了统一规定。这被称为ASCII码，一直沿用至今。<br>ASCII码一共规定了128个字符的编码，比如空格”SPACE”是32（二进制00100000），大写的字母A是65（二进制01000001）。这128个符号（包括32个不能打印出来的控制符号），只占用了一个字节的后面7位，最前面的1位统一规定为0。</p>
-<p>bit(二进制位), 有0和1两种状态   byte(字节)  8个二进制位组成了一个字节</p>
-<h3 id="非ASCII编码"><a href="#非ASCII编码" class="headerlink" title="非ASCII编码"></a>非ASCII编码</h3><p>英语用128个符号编码就够了，但是用来表示其他语言，128个符号是不够的。比如，在法语中，字母上方有注音符号，它就无法用ASCII码表示。于是，一些欧洲国家就决定，利用字节中闲置的最高位编入新的符号。比如，法语中的é的编码为130（二进制10000010）。这样一来，这些欧洲国家使用的编码体系，可以表示最多256个符号。<br>但是，这里又出现了新的问题。不同的国家有不同的字母，因此，哪怕它们都使用256个符号的编码方式，代表的字母却不一样。比如，130在法语编码中代表了é，在希伯来语编码中却代表了字母Gimel (ג)，在俄语编码中又会代表另一个符号。但是不管怎样，所有这些编码方式中，0–127表示的符号是一样的，不一样的只是128–255的这一段。<br>至于亚洲国家的文字，使用的符号就更多了，汉字就多达10万左右。一个字节只能表示256种符号，肯定是不够的，就必须使用多个字节表达一个符号。比如，简体中文常见的编码方式是GB2312，使用两个字节表示一个汉字，所以理论上最多可以表示256x256=65536个符号。<br>中文编码的问题需要专文讨论，这篇笔记不涉及。这里只指出，虽然都是用多个字节表示一个符号，但是GB类的汉字编码与后文的Unicode和UTF-8是毫无关系的。</p>
-<h3 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h3><p>正如上一节所说，世界上存在着多种编码方式，同一个二进制数字可以被解释成不同的符号。因此，要想打开一个文本文件，就必须知道它的编码方式，否则用错误的编码方式解读，就会出现乱码。为什么电子邮件常常出现乱码？就是因为发信人和收信人使用的编码方式不一样。<br>可以想象，如果有一种编码，将世界上所有的符号都纳入其中。每一个符号都给予一个独一无二的编码，那么乱码问题就会消失。这就是Unicode，就像它的名字都表示的，这是一种所有符号的编码。<br>Unicode当然是一个很大的集合，现在的规模可以容纳100多万个符号。每个符号的编码都不一样，比如，U+0639表示阿拉伯字母Ain，U+0041表示英语的大写字母A，U+4E25表示汉字”严”。具体的符号对应表，可以查询unicode.org，或者专门的汉字对应表。</p>
-<h3 id="Unicode的问题"><a href="#Unicode的问题" class="headerlink" title="Unicode的问题"></a>Unicode的问题</h3><p>需要注意的是，Unicode只是一个符号集，它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储。<br>比如，汉字”严”的unicode是十六进制数4E25，转换成二进制数足足有15位（100111000100101），也就是说这个符号的表示至少需要2个字节。表示其他更大的符号，可能需要3个字节或者4个字节，甚至更多。<br>这里就有两个严重的问题，第一个问题是，如何才能区别Unicode和ASCII？计算机怎么知道三个字节表示一个符号，而不是分别表示三个符号呢？第二个问题是，我们已经知道，英文字母只用一个字节表示就够了，如果Unicode统一规定，每个符号用三个或四个字节表示，那么每个英文字母前都必然有二到三个字节是0，这对于存储来说是极大的浪费，文本文件的大小会因此大出二三倍，这是无法接受的。<br>它们造成的结果是：<br>1）出现了Unicode的多种存储方式，也就是说有许多种不同的二进制格式，可以用来表示Unicode。<br>2）Unicode在很长一段时间内无法推广，直到互联网的出现。</p>
-<h3 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h3><p>互联网的普及，强烈要求出现一种统一的编码方式。UTF-8就是在互联网上使用最广的一种Unicode的实现方式。其他实现方式还包括UTF-16（字符用两个字节或四个字节表示）和UTF-32（字符用四个字节表示），不过在互联网上基本不用。重复一遍，这里的关系是，<code>UTF-8是Unicode的实现方式之一</code>。<br>UTF-8最大的一个特点，就是它是一种<code>变长</code>的编码方式。它可以使用1~4个字节表示一个符号，根据不同的符号而变化字节长度。<br>UTF-8的编码规则很简单，只有二条：<br>1）对于单字节的符号，字节的第一位设为0，后面7位为这个符号的unicode码。因此对于英语字母，UTF-8编码和ASCII码是相同的。<br>2）对于n字节的符号（n&gt;1），第一个字节的前n位都设为1，第n+1位设为0，后面字节的前两位一律设为10。剩下的没有提及的二进制位，全部为这个符号的unicode码。</p>
-<p>解读UTF-8编码非常简单。如果一个字节的第一位是0，则这个字节单独就是一个字符；如果第一位是1，则连续有多少个1，就表示当前字符占用多少个字节。</p>
+            <p><blockquote class="blockquote-center"><br>我努力的目的就是想让我妈妈给自己买东西的时候能像给我买东西的时候一样干脆。<br></blockquote></p>
+<h3 id="UV（Unique-visitor）"><a href="#UV（Unique-visitor）" class="headerlink" title="UV（Unique visitor）"></a>UV（Unique visitor）</h3><p>是指通过互联网访问、浏览这个网页的自然人。访问您网站的一台电脑客户端为一个访客。00:00-24:00内相同的客户端只被计算一次。<br>一天内同个访客多次访问仅计算一个UV。</p>
+<h3 id="IP（Internet-Protocol）"><a href="#IP（Internet-Protocol）" class="headerlink" title="IP（Internet Protocol）"></a>IP（Internet Protocol）</h3><p>独立IP是指访问过某站点的IP总数，以用户的IP地址作为统计依据。00:00-24:00内相同IP地址之被计算一次。</p>
+<h3 id="UV与IP区别"><a href="#UV与IP区别" class="headerlink" title="UV与IP区别"></a>UV与IP区别</h3><p>你和你的家人用各自的账号在同一台电脑上登录新浪微博，则IP数+1，UV数+2。由于使用的是同一台电脑，所以IP不变，但使用的不同账号，所以UV+2</p>
+<h3 id="PV（Page-View）"><a href="#PV（Page-View）" class="headerlink" title="PV（Page View）"></a>PV（Page View）</h3><p>即页面浏览量或点击量，用户每1次对网站中的每个网页访问均被记录1个PV。用户对同一页面的多次访问，访问量累计，用以衡量网站用户访问的网页数量。</p>
+<h3 id="VV（Visit-View）"><a href="#VV（Visit-View）" class="headerlink" title="VV（Visit View）"></a>VV（Visit View）</h3><p>用以统计所有访客1天内访问网站的次数。当访客完成所有浏览并最终关掉该网站的所有页面时便完成了一次访问，同一访客1天内可能有多次访问行为，访问次数累计。</p>
+<h3 id="PV与VV区别"><a href="#PV与VV区别" class="headerlink" title="PV与VV区别"></a>PV与VV区别</h3><p>如：你今天10点钟打开了百度，访问了它的三个页面；11点钟又打开了百度，访问了它的两个页面，则PV数+5，VV数+2.是指页面的浏览次数，VV是指你访问网站的次数。</p>
 <blockquote>
-<p><a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html</a></p>
+<p><a href="https://www.zhihu.com/question/20448467" target="_blank" rel="external">https://www.zhihu.com/question/20448467</a></p>
 </blockquote>
 
           
@@ -345,8 +345,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/08/15/php自动加载的深入理解/" itemprop="url">
-                  php自动加载的深入理解
+                <a class="post-title-link" href="/2017/08/22/http的长连接和短连接/" itemprop="url">
+                  http的长连接和短连接
                 </a>
               
             
@@ -359,8 +359,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-15T16:56:00+08:00" content="2017-08-15">
-              2017-08-15
+            <time itemprop="dateCreated" datetime="2017-08-22T10:24:02+08:00" content="2017-08-22">
+              2017-08-22
             </time>
           </span>
 
@@ -389,244 +389,17 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>那时候我总是能起的那么早,看到鸟儿在舞蹈…<br></blockquote></p>
-<h3 id="使用require-once"><a href="#使用require-once" class="headerlink" title="使用require_once"></a>使用require_once</h3><p>文件位于同级目录下<br>class.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> $name = <span class="string">'yangzie'</span>;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getName</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;name;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>index.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">require_once</span> <span class="string">'class.php'</span>;</div><div class="line"></div><div class="line">$test = <span class="keyword">new</span> Test();</div><div class="line"></div><div class="line"><span class="keyword">echo</span> $test-&gt;getName();</div></pre></td></tr></table></figure></p>
-<h3 id="使用-autoload"><a href="#使用-autoload" class="headerlink" title="使用__autoload"></a>使用__autoload</h3><p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> $name = <span class="string">'yangzie'</span>;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getName</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>index.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">__autoload</span><span class="params">($class_name)</span> </span>&#123;</div><div class="line">    <span class="keyword">require_once</span> $class_name . <span class="string">'.php'</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 这里要求类名和文件名保持一致,注意大小写;</span></div><div class="line">$test = <span class="keyword">new</span> Test();</div><div class="line"></div><div class="line"><span class="keyword">echo</span> $test-&gt;getName();</div></pre></td></tr></table></figure></p>
-<h3 id="使用spl-autoload-register"><a href="#使用spl-autoload-register" class="headerlink" title="使用spl_autoload_register"></a>使用spl_autoload_register</h3><h4 id="第一种方式"><a href="#第一种方式" class="headerlink" title="第一种方式"></a>第一种方式</h4><p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> $name = <span class="string">'yangzie'</span>;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getName</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>index.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">my_autoload</span><span class="params">($class_name)</span> </span>&#123;</div><div class="line">    <span class="keyword">require_once</span> $class_name . <span class="string">'.php'</span>;</div><div class="line">&#125;</div><div class="line">spl_autoload_register(<span class="string">"my_autoload"</span>);</div><div class="line">$test = <span class="keyword">new</span> Test();</div><div class="line"></div><div class="line"><span class="keyword">echo</span> $test-&gt;getName();</div></pre></td></tr></table></figure></p>
-<h4 id="第二种方式"><a href="#第二种方式" class="headerlink" title="第二种方式"></a>第二种方式</h4><p>Test.class.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> $name = <span class="string">'yangzie'</span>;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getName</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;name;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>index.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line">spl_autoload_extensions(<span class="string">'.class.php'</span>);<span class="comment">// 寻找扩展名</span></div><div class="line"><span class="comment">// 如果我们类的后缀名既有.class.php 还有.php, 可以这样 spl_autoload_extensions('.class.php，.php');</span></div><div class="line">set_include_path(get_include_path().PATH_SEPARATOR.<span class="string">""</span>);<span class="comment">// 这里的"" 指的是类文件的目录，这里是平级目录</span></div><div class="line">spl_autoload_register();</div><div class="line"></div><div class="line"><span class="keyword">echo</span> (<span class="keyword">new</span> Test())-&gt;getName();</div></pre></td></tr></table></figure></p>
-<h4 id="第三种方式"><a href="#第三种方式" class="headerlink" title="第三种方式"></a>第三种方式</h4><p>Test.class.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> $name = <span class="string">'yangzie'</span>;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getName</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>index.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">my_autoload</span><span class="params">($class_name)</span> </span>&#123;</div><div class="line">    spl_autoload_extensions(<span class="string">'.class.php'</span>);</div><div class="line">    set_include_path(get_include_path().PATH_SEPARATOR.<span class="string">""</span>);</div><div class="line">    spl_autoload($class_name);</div><div class="line">&#125;</div><div class="line"></div><div class="line">spl_autoload_register(<span class="string">'my_autoload'</span>);</div><div class="line"></div><div class="line"><span class="keyword">echo</span> (<span class="keyword">new</span> Test())-&gt;getName();</div></pre></td></tr></table></figure></p>
-<h4 id="第四种方式"><a href="#第四种方式" class="headerlink" title="第四种方式"></a>第四种方式</h4><p>index.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Index</span></span></div><div class="line">&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">my_autoload</span><span class="params">($class_name)</span> </span>&#123;</div><div class="line">        <span class="keyword">require_once</span> $class_name . <span class="string">'.php'</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getLoader</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        spl_autoload_register([<span class="string">'Index'</span>,<span class="string">'my_autoload'</span>], <span class="keyword">true</span>, <span class="keyword">true</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Index::getLoader();</div><div class="line"><span class="keyword">echo</span> (<span class="keyword">new</span> Test())-&gt;getName();</div></pre></td></tr></table></figure></p>
-<p>Test.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> $name = <span class="string">'yangzie'</span>;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getName</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="PSR"><a href="#PSR" class="headerlink" title="PSR"></a>PSR</h3><p>PSR是由PHP Framework Interoperability Group（PHP通用性框架小组）发布的一系列标准/规范，目前包括了PSR-0~PSR-4共4个，而PSR-0就是其中的自动加载标准（其后的PSR-4称为改进的自动加载的标准，是PSR-0的补充。PSR-0使用更广泛)<br>PSR-4风格:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-|vendor</div><div class="line">--|package</div><div class="line">---|src</div><div class="line">----|demo.php</div></pre></td></tr></table></figure></p>
-<p>如在我们的laravel项目下建立一个与app文件夹同级的目录；<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 新建目录accmd， 与app目录同级</span></div><div class="line">acmd\test\yangze\Yang.php</div><div class="line"></div><div class="line"><span class="comment">// Yang.php文件内容</span></div><div class="line"></div><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">namespace</span> <span class="title">Acmd</span>\<span class="title">Test</span>\<span class="title">Yangzie</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Yang</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">demo</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">'demo'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>尝试在调用这个类<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$yang = <span class="keyword">new</span> \Acmd\Test\Yangzie\Yang();</div><div class="line">$yang-&gt;demo();</div><div class="line"><span class="comment">// error not found</span></div></pre></td></tr></table></figure></p>
-<p>使用composer自动加载<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="string">"autoload"</span>: &#123;</div><div class="line">        <span class="string">"classmap"</span>: [</div><div class="line">            <span class="string">"database"</span></div><div class="line">        ],</div><div class="line">        <span class="string">"psr-4"</span>: &#123;</div><div class="line">            <span class="string">"App\\"</span>: <span class="string">"app/"</span>,</div><div class="line">            <span class="string">"Acmd\\"</span>:<span class="string">"acmd/"</span></div><div class="line">        &#125;</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
-<p>执行命令： composer dump-autoload 即可</p>
-<h3 id="laravel下的自动加载"><a href="#laravel下的自动加载" class="headerlink" title="laravel下的自动加载"></a>laravel下的自动加载</h3><p>入口文件public/index.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span>.<span class="string">'/../bootstrap/autoload.php'</span>;</div></pre></td></tr></table></figure></p>
-<p>bootstrap/autoload.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">require</span> <span class="keyword">__DIR__</span>.<span class="string">'/../vendor/autoload.php'</span>;</div></pre></td></tr></table></figure></p>
-<p>vendor/autoload.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="comment">// autoload.php @generated by Composer</span></div><div class="line"></div><div class="line"><span class="keyword">require_once</span> <span class="keyword">__DIR__</span> . <span class="string">'/composer'</span> . <span class="string">'/autoload_real.php'</span>;</div><div class="line"></div><div class="line"><span class="keyword">return</span> ComposerAutoloaderInit5205c428ce42c79967c9b7a7be4a7d82::getLoader();</div></pre></td></tr></table></figure></p>
-<p>这个文件包含了laravel对classmap,psr-0,psr-4,files的具体实现,主要只有这么一个方法 <code>getLoader</code>;</p>
-<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>composer 自动加载文件<br>文件位置： acmd和app同目录<br>acmd\test\commom.php<br>composer.json<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">"autoload": &#123;</div><div class="line">        "classmap": [</div><div class="line">            "database"</div><div class="line">        ],</div><div class="line">        "psr-4": &#123;</div><div class="line">            "App\\": "app/",</div><div class="line">            "Acmd\\":"acmd/"</div><div class="line">        &#125;,</div><div class="line">      "files":["acmd/test/commom.php"]</div><div class="line">    &#125;,</div></pre></td></tr></table></figure></p>
-<p>执行命令： <code>composer dump-autoload</code></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/14/CSS清浮动处理/" itemprop="url">
-                  CSS清浮动处理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-14T22:14:30+08:00" content="2017-08-14">
-              2017-08-14
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>以前央视新闻有条微博说7成网友赞成数学退出高考，下边一片叫好声。我有个朋友淡淡回了句：“数学就是用来把这7成人筛出去的。”这句话我永远都记得，所有被千夫所指的困难，都是为了淘汰掉懦夫，仅此而已。<br></blockquote><br>做前端开发我们都不得不使用float浮动属性，但是如果使用了浮动，由于浮动本身的特性，难免会遇到父级元素塌陷的情况，不能自适应高度。<br>假设了有三个盒子对象，一个父级里包含了两个子级，父级元素没有设置固定高度，子级一个使用了float:left（左浮动）属性，另外一个子级使用float:right（右浮动）属性，这种情况的话父级元素的高度就必定不能被子内容而撑开。</p>
-<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>三个盒子对象：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-1"</span>&gt;</span>布局1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-2"</span>&gt;</span>布局2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    内容</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>设置了浮动之后，父级元素不能被撑开，如图：<br><img src="/images/014.jpg" alt=""><br>我们所希望的效果：<br><img src="/images/015.jpg" alt=""><br>这种情况在我们的工作中特别常见，我们可以通过四种方法清除浮动。</p>
-<h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>使用一个空标签<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-1"</span>&gt;</span>布局1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-2"</span>&gt;</span>布局2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    内容</div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"clear"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>clear的 CSS样式如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.clear</span> &#123;</div><div class="line">    <span class="attribute">clear</span>: both;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>给父元素设置display:inline-block属性：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.content</span> &#123;</div><div class="line">  <span class="attribute">display</span>: inline-block</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h4 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h4><p>给父元素设置overflow:auto或hidden属性：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.content</span> &#123;</div><div class="line">    <span class="attribute">overflow</span>: auto;  <span class="comment">/* 设置 hidden 也可以 */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h4 id="方法四"><a href="#方法四" class="headerlink" title="方法四"></a>方法四</h4>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/14/堆和栈的区别/" itemprop="url">
-                  堆和栈的区别
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-14T10:37:33+08:00" content="2017-08-14">
-              2017-08-14
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>人不能为了尊严连钱都不要了。<br></blockquote></p>
-<h3 id="预备知识—程序的内存分配"><a href="#预备知识—程序的内存分配" class="headerlink" title="预备知识—程序的内存分配"></a>预备知识—程序的内存分配</h3><p>一个由C/C++编译的程序占用的内存分为以下几个部分:</p>
-<ul>
-<li>1、栈区（stack）—  由编译器自动分配释放,存放函数的参数值，局部变量的值等。其<br>操作方式类似于数据结构中的栈。  </li>
-<li>2、堆区（heap） — 一般由程序员分配释放，若程序员不释放，程序结束时可能由OS回<br>收   。注意它与数据结构中的堆是两回事，分配方式倒是类似于链表，呵呵。  </li>
-<li>3、全局区（静态区）（static）—，全局变量和静态变量的存储是放在一块的，初始化的<br>全局变量和静态变量在一块区域，未初始化的全局变量和未初始化的静态变量在相邻的另<br>一块区域。   -   程序结束后由系统释放。  </li>
-<li>4、文字常量区   —常量字符串就是放在这里的。程序结束后由系统释放  </li>
-<li>5、程序代码区—存放函数体的二进制代码。</li>
-</ul>
-<h3 id="例子程序"><a href="#例子程序" class="headerlink" title="例子程序"></a>例子程序</h3><p>这是一个前辈写的，非常详细<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//main.cpp    </span></div><div class="line"><span class="keyword">int</span>   a   =   <span class="number">0</span>; 全局初始化区    </div><div class="line"><span class="keyword">char</span> *p1; 全局未初始化区    </div><div class="line">main()    </div><div class="line">&#123;    </div><div class="line"><span class="keyword">int</span>  b;   <span class="comment">//栈    </span></div><div class="line"><span class="keyword">char</span>   s[]   =   <span class="string">"abc"</span>;   <span class="comment">//栈    </span></div><div class="line"><span class="keyword">char</span>   *p2;   <span class="comment">//栈    </span></div><div class="line"><span class="keyword">char</span>   *p3   =   <span class="string">"123456"</span>;   <span class="comment">//123456/0在常量区，p3在栈上。    </span></div><div class="line"><span class="keyword">static</span>   <span class="keyword">int</span>   c   =<span class="number">0</span>；   <span class="comment">//全局（静态）初始化区    </span></div><div class="line">p1   =   (<span class="keyword">char</span>   *)<span class="built_in">malloc</span>(<span class="number">10</span>);    </div><div class="line">p2   =   (<span class="keyword">char</span>   *)<span class="built_in">malloc</span>(<span class="number">20</span>);    </div><div class="line"><span class="comment">//分配得来得10和20字节的区域就在堆区。    </span></div><div class="line"><span class="built_in">strcpy</span>(p1,   <span class="string">"123456"</span>);   <span class="comment">//123456/0放在常量区，编译器可能会将它与p3所指向的"123456" 优化成一个地方。    </span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="堆和栈的理论知识"><a href="#堆和栈的理论知识" class="headerlink" title="堆和栈的理论知识"></a>堆和栈的理论知识</h3><h4 id="申请方式"><a href="#申请方式" class="headerlink" title="申请方式"></a>申请方式</h4><p>stack:<br>由系统自动分配。例如，声明在函数中一个局部变量int b;系统自动在栈中为b开辟空间<br>heap:<br>需要程序员自己申请，并指明大小，在c中malloc函数<br>如p1 = (char *)malloc(10);<br>在C++中用new运算符<br>如p2 = new char[10];<br>但是注意p1、p2本身是在栈中的。    </p>
-<h4 id="申请后系统的响应"><a href="#申请后系统的响应" class="headerlink" title="申请后系统的响应"></a>申请后系统的响应</h4><p>栈：只要栈的剩余空间大于所申请空间，系统将为程序提供内存，否则将报异常提示栈溢<br>出。<br>堆：首先应该知道操作系统有一个记录空闲内存地址的链表，当系统收到程序的申请时，<br>会遍历该链表，寻找第一个空间大于所申请空间的堆结点，然后将该结点从空闲结点链表<br>中删除，并将该结点的空间分配给程序，另外，对于大多数系统，会在这块内存空间中的<br>首地址处记录本次分配的大小，这样，代码中的delete语句才能正确的释放本内存空间。<br>另外，由于找到的堆结点的大小不一定正好等于申请的大小，系统会自动的将多余的那部<br>分重新放入空闲链表中。    </p>
-<h4 id="申请大小的限制"><a href="#申请大小的限制" class="headerlink" title="申请大小的限制"></a>申请大小的限制</h4><p>栈：在Windows下,栈是向低地址扩展的数据结构，是一块连续的内存的区域。这句话的意<br>思是栈顶的地址和栈的最大容量是系统预先规定好的，在WINDOWS下，栈的大小是2M（也有<br>的说是1M，总之是一个编译时就确定的常数），如果申请的空间超过栈的剩余空间时，将<br>提示overflow。因此，能从栈获得的空间较小。<br>堆：堆是向高地址扩展的数据结构，是不连续的内存区域。这是由于系统是用链表来存储<br>的空闲内存地址的，自然是不连续的，而链表的遍历方向是由低地址向高地址。堆的大小<br>受限于计算机系统中有效的虚拟内存。由此可见，堆获得的空间比较灵活，也比较大。    </p>
-<h4 id="申请效率的比较："><a href="#申请效率的比较：" class="headerlink" title="申请效率的比较："></a>申请效率的比较：</h4><p>栈由系统自动分配，速度较快。但程序员是无法控制的。<br>堆是由new分配的内存，一般速度比较慢，而且容易产生内存碎片,不过用起来最方便.<br>另外，在WINDOWS下，最好的方式是用VirtualAlloc分配内存，他不是在堆，也不是在栈是<br>直接在进程的地址空间中保留一块内存，虽然用起来最不方便。但是速度快，也最灵活。  </p>
-<h4 id="堆和栈中的存储内容"><a href="#堆和栈中的存储内容" class="headerlink" title="堆和栈中的存储内容"></a>堆和栈中的存储内容</h4><p>栈：   在函数调用时，第一个进栈的是主函数中后的下一条指令（函数调用语句的下一条可<br>执行语句）的地址，然后是函数的各个参数，在大多数的C编译器中，参数是由右往左入栈<br>的，然后是函数中的局部变量。注意静态变量是不入栈的。<br>当本次函数调用结束后，局部变量先出栈，然后是参数，最后栈顶指针指向最开始存的地<br>址，也就是主函数中的下一条指令，程序由该点继续运行。<br>堆：一般是在堆的头部用一个字节存放堆的大小。堆中的具体内容由程序员安排。    </p>
-<h4 id="存取效率的比较"><a href="#存取效率的比较" class="headerlink" title="存取效率的比较"></a>存取效率的比较</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span>   s1[]   =   <span class="string">"aaaaaaaaaaaaaaa"</span>;    </div><div class="line"><span class="keyword">char</span>   *s2   =   <span class="string">"bbbbbbbbbbbbbbbbb"</span>;</div></pre></td></tr></table></figure>
-<p>aaaaaaaaaaa是在运行时刻赋值的；<br>而bbbbbbbbbbb是在编译时就确定的；<br>但是，在以后的存取中，在栈上的数组比指针所指向的字符串(例如堆)快。<br>比如：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span>    </span></div><div class="line"><span class="function"><span class="keyword">void</span>   <span class="title">main</span><span class="params">()</span>    </span></div><div class="line">&#123;    </div><div class="line"><span class="keyword">char</span>   a   =   <span class="number">1</span>;    </div><div class="line"><span class="keyword">char</span>   c[]   =   <span class="string">"1234567890"</span>;    </div><div class="line"><span class="keyword">char</span>   *p   =<span class="string">"1234567890"</span>;    </div><div class="line">a   =   c[<span class="number">1</span>];    </div><div class="line">a   =   p[<span class="number">1</span>];    </div><div class="line"><span class="keyword">return</span>;    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>对应的汇编代码<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="number">10</span>:   a   =   c[<span class="number">1</span>];    </div><div class="line"><span class="number">00401067</span>   <span class="number">8</span>A   <span class="number">4</span>D   F1   mov   cl,byte   ptr   [ebp<span class="number">-0</span>Fh]    </div><div class="line"><span class="number">0040106</span>A   <span class="number">88</span>   <span class="number">4</span>D   FC   mov   byte   ptr   [ebp<span class="number">-4</span>],cl    </div><div class="line"><span class="number">11</span>:   a   =   p[<span class="number">1</span>];    </div><div class="line"><span class="number">0040106</span>D   <span class="number">8B</span>   <span class="number">55</span>   EC   mov   edx,dword   ptr   [ebp<span class="number">-14</span>h]    </div><div class="line"><span class="number">00401070</span>   <span class="number">8</span>A   <span class="number">42</span>   <span class="number">01</span>   mov   al,byte   ptr   [edx+<span class="number">1</span>]    </div><div class="line"><span class="number">00401073</span>   <span class="number">88</span>   <span class="number">45</span>   FC   mov   byte   ptr   [ebp<span class="number">-4</span>],al</div></pre></td></tr></table></figure></p>
-<p>第一种在读取时直接就把字符串中的元素读到寄存器cl中，而第二种则要先把指针值读到<br>edx中，再根据edx读取字符，显然慢了。    </p>
+            <p><blockquote class="blockquote-center"><br>it’s my turn to fuck you<br></blockquote></p>
+<h3 id="TTP协议与TCP-IP协议的关系"><a href="#TTP协议与TCP-IP协议的关系" class="headerlink" title="TTP协议与TCP/IP协议的关系"></a>TTP协议与TCP/IP协议的关系</h3><p>HTTP的长连接和短连接本质上是TCP长连接和短连接。HTTP属于应用层协议，在传输层使用TCP协议，在网络层使用IP协议。IP协议主要解决网络路由和寻址问题，TCP协议主要解决如何在IP层之上可靠的传递数据包，使在网络上的另一端收到发端发出的所有包，并且顺序与发出顺序一致。TCP有可靠，面向连接的特点。</p>
+<h3 id="如何理解HTTP协议是无状态的"><a href="#如何理解HTTP协议是无状态的" class="headerlink" title="如何理解HTTP协议是无状态的"></a>如何理解HTTP协议是无状态的</h3><p>HTTP协议是无状态的，指的是协议对于事务处理没有记忆能力，服务器不知道客户端是什么状态。也就是说，打开一个服务器上的网页和你之前打开这个服务器上的网页之间没有任何联系。HTTP是一个无状态的面向连接的协议，无状态不代表HTTP不能保持TCP连接，更不能代表HTTP使用的是UDP协议（无连接）。</p>
+<h3 id="什么是长连接、短连接"><a href="#什么是长连接、短连接" class="headerlink" title="什么是长连接、短连接"></a>什么是长连接、短连接</h3><p>在HTTP/1.0中，默认使用的是短连接。也就是说，浏览器和服务器每进行一次HTTP操作，就建立一次连接，但任务结束就中断连接。如果客户端浏览器访问的某个HTML或其他类型的 Web页中包含有其他的Web资源，如JavaScript文件、图像文件、CSS文件等；当浏览器每遇到这样一个Web资源，就会建立一个HTTP会话。</p>
+<p>但从 HTTP/1.1起，默认使用长连接，用以保持连接特性。使用长连接的HTTP协议，会在响应头有加入这行代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Connection:keep-alive</div></pre></td></tr></table></figure></p>
+<p>在使用长连接的情况下，当一个网页打开完成后，客户端和服务器之间用于传输HTTP数据的 TCP连接不会关闭，如果客户端再次访问这个服务器上的网页，会继续使用这一条已经建立的连接。Keep-Alive不会永久保持连接，它有一个保持时间，可以在不同的服务器软件（如Apache）中设定这个时间。实现长连接要客户端和服务端都支持长连接。<br>HTTP协议的长连接和短连接，实质上是TCP协议的长连接和短连接。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// nginx设置</span></div><div class="line">http &#123;</div><div class="line">    keepalive_timeout  <span class="number">120</span>s <span class="number">120</span>s;</div><div class="line">    keepalive_requests <span class="number">10000</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="长连接和短连接的优点和缺点"><a href="#长连接和短连接的优点和缺点" class="headerlink" title="长连接和短连接的优点和缺点"></a>长连接和短连接的优点和缺点</h3><p>长连接可以省去较多的TCP建立和关闭的操作，减少浪费，节约时间。对于频繁请求资源的客户来说，较适用长连接。不过这里存在一个问题，存活功能的探测周期太长，还有就是它只是探测TCP连接的存活，属于比较斯文的做法，遇到恶意的连接时，保活功能就不够使了。在长连接的应用场景下，client端一般不会主动关闭它们之间的连接，Client与server之间的连接如果一直不关闭的话，会存在一个问题，随着客户端连接越来越多，server早晚有扛不住的时候，这时候server端需要采取一些策略，如关闭一些长时间没有读写事件发生的连接，这样可 以避免一些恶意连接导致server端服务受损；如果条件再允许就可以以客户端机器为颗粒度，限制每个客户端的最大长连接数，这样可以完全避免某个蛋疼的客户端连累后端服务。</p>
+<p>短连接对于服务器来说管理较为简单，存在的连接都是有用的连接，不需要额外的控制手段。但如果客户请求频繁，将在TCP的建立和关闭操作上浪费时间和带宽。</p>
+<p>长连接和短连接的产生在于client和server采取的关闭策略，具体的应用场景采用具体的策略，没有十全十美的选择，只有合适的选择。</p>
 <blockquote>
-<p><a href="http://blog.csdn.net/hairetz/article/details/4141043" target="_blank" rel="external">http://blog.csdn.net/hairetz/article/details/4141043</a></p>
+<p><a href="http://www.cnblogs.com/0201zcr/p/4694945.html" target="_blank" rel="external">http://www.cnblogs.com/0201zcr/p/4694945.html</a></p>
 </blockquote>
 
           
@@ -677,8 +450,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/08/12/年轻人别穷的心安理得/" itemprop="url">
-                  年轻人别穷的心安理得
+                <a class="post-title-link" href="/2017/08/21/流程控制的替代语法/" itemprop="url">
+                  流程控制的替代语法
                 </a>
               
             
@@ -691,8 +464,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-12T17:08:02+08:00" content="2017-08-12">
-              2017-08-12
+            <time itemprop="dateCreated" datetime="2017-08-21T14:58:36+08:00" content="2017-08-21">
+              2017-08-21
             </time>
           </span>
 
@@ -721,52 +494,211 @@
       
         
           
-            <p>前几天在机场，我和一个老同学擦肩。老同学见面无非就是问问现状，聊聊过往。</p>
-<p>想到那时，我们几个同学初到北京，几个刚毕业的年轻人在大城市打拼，生活动不动就拮据困顿。</p>
-<p>我们一面抱怨贫穷，一面又有些心安理得，不断的安慰自己，年轻时穷一点没什么的，将来一定会好起来的，我们又不是什么富二代，官二代，年轻时穷一点不是理所当然的嘛。</p>
-<p>何况再看看那些成天把钱挂在嘴边的人，要么是在手套厂做会计的小气阿姨，要么是带着大金链子的土肥圆小老板，多么庸俗市侩啊。</p>
-<p>那么多美好的事情等待着我去探索，股票和基金那些枯燥的数字还是留给我35岁以后的人生吧。</p>
-<p>二十几岁的人生大多如此，我们讨厌贫穷，却又心安理得的贫穷着。</p>
-<p>我知道我们都可以找出无数个理由可以说服别人，自己是穷得多么有理有据，理所当然，但是乔克叔叔今天却想说，不管你是20岁，还是30岁，都不要穷的心安理得，年轻人一定要趁早学会挣钱。</p>
-<p>1现实从来不是想象中那样岁月静好</p>
-<p>年轻时总觉得，管他的金钱和房子，做自己喜欢的事，尽情的月光、追星、梦想诗和远方，等过了三十岁自然而然地会关注股票和基金，自然而然的就会有钱买车买房，虽然不至于富甲一方，但也会有个两室两厅的小房子，全家人围在一起吃饭，小孩在旁边吵吵闹闹。</p>
-<p>然而事实是，你过了三十岁，依然一无所有，没有合适的人可以结婚，房子依然离你很遥远，这把年纪再说诗与远方你自己都想吐……</p>
-<p>网上流传着一个故事，一个女人去粥店吃早餐，因为皮蛋瘦肉粥里没有看到瘦肉而和老板争吵起来。</p>
-<p>老板解释说，瘦肉在熬粥的过程中熬化了。女人不信，两人越吵越激动，女人突然大哭起来。</p>
-<p>旁边的人纷纷安慰“为了一碗粥而已，不至于啦”。</p>
-<p>女人哭着说：“我哭的不是这个，我难过的是，为什么我30多岁了还因为这些鸡毛蒜皮跟人争吵，这不是我要的人生啊！”</p>
-<p>是啊，年轻时谁曾想过将来的人生会这样的尴尬不体面，可是眼下，又有多少三四十岁的人那样尴尬不体面的活着。</p>
-<p>现实从来没有我们想象中那样岁月静好，人生也绝不是从青年无产阶级自然过渡到中年中产阶级。</p>
-<p>20多岁不努力，30多岁只会让你成为一个老去10岁的穷人。</p>
-<p>年轻时，穷不是罪过，罪过的是穷的心安理得，不安于现状，却没有努力改变现状。</p>
-<p>2努力赚钱，才有条件去接触更美好的事</p>
-<p>前几天有个23岁的小朋友在后台跟我聊天：“乔克叔叔，我可能得抑郁症了”，然后巴拉巴拉说了一堆。</p>
-<p>听他倾诉完，我说：“你这不是抑郁，你这是想要的太多，拥有的太少，说白了就是没钱太闲综合症”。</p>
-<p>年轻时，最缺的就是钱，最充足的就是时间，于是总能衍生出很多烦恼。</p>
-<p>离家太远，房东人太烂，同事太难相处，日子太无聊，追个剧广告都越来越长…….</p>
-<p>有人说，生活中90%的烦恼都能用钱解决。</p>
-<p>年轻时的烦恼更是如此，你有理想，心怀诗和远方，想和世界上所有美好不期而遇。这很好，与挣钱、与世俗意义上的丰裕生活并不冲突。</p>
-<p>追求钱并不庸俗，经济学、投资学和哲学、诗歌一样浪漫伟大，钱给你节省时间，给你的人生更多选择权，可以更没顾虑的去做想做的事情。</p>
-<p>你可以学想学很久的国画，去帮助更多需要帮助的人，可以去带父母环游世界，可以投资给你认同的事业并为之摇旗呐喊，可以不用在爱情来临时，因为没有房，而和爱情失之交臂……</p>
-<p>3</p>
-<p>把“挣钱”当做一种技能去学</p>
-<p>罗伯特·清崎在《穷爸爸，富爸爸》中说，之所以世界上绝大多数的人，为了财富奋斗终生而不可得，其主要原因在于，虽然他们都曾在各种学校学习多年，却从未真正学习到关于金钱的知识。</p>
-<p>努力挣钱不是不择手段，甚至出卖自己灵魂的挣钱。</p>
-<p>而趁早关注房产、股票等各种投资理财渠道，学习基本的经济学知识，认真审视自己，学习将自己的优势转化成钞票的能力。</p>
-<p>否则，中年以后，你只能每天为生活疲于奔命，整个余生都在和不喜欢的人斗争，做自己不喜欢做的事。</p>
-<p>写到这里，乔克叔叔真的希望能有一条万能准则告诉你们，让看到这篇文章的朋友都能实现财务自由。</p>
-<p>然而事实是，每个人的情况都不一样，也没有这样一条准则可以放之四海皆准。</p>
-<p>我和从事理财专业的朋友聊了聊，然后结合我自己浅薄经验总结一些小Tips，希望对你们有所裨益。</p>
-<p>1学会存钱</p>
-<p>根据自己每月的固定收入，按照合适的比例固定存入一些。</p>
-<p>2养成记账的习惯</p>
-<p>分析自己每月的支出报表，找出每月能省掉的和必须花钱的地方。</p>
-<p>3如工资是收入唯一来源，请做好职业规划</p>
-<p>如果你每月的收入，唯一来自固定的薪水，就要好好规划一下职业发展，怎么完善自己可以有效快速的实现加薪。</p>
-<p>4努力让自己的收入变多元</p>
-<p>丰富自己的收入途径，比如你擅长写文章，写段子，或者画插画，从各种方面把这些优势变现。</p>
-<p>5学习投资理财</p>
-<p>当有一定的存款之后，就开始学习怎么用“钱”赚钱，可以从最安全的货币基金开始，然后再尝试更多。</p>
+            <p><blockquote class="blockquote-center"><br>当你厌恶你身边的人，你表达厌恶最好的方式不是和他们争吵，而是自己勤快点儿，加把劲离开他们。那样，他们就永远从你的生活中消失，和死了差不多。<br></blockquote></p>
+<h3 id="if语句的替代语法"><a href="#if语句的替代语法" class="headerlink" title="if语句的替代语法"></a>if语句的替代语法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">if</span> ($a == <span class="number">5</span>): <span class="meta">?&gt;</span></div><div class="line">  &lt;div&gt;等于<span class="number">5</span>&lt;/div&gt;</div><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">elseif</span> ($a == <span class="number">6</span>): <span class="meta">?&gt;</span></div><div class="line">  &lt;div&gt;等于<span class="number">5</span>&lt;/div&gt;</div><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">else</span>: <span class="meta">?&gt;</span></div><div class="line">  &lt;div&gt;不是<span class="number">5</span>就是<span class="number">6</span>&lt;/div&gt;</div><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">endif</span>; <span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="while替代语法"><a href="#while替代语法" class="headerlink" title="while替代语法"></a>while替代语法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">while</span> (expr): <span class="meta">?&gt;</span></div><div class="line">  &lt;li&gt;循环点什么&lt;/li&gt;</div><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">endwhile</span>; <span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="for替代语法："><a href="#for替代语法：" class="headerlink" title="for替代语法："></a>for替代语法：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">for</span> (expr1; expr2; expr3): <span class="meta">?&gt;</span></div><div class="line">  &lt;li&gt;循环点什么&lt;/li&gt;</div><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">endfor</span>; <span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">### foreach替代语法</span></div><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">foreach</span> (expr1): <span class="meta">?&gt;</span></div><div class="line">  &lt;li&gt;循环点什么&lt;/li&gt;</div><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">endforeach</span>; <span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="switch替代语法"><a href="#switch替代语法" class="headerlink" title="switch替代语法"></a>switch替代语法</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">switch</span> ($i):</div><div class="line">    <span class="keyword">case</span> <span class="number">0</span>:</div><div class="line">        <span class="keyword">echo</span> <span class="string">"i equals 0"</span>;</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">case</span> <span class="number">1</span>:</div><div class="line">        <span class="keyword">echo</span> <span class="string">"i equals 1"</span>;</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">case</span> <span class="number">2</span>:</div><div class="line">        <span class="keyword">echo</span> <span class="string">"i equals 2"</span>;</div><div class="line">        <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">        <span class="keyword">echo</span> <span class="string">"i is not equal to 0, 1 or 2"</span>;</div><div class="line"><span class="keyword">endswitch</span>;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/21/记录一次jquery的ajax请求错误/" itemprop="url">
+                  记录一次jquery的ajax请求错误
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-21T11:26:59+08:00" content="2017-08-21">
+              2017-08-21
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>天地不仁，以万物为刍狗<br></blockquote></p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>一向用的很好的chrome采集插件今天突然不工作了, 通过chrome的控制台查看, 原来的ajax 的post请求都变成了get,我靠, 看了一下代码没有改过啊<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">    type:<span class="string">"POST"</span>,</div><div class="line">    url:infoUrl,</div><div class="line">    data:data,</div><div class="line">    datatype: <span class="string">"json"</span>,</div><div class="line">    contentType: <span class="string">"application/x-www-form-urlencoded; charset=utf-8"</span>,</div><div class="line">    beforeSend:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        $(<span class="string">"#submit-info"</span>).html(<span class="string">"loading"</span>);</div><div class="line">    &#125;,</div><div class="line">    success:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">        chrome.storage.local.set(&#123;<span class="string">'return_product_id'</span>: data.data.id&#125;);</div><div class="line">        $(<span class="string">"#return_product_id"</span>).text(data.data.id);</div><div class="line">        alert(<span class="string">'产品创建成功, 可以开始上传图片了'</span>);</div><div class="line">        $(<span class="string">"#image-container"</span>).css(<span class="string">"display"</span>,<span class="string">"block"</span>);</div><div class="line">    &#125;,</div><div class="line">    complete: <span class="function"><span class="keyword">function</span>(<span class="params">XMLHttpRequest, textStatus</span>)</span>&#123;</div><div class="line">        $(<span class="string">"#submit-info"</span>).html(<span class="string">"提交信息"</span>);</div><div class="line">    &#125;,</div><div class="line">    error: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'error'</span>);</div><div class="line">        alert(<span class="string">'产品创建失败, 请联系开发者...'</span>);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>依然是post啊, 怎么发出去的请求就变成了get, 各种谷歌, 始终没有找到合适的解决办法…</p>
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>最近网站从原来的http升级为现在的https, 而我的请求还是原来的http, 所以就发生了这样的错误.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/18/php如何获得用户真实IP/" itemprop="url">
+                  php如何获得用户真实IP
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-18T09:24:01+08:00" content="2017-08-18">
+              2017-08-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>你心中的完美爱情是怎么样的？<br>可以有不完美。<br></blockquote></p>
+<h3 id="任何从客户端获得的资料都是不可信任的"><a href="#任何从客户端获得的资料都是不可信任的" class="headerlink" title="任何从客户端获得的资料都是不可信任的"></a>任何从客户端获得的资料都是不可信任的</h3><p>$_SERVER[‘HTTP_CLIENT_IP’]这个头是有的，但是很少，不一定服务器都实现了。客户端可以伪造。<br>$_SERVER[‘HTTP_X_FORWARDED_FOR’] 是有标准定义，用来识别经过HTTP代理后的客户端IP地址, 客户端可以伪造。<br>$_SERVER[‘REMOTE_ADDR’] 是可靠的， 它是最后一个跟你的服务器握手的IP，可能是用户的代理服务器，也可能是自己的反向代理。客户端不能伪造。</p>
+<h3 id="获取用户真实ip"><a href="#获取用户真实ip" class="headerlink" title="获取用户真实ip"></a>获取用户真实ip</h3><p>没有套CDN，用户直连我们的PHP服务器<br>这种情况下用tcp层握手的ip，$_SERVER[‘REMOTE_ADDR’]<br>自建集群用nginx实现负载均衡的时候<br>这种情况下，PHP应用服务器不能对外暴露，我们在nginx中实现获取真实IP再换发给PHP服务器。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">location /&#123;</div><div class="line">   proxy_set_header client-real-ip $remote_addr;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>client-real-ip 可以随意自己命名，我们将tcp层中跟nginx握手的ip转发给PHP。<br>使用CDN，从PHP服务器取源的时候<br>CDN会转发客户端的握手ip过来，各家策略有差异，具体去查CDN的文档。<br>当然我们也可以把需要严格核查的业务绑一个二级域名，单独走我们自己的nginx服务器，避开CDN。</p>
+<h3 id="宽松获取用户ip"><a href="#宽松获取用户ip" class="headerlink" title="宽松获取用户ip"></a>宽松获取用户ip</h3><p>种情况比较简单，也是大部分开源程序使用的方式，因为他们要适应最广泛的部署环境，<br>依次获取和过滤，$_SERVER[‘HTTP_CLIENT_IP’]，$_SERVER[‘HTTP_X_FORWARDED_FOR’]的第一个ip，$_SERVER[‘REMOTE_ADDR’]，谁先有值先用谁。注意这种方式，客户端可以提交假ip来欺骗服务器。</p>
+<p>PHP如何验证和过滤客户端提交过来的ip#</p>
+<p>推荐使用PHP自带的过滤器，<a href="http://php.net/manual/zh/function.filter-var.php" target="_blank" rel="external">http://php.net/manual/zh/function.filter-var.php</a></p>
+<p>$ip = filter_var($originIp, FILTER_VALIDATE_IP)</p>
+<h3 id="ip地址库"><a href="#ip地址库" class="headerlink" title="ip地址库"></a>ip地址库</h3><p>淘宝：<br><a href="http://ip.taobao.com/instructions.php" target="_blank" rel="external">http://ip.taobao.com/instructions.php</a></p>
+<p>国外：<br><a href="http://freegeoip.net/json/&#39;.$ip" target="_blank" rel="external">http://freegeoip.net/json/&#39;.$ip</a></p>
 
           
         
@@ -799,7 +731,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -840,7 +772,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">160</span>
+              <span class="site-state-item-count">165</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -850,7 +782,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

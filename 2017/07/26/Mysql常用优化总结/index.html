@@ -84,25 +84,18 @@
 
 
 
-<meta name="description" content="你这辈子只能靠自己。
-
-Like的参数以通配符开头时尽量避免Like的参数以通配符开头，否则数据库引擎会放弃使用索引而进行全表扫描。以通配符开头的sql语句，例如：1select * from t_credit_detail where Flistid like &apos;%0&apos;\G;
-使用！= 或 &amp;lt;&amp;gt; 操作符时尽量避免使用！= 或 &amp;lt;&amp;gt;操作符，否则数据库引擎会放弃使用索引而进行">
+<meta name="description" content="你这辈子只能靠自己。  Like的参数以通配符开头时尽量避免Like的参数以通配符开头，否则数据库引擎会放弃使用索引而进行全表扫描。以通配符开头的sql语句，例如：1select * from t_credit_detail where Flistid like &apos;%0&apos;\G; 使用！= 或 &amp;lt;&amp;gt; 操作符时尽量避免使用！= 或 &amp;lt;&amp;gt;操作符，否则数据库引擎会放弃使用索引而进行">
+<meta name="keywords" content="Mysql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql常用优化总结">
 <meta property="og:url" content="http://yangguoqi.me/2017/07/26/Mysql常用优化总结/index.html">
 <meta property="og:site_name" content="杨子鳄的小窝">
-<meta property="og:description" content="你这辈子只能靠自己。
-
-Like的参数以通配符开头时尽量避免Like的参数以通配符开头，否则数据库引擎会放弃使用索引而进行全表扫描。以通配符开头的sql语句，例如：1select * from t_credit_detail where Flistid like &apos;%0&apos;\G;
-使用！= 或 &amp;lt;&amp;gt; 操作符时尽量避免使用！= 或 &amp;lt;&amp;gt;操作符，否则数据库引擎会放弃使用索引而进行">
+<meta property="og:description" content="你这辈子只能靠自己。  Like的参数以通配符开头时尽量避免Like的参数以通配符开头，否则数据库引擎会放弃使用索引而进行全表扫描。以通配符开头的sql语句，例如：1select * from t_credit_detail where Flistid like &apos;%0&apos;\G; 使用！= 或 &amp;lt;&amp;gt; 操作符时尽量避免使用！= 或 &amp;lt;&amp;gt;操作符，否则数据库引擎会放弃使用索引而进行">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-07-26T09:37:51.689Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql常用优化总结">
-<meta name="twitter:description" content="你这辈子只能靠自己。
-
-Like的参数以通配符开头时尽量避免Like的参数以通配符开头，否则数据库引擎会放弃使用索引而进行全表扫描。以通配符开头的sql语句，例如：1select * from t_credit_detail where Flistid like &apos;%0&apos;\G;
-使用！= 或 &amp;lt;&amp;gt; 操作符时尽量避免使用！= 或 &amp;lt;&amp;gt;操作符，否则数据库引擎会放弃使用索引而进行">
+<meta name="twitter:description" content="你这辈子只能靠自己。  Like的参数以通配符开头时尽量避免Like的参数以通配符开头，否则数据库引擎会放弃使用索引而进行全表扫描。以通配符开头的sql语句，例如：1select * from t_credit_detail where Flistid like &apos;%0&apos;\G; 使用！= 或 &amp;lt;&amp;gt; 操作符时尽量避免使用！= 或 &amp;lt;&amp;gt;操作符，否则数据库引擎会放弃使用索引而进行">
 
 
 
@@ -307,8 +300,8 @@ Like的参数以通配符开头时尽量避免Like的参数以通配符开头，
 <li>3.绝对避免在order by子句中使用表达式。</li>
 </ul>
 <h3 id="GROUP-BY语句优化"><a href="#GROUP-BY语句优化" class="headerlink" title="GROUP BY语句优化"></a>GROUP BY语句优化</h3><p>提高GROUP BY 语句的效率, 可以通过将不需要的记录在GROUP BY 之前过滤掉</p>
-<p>低效:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> JOB , <span class="keyword">AVG</span>(SAL)</div><div class="line"><span class="keyword">FROM</span> EMP</div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">by</span> JOB</div><div class="line"><span class="keyword">HAVING</span> JOB = ‘PRESIDENT<span class="string">'</span></div><div class="line">OR JOB = ‘MANAGER';</div></pre></td></tr></table></figure></p>
-<p>高效:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> JOB , <span class="keyword">AVG</span>(SAL)</div><div class="line"><span class="keyword">FROM</span> EMP</div><div class="line"><span class="keyword">WHERE</span> JOB = ‘PRESIDENT<span class="string">'</span></div><div class="line">OR JOB = ‘MANAGER'</div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">by</span> JOB;</div></pre></td></tr></table></figure></p>
+<p>低效:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> JOB , <span class="keyword">AVG</span>(SAL)</div><div class="line"><span class="keyword">FROM</span> EMP</div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">by</span> JOB</div><div class="line"><span class="keyword">HAVING</span> JOB = ‘PRESIDENT<span class="string">'</span></div><div class="line"><span class="string">OR JOB = ‘MANAGER'</span>;</div></pre></td></tr></table></figure></p>
+<p>高效:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> JOB , <span class="keyword">AVG</span>(SAL)</div><div class="line"><span class="keyword">FROM</span> EMP</div><div class="line"><span class="keyword">WHERE</span> JOB = ‘PRESIDENT<span class="string">'</span></div><div class="line"><span class="string">OR JOB = ‘MANAGER'</span></div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">by</span> JOB;</div></pre></td></tr></table></figure></p>
 <h3 id="用-exists-代替-in"><a href="#用-exists-代替-in" class="headerlink" title="用 exists 代替 in"></a>用 exists 代替 in</h3><p>很多时候用 exists 代替 in 是一个好的选择：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">num</span> <span class="keyword">from</span> a <span class="keyword">where</span> <span class="keyword">num</span> <span class="keyword">in</span>(<span class="keyword">select</span> <span class="keyword">num</span> <span class="keyword">from</span> b);</div></pre></td></tr></table></figure></p>
 <p>用下面的语句替换：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">num</span> <span class="keyword">from</span> a <span class="keyword">where</span> <span class="keyword">exists</span>(<span class="keyword">select</span> <span class="number">1</span> <span class="keyword">from</span> b <span class="keyword">where</span> <span class="keyword">num</span>=a.num);</div></pre></td></tr></table></figure></p>
 <h3 id="使用-varchar-nvarchar-代替-char-nchar"><a href="#使用-varchar-nvarchar-代替-char-nchar" class="headerlink" title="使用 varchar/nvarchar 代替 char/nchar"></a>使用 varchar/nvarchar 代替 char/nchar</h3><p>尽可能的使用 varchar/nvarchar 代替 char/nchar ，因为首先变长字段存储空间小，可以节省存储空间，其次对于查询来说，在一个相对较小的字段内搜索效率显然要高些。</p>
@@ -426,7 +419,7 @@ Like的参数以通配符开头时尽量避免Like的参数以通配符开头，
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">160</span>
+              <span class="site-state-item-count">165</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -436,7 +429,7 @@ Like的参数以通配符开头时尽量避免Like的参数以通配符开头，
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

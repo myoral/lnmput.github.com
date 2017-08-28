@@ -84,19 +84,18 @@
 
 
 
-<meta name="description" content="人生本无意义，唯有寻趣。
-一个简单的例子123456789101112Event::listen(&apos;eloquent.created: App\User&apos;, function () &amp;#123;Log::info(&apos;haha&apos;);&amp;#125;);Route::get(&apos;hehe&apos;, function ()&amp;#123;\App\User::forceCreate([&apos;name&apos; =&amp;gt; &apos;yan">
+<meta name="description" content="人生本无意义，唯有寻趣。 一个简单的例子123456789101112Event::listen(&apos;eloquent.created: App\User&apos;, function () &amp;#123;Log::info(&apos;haha&apos;);&amp;#125;);Route::get(&apos;hehe&apos;, function ()&amp;#123;\App\User::forceCreate([&apos;name&apos; =&amp;gt; &apos;yan">
+<meta name="keywords" content="laravel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Laravel中的模型事件">
 <meta property="og:url" content="http://yangguoqi.me/2017/05/09/Laravel中的模型事件/index.html">
 <meta property="og:site_name" content="杨子鳄的小窝">
-<meta property="og:description" content="人生本无意义，唯有寻趣。
-一个简单的例子123456789101112Event::listen(&apos;eloquent.created: App\User&apos;, function () &amp;#123;Log::info(&apos;haha&apos;);&amp;#125;);Route::get(&apos;hehe&apos;, function ()&amp;#123;\App\User::forceCreate([&apos;name&apos; =&amp;gt; &apos;yan">
+<meta property="og:description" content="人生本无意义，唯有寻趣。 一个简单的例子123456789101112Event::listen(&apos;eloquent.created: App\User&apos;, function () &amp;#123;Log::info(&apos;haha&apos;);&amp;#125;);Route::get(&apos;hehe&apos;, function ()&amp;#123;\App\User::forceCreate([&apos;name&apos; =&amp;gt; &apos;yan">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-05-09T08:15:45.697Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Laravel中的模型事件">
-<meta name="twitter:description" content="人生本无意义，唯有寻趣。
-一个简单的例子123456789101112Event::listen(&apos;eloquent.created: App\User&apos;, function () &amp;#123;Log::info(&apos;haha&apos;);&amp;#125;);Route::get(&apos;hehe&apos;, function ()&amp;#123;\App\User::forceCreate([&apos;name&apos; =&amp;gt; &apos;yan">
+<meta name="twitter:description" content="人生本无意义，唯有寻趣。 一个简单的例子123456789101112Event::listen(&apos;eloquent.created: App\User&apos;, function () &amp;#123;Log::info(&apos;haha&apos;);&amp;#125;);Route::get(&apos;hehe&apos;, function ()&amp;#123;\App\User::forceCreate([&apos;name&apos; =&amp;gt; &apos;yan">
 
 
 
@@ -298,10 +297,10 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Events</span>\<span class="title">UserCreated</span>;</div><div class="line"></div><div class="line"><span class="keyword">protected</span> $events = [</div><div class="line">	<span class="string">'created'</span> =&gt; UserCreated::class</div><div class="line">];</div></pre></td></tr></table></figure>
 </li>
 <li><p>在监听文件中<br>app\Listeners\NotifyAdminUserCreated.php</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">(UserCreated $event)</span></span></div><div class="line">&#123;</div><div class="line">	$post = $event-&gt;post;</div><div class="line">	\Log::info($post);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">(UserCreated $event)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	$post = $event-&gt;post;</div><div class="line">	\Log::info($post);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>在事件文件中:<br>app\Events\UserCreated.php</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> $post;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($post)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">$this</span>-&gt;post = $post;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> $post;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($post)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">$this</span>-&gt;post = $post;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -411,7 +410,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">160</span>
+              <span class="site-state-item-count">165</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -421,7 +420,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">75</span>
+                <span class="site-state-item-count">81</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
