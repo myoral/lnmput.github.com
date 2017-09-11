@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="杨子鳄的小窝">
 <meta property="og:description" content="这段情，曾夏了夏天，后来却也冬了冬天 悲观锁操作前假设一切操作都可能发现并发冲突，所以采取悲观态度。通过加锁，屏蔽一切可能违反数据完整性的操作比方12select * from table for update;  --就是表锁select * from table where x = 1 for update; --就是行锁 当使用for update后，其它会话还是可以执行select操作，但">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-04T06:42:30.434Z">
+<meta property="og:updated_time" content="2017-08-28T15:33:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql中的共享锁和悲观锁以及共享锁和排他锁">
 <meta name="twitter:description" content="这段情，曾夏了夏天，后来却也冬了冬天 悲观锁操作前假设一切操作都可能发现并发冲突，所以采取悲观态度。通过加锁，屏蔽一切可能违反数据完整性的操作比方12select * from table for update;  --就是表锁select * from table where x = 1 for update; --就是行锁 当使用for update后，其它会话还是可以执行select操作，但">
@@ -288,7 +288,7 @@
 <h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p>操作前假设一切操作都可能发现并发冲突，所以采取悲观态度。通过加锁，屏蔽一切可能违反数据完整性的操作<br>比方<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">for</span> <span class="keyword">update</span>;  <span class="comment">--就是表锁</span></div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> x = <span class="number">1</span> <span class="keyword">for</span> <span class="keyword">update</span>; <span class="comment">--就是行锁</span></div></pre></td></tr></table></figure></p>
 <p>当使用<code>for update</code>后，其它会话还是可以执行select操作，但无法执行<code>select xx for update</code>操作，只有当前会话<code>commit</code>后，其它for update操作才会被执行。</p>
 <p>for update仅适用于InnoDB，且必须在事务块(BEGIN/COMMIT)中才能生效<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">BEGIN</span>;</div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">test</span> <span class="keyword">FOR</span> <span class="keyword">UPDATE</span>;</div><div class="line">SLEEP(20);</div><div class="line"><span class="keyword">COMMIT</span>;</div></pre></td></tr></table></figure></p>
-<h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>假定操作很少发生冲突，一般对于读多写少的情况。只在提交操作时检查是否违反数据完整性, 乐观锁不能解决脏读的问题。<br>可以通过版本号是否比上个版本号或者时间戳来实现。<br>对于冲突检测后的处理，需要业务逻辑去处理。</p>
+<h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>假定操作很少发生冲突，一般对于读多写少的情况。只在提交操作时检查是否违反数据完整性, 乐观锁不能解决脏读的问题。<br>可以通过版本号是否比上个版本号或者时间戳来实现， 也或者检查通过检查某个字段来实现；<br>对于冲突检测后的处理，需要业务逻辑去处理。</p>
 <h3 id="排它锁"><a href="#排它锁" class="headerlink" title="排它锁"></a>排它锁</h3><p>当数据对象被加上排它锁时，其他的事务不能对它读取和修改。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">BEGIN</span>;</div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">test</span> <span class="keyword">FOR</span> <span class="keyword">UPDATE</span>;</div><div class="line"><span class="keyword">COMMIT</span>;</div></pre></td></tr></table></figure></p>
 <h3 id="共享锁"><a href="#共享锁" class="headerlink" title="共享锁"></a>共享锁</h3><p>加了共享锁的数据对象可以被其他事务读取，但不能修改。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">from</span> city <span class="keyword">where</span> <span class="keyword">id</span> = <span class="string">"1"</span>  <span class="keyword">lock</span> <span class="keyword">in</span> <span class="keyword">share</span> <span class="keyword">mode</span>;</div></pre></td></tr></table></figure></p>
 
@@ -399,7 +399,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">165</span>
+              <span class="site-state-item-count">171</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -409,7 +409,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">81</span>
+                <span class="site-state-item-count">85</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

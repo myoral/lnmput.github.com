@@ -3,6 +3,132 @@
 
 
     
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/09/11/linux%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE/</loc>
+    <lastmod>2017-09-11T06:20:31.814Z</lastmod>
+    <data>
+        <display>
+        <title>linux环境变量设置</title>
+        <pubTime>2017-09-11T06:14:37.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>环境变量</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/09/10/Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/</loc>
+    <lastmod>2017-09-10T01:27:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>Mysql数据库主从同步</title>
+        <pubTime>2017-09-10T01:16:55.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/09/07/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-09-07T06:21:20.693Z</lastmod>
+    <data>
+        <display>
+        <title>依赖注入设计模式</title>
+        <pubTime>2017-09-07T06:02:47.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/08/30/PHP%E4%B8%AD%E7%9A%84Traits%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2017-08-30T05:38:42.067Z</lastmod>
+    <data>
+        <display>
+        <title>PHP中的Traits详解</title>
+        <pubTime>2017-08-30T03:27:17.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+        <tag>traits</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/08/30/%E7%AE%80%E5%8D%95%E8%AF%B4%E8%AF%B4PHP%E7%B1%BB%E6%96%B9%E6%B3%95%E7%9A%84%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8/</loc>
+    <lastmod>2017-08-30T03:47:33.745Z</lastmod>
+    <data>
+        <display>
+        <title>简单说说PHP类方法的链式调用</title>
+        <pubTime>2017-08-30T03:41:11.000Z</pubTime>
+        
+        <tag>php</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/08/29/Laravel%E4%B8%8B%E4%BD%BF%E7%94%A8Guzzle%E7%BC%96%E5%86%99%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98/</loc>
+    <lastmod>2017-08-29T06:28:49.748Z</lastmod>
+    <data>
+        <display>
+        <title>Laravel下使用Guzzle编写多线程爬虫实战</title>
+        <pubTime>2017-08-29T06:20:07.000Z</pubTime>
+        
+        <tag>并发</tag>
+         
+        <tag>多线程</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/08/03/mysql%E4%B8%AD%E7%9A%84%E5%85%B1%E4%BA%AB%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81%E4%BB%A5%E5%8F%8A%E5%85%B1%E4%BA%AB%E9%94%81%E5%92%8C%E6%8E%92%E4%BB%96%E9%94%81/</loc>
+    <lastmod>2017-08-28T15:33:57.000Z</lastmod>
+    <data>
+        <display>
+        <title>mysql中的共享锁和悲观锁以及共享锁和排他锁</title>
+        <pubTime>2017-08-03T13:25:36.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>http://yangguoqi.me/2017/08/28/PHP%E8%BE%93%E5%87%BA%E7%BC%93%E5%86%B2%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/</loc>
     <lastmod>2017-08-28T03:26:06.567Z</lastmod>
@@ -140,7 +266,6 @@
     </url>
 
     
-    
   <url>
     <loc>http://yangguoqi.me/2017/08/23/uv%E5%92%8Cpv%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
     <lastmod>2017-08-23T08:07:18.917Z</lastmod>
@@ -242,9 +367,9 @@
          
         <tag>php</tag>
          
-        <tag>IP</tag>
-         
         <tag>python投票</tag>
+         
+        <tag>IP</tag>
          
          
            
@@ -320,11 +445,11 @@
         
         <tag>科普</tag>
          
-        <tag>常识</tag>
-         
         <tag>加密</tag>
          
         <tag>签名</tag>
+         
+        <tag>常识</tag>
          
          
            
@@ -541,23 +666,6 @@
         <pubTime>2017-08-07T01:11:56.000Z</pubTime>
         
         <tag>移动web</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yangguoqi.me/2017/08/03/mysql%E4%B8%AD%E7%9A%84%E5%85%B1%E4%BA%AB%E9%94%81%E5%92%8C%E6%82%B2%E8%A7%82%E9%94%81%E4%BB%A5%E5%8F%8A%E5%85%B1%E4%BA%AB%E9%94%81%E5%92%8C%E6%8E%92%E4%BB%96%E9%94%81/</loc>
-    <lastmod>2017-08-04T06:42:30.434Z</lastmod>
-    <data>
-        <display>
-        <title>mysql中的共享锁和悲观锁以及共享锁和排他锁</title>
-        <pubTime>2017-08-03T13:25:36.000Z</pubTime>
-        
-        <tag>mysql</tag>
          
          
            
@@ -790,9 +898,9 @@
         <title>PHP-cURL多线程模拟并发请求</title>
         <pubTime>2017-07-24T11:58:49.000Z</pubTime>
         
-        <tag>php</tag>
-         
         <tag>并发</tag>
+         
+        <tag>php</tag>
          
          
            
