@@ -242,6 +242,314 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/24/PHP反射类ReflectionClass/" itemprop="url">
+                  PHP反射类ReflectionClass
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-24T14:22:29+08:00" content="2016-08-24">
+              2016-08-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>我讨厌变老，当我们力量衰弱的时候如果出现更强的敌人，我会觉得很恐怖，很遗憾。<br></blockquote></p>
+<h3 id="基本说明"><a href="#基本说明" class="headerlink" title="基本说明"></a>基本说明</h3><p>先定义一个User类<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> $username;</div><div class="line">    <span class="keyword">private</span> $password;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"login"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"registert"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>实例化并调用其中的方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$user = <span class="keyword">new</span> User();</div><div class="line">$user-&gt;login();</div></pre></td></tr></table></figure></p>
+<p>实例化User类的反射类并调用其中的一个方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$reUser = <span class="keyword">new</span> \ReflectionClass(<span class="string">'User'</span>);</div><div class="line">var_dump($reUser-&gt;getFileName());</div></pre></td></tr></table></figure></p>
+<p>说明：ReflectionClass类获取类相关信息，如获取属性、方法、文档注释等；</p>
+<h3 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h3><ul>
+<li>通过_call可以调用类一些不确定的方法，这个时候就可以通过反射类ReflectionClass来判断类方法是否存在，是不是可见可调用的。</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">actionA</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"I'am A\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">actionB</span> <span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"I'am B\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> $objects;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;objects=<span class="keyword">array</span>();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span><span class="params">($t)</span></span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;objects[]=$t;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">pp</span><span class="params">()</span></span>&#123;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//调用不可见的方法或者没有的方法都会走到这里</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span><span class="params">($name,$args)</span></span>&#123;</div><div class="line">        <span class="keyword">foreach</span>(<span class="keyword">$this</span>-&gt;objects <span class="keyword">as</span> $object)&#123;</div><div class="line">            $class=<span class="keyword">new</span> ReflectionClass($object);</div><div class="line">            <span class="keyword">if</span>(!$class-&gt;hasMethod($name))&#123;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            &#125;</div><div class="line">            $method=$class-&gt;getMethod($name);</div><div class="line">            <span class="keyword">if</span>($method&amp;&amp;$method-&gt;isPublic()&amp;&amp;!$method-&gt;isAbstract())&#123;</div><div class="line">                $method-&gt;invoke($object,$args);</div><div class="line">                <span class="keyword">return</span> ;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"not method!\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">$t=<span class="keyword">new</span> test();</div><div class="line">$t-&gt;add(<span class="keyword">new</span> A());</div><div class="line">$t-&gt;add(<span class="keyword">new</span> B());</div><div class="line">$t-&gt;pp(); <span class="comment">//不可见方法</span></div><div class="line">$t-&gt;actionA();</div><div class="line">$t-&gt;actionB();</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/24/PHP函数call-user-func-array用法/" itemprop="url">
+                  PHP函数call_user_func_array用法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-24T12:13:26+08:00" content="2016-08-24">
+              2016-08-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>无她，唯手熟尔<br></blockquote></p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>调用函数<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span><span class="params">($b, $c)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">  <span class="keyword">echo</span> $b;</div><div class="line">  <span class="keyword">echo</span> $c;</div><div class="line">&#125;</div><div class="line">call_user_func_array(<span class="string">'a'</span>, <span class="keyword">array</span>(<span class="string">"111"</span>, <span class="string">"222"</span>));</div><div class="line"><span class="comment">//显示 111 222</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>调用静态方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">Class</span> <span class="title">ClassA</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">bc</span><span class="params">($b, $c)</span> </span>&#123;</div><div class="line">	$bc = $b + $c;</div><div class="line">	  <span class="keyword">echo</span> $bc;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">call_user_func_array(<span class="keyword">array</span>(<span class="string">'ClassA'</span>,<span class="string">'bc'</span>), <span class="keyword">array</span>(<span class="string">"111"</span>, <span class="string">"222"</span>));</div><div class="line"><span class="comment">//显示 333</span></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>说明：这样就可以用数组的方式给类的方法传入必要的参数</p>
+<p>调用普通方法<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Hello, World!"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$a = <span class="keyword">new</span> MyClass();</div><div class="line">call_user_func(<span class="keyword">array</span>($a, <span class="string">'hello'</span>));</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/08/24/PHP大量数据循环时内存耗尽问题的解决方案/" itemprop="url">
+                  PHP大量数据循环时内存耗尽问题的解决方案
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-24T10:52:33+08:00" content="2016-08-24">
+              2016-08-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote class="blockquote-center"><br>我的肺功能快衰竭了，没有两天了，请大家不要打钱了，谢谢大家这段时间的帮助，希望来生没有痛苦。—魏则西<br></blockquote>
+
+<p>最近在开发一个PHP程序时遇到了下面的错误：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PHP Fatal error: Allowed memory size of <span class="number">268</span> <span class="number">435</span> <span class="number">456</span> bytes exhausted</div></pre></td></tr></table></figure></p>
+<p>错误信息显示允许的最大内存已经耗尽。遇到这样的错误起初让我很诧异，但转眼一想，也不奇怪，因为我正在开发的这个程序是要用一个foreach循环语句在一个有4万条记录的表里全表搜索具有特定特征的数据，也就是说，一次要把4万条数据取出，然后逐条检查每天数据。可想而知，4万条数据全部加载到内存中，内存不爆才怪。</p>
+<p>毕竟编程这么多年，我隐约记得PHP里提供有非一次全部加载数据的API，是像处理流媒体那样，随用随取随丢、数据并不会积累在内存的查询方法。经过简单的搜索，果然在官方网站上找到的正确的用法。</p>
+<p>这个问题在PHP的官方网站上叫缓冲查询和非缓冲查询(Buffered and Unbuffered queries)。 PHP的查询缺省模式是缓冲模式。也就是说，查询数据结果会一次全部提取到内存里供PHP程序处理。这样给了PHP程序额外的功能，比如说，计算行数，将 指针指向某一行等。更重要的是程序可以对数据集反复进行二次查询和过滤等操作。但这种缓冲查询模式的缺陷就是消耗内存，也就是用空间换速度。</p>
+<p>相对的，另外一种PHP查询模式是非缓冲查询，数据库服务器会一条一条的返回数据，而不是一次全部返回，这样的结果就是PHP程序消耗较少的内存，但却增加了数据库服务器的压力，因为数据库会一直等待PHP来取数据，一直到数据全部取完。</p>
+<p>很显然，缓冲查询模式适用于小数据量查询，而非缓冲查询适应于大数据量查询。</p>
+<p>对于PHP的缓冲模式查询大家都知道，下面列举的例子是如何执行非缓冲查询API。</p>
+<h3 id="非缓冲查询方法一-mysqli"><a href="#非缓冲查询方法一-mysqli" class="headerlink" title="非缓冲查询方法一: mysqli"></a>非缓冲查询方法一: mysqli</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line">$mysqli  = <span class="keyword">new</span> mysqli(<span class="string">"localhost"</span>, <span class="string">"my_user"</span>, <span class="string">"my_password"</span>, <span class="string">"world"</span>); </div><div class="line">$uresult = $mysqli-&gt;query(<span class="string">"SELECT Name FROM City"</span>, MYSQLI_USE_RESULT); </div><div class="line"></div><div class="line"><span class="keyword">if</span> ($uresult) &#123; </div><div class="line">   <span class="keyword">while</span> ($row = $uresult-&gt;fetch_assoc()) &#123; </div><div class="line">       <span class="keyword">echo</span> $row[<span class="string">'Name'</span>] . PHP_EOL; </div><div class="line">   &#125; </div><div class="line">&#125; </div><div class="line">$uresult-&gt;close(); </div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="非缓冲查询方法二-pdo-mysql"><a href="#非缓冲查询方法二-pdo-mysql" class="headerlink" title="非缓冲查询方法二: pdo_mysql"></a>非缓冲查询方法二: pdo_mysql</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line">$pdo = <span class="keyword">new</span> PDO(<span class="string">"mysql:host=localhost;dbname=world"</span>, <span class="string">'my_user'</span>, <span class="string">'my_pass'</span>); </div><div class="line">$pdo-&gt;setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, <span class="keyword">false</span>); </div><div class="line"></div><div class="line">$uresult = $pdo-&gt;query(<span class="string">"SELECT Name FROM City"</span>); </div><div class="line"><span class="keyword">if</span> ($uresult) &#123; </div><div class="line">   <span class="keyword">while</span> ($row = $uresult-&gt;fetch(PDO::FETCH_ASSOC)) &#123; </div><div class="line">       <span class="keyword">echo</span> $row[<span class="string">'Name'</span>] . PHP_EOL; </div><div class="line">   &#125; </div><div class="line">&#125; </div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="非缓冲查询方法三-mysql"><a href="#非缓冲查询方法三-mysql" class="headerlink" title="非缓冲查询方法三: mysql"></a>非缓冲查询方法三: mysql</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line">$conn = mysql_connect(<span class="string">"localhost"</span>, <span class="string">"my_user"</span>, <span class="string">"my_pass"</span>); </div><div class="line">$db   = mysql_select_db(<span class="string">"world"</span>); </div><div class="line"></div><div class="line">$uresult = mysql_unbuffered_query(<span class="string">"SELECT Name FROM City"</span>); </div><div class="line"><span class="keyword">if</span> ($uresult) &#123; </div><div class="line">   <span class="keyword">while</span> ($row = mysql_fetch_assoc($uresult)) &#123; </div><div class="line">       <span class="keyword">echo</span> $row[<span class="string">'Name'</span>] . PHP_EOL; </div><div class="line">   &#125; </div><div class="line">&#125; </div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="http://www.codeceo.com/article/php-foreach-memory.html" target="_blank" rel="external">http://www.codeceo.com/article/php-foreach-memory.html</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/23/自定义任务调度进程/" itemprop="url">
                   自定义任务调度进程
                 </a>
@@ -437,314 +745,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/22/深入理解PHP原理之foreach/" itemprop="url">
-                  深入理解PHP原理之foreach
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-22T10:17:37+08:00" content="2016-08-22">
-              2016-08-22
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>我们走得太快，灵魂都跟不上了 …<br></blockquote><br>今天偶然看到鸟哥(php)的博客‘ 深入理解PHP原理之foreach’，可惜自己功力尚欠，内部的机理看不明白，但也稍微记录一下，毕竟这个问题自己以前从来没有考虑过。</p>
-<h4 id="以下内容摘自鸟哥的博客"><a href="#以下内容摘自鸟哥的博客" class="headerlink" title="以下内容摘自鸟哥的博客"></a>以下内容摘自鸟哥的博客</h4><p>经常会有人问我, PHP的数组, 如果用foreach来访问, 遍历的顺序是固定的么? 以什么顺序遍历呢?<br>比如:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$arr[<span class="string">'laruence'</span>] = <span class="string">'huixinchen'</span>;</div><div class="line">$arr[<span class="string">'yahoo'</span>]    = <span class="number">2007</span>;</div><div class="line">$arr[<span class="string">'baidu'</span>]    = <span class="number">2008</span>;</div><div class="line"><span class="keyword">foreach</span> ($arr <span class="keyword">as</span> $key =&gt; $val) &#123;</div><div class="line"><span class="comment">//结果是什么?</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>结果：<br>huixinchen20072008</p>
-<p>又比如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$arr[<span class="number">2</span>] = <span class="string">'huixinchen'</span>;</div><div class="line">$arr[<span class="number">1</span>]  = <span class="number">2007</span>;</div><div class="line">$arr[<span class="number">0</span>]  = <span class="number">2008</span>;</div><div class="line"><span class="keyword">foreach</span> ($arr <span class="keyword">as</span> $key =&gt; $val) &#123;</div><div class="line"><span class="comment">//现在结果又是什么?</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>结果：<br>huixinchen 2007 2008</p>
-<p>要完全了解清楚这个问题, 我想首先应该要大家了解PHP数组的内部实现结构………<br>在PHP中, 数组是用一种HASH结构(HashTable)来实现的, PHP使用了一些机制, 使得可以在O(1)的时间复杂度下实现数组的增删, 并同时支持线性遍历和随机访问.</p>
-<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>PHP中遍历数组的顺序, 是和元素的添加先后相关的；<br>所以, 如果你想在数字索引的数组中按照索引大小遍历, 那么你就应该使用for, 而不是foreach<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>($i=<span class="number">0</span>,$l=count($arr); $i&lt;$l; $i++) &#123;</div><div class="line"> <span class="comment">//这个时候,不能认为是顺序遍历(线性遍历)</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/18/laravel-session的使用/" itemprop="url">
-                  laravel-session的使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-18T20:06:12+08:00" content="2016-08-18">
-              2016-08-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>幸福，不是长生不老，不是大鱼大肉，不是权倾朝野。幸福是每一个微小的生活愿望达成。当你想吃的时候有得吃，想被爱的时候有人来爱你。<br></blockquote><br>Laravel 默认使用 file 的方式来实现 session的。她并不用php原生的$_SESSION（php原生的session要看php.ini的位置），所以忽略php相关的session函数，例如session_start(), $_SESSION。Laravel在运行过程中会在app/storage/session/目录写入session的信息，所以这个目录需要有写权限，否者session就无法写入成功。</p>
-<p>Laravel除了使用默认的file作为session的实现，还支持cookie, Memcached, Redis 和数据库的后端驱动作为session的实现。必要的时候还需要自己实现一个session的实现方式，比如在微信公众账号和用户的交互，这中session就无法直接使用，因为每次都是微信服务器来请求，无法通过请求的来源来辨别用户。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//session的永久保存（在不过期范围内）</span></div><div class="line">Session::put(<span class="string">'key'</span>, <span class="string">'value'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//等同于PHP的原生session</span></div><div class="line">$_SESSION[<span class="string">'key'</span>] = <span class="string">'value'</span>;</div><div class="line"> </div><div class="line"><span class="comment">//get操作</span></div><div class="line">$value = Session::get(<span class="string">'key'</span>, <span class="string">'default'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//去除操作并删除，类似pop概念</span></div><div class="line">$value = Session::pull(<span class="string">'key'</span>, <span class="string">'default'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//检测是否存在key</span></div><div class="line">Session::has(<span class="string">'users'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//删除key</span></div><div class="line">Session::forget(<span class="string">'key'</span>);</div></pre></td></tr></table></figure>
-<h3 id="laravel的session中flash概念"><a href="#laravel的session中flash概念" class="headerlink" title="laravel的session中flash概念"></a>laravel的session中flash概念</h3><p>这个flash两次请求有效（本次和下次请求有效），与本次请求取操作多少次无关。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//保存key，value</span></div><div class="line">Session::flash(<span class="string">'key'</span>, <span class="string">'value'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//取值方法还是一样的</span></div><div class="line">Session::get(<span class="string">'key'</span>);</div><div class="line"> </div><div class="line"><span class="comment">//刷新快闪数据时间，保持到下次请求</span></div><div class="line">Session::keep(<span class="keyword">array</span>(<span class="string">'username'</span>, <span class="string">'email'</span>))</div></pre></td></tr></table></figure>
-<p>这个flash的概念和上面的put的概念不太一样。</p>
-<p>put ：这个对应只要session不过期，基本上是永久保存，下次请求也是存在的。<br>flash ：保存的值，本次请求可以使用，下次http请求可以使用，再下一次就不存在了。<br>也就是说下一次的请求用完就被销毁了，不会让session的值变的越来越大，可以保存一些临时的数据。</p>
-<p>这中情况的使用场景比如有：</p>
-<p>用户请求了页面，出现错误信息，重定向到一个新的页面，需要展示之前的数据。（虽然可以通过url参数来传递，处理不好可能会有xss漏洞）。<br>用户访问了一个页面，过滤器发现没权限，保存当前页面url，重定向到登录页面，登录成功，取出值，重定向到原先的页面。（这里可能需要刷新保存的快闪数据）</p>
-<h3 id="session落地的时间"><a href="#session落地的时间" class="headerlink" title="session落地的时间"></a>session落地的时间</h3><p>我天真的以为使用了Session::put函数就能保存这个变量了。于是我的代码这样写：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoginController</span> </span>&#123;</div><div class="line"> </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span><span class="params">()</span></span>&#123;</div><div class="line">        Session::put(<span class="string">'key'</span>,<span class="string">'value'</span>); </div><div class="line">        print_r( Session::all() ); <span class="comment">//取出来看看是否put成功</span></div><div class="line">        <span class="keyword">exit</span>;   <span class="comment">//习惯性的调试都exit，不执行后续代码</span></div><div class="line">        <span class="comment">//return Redirect::to(/); 框架在return后还会有后续的代码执行的</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>结果下次请求就是找不到本次的Session，而且看app/storage/session目录就是没有文件生成。总感觉不对劲啊。</p>
-<p>后来看到网络上有个方法Session::save()，于是我也用了下，居然发现成功的生成了session的文件。于是我感觉到，Laravel不用php原生的session，那么在controller之后应该做了一些事情，将session写入到文件中，而不是每次put操作都写操作，这样会IO操作太频繁的，影响性能的。<br>可以看见，在调用完controller之后，调用了session-&gt;save()的方法，来主动的保存session。这样session才能落地保存起来，如果在controller或者view里面写了exit;，那么session是不会被保存的，除非主动的写Session::save()才能手工的保存起来。</p>
-<blockquote>
-<p><a href="https://www.chenyudong.com/archives/laravel-session-use.html" target="_blank" rel="external">https://www.chenyudong.com/archives/laravel-session-use.html</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/18/PHP设置会话Session超时过期时间实现登录时间限制/" itemprop="url">
-                  PHP设置会话Session超时过期时间实现登录时间限制
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-18T19:49:10+08:00" content="2016-08-18">
-              2016-08-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>我亦只有一个一生，不能慷慨赠予我不爱的人。<br></blockquote></p>
-<h3 id="设置php-ini配置文件"><a href="#设置php-ini配置文件" class="headerlink" title="设置php.ini配置文件"></a>设置php.ini配置文件</h3><p>第一种方法即设置php.ini配置文件，设置session.gc_maxlifetime和session.cookie_lifetime节点属性值，当然也可以使用ini_set函数改变当前上下文环境的属性值：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ini_set(<span class="string">'session.gc_maxlifetime'</span>, <span class="string">"3600"</span>); <span class="comment">// 秒</span></div><div class="line">ini_set(<span class="string">"session.cookie_lifetime"</span>,<span class="string">"3600"</span>); <span class="comment">// 秒</span></div></pre></td></tr></table></figure></p>
-<h3 id="设置Session时间戳"><a href="#设置Session时间戳" class="headerlink" title="设置Session时间戳"></a>设置Session时间戳</h3><p>第二种方法即设置Session时间戳，比如下面的办法。<br>在登录成功时设置时间戳为当前时间推后1小时，$_SESSION[‘expiretime’] = time() + 3600;。在检查用户登录情况使用如下代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_SESSION[<span class="string">'expiretime'</span>])) &#123;</div><div class="line">    <span class="keyword">if</span>($_SESSION[<span class="string">'expiretime'</span>] &lt; time()) &#123;</div><div class="line">        <span class="keyword">unset</span>($_SESSION[<span class="string">'expiretime'</span>]);</div><div class="line">        header(<span class="string">'Location: logout.php?TIMEOUT'</span>); <span class="comment">// 登出</span></div><div class="line">        <span class="keyword">exit</span>(<span class="number">0</span>);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        $_SESSION[<span class="string">'expiretime'</span>] = time() + <span class="number">3600</span>; <span class="comment">// 刷新时间戳</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p><a href="http://wangye.org/blog/archives/933/" target="_blank" rel="external">http://wangye.org/blog/archives/933/</a><br><a href="http://www.laruence.com/2012/01/10/2469.html" target="_blank" rel="external">http://www.laruence.com/2012/01/10/2469.html</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -790,7 +790,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">171</span>
+              <span class="site-state-item-count">174</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -800,7 +800,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">85</span>
+                <span class="site-state-item-count">86</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

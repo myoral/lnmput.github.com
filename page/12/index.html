@@ -242,6 +242,311 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/18/怎样理解阻塞非阻塞与同步异步的区别/" itemprop="url">
+                  怎样理解阻塞非阻塞与同步异步的区别
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-18T10:47:12+08:00" content="2017-06-18">
+              2017-06-18
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>千万不要让你本来努力就能获得的东西因为懈怠而失去了机会。<br></blockquote><br>“阻塞”与”非阻塞”与”同步”与“异步”不能简单的从字面理解，提供一个从分布式系统角度的回答。</p>
+<h3 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h3><p>同步与异步同步和异步关注的是消息通信机制 (synchronous communication/ asynchronous communication)所谓同步，就是在发出一个<em>调用</em>时，在没有得到结果之前，该<em>调用</em>就不返回。但是一旦调用返回，就得到返回值了。换句话说，就是由<em>调用者</em>主动等待这个<em>调用</em>的结果。而异步则是相反，<em>调用</em>在发出之后，这个调用就直接返回了，所以没有返回结果。换句话说，当一个异步过程调用发出后，调用者不会立刻得到结果。而是在<em>调用</em>发出后，<em>被调用者</em>通过状态、通知来通知调用者，或通过回调函数处理这个调用。典型的异步编程模型比如Node.js举个通俗的例子：你打电话问书店老板有没有《分布式系统》这本书，如果是同步通信机制，书店老板会说，你稍等，”我查一下”，然后开始查啊查，等查好了（可能是5秒，也可能是一天）告诉你结果（返回结果）。而异步通信机制，书店老板直接告诉你我查一下啊，查好了打电话给你，然后直接挂电话了（不返回结果）。然后查好了，他会主动打电话给你。在这里老板通过“回电”这种方式来回调。</p>
+<h3 id="阻塞与非阻塞"><a href="#阻塞与非阻塞" class="headerlink" title="阻塞与非阻塞"></a>阻塞与非阻塞</h3><p>阻塞与非阻塞阻塞和非阻塞关注的是程序在等待调用结果（消息，返回值）时的状态.阻塞调用是指调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果之后才会返回。非阻塞调用指在不能立刻得到结果之前，该调用不会阻塞当前线程。还是上面的例子，你打电话问书店老板有没有《分布式系统》这本书，你如果是阻塞式调用，你会一直把自己“挂起”，直到得到这本书有没有的结果，如果是非阻塞式调用，你不管老板有没有告诉你，你自己先一边去玩了， 当然你也要偶尔过几分钟check一下老板有没有返回结果。在这里阻塞与非阻塞与是否同步异步无关。跟老板通过什么方式回答你结果无关。</p>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/19732473/answer/20851256" target="_blank" rel="external">https://www.zhihu.com/question/19732473/answer/20851256</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/16/PHP扩展和包的管理PEAR-PECL-Composer/" itemprop="url">
+                  PHP扩展和包的管理PEAR-PECL-Composer
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-16T10:24:18+08:00" content="2017-06-16">
+              2017-06-16
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>其实要说梦想的话, 我的梦想就是多赚点儿钱…<br></blockquote><br>扩展（Extension）一般偏底层，包（Application，Package）一般偏应用。不建议做过分的区分，在使用中能够理解和区分即可。<br>对于他们的管理目前有PEAR、PECL、Composer。</p>
+<h3 id="PEAR"><a href="#PEAR" class="headerlink" title="PEAR"></a>PEAR</h3><p>PEAR是PHP扩展与应用库(the PHP Extension and Application Repository)的缩写。<a href="http://pear.php.net/" target="_blank" rel="external">http://pear.php.net/</a><br>Bakken在1999年创立了PEAR项目，目标是试图定义一种标准，帮助开发者编写可移植、可重用的代码，避免重复发明“车轮”。代码均是PHP编写的。<br>涵盖了页面呈现、数据库访问、文件操作、数据结构、缓存操作、网络协议、WebService 等许多方面，用户可以通过下载这些类库，并适当的作一些定制以实现自己需要的功能。<br>但是随着Git、github等发展，其逐渐被Composer包管理替代。</p>
+<h3 id="PECL"><a href="#PECL" class="headerlink" title="PECL"></a>PECL</h3><p>“PHP Extension Community Library”的缩写，即PHP 扩展库。<a href="https://pecl.php.net/" target="_blank" rel="external">https://pecl.php.net/</a><br>PECL是使用C语言开发的，通常用于补充一些用PHP难以完成的底层功能，往往需要重新编译或者在配置文件中设置后才能在用户自己的代码中使用。<br>2种使用方式：<br>命令模式，和pear的命令一致，通过man pecl显示此命令的用法<br>编译模式，即phpize</p>
+<h3 id="Composer"><a href="#Composer" class="headerlink" title="Composer"></a>Composer</h3><p>PHP包管理工具，在“帮助开发者编写可移植、可重用的代码，避免重复发明“车轮””上和PEAR有相同的目标和思想，但是composer的包一般放在github、bitbucket等上，通过packagist 可以浏览上传等</p>
+<h3 id="以Yaml安装使用为例"><a href="#以Yaml安装使用为例" class="headerlink" title="以Yaml安装使用为例"></a>以Yaml安装使用为例</h3><h4 id="pecl安装"><a href="#pecl安装" class="headerlink" title="pecl安装"></a>pecl安装</h4><p><a href="http://php.net/manual/zh/install.pecl.pear.php" target="_blank" rel="external">http://php.net/manual/zh/install.pecl.pear.php</a></p>
+<p>pecl install yaml<br>这将下载 yaml 的源代码，编译之，并将 yaml.so 安装到扩展库目录 extension_dir 中。然后 yaml.so就可以通过 php.ini 加载了。</p>
+<h4 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h4><p><a href="http://php.net/manual/zh/install.pecl.phpize.php" target="_blank" rel="external">http://php.net/manual/zh/install.pecl.phpize.php</a><br>有时候不能用 pecl 安装命令。这可能是因为在防火墙后面，或者是因为想要安装的扩展库还没有 PECL 兼容的包，例如 SVN 中尚未发布的扩展库。<br>如果要编译这种扩展库，可以用更底层的编译工具来手工进行编译。phpize 命令是用来准备 PHP 扩展库的编译环境的。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ wget https:<span class="comment">//pecl.php.net/get/yaml-1.3.0.tgz</span></div><div class="line">$ tar -xzvf yaml<span class="number">-1.3</span><span class="number">.0</span>.tgz</div><div class="line">$ cd yaml<span class="number">-1.3</span><span class="number">.0</span></div><div class="line">$ phpize</div><div class="line">$ ./configure</div><div class="line">$ make</div><div class="line">$ make install</div></pre></td></tr></table></figure></p>
+<p>成功的安装将创建 yaml.so 并放置于 PHP 的扩展库目录 extension_dir 中。需要调整 php.ini 加入 extension=yaml.so 这一行之后才能使用此扩展库。<br>使用 phpize –help 命令可以显示此命令用法。</p>
+<h4 id="composer"><a href="#composer" class="headerlink" title="composer"></a>composer</h4><p>可以参看文档 <a href="http://www.jianshu.com/p/f0b9a319711f" target="_blank" rel="external">http://www.jianshu.com/p/f0b9a319711f</a></p>
+<p>composer require mustangostang/spyc<br>目前主流的方式，对于偏底层的扩展通过编译方式安装，对于偏应用的通过composer方式。</p>
+<blockquote>
+<p><a href="http://www.jianshu.com/p/d8b75dbc852a" target="_blank" rel="external">http://www.jianshu.com/p/d8b75dbc852a</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/06/15/php使用fsockopen传送post到别的url并取得回应的内容/" itemprop="url">
+                  php使用fsockopen传送post到别的url并取得回应的内容
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-15T14:49:22+08:00" content="2017-06-15">
+              2017-06-15
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>几年前踏上火车那一刻都还没有意识到，从此故乡只有冬夏，再无春秋。<br></blockquote><br>如果不需要傳送參數或是使用GET method傳送</p>
+<p>可以直接使用fopen()或是file_get_contents()函式獲得回應內容<br>但是如果需要不經過表單就送出POST給某URL<br>就需要使用curl相關函式或是fsockopen()傳送</p>
+<p>curl的用法比較簡單<br>可以咕狗看看(但是php必須要先安裝curl才可以用)<br>這邊要講的是fsockopen()</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//接收POST參數的URL</span></div><div class="line">$url = <span class="string">'http://www.google.com'</span>;</div><div class="line"><span class="comment">//POST參數,在這個陣列裡,索引是name,值是value,沒有限定組數</span></div><div class="line">$postdata = <span class="keyword">array</span>(<span class="string">'post_name'</span>=&gt;<span class="string">'post_value'</span>,<span class="string">'acc'</span>=&gt;<span class="string">'hsin'</span>,<span class="string">'nick'</span>=&gt;<span class="string">'joe'</span>);</div><div class="line"><span class="comment">//函式回覆的值就是取得的內容</span></div><div class="line">$result = sendpost($url,$postdata);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendpost</span><span class="params">($url, $data)</span></span>&#123;</div><div class="line"><span class="comment">//先解析url 取得的資訊可以看看http://www.php.net/parse_url</span></div><div class="line">$url = parse_url($url);</div><div class="line">$url_port = $url[<span class="string">'port'</span>]==<span class="string">''</span>?(($url[<span class="string">'scheme'</span>]==<span class="string">'https'</span>)?<span class="number">443</span>:<span class="number">80</span>):$url[<span class="string">'port'</span>];</div><div class="line"><span class="keyword">if</span>(!$url) <span class="keyword">return</span> <span class="string">"couldn't parse url"</span>;</div><div class="line"><span class="comment">//對要傳送的POST參數作處理</span></div><div class="line">$encoded = <span class="string">""</span>;</div><div class="line"><span class="keyword">while</span>(<span class="keyword">list</span>($k,$v)=each($data))&#123;</div><div class="line">  $encoded .= ($encoded?<span class="string">'&amp;'</span>:<span class="string">''</span>);</div><div class="line">  $encoded .= rawurlencode($k).<span class="string">"="</span>.rawurlencode($v);</div><div class="line">&#125;</div><div class="line"><span class="comment">//開啟一個socket</span></div><div class="line">$fp = fsockopen($url[<span class="string">'host'</span>],$url_port);</div><div class="line"><span class="keyword">if</span>(!$fp) <span class="keyword">return</span> <span class="string">"Failed to open socket to "</span>.$url[<span class="string">'host'</span>];</div><div class="line"><span class="comment">//header的資訊</span></div><div class="line">fputs($fp,<span class="string">'POST '</span>.$url[<span class="string">'path'</span>].($url[<span class="string">'query'</span>]?<span class="string">'?'</span>.$url[<span class="string">'query'</span>]:<span class="string">''</span>).<span class="string">" HTTP/1.0rn"</span>);</div><div class="line">fputs($fp,<span class="string">"Host: "</span>.$url[<span class="string">'host'</span>].<span class="string">"n"</span>);</div><div class="line">fputs($fp,<span class="string">"Content-type: application/x-www-form-urlencodedn"</span>);</div><div class="line">fputs($fp,<span class="string">"Content-length: "</span>.strlen($encoded).<span class="string">"n"</span>);</div><div class="line">fputs($fp,<span class="string">"Connection: closenn"</span>);</div><div class="line">fputs($fp,$encoded.<span class="string">"n"</span>);</div><div class="line"><span class="comment">//取得回應的內容</span></div><div class="line">$line = fgets($fp,<span class="number">1024</span>);</div><div class="line"><span class="keyword">if</span>(!eregi(<span class="string">"^HTTP/1.. 200"</span>, $line)) <span class="keyword">return</span>;</div><div class="line">$results = <span class="string">""</span>;</div><div class="line">$inheader = <span class="number">1</span>;</div><div class="line"><span class="keyword">while</span>(!feof($fp))&#123;</div><div class="line">  $line = fgets($fp,<span class="number">2048</span>);</div><div class="line">  <span class="keyword">if</span>($inheader&amp;&amp;($line == <span class="string">"n"</span> || $line == <span class="string">"rn"</span>))&#123;</div><div class="line">    $inheader = <span class="number">0</span>;</div><div class="line">  &#125;<span class="keyword">elseif</span>(!$inheader)&#123;</div><div class="line">    $results .= $line;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">fclose($fp);</div><div class="line"><span class="keyword">return</span> $results;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="http://inspiregate.com/programming/php/26-php-to-use-fsockopen-to-send-post-to-another-url-and-get-to-respond-to-the-content.html" target="_blank" rel="external">http://inspiregate.com/programming/php/26-php-to-use-fsockopen-to-send-post-to-another-url-and-get-to-respond-to-the-content.html</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/06/13/php中-POST和php-input的区别/" itemprop="url">
                   php中$_POST和php://input的区别
                 </a>
@@ -420,300 +725,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/11/PHP魔术函数之-sleep和-wakeup/" itemprop="url">
-                  PHP魔术函数之__sleep和__wakeup
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-11T10:25:53+08:00" content="2017-06-11">
-              2017-06-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>最重要的东西,用眼睛是看不见的。<br></blockquote><br>在PHP5中有两个魔术方法<strong>sleep()方法和</strong>wakeup()方法，在对象串行化的时候，会调用一个<strong>sleep()方法来完成一 些睡前的事情；而在重新醒来，即由二进制串重新组成一个对象的时候，则会自动调用PHP的另一个函数</strong>wakeup()，做一些对象醒来就要做的动作。</p>
-<p><strong>sleep()函数不接受任何参数， 但返回一个数组，其中包含需要串行化的属性。末被包含的属性将在串行化时被忽略，如果没有</strong>sleep()方法，PHP将保存所有属性。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="comment">//下面是人的成员属性</span></div><div class="line">    <span class="keyword">var</span> $name;  <span class="comment">//人的名子</span></div><div class="line">    <span class="keyword">var</span> $sex;   <span class="comment">//人的性别</span></div><div class="line">    <span class="keyword">var</span> $age;   <span class="comment">//人的年龄</span></div><div class="line"></div><div class="line">    <span class="comment">//定义一个构造方法参数为属性姓名$name、性别$sex和年龄$age进行赋值</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($name = <span class="string">""</span>, $sex = <span class="string">""</span>, $age = <span class="string">""</span>)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">$this</span>-&gt;name = $name;</div><div class="line">        <span class="keyword">$this</span>-&gt;sex = $sex;</div><div class="line">        <span class="keyword">$this</span>-&gt;age = $age;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//这个人可以说话的方法, 说出自己的属性</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">say</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"我的名子叫："</span> . <span class="keyword">$this</span>-&gt;name . <span class="string">" 性别："</span> . <span class="keyword">$this</span>-&gt;sex . <span class="string">" 我的年龄是："</span> . <span class="keyword">$this</span>-&gt;age . <span class="string">"&lt;br&gt;"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__sleep</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="comment">// <span class="doctag">TODO:</span> Implement __sleep() method.</span></div><div class="line">        $arr = <span class="keyword">array</span>(<span class="string">"name"</span>, <span class="string">"age"</span>); <span class="comment">// 此时，属性$sex将被删除！！！</span></div><div class="line">        <span class="keyword">return</span> $arr;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="comment">// <span class="doctag">TODO:</span> Implement __wakeup() method.</span></div><div class="line">        <span class="keyword">$this</span>-&gt;age = <span class="number">40</span>;  <span class="comment">//重新生成对象时，并重新赋值$age为40</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">$p1 = <span class="keyword">new</span> Person(<span class="string">"张三"</span>, <span class="string">"男"</span>, <span class="number">20</span>);</div><div class="line">$p1_string = serialize($p1);    <span class="comment">//把一个对象串行化，返一个字符串</span></div><div class="line"><span class="keyword">echo</span> $p1_string . <span class="string">"&lt;br&gt;"</span>;     <span class="comment">//串行化的字符串我们通常不去解析</span></div><div class="line">$p2 = unserialize($p1_string);  <span class="comment">//把一个串行化的字符串反串行化形成对象$p2</span></div><div class="line">$p2-&gt;say();</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/11/php中json-encode和serialize对比/" itemprop="url">
-                  php中json_encode和serialize对比
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-11T09:55:24+08:00" content="2017-06-11">
-              2017-06-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote class="blockquote-center"><br>如果毫不费力，你就是在浪费时间<br></blockquote>
-
-<h3 id="json-encode"><a href="#json-encode" class="headerlink" title="json_encode"></a>json_encode</h3><p>PHP Version &gt;= 5.0.0<br>Nesting Limit of 20.<br>PHP Version &gt;= 5.2.3<br>Nesting Limit of 128.<br>PHP Version &gt;= 5.3.0<br>Nesting Limit of 512.<br>Small footprint vs PHP’s serialize’d string.<br>serialize() &amp; unserialize()</p>
-<h3 id="serialize"><a href="#serialize" class="headerlink" title="serialize"></a>serialize</h3><p>PHP Version &gt;= 4.0.0<br>You’re storing objects that need to be unserialized as the correct class(反序列化的对象依然可以被正常调用)</p>
-<h3 id="Serialization-of-‘Closure’-is-not-allowed"><a href="#Serialization-of-‘Closure’-is-not-allowed" class="headerlink" title="Serialization of ‘Closure’ is not allowed"></a>Serialization of ‘Closure’ is not allowed</h3><p>Apparently anonymous functions cannot be serialized.(匿名函数不能被序列化)</p>
-<p>Example<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$function = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">"ABC"</span>;</div><div class="line">&#125;;</div><div class="line">serialize($function); <span class="comment">// would throw error</span></div></pre></td></tr></table></figure></p>
-<p>You can try this:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">emailCallback</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'ZendMail_'</span> . microtime(<span class="keyword">true</span>) . <span class="string">'.tmp'</span>;</div><div class="line">&#125;</div><div class="line">$callback = <span class="string">"emailCallback"</span> ;</div><div class="line"></div><div class="line">serialize($callback); <span class="comment">// success</span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/06/08/WebWorker通信/" itemprop="url">
-                  WebWorker通信
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-06-08T09:37:06+08:00" content="2017-06-08">
-              2017-06-08
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>生活就是这样，<br>在你最糟的时候，会遇到最好的人。<br></blockquote></p>
-<h3 id="Web-Worker是什么"><a href="#Web-Worker是什么" class="headerlink" title="Web Worker是什么"></a>Web Worker是什么</h3><p>Web Worker 是HTML5标准的一部分，这一规范定义了一套 API，它允许一段JavaScript程序运行在主线程之外的另外一个线程中。Web Worker 规范中定义了两类工作线程，分别是专用线程Dedicated Worker和共享线程 Shared Worker，其中，Dedicated Worker只能为一个页面所使用，而Shared Worker则可以被多个页面所共享，本文示例为专用线程Dedicated Worker。<br>web worker 是运行在后台的 JavaScript，不会影响页面的性能。</p>
-<h3 id="例子一-简单通信"><a href="#例子一-简单通信" class="headerlink" title="例子一: 简单通信"></a>例子一: 简单通信</h3><p>index.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.bootcss.com/socket.io/1.7.2/socket.io.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">var worker = new Worker("task.js");</span></div><div class="line"><span class="undefined">worker.postMessage(</span></div><div class="line"><span class="undefined">        &#123;</span></div><div class="line"><span class="undefined">id:1,</span></div><div class="line"><span class="undefined">msg:'Hello World'</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined">    );</span></div><div class="line"><span class="undefined">worker.onmessage=function(message)&#123;</span></div><div class="line"><span class="undefined">var data = message.data;</span></div><div class="line"><span class="undefined">console.log(JSON.stringify(data));</span></div><div class="line"><span class="undefined">worker.terminate();</span></div><div class="line"><span class="undefined">&#125;;</span></div><div class="line"><span class="undefined">worker.onerror=function(error)&#123;</span></div><div class="line"><span class="undefined">console.log(error.filename,error.lineno,error.message);</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>task.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">onmessage= <span class="function"><span class="keyword">function</span>(<span class="params">message</span>)</span>&#123;</div><div class="line"><span class="keyword">var</span> data=message.data;</div><div class="line">data.msg = <span class="string">'Hi from task.js'</span>;</div><div class="line">postMessage(data);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="例子二-计数功能"><a href="#例子二-计数功能" class="headerlink" title="例子二: 计数功能"></a>例子二: 计数功能</h3><p>index.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="keyword">var</span> worker = <span class="keyword">new</span> Worker(<span class="string">"task.js"</span>);</span></div><div class="line"><span class="javascript">worker.onmessage=<span class="function"><span class="keyword">function</span>(<span class="params">message</span>)</span>&#123;</span></div><div class="line"><span class="javascript"><span class="keyword">var</span> data = message.data;</span></div><div class="line"><span class="javascript"><span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(data));</span></div><div class="line"><span class="javascript"><span class="comment">//终止woker</span></span></div><div class="line"><span class="javascript">        <span class="comment">//worker.terminate();</span></span></div><div class="line"><span class="undefined">&#125;;</span></div><div class="line"><span class="javascript">worker.onerror=<span class="function"><span class="keyword">function</span>(<span class="params">error</span>)</span>&#123;</span></div><div class="line"><span class="javascript"><span class="built_in">console</span>.log(error.filename,error.lineno,error.message);</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>task.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i=<span class="number">0</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">timedCount</span>(<span class="params"></span>)</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">i=i+<span class="number">1</span>;</div><div class="line">postMessage(i);</div><div class="line">setTimeout(<span class="string">"timedCount()"</span>,<span class="number">500</span>);</div><div class="line">&#125;</div><div class="line">timedCount();</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -759,7 +770,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">171</span>
+              <span class="site-state-item-count">174</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -769,7 +780,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">85</span>
+                <span class="site-state-item-count">86</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

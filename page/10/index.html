@@ -242,6 +242,308 @@
             
               
                 
+                <a class="post-title-link" href="/2017/07/26/php的trim无法去掉空格/" itemprop="url">
+                  php的trim无法去掉空格
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-26T10:35:52+08:00" content="2017-07-26">
+              2017-07-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>多少次我们无醉不欢<br>咒骂人生太短 唏嘘相见恨晚<br></blockquote></p>
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><p>在php开发过程中，使用trim想去掉空格，不成功；<br>打印出来字符串，后面确实带有空格，在控制台又显示有<code>&amp;nbsp;</code>（此处所指的nbsp是实体，而不是nbsp四个字符）<br>后来改用str_replace来去掉空格，依然失败；<br>到底是什么原因，于是刚开始想到了是不是全角和半角的空格问题；试着换成全角的空格，依然失败；<br>后来又使用escape尝试输出，发现是xa0，于是就想trim($converted, “xa0”)，无果<br>在php手册的trim函数下评论中发现：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">trim($otmp, chr(<span class="number">0xc2</span>) . chr(<span class="number">0xa0</span>))</div></pre></td></tr></table></figure></p>
+<p>使用后，成功去掉空格；另外，str_replace也可使用：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$otmp = str_replace(chr(<span class="number">0xc2</span>) . chr(<span class="number">0xa0</span>), <span class="string">''</span>, $otmp);</div></pre></td></tr></table></figure></p>
+<p>效果一样，成功解决~~~<br>ps:此空格产生的原因是，我在获取到html代码之后strip_tags去掉所有标签，而产生了一些实体空格</p>
+<h3 id="html实体"><a href="#html实体" class="headerlink" title="html实体"></a>html实体</h3><p>在 HTML 中，某些字符是预留的。<br>在 HTML 中不能使用小于号（&lt;）和大于号（&gt;），这是因为浏览器会误认为它们是标签。<br>如果希望正确地显示预留字符，我们必须在 HTML 源代码中使用字符实体（character entities）。<br>字符实体类似这样：&amp;entity_name;或者&amp;#entity_number;<br>如需显示小于号，我们必须这样写： <code>&amp;lt;</code>  或  <code>&amp;#60;</code><br>提示：使用实体名而不是数字的好处是，名称易于记忆。不过坏处是，浏览器也许并不支持所有实体名称（对实体数字的支持却很好）。<br>不间断空格（non-breaking space）<br>HTML 中的常用字符实体是不间断空格( <code>&amp;nbsp;</code> )。<br>浏览器总是会截短 HTML 页面中的空格。如果您在文本中写 10 个空格，在显示该页面之前，浏览器会删除它们中的 9 个。如需在页面中增加空格的数量，您需要使用 <code>&amp;nbsp;</code> 字符实体。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/25/使用swoole异步发送邮件/" itemprop="url">
+                  使用swoole异步发送邮件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-25T14:42:39+08:00" content="2017-07-25">
+              2017-07-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>父母在时，人生尚有来处。<br>父母去时，人生只剩归途。<br></blockquote></p>
+<h3 id="安装swoole"><a href="#安装swoole" class="headerlink" title="安装swoole"></a>安装swoole</h3><p>pecl 安装:<br><code>pecl install swoole</code></p>
+<p>看命令行提示，如果它提示说没有写php.ini，则自己手动在PHP.ini后面加上：<br><code>extension = &quot;swoole.so&quot;</code></p>
+<h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Server</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="keyword">private</span> $serv;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;serv = <span class="keyword">new</span> swoole_server(<span class="string">"0.0.0.0"</span>, <span class="number">9501</span>);</div><div class="line">        <span class="keyword">$this</span>-&gt;serv-&gt;set(<span class="keyword">array</span>(</div><div class="line">            <span class="string">'worker_num'</span> =&gt; <span class="number">1</span>,   <span class="comment">//一般设置为服务器CPU数的1-4倍</span></div><div class="line">            <span class="string">'daemonize'</span> =&gt; <span class="number">1</span>,  <span class="comment">//以守护进程执行</span></div><div class="line">            <span class="string">'max_request'</span> =&gt; <span class="number">10000</span>,</div><div class="line">            <span class="string">'dispatch_mode'</span> =&gt; <span class="number">2</span>,</div><div class="line">            <span class="string">'task_worker_num'</span> =&gt; <span class="number">8</span>,  <span class="comment">//task进程的数量</span></div><div class="line">            <span class="string">"task_ipc_mode "</span> =&gt; <span class="number">3</span> ,  <span class="comment">//使用消息队列通信，并设置为争抢模式</span></div><div class="line">            <span class="comment">//"log_file" =&gt; "log/taskqueueu.log" ,//日志</span></div><div class="line">        ));</div><div class="line">        <span class="keyword">$this</span>-&gt;serv-&gt;on(<span class="string">'Receive'</span>, <span class="keyword">array</span>(<span class="keyword">$this</span>, <span class="string">'onReceive'</span>));</div><div class="line">        <span class="comment">// bind callback</span></div><div class="line">        <span class="keyword">$this</span>-&gt;serv-&gt;on(<span class="string">'Task'</span>, <span class="keyword">array</span>(<span class="keyword">$this</span>, <span class="string">'onTask'</span>));</div><div class="line">        <span class="keyword">$this</span>-&gt;serv-&gt;on(<span class="string">'Finish'</span>, <span class="keyword">array</span>(<span class="keyword">$this</span>, <span class="string">'onFinish'</span>));</div><div class="line">        <span class="keyword">$this</span>-&gt;serv-&gt;start();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onReceive</span><span class="params">( swoole_server $serv, $fd, $from_id, $data )</span> </span>&#123;</div><div class="line">        <span class="comment">//echo "Get Message From Client &#123;$fd&#125;:&#123;$data&#125;n";</span></div><div class="line">        <span class="comment">// send a task to task worker.</span></div><div class="line">        $serv-&gt;task( $data );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onTask</span><span class="params">($serv,$task_id,$from_id, $data)</span> </span>&#123;</div><div class="line">        $array = json_decode( $data , <span class="keyword">true</span> );</div><div class="line">        <span class="keyword">if</span> ($array[<span class="string">'url'</span>]) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;httpGet( $array[<span class="string">'url'</span>] , $array[<span class="string">'param'</span>]  );</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onFinish</span><span class="params">($serv,$task_id, $data)</span> </span>&#123;</div><div class="line">        <span class="comment">//echo "Task &#123;$task_id&#125; finishn";</span></div><div class="line">        <span class="comment">//echo "Result: &#123;$data&#125;n";</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">httpGet</span><span class="params">($url,$data)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span> ($data) &#123;</div><div class="line">            $url .=<span class="string">'?'</span>.http_build_query($data) ;</div><div class="line">        &#125;</div><div class="line">        $curlObj = curl_init();    <span class="comment">//初始化curl，</span></div><div class="line">        curl_setopt($curlObj, CURLOPT_URL, $url);   <span class="comment">//设置网址</span></div><div class="line">        curl_setopt($curlObj, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);  <span class="comment">//将curl_exec的结果返回</span></div><div class="line">        curl_setopt($curlObj, CURLOPT_SSL_VERIFYPEER, <span class="keyword">FALSE</span>);</div><div class="line">        curl_setopt($curlObj, CURLOPT_SSL_VERIFYHOST, <span class="keyword">FALSE</span>);</div><div class="line">        curl_setopt($curlObj, CURLOPT_HEADER, <span class="number">0</span>);         <span class="comment">//是否输出返回头信息</span></div><div class="line">        $response = curl_exec($curlObj);   <span class="comment">//执行</span></div><div class="line">        curl_close($curlObj);          <span class="comment">//关闭会话</span></div><div class="line">        <span class="keyword">return</span> $response;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line">$server = <span class="keyword">new</span> Server();</div></pre></td></tr></table></figure>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Client</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="keyword">private</span> $client;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;client = <span class="keyword">new</span> swoole_client(SWOOLE_SOCK_TCP);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">connect</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>( !<span class="keyword">$this</span>-&gt;client-&gt;connect(<span class="string">"127.0.0.1"</span>, <span class="number">9501</span> , <span class="number">1</span>) ) &#123;</div><div class="line">            <span class="keyword">echo</span> <span class="string">"Connect Error"</span>;</div><div class="line">        &#125;</div><div class="line">        $data = <span class="keyword">array</span>(</div><div class="line">            <span class="string">"url"</span> =&gt;  <span class="string">"http://192.168.10.19/send_mail"</span> ,</div><div class="line">            <span class="string">"param"</span> =&gt; <span class="keyword">array</span>(</div><div class="line">                <span class="string">"username"</span>=&gt;<span class="string">'test'</span>,</div><div class="line">                <span class="string">"password"</span> =&gt; <span class="string">'test'</span></div><div class="line">            )</div><div class="line">        );</div><div class="line">        $json_data = json_encode($data);</div><div class="line">        <span class="keyword">$this</span>-&gt;client-&gt;send( $json_data );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$client = <span class="keyword">new</span> Client();</div><div class="line">$client-&gt;connect();</div></pre></td></tr></table></figure>
+<h3 id="查看与关闭"><a href="#查看与关闭" class="headerlink" title="查看与关闭"></a>查看与关闭</h3><p>swoole好像没有很便捷的关闭方式。所以只能直接通过关闭进程来关闭。<br>查看命令：<br><code>ps -ef | grep php</code></p>
+<p>结束单个进程：<br><code>kill -9 {进程号}</code></p>
+<p>结束所有进程的命令：<br><code>killall -9 php</code></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/24/PHP-cURL多线程模拟并发请求/" itemprop="url">
+                  PHP-cURL多线程模拟并发请求
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-24T19:58:49+08:00" content="2017-07-24">
+              2017-07-24
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>钱是买不到幸福的, 因为他本身就是幸福<br></blockquote></p>
+<h3 id="PHP-cURL所有函数列表："><a href="#PHP-cURL所有函数列表：" class="headerlink" title="PHP cURL所有函数列表："></a>PHP cURL所有函数列表：</h3><p><a href="http://php.net/manual/zh/ref.curl.php]http://php.net/manual/zh/ref.curl.php" target="_blank" rel="external">http://php.net/manual/zh/ref.curl.php]http://php.net/manual/zh/ref.curl.php</a></p>
+<p>以下是PHP中cURL多线程相关函数：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">curl_multi_add_handle — 向curl批处理会话中添加单独的curl句柄</div><div class="line">curl_multi_close — 关闭一组cURL句柄</div><div class="line">curl_multi_exec — 运行当前 cURL 句柄的子连接</div><div class="line">curl_multi_getcontent — 如果设置了CURLOPT_RETURNTRANSFER，则返回获取的输出的文本流</div><div class="line">curl_multi_info_read — 获取当前解析的cURL的相关传输信息</div><div class="line">curl_multi_init — 返回一个新cURL批处理句柄</div><div class="line">curl_multi_remove_handle — 移除curl批处理句柄资源中的某个句柄资源</div><div class="line">curl_multi_select — 等待所有cURL批处理中的活动连接</div><div class="line">curl_multi_setopt — 为 cURL 并行处理设置一个选项</div><div class="line">curl_multi_strerror — <span class="keyword">Return</span> string describing error code</div></pre></td></tr></table></figure></p>
+<p>一般来说，想到要用这些函数时，目的显然应该是要同时请求多个URL，而不是一个一个依次请求，否则不如自己循环去调curl_exec好了。</p>
+<p>步骤总结如下：</p>
+<p>1、调用curl_multi_init，初始化一个批处理handle<br>2、循环调用 curl_multi_add_handle，往1中的批处理handle 添加curl_init来的子handle<br>3、持续调用 curl_multi_exec，直到所有子handle执行完毕。<br>4、根据需要循环调用 curl_multi_getcontent 获取结果<br>5、调用 curl_multi_remove_handle，并为每个字handle调用curl_close<br>6、调用 curl_multi_close</p>
+<p>以下是一个通过并发请求抓取网页的demo：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$urls = <span class="keyword">array</span>(</div><div class="line">    <span class="string">'https://979137.com/'</span>,</div><div class="line">    <span class="string">'http://www.sina.com.cn/'</span>,</div><div class="line">    <span class="string">'http://www.sohu.com/'</span>,</div><div class="line">    <span class="string">'http://www.163.com/'</span></div><div class="line">);   </div><div class="line"><span class="comment">//1、初始化一个批处理handle</span></div><div class="line">$mh = curl_multi_init();</div><div class="line"> </div><div class="line"><span class="comment">//2、往批处理handle 添加curl_init来的子handle</span></div><div class="line"><span class="keyword">foreach</span> ($urls <span class="keyword">as</span> $i =&gt; $url) &#123;   </div><div class="line">    $conn[$i] = curl_init($url);   </div><div class="line">    curl_setopt($conn[$i], CURLOPT_HEADER, <span class="number">0</span>);   </div><div class="line">    curl_setopt($conn[$i], CURLOPT_CONNECTTIMEOUT, <span class="number">60</span>);   </div><div class="line">    curl_setopt($conn[$i], CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);  </div><div class="line">    curl_multi_add_handle($mh, $conn[$i]);   </div><div class="line">&#125;   </div><div class="line"></div><div class="line"><span class="comment">//3、并发执行，直到全部结束。</span></div><div class="line"><span class="keyword">do</span> &#123;   </div><div class="line">    curl_multi_exec($mh, $active);   </div><div class="line">&#125; <span class="keyword">while</span> ($active);   </div><div class="line"> </div><div class="line"><span class="comment">//4、获取结果</span></div><div class="line"><span class="keyword">foreach</span> ($urls <span class="keyword">as</span> $i =&gt; $url) &#123;   </div><div class="line">    $data = curl_multi_getcontent($conn[$i]);</div><div class="line">    <span class="keyword">echo</span> ($data);</div><div class="line">    <span class="keyword">echo</span> <span class="string">'&lt;hr /&gt;'</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//5、移除子handle，并close子handle</span></div><div class="line"><span class="keyword">foreach</span> ($urls <span class="keyword">as</span> $i =&gt; $url) &#123;   </div><div class="line">  curl_multi_remove_handle($mh,$conn[$i]);   </div><div class="line">  curl_close($conn[$i]);   </div><div class="line">&#125;   </div><div class="line"> </div><div class="line"><span class="comment">//6、关闭批处理handle</span></div><div class="line">curl_multi_close($mh);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><a href="https://979137.com/archives/133.html" target="_blank" rel="external">https://979137.com/archives/133.html</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/07/19/python中的协程/" itemprop="url">
                   python中的协程
                 </a>
@@ -427,302 +729,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/16/indexeddb的简单使用/" itemprop="url">
-                  indexeddb的简单使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-16T22:00:12+08:00" content="2017-07-16">
-              2017-07-16
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>有一天你会知道，人生没有我并不会不同<br></blockquote><br>存储在IndexedDB里的数据是永久保存，不像cookies那样只是临时的。IndexedDB里提供了查询数据的功能，在online和offline模式下都能使用。你可以用IndexedDB存储大型数据。</p>
-<h3 id="IndexedDB-具有以下特点。"><a href="#IndexedDB-具有以下特点。" class="headerlink" title="IndexedDB 具有以下特点。"></a>IndexedDB 具有以下特点。</h3><p>（1）键值对储存。 IndexedDB 内部采用对象仓库（object store）存放数据。所有类型的数据都可以直接存入，包括 JavaScript 对象。在对象仓库中，数据以“键值对”的形式保存，每一个数据都有对应的键名，键名是独一无二的，不能有重复，否则会抛出一个错误。<br>（2）异步。 IndexedDB 操作时不会锁死浏览器，用户依然可以进行其他操作，这与 LocalStorage 形成对比，后者的操作是同步的。异步设计是为了防止大量数据的读写，拖慢网页的表现。<br>（3）支持事务。 IndexedDB 支持事务（transaction），这意味着一系列操作步骤之中，只要有一步失败，整个事务就都取消，数据库回到事务发生之前的状态，不存在只改写一部分数据的情况。<br>（4）同域限制 IndexedDB 也受到同域限制，每一个数据库对应创建该数据库的域名。来自不同域名的网页，只能访问自身域名下的数据库，而不能访问其他域名下的数据库。<br>（5）储存空间大 IndexedDB 的储存空间比 LocalStorage 大得多，一般来说不少于250MB。IE的储存上限是250MB，Chrome和Opera是剩余空间的某个百分比，Firefox 则没有上限。<br>（6）支持二进制储存。 IndexedDB 不仅可以储存字符串，还可以储存二进制数据。</p>
-<h3 id="API实例"><a href="#API实例" class="headerlink" title="API实例"></a>API实例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    <span class="keyword">if</span>(<span class="string">'indexedDB'</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</div><div class="line"></div><div class="line">        <span class="keyword">let</span> openRequest = indexedDB.open(<span class="string">"yangzie"</span>,<span class="number">5</span>);</div><div class="line">        <span class="keyword">let</span> db;</div><div class="line">        openRequest.onupgradeneeded = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"数据库更新..."</span>);</div><div class="line">            <span class="comment">//</span></div><div class="line">            db = e.target.result;</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (!db.objectStoreNames.contains(<span class="string">'firstOS'</span>))&#123;</div><div class="line">                db.createObjectStore(<span class="string">"firstOS"</span>);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'表已经存在'</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        openRequest.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"数据路打开成功!"</span>);</div><div class="line"></div><div class="line">            db = e.target.result;</div><div class="line"></div><div class="line">            <span class="comment">// 事务</span></div><div class="line">            <span class="keyword">let</span> transaction = db.transaction([<span class="string">"firstOS"</span>], <span class="string">"readwrite"</span>);</div><div class="line"></div><div class="line">            <span class="keyword">let</span> store = transaction.objectStore(<span class="string">"firstOS"</span>);</div><div class="line"></div><div class="line">            <span class="keyword">let</span> o = &#123;p: <span class="string">"she is a girl"</span>&#125;;</div><div class="line"></div><div class="line">            <span class="comment">// 添加数据</span></div><div class="line">            <span class="keyword">let</span> request = store.add(o,<span class="number">2</span>);</div><div class="line"></div><div class="line">            request.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">"数据添加失败！"</span>);</div><div class="line">            &#125;;</div><div class="line"></div><div class="line">            request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">"数据添加成功！"</span>);</div><div class="line">            &#125;;</div><div class="line"></div><div class="line">            <span class="comment">// 修改数据</span></div><div class="line">            <span class="keyword">let</span> tr = db.transaction([<span class="string">"firstOS"</span>], <span class="string">"readwrite"</span>);</div><div class="line"></div><div class="line">            <span class="keyword">let</span> storess = tr.objectStore(<span class="string">"firstOS"</span>);</div><div class="line">            <span class="keyword">let</span> p = &#123; p:<span class="number">456</span> &#125;;</div><div class="line">            <span class="keyword">let</span> urequest = storess.put(p, <span class="number">1</span>);</div><div class="line"></div><div class="line">            urequest.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">"修改成功"</span>);</div><div class="line">            &#125;;</div><div class="line"></div><div class="line">            urequest.onsucces = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">"修改失败"</span>);</div><div class="line">            &#125;;</div><div class="line"></div><div class="line">            <span class="comment">// 获取数据</span></div><div class="line">            <span class="keyword">let</span> t = db.transaction([<span class="string">"firstOS"</span>], <span class="string">"readonly"</span>);</div><div class="line">            <span class="keyword">let</span> stores = t.objectStore(<span class="string">"firstOS"</span>);</div><div class="line"></div><div class="line">            <span class="keyword">let</span> ob = stores.get(<span class="number">1</span>);</div><div class="line"></div><div class="line">            ob.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">"获取数据成功"</span>);</div><div class="line">                <span class="built_in">console</span>.log(ob);</div><div class="line">            &#125;;</div><div class="line"></div><div class="line">            transaction.oncomplete = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'事务结束'</span>);</div><div class="line">            &#125;;</div><div class="line"></div><div class="line">            <span class="comment">// 删除记录</span></div><div class="line">            <span class="keyword">let</span> tt = db.transaction([<span class="string">"firstOS"</span>], <span class="string">"readwrite"</span>);</div><div class="line">            <span class="keyword">let</span> mrequest = tt.objectStore(<span class="string">"firstOS"</span>).delete(<span class="number">1</span>);</div><div class="line"></div><div class="line">            mrequest.onsuccess = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'删除成功'</span>);</div><div class="line">            &#125;;</div><div class="line"></div><div class="line">            mrequest.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">'删除失败'</span>);</div><div class="line">            &#125;;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        openRequest.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"数据库打开错误"</span>);</div><div class="line">        &#125;;</div><div class="line">        </div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'您的浏览器不支持'</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="http://javascript.ruanyifeng.com/bom/indexeddb.html" target="_blank" rel="external">http://javascript.ruanyifeng.com/bom/indexeddb.html</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/16/Emoj简介/" itemprop="url">
-                  Emoj简介
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-16T10:36:11+08:00" content="2017-07-16">
-              2017-07-16
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>我对你仍有爱意，我对自己无能为力。<br></blockquote><br>早期的 Emoji 是将一些特定的符号组合替换成图片。这种方法很难标准化，能够表达的范围也有限。<br>2010年，Unicode 开始为 Emoji 分配码点。也就是说，现在的 Emoji 符号就是一个文字，它会被渲染为图形。</p>
-<p>Unicode 只是规定了 Emoji 的码点和含义，并没有规定它的样式。举例来说，码点U+1F600表示一张微笑的脸，但是这张脸长什么样，则由各个系统自己实现。<br>因此，当我们输入这个 Emoji 的时候，并不能保证所有用户看到的都是同一张脸。如果用户的系统没有实现这个 Emoji 符号，用户就会看到一个没有内容的方框，因为系统无法渲染这个码点。</p>
-<p>Emoji 虽然是文字，但是无法书写，必须使用其他方法插入文档。</p>
-<p><img src="/images/emoji.png" alt=""></p>
-<blockquote>
-<p><a href="http://www.ruanyifeng.com/blog/2017/04/emoji.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2017/04/emoji.html</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/16/mysql中的字符和字节/" itemprop="url">
-                  mysql中的字符和字节
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-16T09:49:49+08:00" content="2017-07-16">
-              2017-07-16
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>只是我回首来时路的每一步都走的好孤独。<br></blockquote><br>1.一个汉字占多少长度与编码有关：<br> UTF－8：一个汉字＝3个字节<br> GBK：一个汉字＝2个字节<br>2.varchar(n)表示n个字符，无论汉字和英文，Mysql都能存入n个字符，仅是实际字节长度有所区别</p>
-<p>php 把一个汉字认作几个字节:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">header(<span class="string">'Content-Type:text/html;charset=UTF-8'</span>);</div><div class="line">$str=<span class="string">'我'</span>;</div><div class="line"><span class="keyword">echo</span> strlen($str);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
-<p>输出 3 , 证明在 UTF-8编码下, 一个汉字被认作3个字节长度.</p>
-<h3 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h3><p>char(2) 和 varchar(2) 都能存储 2个汉字,或者是两个英文字符.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -768,7 +774,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">171</span>
+              <span class="site-state-item-count">174</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -778,7 +784,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">85</span>
+                <span class="site-state-item-count">86</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
