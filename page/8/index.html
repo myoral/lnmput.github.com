@@ -242,8 +242,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/08/03/mysql中的共享锁和悲观锁以及共享锁和排他锁/" itemprop="url">
-                  mysql中的共享锁和悲观锁以及共享锁和排他锁
+                <a class="post-title-link" href="/2017/08/09/php中的时间/" itemprop="url">
+                  php中的时间
                 </a>
               
             
@@ -256,8 +256,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-03T21:25:36+08:00" content="2017-08-03">
-              2017-08-03
+            <time itemprop="dateCreated" datetime="2017-08-09T17:51:49+08:00" content="2017-08-09">
+              2017-08-09
             </time>
           </span>
 
@@ -286,14 +286,12 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>这段情，曾夏了夏天，后来却也冬了冬天<br></blockquote></p>
-<h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p>操作前假设一切操作都可能发现并发冲突，所以采取悲观态度。通过加锁，屏蔽一切可能违反数据完整性的操作<br>比方<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">for</span> <span class="keyword">update</span>;  <span class="comment">--就是表锁</span></div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> x = <span class="number">1</span> <span class="keyword">for</span> <span class="keyword">update</span>; <span class="comment">--就是行锁</span></div></pre></td></tr></table></figure></p>
-<p>当使用<code>for update</code>后，其它会话还是可以执行select操作，但无法执行<code>select xx for update</code>操作，只有当前会话<code>commit</code>后，其它for update操作才会被执行。</p>
-<p>for update仅适用于InnoDB，且必须在事务块(BEGIN/COMMIT)中才能生效<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">BEGIN</span>;</div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">test</span> <span class="keyword">FOR</span> <span class="keyword">UPDATE</span>;</div><div class="line">SLEEP(20);</div><div class="line"><span class="keyword">COMMIT</span>;</div></pre></td></tr></table></figure></p>
-<h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>假定操作很少发生冲突，一般对于读多写少的情况。只在提交操作时检查是否违反数据完整性, 乐观锁不能解决脏读的问题。<br>可以通过版本号是否比上个版本号或者时间戳来实现， 也或者检查通过检查某个字段来实现；<br>对于冲突检测后的处理，需要业务逻辑去处理。</p>
-<h3 id="排它锁"><a href="#排它锁" class="headerlink" title="排它锁"></a>排它锁</h3><p>当数据对象被加上排它锁时，其他的事务不能对它读取和修改。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">BEGIN</span>;</div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">test</span> <span class="keyword">FOR</span> <span class="keyword">UPDATE</span>;</div><div class="line"><span class="keyword">COMMIT</span>;</div></pre></td></tr></table></figure></p>
-<h3 id="共享锁"><a href="#共享锁" class="headerlink" title="共享锁"></a>共享锁</h3><p>加了共享锁的数据对象可以被其他事务读取，但不能修改。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">from</span> city <span class="keyword">where</span> <span class="keyword">id</span> = <span class="string">"1"</span>  <span class="keyword">lock</span> <span class="keyword">in</span> <span class="keyword">share</span> <span class="keyword">mode</span>;</div></pre></td></tr></table></figure></p>
-
+            <p><blockquote class="blockquote-center"><br>哪个更痛苦，努力还是后悔？<br></blockquote></p>
+<h3 id="时间戳"><a href="#时间戳" class="headerlink" title="时间戳"></a>时间戳</h3><p>时间戳是指格林威治时间1970年01月01日00时00分00秒(北京时间1970年01月01日08时00分00秒)起至现在的总秒数</p>
+<h3 id="php获取"><a href="#php获取" class="headerlink" title="php获取"></a>php获取</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// pure php</span></div><div class="line">time()</div><div class="line"></div><div class="line"><span class="comment">// Carbon\Carbon</span></div><div class="line">Carbon::now()-&gt;timestamp</div></pre></td></tr></table></figure>
+<h3 id="PHP-Date-函数"><a href="#PHP-Date-函数" class="headerlink" title="PHP Date() 函数"></a>PHP Date() 函数</h3><p>date(format,timestamp)<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">echo</span> <span class="string">"今天是 "</span> . date(<span class="string">"Y/m/d"</span>) . <span class="string">"&lt;br&gt;"</span>;</div><div class="line"><span class="keyword">echo</span> <span class="string">"今天是 "</span> . date(<span class="string">"Y.m.d"</span>) . <span class="string">"&lt;br&gt;"</span>;</div><div class="line"><span class="keyword">echo</span> <span class="string">"今天是 "</span> . date(<span class="string">"Y-m-d"</span>) . <span class="string">"&lt;br&gt;"</span>;</div><div class="line"><span class="keyword">echo</span> <span class="string">"今天是 "</span> . date(<span class="string">"l"</span>);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="php-获取时间今天明天昨天时间戳"><a href="#php-获取时间今天明天昨天时间戳" class="headerlink" title="php 获取时间今天明天昨天时间戳"></a>php 获取时间今天明天昨天时间戳</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">echo</span> <span class="string">"今天:"</span>.date(<span class="string">"Y-m-d"</span>).<span class="string">"&lt;br&gt;"</span>;     </div><div class="line"><span class="keyword">echo</span> <span class="string">"昨天:"</span>.date(<span class="string">"Y-m-d"</span>,strtotime(<span class="string">"-1 day"</span>)), <span class="string">"&lt;br&gt;"</span>;     </div><div class="line"><span class="keyword">echo</span> <span class="string">"明天:"</span>.date(<span class="string">"Y-m-d"</span>,strtotime(<span class="string">"+1 day"</span>)). <span class="string">"&lt;br&gt;"</span>;  </div><div class="line"><span class="keyword">echo</span> <span class="string">"一周后:"</span>.date(<span class="string">"Y-m-d"</span>,strtotime(<span class="string">"+1 week"</span>)). <span class="string">"&lt;br&gt;"</span>;     </div><div class="line"><span class="keyword">echo</span> <span class="string">"一周零两天四小时两秒后:"</span>.date(<span class="string">"Y-m-d G:H:s"</span>,strtotime(<span class="string">"+1 week 2 days 4 hours 2 seconds"</span>)). <span class="string">"&lt;br&gt;"</span>;     </div><div class="line"><span class="keyword">echo</span> <span class="string">"下个星期四:"</span>.date(<span class="string">"Y-m-d"</span>,strtotime(<span class="string">"next Thursday"</span>)). <span class="string">"&lt;br&gt;"</span>;     </div><div class="line"><span class="keyword">echo</span> <span class="string">"上个周一:"</span>.date(<span class="string">"Y-m-d"</span>,strtotime(<span class="string">"last Monday"</span>)).<span class="string">"&lt;br&gt;"</span>;     </div><div class="line"><span class="keyword">echo</span> <span class="string">"一个月前:"</span>.date(<span class="string">"Y-m-d"</span>,strtotime(<span class="string">"last month"</span>)).<span class="string">"&lt;br&gt;"</span>;     </div><div class="line"><span class="keyword">echo</span> <span class="string">"一个月后:"</span>.date(<span class="string">"Y-m-d"</span>,strtotime(<span class="string">"+1 month"</span>)).<span class="string">"&lt;br&gt;"</span>;     </div><div class="line"><span class="keyword">echo</span> <span class="string">"十年后:"</span>.date(<span class="string">"Y-m-d"</span>,strtotime(<span class="string">"+10 year"</span>)).<span class="string">"&lt;br&gt;"</span>;    </div><div class="line"></div><div class="line"><span class="comment">//strtotime()函数的作用是将日期时间描述解析为 Unix 时间戳</span></div></pre></td></tr></table></figure>
+<h3 id="python获取"><a href="#python获取" class="headerlink" title="python获取"></a>python获取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> time</div><div class="line">time.time()</div></pre></td></tr></table></figure>
           
         
       
@@ -342,8 +340,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/08/03/mysql错误Duplicate-entry-4294967295-for-key-PRIMARY/" itemprop="url">
-                  mysql错误Duplicate_entry_4294967295_for_key_PRIMARY
+                <a class="post-title-link" href="/2017/08/08/javascript中的函数预解析和变量提升/" itemprop="url">
+                  javascript中的函数预解析和变量提升
                 </a>
               
             
@@ -356,8 +354,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-03T17:07:26+08:00" content="2017-08-03">
-              2017-08-03
+            <time itemprop="dateCreated" datetime="2017-08-08T22:59:52+08:00" content="2017-08-08">
+              2017-08-08
             </time>
           </span>
 
@@ -386,110 +384,24 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>吃了就睡或长成猪的<br></blockquote></p>
-<h3 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mySQL auto increment problem: Duplicate entry &apos;4294967295&apos; for key 1</div></pre></td></tr></table></figure>
-<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>I had the same problem with the exact same number. My problem was that I had the field on int(10) when I changed it to bigint(20) it solved my problem.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/03/使用DomCrawler批量本地化淘宝天猫详情图/" itemprop="url">
-                  使用DomCrawler批量本地化淘宝天猫详情图
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-03T10:21:43+08:00" content="2017-08-03">
-              2017-08-03
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>你没有变强是因为你一直很舒服。<br></blockquote></p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer <span class="keyword">require</span> symfony/dom-crawler</div></pre></td></tr></table></figure>
-<h3 id="代码片段"><a href="#代码片段" class="headerlink" title="代码片段"></a>代码片段</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// october cms</span></div><div class="line">$crawler = <span class="keyword">new</span> Crawler($content);</div><div class="line">$crawler-&gt;filter(<span class="string">'img'</span>)-&gt;each(<span class="function"><span class="keyword">function</span> <span class="params">(Crawler $node)</span> <span class="title">use</span><span class="params">($pid)</span> </span>&#123;</div><div class="line">    $sourceSrc = explode(<span class="string">'?'</span>,$node-&gt;attr(<span class="string">'src'</span>))[<span class="number">0</span>];</div><div class="line">    $sourceSrc = str_replace(<span class="string">'https'</span>, <span class="string">'http'</span>, $sourceSrc);</div><div class="line">    <span class="keyword">if</span> (!starts_with($sourceSrc, <span class="string">'http'</span>)) &#123;</div><div class="line">        $sourceSrc = <span class="string">"http:"</span>.$sourceSrc;</div><div class="line">    &#125;</div><div class="line">    $imageManager = <span class="keyword">new</span> ImageManager([<span class="string">'driver'</span> =&gt; <span class="string">'gd'</span>]);</div><div class="line">    $temPath = storage_path() . <span class="string">'/temp/'</span> .time().basename($sourceSrc);</div><div class="line">    $imageManager-&gt;make($sourceSrc)-&gt;save($temPath);</div><div class="line">    $attachment_type = <span class="string">'Jason\Ccmall\Models\Product'</span>;</div><div class="line">    $productImage = <span class="keyword">new</span> File();</div><div class="line">    $productImage-&gt;data = $temPath;</div><div class="line">    $productImage-&gt;field = <span class="string">'content'</span>;</div><div class="line">    $productImage-&gt;attachment_id = $pid;</div><div class="line">    $productImage-&gt;attachment_type = $attachment_type;</div><div class="line">    $productImage-&gt;save();</div><div class="line">    $node-&gt;getNode(<span class="number">0</span>)-&gt;setAttribute(<span class="string">'src'</span>, $productImage-&gt;path);</div><div class="line">    @unlink($temPath);</div><div class="line">&#125;);</div><div class="line">$html = $crawler-&gt;html();</div><div class="line">Product::query()-&gt;where(<span class="string">'id'</span>, $pid)-&gt;update([</div><div class="line">    <span class="string">'content'</span> =&gt; $html</div><div class="line">]);</div></pre></td></tr></table></figure>
-<h3 id="实例一"><a href="#实例一" class="headerlink" title="实例一"></a>实例一</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">Symfony</span>\<span class="title">Component</span>\<span class="title">DomCrawler</span>\<span class="title">Crawler</span>;</div><div class="line"></div><div class="line">$html = <span class="string">&lt;&lt;&lt;'HTML'</span></div><div class="line"><span class="string">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="string">&lt;html&gt;</span></div><div class="line"><span class="string">    &lt;body&gt;</span></div><div class="line"><span class="string">        &lt;p class="message"&gt;Hello World!&lt;/p&gt;</span></div><div class="line"><span class="string">        &lt;p&gt;Hello Crawler!&lt;/p&gt;</span></div><div class="line"><span class="string">    &lt;/body&gt;</span></div><div class="line"><span class="string">&lt;/html&gt;</span></div><div class="line"><span class="string">HTML;</span></div><div class="line"></div><div class="line">$crawler = <span class="keyword">new</span> Crawler($html);</div><div class="line"></div><div class="line"><span class="keyword">foreach</span> ($crawler <span class="keyword">as</span> $domElement) &#123;</div><div class="line">    var_dump($domElement-&gt;nodeName);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="实例二"><a href="#实例二" class="headerlink" title="实例二"></a>实例二</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$crawler = <span class="keyword">new</span> Crawler(<span class="string">'&lt;html&gt;&lt;body /&gt;&lt;/html&gt;'</span>);</div><div class="line"></div><div class="line">$crawler-&gt;addHtmlContent(<span class="string">'&lt;html&gt;&lt;body /&gt;&lt;/html&gt;'</span>);</div><div class="line">$crawler-&gt;addXmlContent(<span class="string">'&lt;root&gt;&lt;node /&gt;&lt;/root&gt;'</span>);</div><div class="line"></div><div class="line">$crawler-&gt;addContent(<span class="string">'&lt;html&gt;&lt;body /&gt;&lt;/html&gt;'</span>);</div><div class="line">$crawler-&gt;addContent(<span class="string">'&lt;root&gt;&lt;node /&gt;&lt;/root&gt;'</span>, <span class="string">'text/xml'</span>);</div><div class="line"></div><div class="line">$crawler-&gt;add(<span class="string">'&lt;html&gt;&lt;body /&gt;&lt;/html&gt;'</span>);</div><div class="line">$crawler-&gt;add(<span class="string">'&lt;root&gt;&lt;node /&gt;&lt;/root&gt;'</span>);</div></pre></td></tr></table></figure>
-<h3 id="实例三"><a href="#实例三" class="headerlink" title="实例三"></a>实例三</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$imagesCrawler = $crawler-&gt;selectImage(<span class="string">'Kitten'</span>);</div><div class="line">$image = $imagesCrawler-&gt;image();</div><div class="line"></div><div class="line"><span class="comment">// or do this all at once</span></div><div class="line">$image = $crawler-&gt;selectImage(<span class="string">'Kitten'</span>)-&gt;image();</div></pre></td></tr></table></figure>
+            <p><blockquote class="blockquote-center"><br>小时候，向喜欢的姑娘展示快<br>长大后，向喜欢的姑娘展示慢<br></blockquote></p>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>如果一个变量在函数体内部申明，则该变量的作用域为整个函数体，在函数体外不可引用该变量：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line">    x = x + <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">x = x + <span class="number">2</span>; <span class="comment">// ReferenceError! 无法在函数体外引用变量x</span></div></pre></td></tr></table></figure></p>
+<p>如果两个不同的函数各自申明了同一个变量，那么该变量只在各自的函数体内起作用。换句话说，不同函数内部的同名变量互相独立，互不影响：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line">    x = x + <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> x = <span class="string">'A'</span>;</div><div class="line">    x = x + <span class="string">'B'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>由于JavaScript的函数可以嵌套，此时，内部函数可以访问外部函数定义的变量，反过来则不行：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> y = x + <span class="number">1</span>; <span class="comment">// bar可以访问foo的变量x!</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">var</span> z = y + <span class="number">1</span>; <span class="comment">// ReferenceError! foo不可以访问bar的变量y!</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果内部函数和外部函数的变量名重名怎么办？<br>JavaScript的函数在查找变量时从自身函数定义开始，从“内”向“外”查找。如果内部函数定义了与外部函数重名的变量，则内部函数的变量将“屏蔽”外部函数的变量。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> x = <span class="number">1</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> x = <span class="string">'A'</span>;</div><div class="line">        alert(<span class="string">'x in bar() = '</span> + x); <span class="comment">// 'A'</span></div><div class="line">    &#125;</div><div class="line">    alert(<span class="string">'x in foo() = '</span> + x); <span class="comment">// 1</span></div><div class="line">    bar();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>不在任何函数内定义的变量就具有全局作用域。实际上，JavaScript默认有一个全局对象window，全局作用域的变量实际上被绑定到window的一个属性：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> course = <span class="string">'Learn JavaScript'</span>;</div><div class="line">alert(course); <span class="comment">// 'Learn JavaScript'</span></div><div class="line">alert(<span class="built_in">window</span>.course); <span class="comment">// 'Learn JavaScript'</span></div></pre></td></tr></table></figure></p>
+<p>由于函数定义有两种方式，以变量方式var foo = function () {}定义的函数实际上也是一个全局变量，因此，顶层函数的定义也被视为一个全局变量，并绑定到window对象：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    alert(<span class="string">'foo'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(); <span class="comment">// 直接调用foo()</span></div><div class="line"><span class="built_in">window</span>.foo(); <span class="comment">// 通过window.foo()调用</span></div></pre></td></tr></table></figure></p>
+<p>进一步大胆地猜测，我们每次直接调用的alert()函数其实也是window的一个变量：</p>
+<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><p>JavaScript的函数定义有个特点，它会先扫描整个函数体的语句，把所有申明的变量“提升”到函数顶部,JavaScript引擎自动提升了变量y的声明，但不会提升变量y的赋值。</p>
+<p>考虑下面的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myvar = <span class="string">'my value'</span>;</div><div class="line">alert(myvar); <span class="comment">// my value</span></div></pre></td></tr></table></figure></p>
+<p>Okay, 当然，弹出的结果肯定是”my value”，但是，跟着我，让我下面创建个方法，弹出相同的值：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myvar = <span class="string">'my value'</span>;</div><div class="line"></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(myvar); <span class="comment">// my value</span></div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>好吧，好吧，仍然很明显，我知道。现在，让我们加点猛的调料，在匿名函数内部创建一个同名的局部变量。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> myvar = <span class="string">'my value'</span>;</div><div class="line"></div><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  alert(myvar); <span class="comment">// undefined</span></div><div class="line">  <span class="keyword">var</span> myvar = <span class="string">'local value'</span>;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>在当前的作用域内，无论在哪里变量声明，在幕后，其都在顶部被“预解析”了。不过，仅声明被“预解析”。该变量即使初始化，其当前的值，在<code>作用域的顶部</code>，也会被设置成undefined。<br>恩，现在让我们好好的破译下这个“声明”和“初始化”，以var joe = ‘plumber’;为模特吧。<br>声明(Declaration)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> joe; <span class="comment">// the declaration</span></div></pre></td></tr></table></figure></p>
+<p>初始化(Initialization)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">joe = <span class="string">'plumber'</span>; <span class="comment">// the initialization</span></div></pre></td></tr></table></figure></p>
+<p>现在，我们知道了这些术语的意思，就可以更好的理解到底背地里都干了些什么勾当，请看下面的伪函数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a = <span class="string">'a'</span>;</div><div class="line">  <span class="comment">// 一行代码</span></div><div class="line">  <span class="keyword">var</span> b = <span class="string">'b'</span>;</div><div class="line">  <span class="comment">// 更多行的代码</span></div><div class="line">  <span class="keyword">var</span> c= <span class="string">'c'</span>; <span class="comment">// antipattern</span></div><div class="line">  <span class="comment">// 最后一行脚本</span></div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>需注意，上面的这做法是不太好的。但是，先不管这个，在程序的背后，这个变量声明无论在函数作用域的什么地方，都被置顶解析了，就像下面这样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> a, b, c; <span class="comment">// variables declared</span></div><div class="line">  a = <span class="string">'a'</span>;</div><div class="line">  <span class="comment">// 一行代码</span></div><div class="line">  b = <span class="string">'b'</span>; <span class="comment">// initialized</span></div><div class="line">  <span class="comment">// 更多行的代码</span></div><div class="line">  c= <span class="string">'c'</span>; <span class="comment">// initialized</span></div><div class="line">  <span class="comment">// 最后一行脚本</span></div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
 <blockquote>
-<p><a href="https://symfony.com/doc/current/components/dom_crawler.html" target="_blank" rel="external">https://symfony.com/doc/current/components/dom_crawler.html</a></p>
+<p><a href="http://www.zhangxinxu.com/wordpress/2010/10/%E7%BF%BB%E8%AF%91-%E8%A7%A3%E9%87%8Ajavascript%E7%9A%84%E2%80%9C%E9%A2%84%E8%A7%A3%E6%9E%90%E7%BD%AE%E9%A1%B6%E8%A7%A3%E6%9E%90%E2%80%9D/" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2010/10/%E7%BF%BB%E8%AF%91-%E8%A7%A3%E9%87%8Ajavascript%E7%9A%84%E2%80%9C%E9%A2%84%E8%A7%A3%E6%9E%90%E7%BD%AE%E9%A1%B6%E8%A7%A3%E6%9E%90%E2%80%9D/</a><br><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014344993159773a464f34e1724700a6d5dd9e235ceb7c000" target="_blank" rel="external">https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014344993159773a464f34e1724700a6d5dd9e235ceb7c000</a></p>
 </blockquote>
 
           
@@ -540,8 +452,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/31/elasticsearch的一些批量操作/" itemprop="url">
-                  elasticsearch的一些批量操作
+                <a class="post-title-link" href="/2017/08/08/var-let-const的区别/" itemprop="url">
+                  var,let,const的区别
                 </a>
               
             
@@ -554,8 +466,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-31T14:46:43+08:00" content="2017-07-31">
-              2017-07-31
+            <time itemprop="dateCreated" datetime="2017-08-08T20:48:34+08:00" content="2017-08-08">
+              2017-08-08
             </time>
           </span>
 
@@ -584,11 +496,31 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>为了看起来毫不费力<br></blockquote></p>
-<h3 id="批量插入"><a href="#批量插入" class="headerlink" title="批量插入"></a>批量插入</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">POST /shop/product/_bulk</div><div class="line">&#123; <span class="attr">"index"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"1"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"name"</span> : <span class="string">"apple"</span>, <span class="attr">"price"</span>:<span class="number">15.15</span> &#125;</div><div class="line">&#123; <span class="attr">"index"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"2"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"name"</span> : <span class="string">"pear"</span>, <span class="attr">"price"</span>:<span class="number">16.00</span> &#125;</div><div class="line">&#123; <span class="attr">"index"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"3"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"name"</span> : <span class="string">"orange"</span>, <span class="attr">"price"</span>:<span class="number">15.09</span> &#125;</div><div class="line">&#123; <span class="attr">"index"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"4"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"name"</span> : <span class="string">"bnanan"</span>, <span class="attr">"price"</span>:<span class="number">3.00</span> &#125;</div><div class="line">&#123; <span class="attr">"index"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"5"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"name"</span> : <span class="string">"pototo"</span>, <span class="attr">"price"</span>:<span class="number">9.15</span> &#125;</div></pre></td></tr></table></figure>
-<h3 id="批量修改"><a href="#批量修改" class="headerlink" title="批量修改"></a>批量修改</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">POST /shop/product/_bulk</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"1"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"name"</span> : <span class="string">"apple iphone"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"2"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"name"</span> : <span class="string">"pear yoyo"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"3"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"name"</span> : <span class="string">"orange milk"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"4"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"name"</span> : <span class="string">"bnanan egg"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"5"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"name"</span> : <span class="string">"pototo chips"</span>&#125; &#125;</div></pre></td></tr></table></figure>
-<h3 id="批量添加新的字段"><a href="#批量添加新的字段" class="headerlink" title="批量添加新的字段"></a>批量添加新的字段</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">POST /shop/product/_bulk</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"1"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"desc"</span> : <span class="string">"this is a apple iphone"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"2"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"desc"</span> : <span class="string">"the price is low"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"3"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"desc"</span> : <span class="string">"the frieight is free"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"4"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"desc"</span> : <span class="string">"buy one and a free one"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"5"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"desc"</span> : <span class="string">"you lost it"</span>&#125; &#125;</div></pre></td></tr></table></figure>
-<h3 id="批量删除"><a href="#批量删除" class="headerlink" title="批量删除"></a>批量删除</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">POST /shop/product/_bulk</div><div class="line">&#123; <span class="attr">"delete"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"2"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"delete"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"3"</span> &#125; &#125;</div></pre></td></tr></table></figure>
+            <p><blockquote class="blockquote-center"><br>人总是喜欢自己没有的<br></blockquote></p>
+<h3 id="一个有趣的现象"><a href="#一个有趣的现象" class="headerlink" title="一个有趣的现象"></a>一个有趣的现象</h3><p>let<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>444<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>555<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">  <span class="keyword">var</span> lis = <span class="built_in">document</span>.querySelectorAll(<span class="string">"li"</span>);</span></div><div class="line"><span class="javascript">  <span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">0</span>; i&lt; lis.length; i++) &#123;</span></div><div class="line"><span class="javascript">      <span class="keyword">var</span> li = <span class="built_in">document</span>.querySelectorAll(<span class="string">"li"</span>)[i];</span></div><div class="line"><span class="javascript">      li.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></div><div class="line"><span class="undefined">          alert(i);</span></div><div class="line"><span class="undefined">      &#125;</span></div><div class="line"><span class="undefined">  &#125;</span></div><div class="line"><span class="javascript">  <span class="comment">// 依次点击5个元素， 分别弹出0,1,2,3,4,5</span></span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>var<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>444<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>555<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">  <span class="keyword">var</span> lis = <span class="built_in">document</span>.querySelectorAll(<span class="string">"li"</span>);</span></div><div class="line"><span class="javascript">  <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt; lis.length; i++) &#123;</span></div><div class="line"><span class="javascript">      <span class="keyword">var</span> li = <span class="built_in">document</span>.querySelectorAll(<span class="string">"li"</span>)[i];</span></div><div class="line"><span class="javascript">      li.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></div><div class="line"><span class="undefined">          alert(i);</span></div><div class="line"><span class="undefined">      &#125;</span></div><div class="line"><span class="undefined">  &#125;</span></div><div class="line"><span class="javascript">  <span class="comment">// 依次点击5个元素， 分别弹出5,5,5,5,5,5</span></span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>在不使用let的情况下， 如何使点击每个li弹出对应的序号<br>事件委托<br>事件委托，通俗地来讲，就是把一个元素响应事件（click、keydown……）的函数委托到另一个元素；<br>一般来讲，会把一个或者一组元素的事件委托到它的父层或者更外层元素上，真正绑定事件的是外层元素，当事件响应到需要绑定的元素上时，会通过事件冒泡机制从而触发它的外层元素的绑定事件上，然后在外层元素上去执行函数。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"list"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>444<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>555<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="built_in">document</span>.getElementById(<span class="string">'list'</span>).addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span></div><div class="line"><span class="javascript">    <span class="comment">// 兼容性处理</span></span></div><div class="line"><span class="javascript">    <span class="keyword">var</span> event = e || <span class="built_in">window</span>.event;</span></div><div class="line"><span class="javascript">    <span class="keyword">var</span> target = event.target || event.srcElement;</span></div><div class="line"><span class="javascript">    <span class="comment">// 判断是否匹配目标元素</span></span></div><div class="line"><span class="javascript">    <span class="keyword">if</span> (target.nodeName.toLocaleLowerCase() === <span class="string">'li'</span>) &#123;</span></div><div class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="string">'the content is: '</span>, target.innerHTML);</span></div><div class="line"><span class="undefined">    &#125;</span></div><div class="line"><span class="undefined">&#125;);</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><p>let定义变量时和var有两个区别：块级作用域、不会变量提升和不能定义在块中已有标识符同名的变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">condition</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (condition) &#123;</div><div class="line">        <span class="keyword">let</span> value = <span class="string">"blue"</span>;</div><div class="line"></div><div class="line">        <span class="comment">// other code</span></div><div class="line"></div><div class="line">        <span class="keyword">return</span> value;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line">        <span class="comment">// value doesn't exist here</span></div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// value doesn't exist here</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当用let定义value时，我们只能在if里面才能访问到value了，value变量也不会变量提升，从而我们在else里面不能访问到value。<br>let最常用的场景应该是for循环了：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>块级作用域<br>块级作用域就不用多说，就是用let定义的变量只在定义它的块中有效，出了这个块你就不能访问到它了。<br>变量提升<br>变量提升应该是在面试的时候会经常考到，例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(value);</div><div class="line">    <span class="keyword">var</span> value = <span class="string">'something'</span>;</div><div class="line">    <span class="built_in">console</span>.log(value);</div><div class="line">&#125;</div><div class="line">test();</div><div class="line"><span class="comment">// 结果： undefined  something</span></div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<p>我们用let重新定义上面的test()函数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(value);</div><div class="line">    <span class="keyword">let</span> value = <span class="string">'something'</span>;</div><div class="line">    <span class="built_in">console</span>.log(value);</div><div class="line">&#125;</div><div class="line">test();</div><div class="line"><span class="comment">// 结果程序直接报错：Uncaught ReferenceError: value is not defined</span></div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure></p>
+<p>同名变量<br>用var定义变量时，我们可以多次对它进行定义，例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line"><span class="keyword">var</span> a = <span class="number">3</span>;</div></pre></td></tr></table></figure></p>
+<p>这样的代码是不会报错的，在let定义的相同块中定义同名变量时就会报错了，例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> a = <span class="number">1</span>;</div><div class="line"><span class="keyword">let</span> a = <span class="number">2</span>;</div><div class="line"></div><div class="line"><span class="comment">// or</span></div><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="keyword">let</span> a = <span class="number">2</span>;</div></pre></td></tr></table></figure></p>
+<p>要注意的是要与let定义时在相同的块中，下面的代码是不会出错的：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line"><span class="keyword">if</span> (something) &#123;</div><div class="line">  <span class="keyword">let</span> a = <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="var"><a href="#var" class="headerlink" title="var"></a>var</h3><p>我们知道在ES6之前，是没有块级作用域这一说的，例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>(<span class="params">condition</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (condition) &#123;</div><div class="line">        <span class="keyword">var</span> value = <span class="string">"blue"</span>;</div><div class="line"></div><div class="line">        <span class="comment">// other code</span></div><div class="line"></div><div class="line">        <span class="keyword">return</span> value;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line">        <span class="comment">// value exists here with a value of undefined</span></div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// value exists here with a value of undefined</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>你可能会觉得在else里面无法访问到value变量，其实在js内部会造成变量提升，这意味着我们可以在else里面访问到value变量，只是它未初始化，所以其变量值为undefined。实际解析时代码可能像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">function getValue(condition) &#123;</div><div class="line"></div><div class="line">    var value;</div><div class="line"></div><div class="line">    if (condition) &#123;</div><div class="line">        value = &quot;blue&quot;;</div><div class="line"></div><div class="line">        // other code</div><div class="line"></div><div class="line">        return value;</div><div class="line">    &#125; else &#123;</div><div class="line"></div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>var会造成变量提升</p>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>const除了具有let的块级作用域和不会变量提升外，还有就是它定义的是常量，在用const定义变量后，我们就不能修改它了，对变量的修改会默默的失败（在iojs中会抛出异常，在Chrome下会默默的失败）。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const PI = 3.1415;</div><div class="line">console.log(PI);</div><div class="line">PI = 22;</div><div class="line">console.log(PI);</div></pre></td></tr></table></figure>
+<blockquote>
+<blockquote>
+<blockquote>
+<p><a href="http://cookfront.github.io/2015/05/28/es6-let-const/" target="_blank" rel="external">http://cookfront.github.io/2015/05/28/es6-let-const/</a></p>
+</blockquote>
+</blockquote>
+</blockquote>
+
           
         
       
@@ -637,8 +569,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/31/php中的一些高级用法/" itemprop="url">
-                  php中的一些高级用法
+                <a class="post-title-link" href="/2017/08/08/querySelector和getElementById方法的区别/" itemprop="url">
+                  querySelector和getElementById方法的区别
                 </a>
               
             
@@ -651,8 +583,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-31T10:34:30+08:00" content="2017-07-31">
-              2017-07-31
+            <time itemprop="dateCreated" datetime="2017-08-08T20:34:06+08:00" content="2017-08-08">
+              2017-08-08
             </time>
           </span>
 
@@ -681,11 +613,107 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br> 弱国无外交，人弱亦如此<br></blockquote></p>
-<h3 id="call-user-func-array"><a href="#call-user-func-array" class="headerlink" title="call_user_func_array"></a>call_user_func_array</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foobar</span><span class="params">($arg, $arg2)</span> </span>&#123;</div><div class="line">    <span class="keyword">echo</span> <span class="keyword">__FUNCTION__</span>, <span class="string">" got $arg and $arg2\n"</span>;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">foo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span><span class="params">($arg, $arg2)</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="keyword">__METHOD__</span>, <span class="string">" got $arg and $arg2\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// Call the foobar() function with 2 arguments</span></div><div class="line">call_user_func_array(<span class="string">"foobar"</span>, <span class="keyword">array</span>(<span class="string">"one"</span>, <span class="string">"two"</span>));</div><div class="line"></div><div class="line"><span class="comment">// Call the $foo-&gt;bar() method with 2 arguments</span></div><div class="line">$foo = <span class="keyword">new</span> foo;</div><div class="line">call_user_func_array(<span class="keyword">array</span>($foo, <span class="string">"bar"</span>), <span class="keyword">array</span>(<span class="string">"three"</span>, <span class="string">"four"</span>));</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="call-user-func"><a href="#call-user-func" class="headerlink" title="call_user_func"></a>call_user_func</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">increment</span><span class="params">($var)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    $var++;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$a = <span class="number">0</span>;</div><div class="line">call_user_func(<span class="string">'increment'</span>, $a);</div><div class="line"><span class="keyword">echo</span> $a.<span class="string">"\n"</span>;</div></pre></td></tr></table></figure>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$class= <span class="keyword">new</span> \Jason\Ccshop\Models\Product();</div><div class="line"></div><div class="line"><span class="comment">//返回对象的类名 命名空间</span></div><div class="line">dump(get_class($class));</div><div class="line"></div><div class="line"><span class="comment">// 返回由类的方法名组成的数组</span></div><div class="line">dump(get_class_methods($class));</div><div class="line"></div><div class="line"><span class="comment">// 返回由类的默认属性组成的数组</span></div><div class="line">dump(get_object_vars($class));</div><div class="line">dump(get_class_vars($class));</div><div class="line"></div><div class="line"><span class="comment">// 返回对象或类的父类名</span></div><div class="line">dump(get_parent_class($class));</div><div class="line"></div><div class="line"><span class="comment">//检查类的方法是否存在</span></div><div class="line">dump(method_exists($class, <span class="string">'getMainThumb'</span>));</div><div class="line"></div><div class="line"><span class="comment">//以参数列表的数组，调用用户方法, 在php7 中被废弃</span></div><div class="line">call_user_method_array</div><div class="line"><span class="comment">//call_user_func_array 代替</span></div><div class="line"><span class="comment">//对特定对象调用用户方法 call_user_method 在php7 中被废弃</span></div><div class="line"><span class="comment">// call_user_func 代替</span></div></pre></td></tr></table></figure>
+            <p><blockquote class="blockquote-center"><br>人总是喜欢自己没有的<br></blockquote></p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>querySelector()是用于接收一个CSS选择符，返回与该模式匹配的第一个元素；<br>querySelectorAll()用于选择匹配到的所有元素。<br>query选择符选出来的元素及元素数组是静态的，而getElement这种方法选出的元素是动态的。</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>querySelector<br>list 是一个静态的 Node List，是一个 li 集合的快照，对文档的任何操作都不会对其产生影响。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="keyword">var</span> ul=<span class="built_in">document</span>.querySelector(<span class="string">'ul'</span>);</span></div><div class="line"><span class="javascript"><span class="keyword">var</span> list=ul.querySelectorAll(<span class="string">'li'</span>);</span></div><div class="line"><span class="javascript"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;list.length;i++)&#123;</span></div><div class="line"><span class="javascript">    ul.appendChild(<span class="built_in">document</span>.createElement(<span class="string">'li'</span>));</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="javascript"><span class="comment">//这个时候就创建了3个新的li，添加在ul列表上。</span></span></div><div class="line"><span class="javascript"><span class="built_in">console</span>.log(list.length);</span></div><div class="line"><span class="javascript"><span class="comment">// 输出的结果仍然是3，不是此时li的数量6</span></span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>getElementById<br>list 是一个动态的 Node List， 每一次调用 lis 都会重新对文档进行查询，导致无限循环的问题。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>111<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>222<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>333<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="keyword">var</span> ul=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'ul'</span>)[<span class="number">0</span>];</span></div><div class="line"><span class="javascript"><span class="keyword">var</span> list=ul.getElementsByTagName(<span class="string">'li'</span>);</span></div><div class="line"><span class="javascript"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)&#123;</span></div><div class="line"><span class="javascript">    ul.appendChild(<span class="built_in">document</span>.createElement(<span class="string">'li'</span>));</span></div><div class="line"><span class="undefined">&#125;   </span></div><div class="line"><span class="javascript"><span class="built_in">console</span>.log(list.length)<span class="comment">//此时输出的结果就是3+5=8</span></span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
 
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/07/计算PHP脚本的执行时间/" itemprop="url">
+                  计算PHP脚本的执行时间
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-07T22:31:52+08:00" content="2017-08-07">
+              2017-08-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>你我之间本无缘分，全靠我死撑<br></blockquote></p>
+<h3 id="sleep-与usleep-的区别"><a href="#sleep-与usleep-的区别" class="headerlink" title="sleep()与usleep()的区别"></a>sleep()与usleep()的区别</h3><p>sleep()是暂停多少秒<br>usleep()是暂停多少微秒<br>注意：usleep()单位是微秒，1秒 = 1000毫秒 ，1毫秒 = 1000微秒，即1微秒等于百万分之一秒。</p>
+<h3 id="microtime"><a href="#microtime" class="headerlink" title="microtime"></a>microtime</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$start = microtime(<span class="keyword">true</span>);</div><div class="line">sleep(<span class="number">2</span>);</div><div class="line">$end = microtime(<span class="keyword">true</span>);</div><div class="line">$execution_time = number_format($end-$start, <span class="number">2</span>); <span class="comment">// 单位秒</span></div></pre></td></tr></table></figure>
+<h3 id="文件修改时间"><a href="#文件修改时间" class="headerlink" title="文件修改时间"></a>文件修改时间</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$updateTime = filemtime($tokenPath);</div><div class="line">$nowTime = microtime(<span class="keyword">true</span>);</div><div class="line">$diffTime = round($nowTime - $updateTime);</div><div class="line"><span class="keyword">if</span> ($diffTime &lt; <span class="number">7000</span>) &#123;</div><div class="line">    <span class="keyword">return</span> file_get_contents($tokenPath);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -717,7 +745,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -758,7 +786,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">174</span>
+              <span class="site-state-item-count">181</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -768,7 +796,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">86</span>
+                <span class="site-state-item-count">89</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
