@@ -242,8 +242,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/12/Http协议浏览器缓存缓存机制/" itemprop="url">
-                  Http协议浏览器缓存缓存机制
+                <a class="post-title-link" href="/2017/05/10/php和python中的正则表达式/" itemprop="url">
+                  php和python中的正则表达式
                 </a>
               
             
@@ -256,8 +256,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-12T14:51:08+08:00" content="2017-04-12">
-              2017-04-12
+            <time itemprop="dateCreated" datetime="2017-05-10T15:10:33+08:00" content="2017-05-10">
+              2017-05-10
             </time>
           </span>
 
@@ -286,22 +286,15 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>山家除夕无他事，插了梅花便过年<br></blockquote><br>http缓存一直有在用，也听前辈讲过，今天打算自己总结一下，把不同情况都试了一遍，发现网上有些内容并不全对。</p>
-<p>首先，我们知道，浏览器缓存后，在浏览器的network中看到的状态码分两种情况，304和200 OK from cache</p>
-<h3 id="304"><a href="#304" class="headerlink" title="304"></a>304</h3><p>304是协商缓存，表示请求了服务器，但是内容没有变化，从浏览器本地缓存取数据</p>
-<p>304 是通过按浏览器上的刷新按钮或者按F5刷新得到的状态码</p>
-<p>从下图可以看到，headers中有etag属性，etag是资源的唯一标识，如果内容变了，etag会改变</p>
-<p>Last-Modified 也是用于协商缓存的Last-Modified的值表示内容最后修改时间</p>
-<p>浏览器请求已经缓存的资源时，会把etag和Last-Modified发送给服务器，服务器对比，如果浏览器发送来的和服务器的值相等，说明内容没有变化，服务器返回304给浏览器，浏览器从缓存读取数据</p>
-<h3 id="200-OK-from-cache"><a href="#200-OK-from-cache" class="headerlink" title="200 OK from cache"></a>200 OK from cache</h3><p>200 OK from cache 表示浏览器没有发出网络请求，直接取的本地缓存</p>
-<p>200 OK from cache 是通过在地址栏回车得到的状态码</p>
-<p>如下图，没有etag属性。etag是服务器计算出来的唯一值，因为没有请求服务器，所以也不会有etag标识</p>
-<h3 id="expires、Cache-Control"><a href="#expires、Cache-Control" class="headerlink" title="expires、Cache-Control"></a>expires、Cache-Control</h3><p>expires 表示过期日期，是绝对值。适用于http1.0协议</p>
-<p>Cache-Control 表示缓存的时间，是相对值，比如3600，表示3600秒后失效。适用于http1.1及以上</p>
-<p>如有expires和Cache-Control 同时存在，Cache-Control优先级更高</p>
-<p>Cache-Control: no-cache：这个很容易让人产生误解，使人误以为是响应不被缓存。实际上Cache-Control: no-cache是会被缓存的，只不过每次在向客户端（浏览器）提供响应数据时，缓存都要向服务器评估缓存响应的有效性。</p>
-<p>Cache-Control: no-store：这个才是响应不被缓存的意思。</p>
-<p>Pragma: no-cache：跟Cache-Control: no-cache相同，Pragma: no-cache兼容http 1.0 ，Cache-Control: no-cache是http 1.1提供的。</p>
+            <p><blockquote class="blockquote-center"><br>现在的孩子越来越早熟才炖了5分钟就烂了<br></blockquote></p>
+<h2 id="php"><a href="#php" class="headerlink" title="php"></a>php</h2><h3 id="preg-match"><a href="#preg-match" class="headerlink" title="preg_match"></a>preg_match</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$str = <span class="string">'&lt;a&gt;&lt;b&gt;&lt;c&gt;'</span>;</div><div class="line">preg_match(<span class="string">"/&lt;(\w)+&gt;/"</span>, $str, $abc);</div><div class="line">dd($abc);</div></pre></td></tr></table></figure>
+<p>结果: <code>[&#39;&lt;a&gt;&#39;, &#39;a&#39;]</code></p>
+<h3 id="preg-match-all"><a href="#preg-match-all" class="headerlink" title="preg_match_all"></a>preg_match_all</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$str = <span class="string">'&lt;a&gt;&lt;b&gt;&lt;c&gt;'</span>;</div><div class="line">preg_match_all(<span class="string">"/&lt;(\w)+&gt;/"</span>, $str, $abc);</div><div class="line">dd($abc);</div></pre></td></tr></table></figure>
+<p>结果: <code>[[&#39;&lt;a&gt;&#39;,&#39;&lt;b&gt;&#39;,&#39;&lt;c&gt;&#39;],[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]]</code></p>
+<h2 id="python"><a href="#python" class="headerlink" title="python"></a>python</h2><h3 id="re-match"><a href="#re-match" class="headerlink" title="re.match"></a>re.match</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> re</div><div class="line"></div><div class="line">line = <span class="string">'&lt;a&gt;&lt;b&gt;&lt;c&gt;'</span></div><div class="line">reg = <span class="string">"&lt;(\w)&gt;"</span></div><div class="line">res = re.match(reg, line)</div><div class="line"><span class="keyword">if</span> res:</div><div class="line">print(res.group(<span class="number">1</span>))</div></pre></td></tr></table></figure>
+<p>结果: <code>a</code></p>
+<h3 id="re-findall"><a href="#re-findall" class="headerlink" title="re.findall"></a>re.findall</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> re</div><div class="line"></div><div class="line">line = <span class="string">'&lt;a&gt;&lt;b&gt;&lt;c&gt;'</span></div><div class="line">reg = <span class="string">"&lt;(\w)&gt;"</span></div><div class="line">res = re.findall(reg, line)</div><div class="line"><span class="keyword">if</span> res:</div><div class="line">print(res)</div></pre></td></tr></table></figure>
+<p>结果: <code>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</code></p>
 
           
         
@@ -351,8 +344,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/12/cache/" itemprop="url">
-                  cache
+                <a class="post-title-link" href="/2017/05/09/Laravel中的模型事件/" itemprop="url">
+                  Laravel中的模型事件
                 </a>
               
             
@@ -365,8 +358,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-12T14:49:02+08:00" content="2017-04-12">
-              2017-04-12
+            <time itemprop="dateCreated" datetime="2017-05-09T15:59:46+08:00" content="2017-05-09">
+              2017-05-09
             </time>
           </span>
 
@@ -395,113 +388,24 @@
       
         
           
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/10/mysql的sql-mode合理设置/" itemprop="url">
-                  mysql的sql_mode合理设置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-10T10:03:42+08:00" content="2017-04-10">
-              2017-04-10
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>以大部分人努力程度之低，根本轮不到去拼天赋<br></blockquote><br>MySQL的sql_mode合理设置<br>sql_mode是个很容易被忽视的变量，默认值是空值，在这种设置下是可以允许一些非法操作的，比如允许一些非法数据的插入。在生产环境必须将这个值设置为严格模式，所以开发、测试环境的数据库也必须要设置，这样在开发测试阶段就可以发现问题 </p>
-<p>sql_mode常用值如下：<br>ONLY_FULL_GROUP_BY：<br>对于GROUP BY聚合操作，如果在SELECT中的列，没有在GROUP BY中出现，那么这个SQL是不合法的，因为列不在GROUP BY从句中</p>
-<p>NO_AUTO_VALUE_ON_ZERO：<br>该值影响自增长列的插入。默认设置下，插入0或NULL代表生成下一个自增长值。如果用户 希望插入的值为0，而该列又是自增长的，那么这个选项就有用了。</p>
-<p>STRICT_TRANS_TABLES：<br>在该模式下，如果一个值不能插入到一个事务表中，则中断当前的操作，对非事务表不做限制<br>NO_ZERO_IN_DATE：<br>在严格模式下，不允许日期和月份为零</p>
-<p>NO_ZERO_DATE：<br>设置该值，mysql数据库不允许插入零日期，插入零日期会抛出错误而不是警告。</p>
-<p>ERROR_FOR_DIVISION_BY_ZERO：<br>在INSERT或UPDATE过程中，如果数据被零除，则产生错误而非警告。如 果未给出该模式，那么数据被零除时MySQL返回NULL</p>
-<p>NO_AUTO_CREATE_USER：<br>禁止GRANT创建密码为空的用户</p>
-<p>NO_ENGINE_SUBSTITUTION：<br>如果需要的存储引擎被禁用或未编译，那么抛出错误。不设置此值时，用默认的存储引擎替代，并抛出一个异常</p>
-<p>PIPES_AS_CONCAT：<br>将”||”视为字符串的连接操作符而非或运算符，这和Oracle数据库是一样的，也和字符串的拼接函数Concat相类似</p>
-<p>ANSI_QUOTES：<br>启用ANSI_QUOTES后，不能用双引号来引用字符串，因为它被解释为识别符</p>
-<p>ORACLE的sql_mode设置等同：PIPES_AS_CONCAT, ANSI_QUOTES, IGNORE_SPACE, NO_KEY_OPTIONS, NO_TABLE_OPTIONS, NO_FIELD_OPTIONS, NO_AUTO_CREATE_USER.</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/wyzxg/article/details/8787878" target="_blank" rel="external">http://blog.csdn.net/wyzxg/article/details/8787878</a></p>
-</blockquote>
+            <p><blockquote class="blockquote-center"><br>人生本无意义，唯有寻趣。<br></blockquote></p>
+<h3 id="一个简单的例子"><a href="#一个简单的例子" class="headerlink" title="一个简单的例子"></a>一个简单的例子</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Event::listen(<span class="string">'eloquent.created: App\User'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">Log::info(<span class="string">'haha'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">Route::get(<span class="string">'hehe'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">\App\User::forceCreate([</div><div class="line"><span class="string">'name'</span> =&gt; <span class="string">'yangzie'</span>,</div><div class="line"><span class="string">'email'</span> =&gt; <span class="string">'yang11@qq.ttt'</span>,</div><div class="line"><span class="string">'password'</span> =&gt;bcrypt(str_random(<span class="number">6</span>))</div><div class="line">    ]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="比较规整的写法"><a href="#比较规整的写法" class="headerlink" title="比较规整的写法"></a>比较规整的写法</h3><ul>
+<li><p>在Providers\EventServiceProvider.php 添加:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">protected</span> $listen = [</div><div class="line">	<span class="string">'App\Events\UserCreated'</span> =&gt; [</div><div class="line">	<span class="string">'App\Listeners\NotifyAdminUserCreated'</span>,</div><div class="line">	],</div><div class="line">];</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行命令:<br>会生成两个文件<br>Events/UserCreated.php<br>Listeners/NotifyAdminUserCreated.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan event:generate</div></pre></td></tr></table></figure>
+</li>
+<li><p>在User 模型中:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Events</span>\<span class="title">UserCreated</span>;</div><div class="line"></div><div class="line"><span class="keyword">protected</span> $events = [</div><div class="line">	<span class="string">'created'</span> =&gt; UserCreated::class</div><div class="line">];</div></pre></td></tr></table></figure>
+</li>
+<li><p>在监听文件中<br>app\Listeners\NotifyAdminUserCreated.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">(UserCreated $event)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	$post = $event-&gt;post;</div><div class="line">	\Log::info($post);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在事件文件中:<br>app\Events\UserCreated.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> $post;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($post)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">$this</span>-&gt;post = $post;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ul>
 
           
         
@@ -551,8 +455,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/10/mysql的严格模式/" itemprop="url">
-                  mysql的严格模式
+                <a class="post-title-link" href="/2017/05/04/mysql中FIND-IN-SET的使用方法/" itemprop="url">
+                  mysql中FIND_IN_SET的使用方法
                 </a>
               
             
@@ -565,8 +469,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-10T09:15:08+08:00" content="2017-04-10">
-              2017-04-10
+            <time itemprop="dateCreated" datetime="2017-05-04T16:41:47+08:00" content="2017-05-04">
+              2017-05-04
             </time>
           </span>
 
@@ -595,10 +499,12 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>虎豹只会独处，牛羊才会成群。<br></blockquote><br>何为MySQL的严格模式，简单来说就是MySQL自身对数据进行严格的校验（格式、长度、类型等），比如一个整型字段我们写入一个字符串类型的数据，在非严格模式下MySQL不会报错，同样如果定义了char或varchar类型的字段，当写入或更新的数据超过了定义的长度也不会报错。</p>
-<h3 id="如何开启？"><a href="#如何开启？" class="headerlink" title="如何开启？"></a>如何开启？</h3><p>1.可以通过执行SQL语句来开启，但是只对当前连接有效，下面是SQL语句：<br>复制代码 代码如下:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">set</span> sql_mode=<span class="string">"STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"</span>;</div></pre></td></tr></table></figure></p>
-<p>2.通过修改MySQL的配置文件，在配置文件中查找sql-mode，将此行修改成为：<br>复制代码 代码如下:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sql-mode="STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"</div></pre></td></tr></table></figure></p>
-<p>如果查找不到sql-mode=则在[mysqld]下加入即可，推荐第二种方法，可以一劳永逸。</p>
+            <p><blockquote class="blockquote-center"><br>我想用余生为你暖一盏茶，晚风微扬时勿忘归家。<br></blockquote></p>
+<h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>在mysql中，有时我们在做数据库查询时，需要得到某字段中包含某个值的记录，但是它也不是用like能解决的，使用like可能查到我们不想要的记录，它比like更精准，这时候mysql的FIND_IN_SET函数就派上用场了.</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>str 要查询的字符串</p>
+<p>area 字段名 参数以”,”分隔 如 (1,2,6,8)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">where</span> FIND_IN_SET(<span class="string">'1'</span>,area)</div></pre></td></tr></table></figure>
+<h3 id="FIND-IN-SET和like的区别"><a href="#FIND-IN-SET和like的区别" class="headerlink" title="FIND_IN_SET和like的区别"></a>FIND_IN_SET和like的区别</h3><p>like是广泛的模糊匹配，字符串中没有分隔符，Find_IN_SET 是精确匹配，字段值以英文”,”分隔，Find_IN_SET查询的结果要小于like查询的结果。</p>
 
           
         
@@ -648,8 +554,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/04/06/php数学扩展bcmath/" itemprop="url">
-                  php数学扩展bcmath
+                <a class="post-title-link" href="/2017/04/27/mysql去除重复数据/" itemprop="url">
+                  mysql去除重复数据
                 </a>
               
             
@@ -662,8 +568,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-06T17:14:54+08:00" content="2017-04-06">
-              2017-04-06
+            <time itemprop="dateCreated" datetime="2017-04-27T18:55:44+08:00" content="2017-04-27">
+              2017-04-27
             </time>
           </span>
 
@@ -692,12 +598,108 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>我在这里准备了一百口棺材，九十九口留给贪官，一口留给自己。<br></blockquote></p>
-<h3 id="BC-数学-函数"><a href="#BC-数学-函数" class="headerlink" title="BC 数学 函数"></a>BC 数学 函数</h3><p>  ● bcadd — 2个任意精度数字的加法计算<br>  ● bccomp — 比较两个任意精度的数字<br>  ● bcdiv — 2个任意精度的数字除法计算<br>  ● bcmod — 对一个任意精度数字取模<br>  ● bcmul — 2个任意精度数字乘法计算<br>  ● bcpow — 任意精度数字的乘方<br>  ● bcpowmod — Raise an arbitrary precision number to another, reduced by a specified modulus<br>  ● bcscale — 设置所有bc数学函数的默认小数点保留位数<br>  ● bcsqrt — 任意精度数字的二次方根<br>  ● bcsub — 2个任意精度数字的减法</p>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$re = intval(<span class="number">18.99</span>*<span class="number">100</span>)/<span class="number">100</span>;</div><div class="line"><span class="keyword">echo</span> $re;</div><div class="line"><span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</div><div class="line">$gg = bcdiv(bcmul(<span class="string">'18.99'</span>,<span class="string">'100'</span>), <span class="string">'100'</span>,<span class="number">2</span>);</div><div class="line"><span class="keyword">echo</span> $gg;</div></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="http://php.net/manual/zh/book.bc.php" target="_blank" rel="external">http://php.net/manual/zh/book.bc.php</a></p>
-</blockquote>
+            <p><blockquote class="blockquote-center"><br>悟已往之不谏，知来者之可追。实迷途其未远，觉今是而昨非。<br></blockquote></p>
+<h3 id="保留ID最小的"><a href="#保留ID最小的" class="headerlink" title="保留ID最小的"></a>保留ID最小的</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">NAMES</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> <span class="keyword">NOT</span> <span class="keyword">IN</span>( <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> <span class="keyword">MIN</span>(n.id)<span class="keyword">FROM</span> <span class="keyword">NAMES</span> n GROUPBY n.name) x)</div></pre></td></tr></table></figure>
+<h3 id="保留ID最大的"><a href="#保留ID最大的" class="headerlink" title="保留ID最大的"></a>保留ID最大的</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">NAMES</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> <span class="keyword">NOT</span> <span class="keyword">IN</span>( <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> <span class="keyword">MAX</span>(n.id)<span class="keyword">FROM</span> <span class="keyword">NAMES</span> n GROUPBY n.name) x)</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/27/scrapy爬去西刺ip列表/" itemprop="url">
+                  scrapy爬去西刺ip列表
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-27T18:48:20+08:00" content="2017-04-27">
+              2017-04-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>零落成泥碾作尘，只有香如故。<br></blockquote></p>
+<h3 id="创建工程"><a href="#创建工程" class="headerlink" title="创建工程"></a>创建工程</h3><p>执行命令:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrapy startproject xici</div></pre></td></tr></table></figure></p>
+<h3 id="新建爬虫"><a href="#新建爬虫" class="headerlink" title="新建爬虫"></a>新建爬虫</h3><p>进入到xici目录执行命令<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrapy genspider aixici www.xicidaili.com</div></pre></td></tr></table></figure></p>
+<h3 id="编写items"><a href="#编写items" class="headerlink" title="编写items"></a>编写items</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> scrapy</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">XiciItem</span><span class="params">(scrapy.Item)</span>:</span></div><div class="line"><span class="comment"># define the fields for your item here like:</span></div><div class="line"><span class="comment"># name = scrapy.Field()</span></div><div class="line">ip         = scrapy.Field()</div><div class="line">port       = scrapy.Field()</div><div class="line">possion    = scrapy.Field()</div><div class="line">type       = scrapy.Field()</div><div class="line">speed      = scrapy.Field()</div><div class="line">last_time  = scrapy.Field()</div></pre></td></tr></table></figure>
+<h3 id="编写爬虫"><a href="#编写爬虫" class="headerlink" title="编写爬虫"></a>编写爬虫</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">import</span> scrapy</div><div class="line"><span class="keyword">from</span> xici.items <span class="keyword">import</span>  XiciItem</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AixiciSpider</span><span class="params">(scrapy.Spider)</span>:</span></div><div class="line">name = <span class="string">"aixici"</span></div><div class="line">allowed_domains = [<span class="string">"www.xicidaili.com"</span>]</div><div class="line">start_urls = [<span class="string">'http://www.xicidaili.com/'</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></div><div class="line">reqs = []</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">10</span>):</div><div class="line">req = scrapy.Request(<span class="string">'http://www.xicidaili.com/nn/%s'</span>%i)</div><div class="line">reqs.append(req)</div><div class="line"></div><div class="line"><span class="keyword">return</span> reqs</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></div><div class="line">ip_list = response.xpath(<span class="string">'//*[@id="ip_list"]'</span>)</div><div class="line">trs = ip_list[<span class="number">0</span>].xpath(<span class="string">'tr'</span>)</div><div class="line">items = []</div><div class="line"><span class="keyword">for</span> ip <span class="keyword">in</span> trs[<span class="number">1</span>:]:</div><div class="line">pre_item = XiciItem()</div><div class="line">pre_item[<span class="string">'ip'</span>] = ip.xpath(<span class="string">'td[2]/text()'</span>)[<span class="number">0</span>].extract()</div><div class="line">pre_item[<span class="string">'port'</span>] = ip.xpath(<span class="string">'td[3]/text()'</span>)[<span class="number">0</span>].extract()</div><div class="line">pre_item[<span class="string">'possion'</span>] = ip.xpath(<span class="string">'td[4]'</span>)[<span class="number">0</span>].extract().strip()</div><div class="line">pre_item[<span class="string">'type'</span>] = ip.xpath(<span class="string">'td[6]/text()'</span>)[<span class="number">0</span>].extract()</div><div class="line">pre_item[<span class="string">'speed'</span>] = ip.xpath(<span class="string">'td[7]/div[@class="bar"]/@title'</span>).re(<span class="string">'\d&#123;0,2&#125;\.\d&#123;0,&#125;'</span>)[<span class="number">0</span>]</div><div class="line">pre_item[<span class="string">'last_time'</span>] = ip.xpath(<span class="string">'td[10]/text()'</span>)[<span class="number">0</span>].extract()</div><div class="line">items.append(pre_item)</div><div class="line"><span class="keyword">return</span> items</div></pre></td></tr></table></figure>
+<h3 id="运行爬虫"><a href="#运行爬虫" class="headerlink" title="运行爬虫"></a>运行爬虫</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scrapy crawl aixici -o item.json</div></pre></td></tr></table></figure>
 
           
         
@@ -730,7 +732,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -771,7 +773,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">181</span>
+              <span class="site-state-item-count">187</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -781,7 +783,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">92</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

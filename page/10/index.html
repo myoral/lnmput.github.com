@@ -242,8 +242,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/31/elasticsearch的一些批量操作/" itemprop="url">
-                  elasticsearch的一些批量操作
+                <a class="post-title-link" href="/2017/08/07/计算PHP脚本的执行时间/" itemprop="url">
+                  计算PHP脚本的执行时间
                 </a>
               
             
@@ -256,8 +256,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-31T14:46:43+08:00" content="2017-07-31">
-              2017-07-31
+            <time itemprop="dateCreated" datetime="2017-08-07T22:31:52+08:00" content="2017-08-07">
+              2017-08-07
             </time>
           </span>
 
@@ -286,11 +286,10 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>为了看起来毫不费力<br></blockquote></p>
-<h3 id="批量插入"><a href="#批量插入" class="headerlink" title="批量插入"></a>批量插入</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">POST /shop/product/_bulk</div><div class="line">&#123; <span class="attr">"index"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"1"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"name"</span> : <span class="string">"apple"</span>, <span class="attr">"price"</span>:<span class="number">15.15</span> &#125;</div><div class="line">&#123; <span class="attr">"index"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"2"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"name"</span> : <span class="string">"pear"</span>, <span class="attr">"price"</span>:<span class="number">16.00</span> &#125;</div><div class="line">&#123; <span class="attr">"index"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"3"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"name"</span> : <span class="string">"orange"</span>, <span class="attr">"price"</span>:<span class="number">15.09</span> &#125;</div><div class="line">&#123; <span class="attr">"index"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"4"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"name"</span> : <span class="string">"bnanan"</span>, <span class="attr">"price"</span>:<span class="number">3.00</span> &#125;</div><div class="line">&#123; <span class="attr">"index"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"5"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"name"</span> : <span class="string">"pototo"</span>, <span class="attr">"price"</span>:<span class="number">9.15</span> &#125;</div></pre></td></tr></table></figure>
-<h3 id="批量修改"><a href="#批量修改" class="headerlink" title="批量修改"></a>批量修改</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">POST /shop/product/_bulk</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"1"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"name"</span> : <span class="string">"apple iphone"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"2"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"name"</span> : <span class="string">"pear yoyo"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"3"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"name"</span> : <span class="string">"orange milk"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"4"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"name"</span> : <span class="string">"bnanan egg"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"5"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"name"</span> : <span class="string">"pototo chips"</span>&#125; &#125;</div></pre></td></tr></table></figure>
-<h3 id="批量添加新的字段"><a href="#批量添加新的字段" class="headerlink" title="批量添加新的字段"></a>批量添加新的字段</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">POST /shop/product/_bulk</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"1"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"desc"</span> : <span class="string">"this is a apple iphone"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"2"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"desc"</span> : <span class="string">"the price is low"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"3"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"desc"</span> : <span class="string">"the frieight is free"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"4"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"desc"</span> : <span class="string">"buy one and a free one"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"5"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"desc"</span> : <span class="string">"you lost it"</span>&#125; &#125;</div></pre></td></tr></table></figure>
-<h3 id="批量删除"><a href="#批量删除" class="headerlink" title="批量删除"></a>批量删除</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">POST /shop/product/_bulk</div><div class="line">&#123; <span class="attr">"delete"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"2"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"delete"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"3"</span> &#125; &#125;</div></pre></td></tr></table></figure>
+            <p><blockquote class="blockquote-center"><br>你我之间本无缘分，全靠我死撑<br></blockquote></p>
+<h3 id="sleep-与usleep-的区别"><a href="#sleep-与usleep-的区别" class="headerlink" title="sleep()与usleep()的区别"></a>sleep()与usleep()的区别</h3><p>sleep()是暂停多少秒<br>usleep()是暂停多少微秒<br>注意：usleep()单位是微秒，1秒 = 1000毫秒 ，1毫秒 = 1000微秒，即1微秒等于百万分之一秒。</p>
+<h3 id="microtime"><a href="#microtime" class="headerlink" title="microtime"></a>microtime</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$start = microtime(<span class="keyword">true</span>);</div><div class="line">sleep(<span class="number">2</span>);</div><div class="line">$end = microtime(<span class="keyword">true</span>);</div><div class="line">$execution_time = number_format($end-$start, <span class="number">2</span>); <span class="comment">// 单位秒</span></div></pre></td></tr></table></figure>
+<h3 id="文件修改时间"><a href="#文件修改时间" class="headerlink" title="文件修改时间"></a>文件修改时间</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$updateTime = filemtime($tokenPath);</div><div class="line">$nowTime = microtime(<span class="keyword">true</span>);</div><div class="line">$diffTime = round($nowTime - $updateTime);</div><div class="line"><span class="keyword">if</span> ($diffTime &lt; <span class="number">7000</span>) &#123;</div><div class="line">    <span class="keyword">return</span> file_get_contents($tokenPath);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -339,8 +338,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/31/php中的一些高级用法/" itemprop="url">
-                  php中的一些高级用法
+                <a class="post-title-link" href="/2017/08/07/移动端ui框架推荐/" itemprop="url">
+                  移动端ui框架推荐
                 </a>
               
             
@@ -353,8 +352,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-31T10:34:30+08:00" content="2017-07-31">
-              2017-07-31
+            <time itemprop="dateCreated" datetime="2017-08-07T09:11:56+08:00" content="2017-08-07">
+              2017-08-07
             </time>
           </span>
 
@@ -383,111 +382,14 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br> 弱国无外交，人弱亦如此<br></blockquote></p>
-<h3 id="call-user-func-array"><a href="#call-user-func-array" class="headerlink" title="call_user_func_array"></a>call_user_func_array</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foobar</span><span class="params">($arg, $arg2)</span> </span>&#123;</div><div class="line">    <span class="keyword">echo</span> <span class="keyword">__FUNCTION__</span>, <span class="string">" got $arg and $arg2\n"</span>;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">foo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span><span class="params">($arg, $arg2)</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="keyword">__METHOD__</span>, <span class="string">" got $arg and $arg2\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// Call the foobar() function with 2 arguments</span></div><div class="line">call_user_func_array(<span class="string">"foobar"</span>, <span class="keyword">array</span>(<span class="string">"one"</span>, <span class="string">"two"</span>));</div><div class="line"></div><div class="line"><span class="comment">// Call the $foo-&gt;bar() method with 2 arguments</span></div><div class="line">$foo = <span class="keyword">new</span> foo;</div><div class="line">call_user_func_array(<span class="keyword">array</span>($foo, <span class="string">"bar"</span>), <span class="keyword">array</span>(<span class="string">"three"</span>, <span class="string">"four"</span>));</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="call-user-func"><a href="#call-user-func" class="headerlink" title="call_user_func"></a>call_user_func</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">increment</span><span class="params">($var)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    $var++;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$a = <span class="number">0</span>;</div><div class="line">call_user_func(<span class="string">'increment'</span>, $a);</div><div class="line"><span class="keyword">echo</span> $a.<span class="string">"\n"</span>;</div></pre></td></tr></table></figure>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$class= <span class="keyword">new</span> \Jason\Ccshop\Models\Product();</div><div class="line"></div><div class="line"><span class="comment">//返回对象的类名 命名空间</span></div><div class="line">dump(get_class($class));</div><div class="line"></div><div class="line"><span class="comment">// 返回由类的方法名组成的数组</span></div><div class="line">dump(get_class_methods($class));</div><div class="line"></div><div class="line"><span class="comment">// 返回由类的默认属性组成的数组</span></div><div class="line">dump(get_object_vars($class));</div><div class="line">dump(get_class_vars($class));</div><div class="line"></div><div class="line"><span class="comment">// 返回对象或类的父类名</span></div><div class="line">dump(get_parent_class($class));</div><div class="line"></div><div class="line"><span class="comment">//检查类的方法是否存在</span></div><div class="line">dump(method_exists($class, <span class="string">'getMainThumb'</span>));</div><div class="line"></div><div class="line"><span class="comment">//以参数列表的数组，调用用户方法, 在php7 中被废弃</span></div><div class="line">call_user_method_array</div><div class="line"><span class="comment">//call_user_func_array 代替</span></div><div class="line"><span class="comment">//对特定对象调用用户方法 call_user_method 在php7 中被废弃</span></div><div class="line"><span class="comment">// call_user_func 代替</span></div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/28/加密签名原理/" itemprop="url">
-                  加密签名原理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-28T15:18:36+08:00" content="2017-07-28">
-              2017-07-28
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote class="blockquote-center"><br>“我先起，你再睡一会儿。”<br></blockquote>
-
-<h3 id="文章核心"><a href="#文章核心" class="headerlink" title="文章核心:"></a>文章核心:</h3><p>甲先算出原文的类似于MD5的校验值(数字”指纹”,也称”信息摘要”)，接下来甲用自己的私钥K对MD5进行变形，得到变形C就是甲对合同A的签名。乙拿到源文件后也先算出MD5值，用甲的公钥K2再对签名C进行反运算，变回MD5，看是否与源文件的MD5一样，如果一样 ，则签名是真的，反之签名则为假冒的。 MD5/数字”指纹”是一种单向散列函数,它是完全不可逆的。 加密用公钥，解密是用私钥进行反运算得到原文。 签名用私钥，验证签名是用公钥进行反运算得到原指纹。 不必担心伪造MD5，因为只有用私钥才能进行签名</p>
-<p>一、加密 加密用来保护敏感信息的传输，保证信息的安全性。在一个加密系统中，信息使用加密密钥加密后，得到的密文传送给接收方，接收方使用解密密钥对密文解密得到原文。FF有两种加密体系：秘密密钥加密和公开密钥加密。</p>
-<p>1、秘密密钥加密 秘密密钥加密也称为对称密钥加密，加密和解密使用同一个密钥，即：原文经过密钥K加工（为避免歧意，本文将所有的对信息的变换均称为“加工”，而不区分加密和解密；加工前的信息称“原文”，加工后所得到的信息称为“变形”）后得到变形，而变形经过密钥K加工后又恢复为明文。因此信息的发送方和接收方必须共享一个密钥。 这种加密类型快速牢固，只要密钥足够长（目前128位被认为是“不可破解的”），密文就不可被破解。对称密钥加密的缺陷是密钥本身必须单独进行交换以便接收看能解密数据，如果密钥没有以安全方式传送，它就很可能被他人截获并用于信息解密。</p>
-<p>2、公开密钥加密 公开密钥加密也称为非对称密钥加密。公开密钥加密体系使用两个不同的密钥：一个用主人秘密保存和专用的，主要用于解密和签名，称为私钥；另一个对外公开，主要用于验证签名和加密，称为公钥（公钥体系即因此而得名）。这两个密钥是数学相关的，但仅凭借公钥，人们无法推算出其对应的私钥。原文经过公钥加工后得到变形，该变形经过私钥加工后又复原为原文；反之亦然，原文经过私钥加工后得到变形，该变形经过公钥加工后又复原为原文。下面将要讲到，“先公后私”和“先私后公”这两者看起来差不多，但应用是完全不同的。用某用户的公钥加工后所得的数据只能用该用户的私钥才能复原为原文。因而要求用户的私钥不能透露给自己不信任的任何人。 公钥加密与对称密钥加密相比，其优势在于不需要一把共享的通用密钥，私钥不发往任何地方，由主人秘密保存，而公钥是公开的，不存在管理和保密的问题。但其缺点是计算复杂，不适应于对大量的数据进行加工处理。 FF在具体的应用时，先将秘密密钥用收件人的公钥进行加工，将变形用公开通道（实际上是附加在加密文件当中）传递给收件人，收件人用其私钥对变形进行加工，恢复出秘密密钥，然后再用秘密密钥对密文进行解密。 公钥加密的另一个用处是身份验证。私钥主人用私钥加工了一条信息后，拥有公钥拷贝的任何人都能对其复原，接收者由此可以知道这条信息确实来自于拥有私钥的人，因为除了私钥的主人外，其他人没有私钥，是无法进行“原文经过私钥加工后得到变形”这一操作的，故“先私后公”的操作方式可以进行身份验证，或者称为“数字签名”、“电子签名”。 二、安全的单向散列函数 （Secure Hash） 单向散列函数（简称“H函数”或“Hash函数”）用于对要传输的数据作运算生成信息摘要，它并不是一种加密机制，但却能产生信息的数字”指纹”，它的目的是为了确保数据没有被修改或变化，保证信息的完整性不被破坏。</p>
-<h3 id="单向散列函数有三个主要特点："><a href="#单向散列函数有三个主要特点：" class="headerlink" title="单向散列函数有三个主要特点："></a>单向散列函数有三个主要特点：</h3><p>1．它能处理任意大小的信息，并将其技信息摘要（message digest）方法生成固定大小的数据块（FF是128位，即16字节），对同一个源数据反复执行Hash函数将总是得到同样的结果。<br>2．它是不可预见的。产生的数据块的大小与原始信息的大小没有任何联系，同时源数据和产生的数据块的数据看起来也没有明显关系，源信息的一个微小变化都会对数据块产生很大的影响。<br>3．它是完全不可逆的，没有办法通过生成的数据块直接恢复源数据。</p>
-<p>H函数最主要的用途是数字签名。具体过程为： 甲先用H函数对某个信息（如合同的电子文件）A进行计算，得到128位的结果B，再用私钥K对B进行变形，得到C，该变形C就是甲对合同A的签名。 他人（乙）的验证过程为：乙用H函数对A进行计算，得到结果B1，对签名C用甲的公钥K1进行加工，得到变形B2，如果B1=B2，则签名是真的，反之签名则为假冒的。 原理：只有持有私钥K的人可以完成从A到C的操作。因为 甲虽然可以指责乙捏造了合同A（任何人都可以在计算机上打出一份他想要的合同），乙也的确可以从A计算出B，但从B到C的过程要用到甲的私钥K，该过程只有甲可以完成； 甲也可以指责乙先捏造了签名C，乙也的确可以用甲的公钥从C计算出B，但乙无法从B推算出A，从A到B的H函数是单向的，无法反向计算。</p>
+            <p><blockquote class="blockquote-center"><br>不要在父母需要你的时候, 只有眼泪<br></blockquote><br>不想多做介绍, 自己点开看看, 没有最好的, 只有最合适的</p>
+<h3 id="weui"><a href="#weui" class="headerlink" title="weui"></a>weui</h3><p>微信ui<br><a href="https://weui.io/" target="_blank" rel="external">https://weui.io/</a></p>
+<h3 id="SUI-Mobile"><a href="#SUI-Mobile" class="headerlink" title="SUI Mobile"></a>SUI Mobile</h3><p>阿里巴巴团队<br><a href="http://m.sui.taobao.org/components/" target="_blank" rel="external">http://m.sui.taobao.org/components/</a></p>
+<h3 id="layui"><a href="#layui" class="headerlink" title="layui"></a>layui</h3><p><a href="http://www.layui.com/" target="_blank" rel="external">http://www.layui.com/</a></p>
+<h3 id="ydui"><a href="#ydui" class="headerlink" title="ydui"></a>ydui</h3><p><a href="http://www.ydui.org/" target="_blank" rel="external">http://www.ydui.org/</a></p>
+<h3 id="frozenui"><a href="#frozenui" class="headerlink" title="frozenui"></a>frozenui</h3><p><a href="http://frozenui.github.io" target="_blank" rel="external">http://frozenui.github.io</a></p>
+<h3 id="zanui"><a href="#zanui" class="headerlink" title="zanui"></a>zanui</h3><p>使用于vue<br><a href="https://www.youzanyun.com/zanui" target="_blank" rel="external">https://www.youzanyun.com/zanui</a></p>
+<h3 id="zanui-weapp"><a href="#zanui-weapp" class="headerlink" title="zanui-weapp"></a>zanui-weapp</h3><p>微信小程序<br><a href="https://github.com/youzan/zanui-weapp" target="_blank" rel="external">https://github.com/youzan/zanui-weapp</a></p>
 
           
         
@@ -537,8 +439,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/28/数字签名是什么/" itemprop="url">
-                  数字签名是什么
+                <a class="post-title-link" href="/2017/08/04/mysql中的数字类型/" itemprop="url">
+                  mysql中的数字类型
                 </a>
               
             
@@ -551,8 +453,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-28T09:56:20+08:00" content="2017-07-28">
-              2017-07-28
+            <time itemprop="dateCreated" datetime="2017-08-04T09:14:30+08:00" content="2017-08-04">
+              2017-08-04
             </time>
           </span>
 
@@ -581,10 +483,12 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>我喜欢钱, 很喜欢, 喜欢的不得了<br></blockquote><br><img src="/images/001.png" alt=""><br>鲍勃有两把钥匙，一把是公钥，另一把是私钥。<br><img src="/images/002.png" alt=""><br>鲍勃把公钥送给他的朋友们—-帕蒂、道格、苏珊—-每人一把。<br><img src="/images/003.png" alt=""><br>苏珊要给鲍勃写一封保密的信。她写完后用鲍勃的公钥加密，就可以达到保密的效果。<br><img src="/images/004.png" alt=""><br>鲍勃收信后，用私钥解密，就看到了信件内容。这里要强调的是，只要鲍勃的私钥不泄露，这封信就是安全的，即使落在别人手里，也无法解密。<br><img src="/images/005.png" alt=""><br>鲍勃给苏珊回信，决定采用”数字签名”。他写完后先用Hash函数，生成信件的摘要（digest）。<br><img src="/images/006.png" alt=""><br>然后，鲍勃使用私钥，对这个摘要加密，生成”数字签名”（signature）。<br><img src="/images/007.png" alt=""><br>鲍勃将这个签名，附在信件下面，一起发给苏珊。<br><img src="/images/008.png" alt=""><br>苏珊收信后，取下数字签名，用鲍勃的公钥解密，得到信件的摘要。由此证明，这封信确实是鲍勃发出的。<br><img src="/images/009.png" alt=""><br>苏珊再对信件本身使用Hash函数，将得到的结果，与上一步得到的摘要进行对比。如果两者一致，就证明这封信未被修改过。<br><img src="/images/010.png" alt=""><br>复杂的情况出现了。道格想欺骗苏珊，他偷偷使用了苏珊的电脑，用自己的公钥换走了鲍勃的公钥。此时，苏珊实际拥有的是道格的公钥，但是还以为这是鲍勃的公钥。因此，道格就可以冒充鲍勃，用自己的私钥做成”数字签名”，写信给苏珊，让苏珊用假的鲍勃公钥进行解密。<br><img src="/images/011.png" alt=""><br>后来，苏珊感觉不对劲，发现自己无法确定公钥是否真的属于鲍勃。她想到了一个办法，要求鲍勃去找”证书中心”（certificate authority，简称CA），为公钥做认证。证书中心用自己的私钥，对鲍勃的公钥和一些相关信息一起加密，生成”数字证书”（Digital Certificate）。<br><img src="/images/012.png" alt=""><br>鲍勃拿到数字证书以后，就可以放心了。以后再给苏珊写信，只要在签名的同时，再附上数字证书就行了。<br><img src="/images/013.png" alt=""><br>苏珊收信后，用CA的公钥解开数字证书，就可以拿到鲍勃真实的公钥了，然后就能证明”数字签名”是否真的是鲍勃签的。</p>
-<blockquote>
-<p><a href="http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html</a></p>
-</blockquote>
+            <p><blockquote class="blockquote-center"><br>如果不走出去，你就会认为你看到的就是你的全部。<br></blockquote></p>
+<h3 id="bigint"><a href="#bigint" class="headerlink" title="bigint"></a>bigint</h3><p>最大数: 18446744073709551615, 也就是2的64次方减去1, 也就是unsigned(无符号)<br>有符号范围:-2的63次方—2的63次方-1<br>默认长度:20<br>在mysql建表中的length，只是用于显示的位数,不影响所能存储的最大数</p>
+<h3 id="int"><a href="#int" class="headerlink" title="int"></a>int</h3><p>最大数: 4294967295, 也就是2的32次方减去1,也就是unsigned(无符号)<br>有符号范围:-2的31次方—2的31次方-1<br>默认长度:10<br>在mysql建表中的length，只是用于显示的位数,不影响所能存储的最大数</p>
+<h3 id="smallint"><a href="#smallint" class="headerlink" title="smallint"></a>smallint</h3><p>最大数: 65535, 也就是2的16次方减去1, 也就是unsigned(无符号)<br>有符号范围:-2的15次方—2的15次方-1<br>默认长度:5<br>在mysql建表中的length，只是用于显示的位数,不影响所能存储的最大数</p>
+<h3 id="tinyint"><a href="#tinyint" class="headerlink" title="tinyint"></a>tinyint</h3><p>最大数: 255, 也就是2的8次方减去1, 也就是unsigned(无符号)<br>有符号范围:-2的7次方—2的7次方-1<br>默认长度:3<br>在mysql建表中的length，只是用于显示的位数,不影响所能存储的最大数</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>插入像bigint这样非常大的数字请注意检查mysql的严格模式<br>laravel默认mysql是开启严格模式的</p>
 
           
         
@@ -634,8 +538,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/27/Mysql常用日期函数/" itemprop="url">
-                  Mysql常用日期函数
+                <a class="post-title-link" href="/2017/08/03/mysql中的共享锁和悲观锁以及共享锁和排他锁/" itemprop="url">
+                  mysql中的共享锁和悲观锁以及共享锁和排他锁
                 </a>
               
             
@@ -648,8 +552,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-27T11:02:34+08:00" content="2017-07-27">
-              2017-07-27
+            <time itemprop="dateCreated" datetime="2017-08-03T21:25:36+08:00" content="2017-08-03">
+              2017-08-03
             </time>
           </span>
 
@@ -678,18 +582,110 @@
       
         
           
-            <blockquote class="blockquote-center"><br>身不饥寒，天未曾负我；学无长进，我何以对天<br></blockquote>
+            <p><blockquote class="blockquote-center"><br>这段情，曾夏了夏天，后来却也冬了冬天<br></blockquote></p>
+<h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p>操作前假设一切操作都可能发现并发冲突，所以采取悲观态度。通过加锁，屏蔽一切可能违反数据完整性的操作<br>比方<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">for</span> <span class="keyword">update</span>;  <span class="comment">--就是表锁</span></div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">table</span> <span class="keyword">where</span> x = <span class="number">1</span> <span class="keyword">for</span> <span class="keyword">update</span>; <span class="comment">--就是行锁</span></div></pre></td></tr></table></figure></p>
+<p>当使用<code>for update</code>后，其它会话还是可以执行select操作，但无法执行<code>select xx for update</code>操作，只有当前会话<code>commit</code>后，其它for update操作才会被执行。</p>
+<p>for update仅适用于InnoDB，且必须在事务块(BEGIN/COMMIT)中才能生效<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">BEGIN</span>;</div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">test</span> <span class="keyword">FOR</span> <span class="keyword">UPDATE</span>;</div><div class="line">SLEEP(20);</div><div class="line"><span class="keyword">COMMIT</span>;</div></pre></td></tr></table></figure></p>
+<h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>假定操作很少发生冲突，一般对于读多写少的情况。只在提交操作时检查是否违反数据完整性, 乐观锁不能解决脏读的问题。<br>可以通过版本号是否比上个版本号或者时间戳来实现， 也或者检查通过检查某个字段来实现；<br>对于冲突检测后的处理，需要业务逻辑去处理。</p>
+<h3 id="排它锁"><a href="#排它锁" class="headerlink" title="排它锁"></a>排它锁</h3><p>当数据对象被加上排它锁时，其他的事务不能对它读取和修改。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">BEGIN</span>;</div><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">test</span> <span class="keyword">FOR</span> <span class="keyword">UPDATE</span>;</div><div class="line"><span class="keyword">COMMIT</span>;</div></pre></td></tr></table></figure></p>
+<h3 id="共享锁"><a href="#共享锁" class="headerlink" title="共享锁"></a>共享锁</h3><p>加了共享锁的数据对象可以被其他事务读取，但不能修改。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">from</span> city <span class="keyword">where</span> <span class="keyword">id</span> = <span class="string">"1"</span>  <span class="keyword">lock</span> <span class="keyword">in</span> <span class="keyword">share</span> <span class="keyword">mode</span>;</div></pre></td></tr></table></figure></p>
 
-<h3 id="获得当前日期-时间"><a href="#获得当前日期-时间" class="headerlink" title="获得当前日期+时间"></a>获得当前日期+时间</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select now();</div><div class="line">mysql&gt; select sysdate();</div></pre></td></tr></table></figure>
-<p>不同之处在于：now() 在执行开始时值就得到了， sysdate() 在函数执行时动态得到值。</p>
-<h3 id="获得当前日期"><a href="#获得当前日期" class="headerlink" title="获得当前日期"></a>获得当前日期</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select curdate();</div></pre></td></tr></table></figure>
-<h3 id="获得当前时间"><a href="#获得当前时间" class="headerlink" title="获得当前时间"></a>获得当前时间</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select curtime();</div></pre></td></tr></table></figure>
-<h3 id="获得当前-UTC-日期时间函数"><a href="#获得当前-UTC-日期时间函数" class="headerlink" title="获得当前 UTC 日期时间函数"></a>获得当前 UTC 日期时间函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select utc_timestamp(), utc_date(), utc_time(), now()</div></pre></td></tr></table></figure>
-<h3 id="MySQL-为日期增加一个时间间隔"><a href="#MySQL-为日期增加一个时间间隔" class="headerlink" title="MySQL 为日期增加一个时间间隔"></a>MySQL 为日期增加一个时间间隔</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">set @dt = now();</div><div class="line">select date_add(@dt, interval 1 day); -- add 1 day</div><div class="line">select date_add(@dt, interval 1 hour); -- add 1 hour</div><div class="line">select date_add(@dt, interval 1 minute); -- ...</div><div class="line">select date_add(@dt, interval 1 second);</div><div class="line">select date_add(@dt, interval 1 microsecond);</div><div class="line">select date_add(@dt, interval 1 week);</div><div class="line">select date_add(@dt, interval 1 month);</div><div class="line">select date_add(@dt, interval 1 quarter);</div><div class="line">select date_add(@dt, interval 1 year);</div><div class="line">select date_add(@dt, interval -1 day); -- sub 1 day</div></pre></td></tr></table></figure>
-<h3 id="MySQL-为日期减去一个时间间隔"><a href="#MySQL-为日期减去一个时间间隔" class="headerlink" title="MySQL 为日期减去一个时间间隔"></a>MySQL 为日期减去一个时间间隔</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select date_sub(&apos;1998-01-01 00:00:00&apos;, interval &apos;1 1:1:1&apos; day_second);</div></pre></td></tr></table></figure>
-<h3 id="DATE-函数返回日期或日期-时间表达式的日期部分"><a href="#DATE-函数返回日期或日期-时间表达式的日期部分" class="headerlink" title="DATE() 函数返回日期或日期/时间表达式的日期部分"></a>DATE() 函数返回日期或日期/时间表达式的日期部分</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DATE(date)</div></pre></td></tr></table></figure>
-<h3 id="前一天"><a href="#前一天" class="headerlink" title="前一天"></a>前一天</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">date_sub(curdate(),interval 1 day);</div></pre></td></tr></table></figure>
-<h3 id="统计日期"><a href="#统计日期" class="headerlink" title="统计日期"></a>统计日期</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span>  <span class="built_in">DATE</span>(updated_at) <span class="keyword">AS</span> dd, <span class="keyword">COUNT</span>(*) <span class="keyword">FROM</span> m_shells <span class="keyword">GROUP</span> <span class="keyword">BY</span> dd</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/08/03/mysql错误Duplicate-entry-4294967295-for-key-PRIMARY/" itemprop="url">
+                  mysql错误Duplicate_entry_4294967295_for_key_PRIMARY
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-03T17:07:26+08:00" content="2017-08-03">
+              2017-08-03
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>吃了就睡或长成猪的<br></blockquote></p>
+<h3 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mySQL auto increment problem: Duplicate entry &apos;4294967295&apos; for key 1</div></pre></td></tr></table></figure>
+<h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>I had the same problem with the exact same number. My problem was that I had the field on int(10) when I changed it to bigint(20) it solved my problem.</p>
+
           
         
       
@@ -721,7 +717,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -762,7 +758,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">181</span>
+              <span class="site-state-item-count">187</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -772,7 +768,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">92</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

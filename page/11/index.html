@@ -242,8 +242,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/27/Mysql索引理解/" itemprop="url">
-                  Mysql索引理解
+                <a class="post-title-link" href="/2017/08/03/使用DomCrawler批量本地化淘宝天猫详情图/" itemprop="url">
+                  使用DomCrawler批量本地化淘宝天猫详情图
                 </a>
               
             
@@ -256,8 +256,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-27T09:17:30+08:00" content="2017-07-27">
-              2017-07-27
+            <time itemprop="dateCreated" datetime="2017-08-03T10:21:43+08:00" content="2017-08-03">
+              2017-08-03
             </time>
           </span>
 
@@ -286,127 +286,14 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>我们这么努力 也不过是为了成为一个普通人<br></blockquote></p>
-<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><p>MySQL官方对索引的定义为：索引（Index）是帮助MySQL高效获取数据的数据结构。提取句子主干，就可以得到索引的本质：<code>索引是数据结构</code>。<br>我们知道，数据库查询是数据库的最主要功能之一。我们都希望查询数据的速度能尽可能的快，因此数据库系统的设计者会从查询算法的角度进行优化。最基本的查询算法当然是顺序查找（linear search），这种复杂度为O(n)的算法在数据量很大时显然是糟糕的，好在计算机科学的发展提供了很多更优秀的查找算法，例如二分查找（binary search）、二叉树查找（binary tree search）等。如果稍微分析一下会发现，每种查找算法都只能应用于特定的数据结构之上，例如二分查找要求被检索数据有序，而二叉树查找只能应用于二叉查找树上，但是数据本身的组织结构不可能完全满足各种数据结构（例如，理论上不可能同时将两列都按顺序进行组织），所以，在数据之外，数据库系统还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据，这样就可以在这些数据结构上实现高级查找算法。这种数据结构，就是索引。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/07/26/Mysql常用优化总结/" itemprop="url">
-                  Mysql常用优化总结
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-26T15:39:03+08:00" content="2017-07-26">
-              2017-07-26
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote class="blockquote-center"><br>你这辈子只能靠自己。<br></blockquote>
-
-<h3 id="Like的参数以通配符开头时"><a href="#Like的参数以通配符开头时" class="headerlink" title="Like的参数以通配符开头时"></a>Like的参数以通配符开头时</h3><p>尽量避免Like的参数以通配符开头，否则数据库引擎会放弃使用索引而进行全表扫描。<br>以通配符开头的sql语句，例如：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_credit_detail <span class="keyword">where</span> Flistid <span class="keyword">like</span> <span class="string">'%0'</span>\G;</div></pre></td></tr></table></figure></p>
-<h3 id="使用！-或-lt-gt-操作符时"><a href="#使用！-或-lt-gt-操作符时" class="headerlink" title="使用！= 或 &lt;&gt; 操作符时"></a>使用！= 或 &lt;&gt; 操作符时</h3><p>尽量避免使用！= 或 &lt;&gt;操作符，否则数据库引擎会放弃使用索引而进行全表扫描。使用&gt;或&lt;会比较高效。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_credit_detail <span class="keyword">where</span> Flistid != <span class="string">'2000000608201108010831508721'</span>\G;</div></pre></td></tr></table></figure></p>
-<h3 id="索引列参与计算"><a href="#索引列参与计算" class="headerlink" title="索引列参与计算"></a>索引列参与计算</h3><p>应尽量避免在 where 子句中对字段进行表达式操作，这将导致引擎放弃使用索引而进行全表扫描。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_credit_detail <span class="keyword">where</span> Flistid +<span class="number">1</span> &gt; <span class="string">'2000000608201108010831508722'</span>\G;</div></pre></td></tr></table></figure></p>
-<h3 id="对字段进行null值判断"><a href="#对字段进行null值判断" class="headerlink" title="对字段进行null值判断"></a>对字段进行null值判断</h3><p>应尽量避免在where子句中对字段进行null值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：<br>低效：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_credit_detail <span class="keyword">where</span> Flistid <span class="keyword">is</span> <span class="literal">null</span>;</div></pre></td></tr></table></figure></p>
-<p>可以在Flistid上设置默认值0，确保表中Flistid列没有null值，然后这样查询：<br>高效：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_credit_detail <span class="keyword">where</span> Flistid =<span class="number">0</span>;</div></pre></td></tr></table></figure></p>
-<h3 id="使用or来连接条件"><a href="#使用or来连接条件" class="headerlink" title="使用or来连接条件"></a>使用or来连接条件</h3><p>应尽量避免在where子句中使用or来连接条件，否则将导致引擎放弃使用索引而进行全表扫描，如：<br>低效：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_credit_detail <span class="keyword">where</span> Flistid = <span class="string">'2000000608201108010831508721'</span> <span class="keyword">or</span> Flistid = <span class="string">'10000200001'</span>;</div></pre></td></tr></table></figure></p>
-<h3 id="避免select"><a href="#避免select" class="headerlink" title="避免select *"></a>避免select *</h3><p>在解析的过程中，会将’*’ 依次转换成所有的列名，这个工作是通过查询数据字典完成的，这意味着将耗费更多的时间。<br>所以，应该养成一个需要什么就取什么的好习惯。</p>
-<h3 id="order-by-语句优化"><a href="#order-by-语句优化" class="headerlink" title="order by 语句优化"></a>order by 语句优化</h3><p>任何在Order by语句的非索引项或者有计算表达式都将降低查询速度。</p>
-<ul>
-<li>1.重写order by语句以使用索引；</li>
-<li>2.为所使用的列建立另外一个索引</li>
-<li>3.绝对避免在order by子句中使用表达式。</li>
-</ul>
-<h3 id="GROUP-BY语句优化"><a href="#GROUP-BY语句优化" class="headerlink" title="GROUP BY语句优化"></a>GROUP BY语句优化</h3><p>提高GROUP BY 语句的效率, 可以通过将不需要的记录在GROUP BY 之前过滤掉</p>
-<p>低效:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> JOB , <span class="keyword">AVG</span>(SAL)</div><div class="line"><span class="keyword">FROM</span> EMP</div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">by</span> JOB</div><div class="line"><span class="keyword">HAVING</span> JOB = ‘PRESIDENT<span class="string">'</span></div><div class="line"><span class="string">OR JOB = ‘MANAGER'</span>;</div></pre></td></tr></table></figure></p>
-<p>高效:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> JOB , <span class="keyword">AVG</span>(SAL)</div><div class="line"><span class="keyword">FROM</span> EMP</div><div class="line"><span class="keyword">WHERE</span> JOB = ‘PRESIDENT<span class="string">'</span></div><div class="line"><span class="string">OR JOB = ‘MANAGER'</span></div><div class="line"><span class="keyword">GROUP</span> <span class="keyword">by</span> JOB;</div></pre></td></tr></table></figure></p>
-<h3 id="用-exists-代替-in"><a href="#用-exists-代替-in" class="headerlink" title="用 exists 代替 in"></a>用 exists 代替 in</h3><p>很多时候用 exists 代替 in 是一个好的选择：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">num</span> <span class="keyword">from</span> a <span class="keyword">where</span> <span class="keyword">num</span> <span class="keyword">in</span>(<span class="keyword">select</span> <span class="keyword">num</span> <span class="keyword">from</span> b);</div></pre></td></tr></table></figure></p>
-<p>用下面的语句替换：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">num</span> <span class="keyword">from</span> a <span class="keyword">where</span> <span class="keyword">exists</span>(<span class="keyword">select</span> <span class="number">1</span> <span class="keyword">from</span> b <span class="keyword">where</span> <span class="keyword">num</span>=a.num);</div></pre></td></tr></table></figure></p>
-<h3 id="使用-varchar-nvarchar-代替-char-nchar"><a href="#使用-varchar-nvarchar-代替-char-nchar" class="headerlink" title="使用 varchar/nvarchar 代替 char/nchar"></a>使用 varchar/nvarchar 代替 char/nchar</h3><p>尽可能的使用 varchar/nvarchar 代替 char/nchar ，因为首先变长字段存储空间小，可以节省存储空间，其次对于查询来说，在一个相对较小的字段内搜索效率显然要高些。</p>
-<h3 id="能用DISTINCT的就不用GROUP-BY"><a href="#能用DISTINCT的就不用GROUP-BY" class="headerlink" title="能用DISTINCT的就不用GROUP BY"></a>能用DISTINCT的就不用GROUP BY</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> OrderID <span class="keyword">FROM</span> Details <span class="keyword">WHERE</span> UnitPrice &gt; <span class="number">10</span> <span class="keyword">GROUP</span> <span class="keyword">BY</span> OrderID;</div></pre></td></tr></table></figure>
-<p>可改为：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> OrderID <span class="keyword">FROM</span> Details <span class="keyword">WHERE</span> UnitPrice &gt; <span class="number">10</span>;</div></pre></td></tr></table></figure></p>
-<h3 id="最左前缀匹配原则"><a href="#最左前缀匹配原则" class="headerlink" title="最左前缀匹配原则"></a>最左前缀匹配原则</h3><p>非常重要的原则，mysql会一直向右匹配直到遇到范围查询(&gt;、&lt;、between、like)就停止匹配，比如a = 1 and b = 2 and c &gt; 3 and d = 4 如果建立(a,b,c,d)顺序的索引，d是用不到索引的，如果建立(a,b,d,c)的索引则都可以用到，a,b,d的顺序可以任意调整。</p>
+            <p><blockquote class="blockquote-center"><br>你没有变强是因为你一直很舒服。<br></blockquote></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer <span class="keyword">require</span> symfony/dom-crawler</div></pre></td></tr></table></figure>
+<h3 id="代码片段"><a href="#代码片段" class="headerlink" title="代码片段"></a>代码片段</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// october cms</span></div><div class="line">$crawler = <span class="keyword">new</span> Crawler($content);</div><div class="line">$crawler-&gt;filter(<span class="string">'img'</span>)-&gt;each(<span class="function"><span class="keyword">function</span> <span class="params">(Crawler $node)</span> <span class="title">use</span><span class="params">($pid)</span> </span>&#123;</div><div class="line">    $sourceSrc = explode(<span class="string">'?'</span>,$node-&gt;attr(<span class="string">'src'</span>))[<span class="number">0</span>];</div><div class="line">    $sourceSrc = str_replace(<span class="string">'https'</span>, <span class="string">'http'</span>, $sourceSrc);</div><div class="line">    <span class="keyword">if</span> (!starts_with($sourceSrc, <span class="string">'http'</span>)) &#123;</div><div class="line">        $sourceSrc = <span class="string">"http:"</span>.$sourceSrc;</div><div class="line">    &#125;</div><div class="line">    $imageManager = <span class="keyword">new</span> ImageManager([<span class="string">'driver'</span> =&gt; <span class="string">'gd'</span>]);</div><div class="line">    $temPath = storage_path() . <span class="string">'/temp/'</span> .time().basename($sourceSrc);</div><div class="line">    $imageManager-&gt;make($sourceSrc)-&gt;save($temPath);</div><div class="line">    $attachment_type = <span class="string">'Jason\Ccmall\Models\Product'</span>;</div><div class="line">    $productImage = <span class="keyword">new</span> File();</div><div class="line">    $productImage-&gt;data = $temPath;</div><div class="line">    $productImage-&gt;field = <span class="string">'content'</span>;</div><div class="line">    $productImage-&gt;attachment_id = $pid;</div><div class="line">    $productImage-&gt;attachment_type = $attachment_type;</div><div class="line">    $productImage-&gt;save();</div><div class="line">    $node-&gt;getNode(<span class="number">0</span>)-&gt;setAttribute(<span class="string">'src'</span>, $productImage-&gt;path);</div><div class="line">    @unlink($temPath);</div><div class="line">&#125;);</div><div class="line">$html = $crawler-&gt;html();</div><div class="line">Product::query()-&gt;where(<span class="string">'id'</span>, $pid)-&gt;update([</div><div class="line">    <span class="string">'content'</span> =&gt; $html</div><div class="line">]);</div></pre></td></tr></table></figure>
+<h3 id="实例一"><a href="#实例一" class="headerlink" title="实例一"></a>实例一</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">Symfony</span>\<span class="title">Component</span>\<span class="title">DomCrawler</span>\<span class="title">Crawler</span>;</div><div class="line"></div><div class="line">$html = <span class="string">&lt;&lt;&lt;'HTML'</span></div><div class="line"><span class="string">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="string">&lt;html&gt;</span></div><div class="line"><span class="string">    &lt;body&gt;</span></div><div class="line"><span class="string">        &lt;p class="message"&gt;Hello World!&lt;/p&gt;</span></div><div class="line"><span class="string">        &lt;p&gt;Hello Crawler!&lt;/p&gt;</span></div><div class="line"><span class="string">    &lt;/body&gt;</span></div><div class="line"><span class="string">&lt;/html&gt;</span></div><div class="line"><span class="string">HTML;</span></div><div class="line"></div><div class="line">$crawler = <span class="keyword">new</span> Crawler($html);</div><div class="line"></div><div class="line"><span class="keyword">foreach</span> ($crawler <span class="keyword">as</span> $domElement) &#123;</div><div class="line">    var_dump($domElement-&gt;nodeName);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="实例二"><a href="#实例二" class="headerlink" title="实例二"></a>实例二</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$crawler = <span class="keyword">new</span> Crawler(<span class="string">'&lt;html&gt;&lt;body /&gt;&lt;/html&gt;'</span>);</div><div class="line"></div><div class="line">$crawler-&gt;addHtmlContent(<span class="string">'&lt;html&gt;&lt;body /&gt;&lt;/html&gt;'</span>);</div><div class="line">$crawler-&gt;addXmlContent(<span class="string">'&lt;root&gt;&lt;node /&gt;&lt;/root&gt;'</span>);</div><div class="line"></div><div class="line">$crawler-&gt;addContent(<span class="string">'&lt;html&gt;&lt;body /&gt;&lt;/html&gt;'</span>);</div><div class="line">$crawler-&gt;addContent(<span class="string">'&lt;root&gt;&lt;node /&gt;&lt;/root&gt;'</span>, <span class="string">'text/xml'</span>);</div><div class="line"></div><div class="line">$crawler-&gt;add(<span class="string">'&lt;html&gt;&lt;body /&gt;&lt;/html&gt;'</span>);</div><div class="line">$crawler-&gt;add(<span class="string">'&lt;root&gt;&lt;node /&gt;&lt;/root&gt;'</span>);</div></pre></td></tr></table></figure>
+<h3 id="实例三"><a href="#实例三" class="headerlink" title="实例三"></a>实例三</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$imagesCrawler = $crawler-&gt;selectImage(<span class="string">'Kitten'</span>);</div><div class="line">$image = $imagesCrawler-&gt;image();</div><div class="line"></div><div class="line"><span class="comment">// or do this all at once</span></div><div class="line">$image = $crawler-&gt;selectImage(<span class="string">'Kitten'</span>)-&gt;image();</div></pre></td></tr></table></figure>
 <blockquote>
-<p><a href="https://cloud.tencent.com/community/article/382852" target="_blank" rel="external">https://cloud.tencent.com/community/article/382852</a></p>
+<p><a href="https://symfony.com/doc/current/components/dom_crawler.html" target="_blank" rel="external">https://symfony.com/doc/current/components/dom_crawler.html</a></p>
 </blockquote>
 
           
@@ -457,8 +344,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/26/php的trim无法去掉空格/" itemprop="url">
-                  php的trim无法去掉空格
+                <a class="post-title-link" href="/2017/07/31/elasticsearch的一些批量操作/" itemprop="url">
+                  elasticsearch的一些批量操作
                 </a>
               
             
@@ -471,8 +358,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-26T10:35:52+08:00" content="2017-07-26">
-              2017-07-26
+            <time itemprop="dateCreated" datetime="2017-07-31T14:46:43+08:00" content="2017-07-31">
+              2017-07-31
             </time>
           </span>
 
@@ -501,11 +388,107 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>多少次我们无醉不欢<br>咒骂人生太短 唏嘘相见恨晚<br></blockquote></p>
-<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><p>在php开发过程中，使用trim想去掉空格，不成功；<br>打印出来字符串，后面确实带有空格，在控制台又显示有<code>&amp;nbsp;</code>（此处所指的nbsp是实体，而不是nbsp四个字符）<br>后来改用str_replace来去掉空格，依然失败；<br>到底是什么原因，于是刚开始想到了是不是全角和半角的空格问题；试着换成全角的空格，依然失败；<br>后来又使用escape尝试输出，发现是xa0，于是就想trim($converted, “xa0”)，无果<br>在php手册的trim函数下评论中发现：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">trim($otmp, chr(<span class="number">0xc2</span>) . chr(<span class="number">0xa0</span>))</div></pre></td></tr></table></figure></p>
-<p>使用后，成功去掉空格；另外，str_replace也可使用：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$otmp = str_replace(chr(<span class="number">0xc2</span>) . chr(<span class="number">0xa0</span>), <span class="string">''</span>, $otmp);</div></pre></td></tr></table></figure></p>
-<p>效果一样，成功解决~~~<br>ps:此空格产生的原因是，我在获取到html代码之后strip_tags去掉所有标签，而产生了一些实体空格</p>
-<h3 id="html实体"><a href="#html实体" class="headerlink" title="html实体"></a>html实体</h3><p>在 HTML 中，某些字符是预留的。<br>在 HTML 中不能使用小于号（&lt;）和大于号（&gt;），这是因为浏览器会误认为它们是标签。<br>如果希望正确地显示预留字符，我们必须在 HTML 源代码中使用字符实体（character entities）。<br>字符实体类似这样：&amp;entity_name;或者&amp;#entity_number;<br>如需显示小于号，我们必须这样写： <code>&amp;lt;</code>  或  <code>&amp;#60;</code><br>提示：使用实体名而不是数字的好处是，名称易于记忆。不过坏处是，浏览器也许并不支持所有实体名称（对实体数字的支持却很好）。<br>不间断空格（non-breaking space）<br>HTML 中的常用字符实体是不间断空格( <code>&amp;nbsp;</code> )。<br>浏览器总是会截短 HTML 页面中的空格。如果您在文本中写 10 个空格，在显示该页面之前，浏览器会删除它们中的 9 个。如需在页面中增加空格的数量，您需要使用 <code>&amp;nbsp;</code> 字符实体。</p>
+            <p><blockquote class="blockquote-center"><br>为了看起来毫不费力<br></blockquote></p>
+<h3 id="批量插入"><a href="#批量插入" class="headerlink" title="批量插入"></a>批量插入</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">POST /shop/product/_bulk</div><div class="line">&#123; <span class="attr">"index"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"1"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"name"</span> : <span class="string">"apple"</span>, <span class="attr">"price"</span>:<span class="number">15.15</span> &#125;</div><div class="line">&#123; <span class="attr">"index"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"2"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"name"</span> : <span class="string">"pear"</span>, <span class="attr">"price"</span>:<span class="number">16.00</span> &#125;</div><div class="line">&#123; <span class="attr">"index"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"3"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"name"</span> : <span class="string">"orange"</span>, <span class="attr">"price"</span>:<span class="number">15.09</span> &#125;</div><div class="line">&#123; <span class="attr">"index"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"4"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"name"</span> : <span class="string">"bnanan"</span>, <span class="attr">"price"</span>:<span class="number">3.00</span> &#125;</div><div class="line">&#123; <span class="attr">"index"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"5"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"name"</span> : <span class="string">"pototo"</span>, <span class="attr">"price"</span>:<span class="number">9.15</span> &#125;</div></pre></td></tr></table></figure>
+<h3 id="批量修改"><a href="#批量修改" class="headerlink" title="批量修改"></a>批量修改</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">POST /shop/product/_bulk</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"1"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"name"</span> : <span class="string">"apple iphone"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"2"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"name"</span> : <span class="string">"pear yoyo"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"3"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"name"</span> : <span class="string">"orange milk"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"4"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"name"</span> : <span class="string">"bnanan egg"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"5"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"name"</span> : <span class="string">"pototo chips"</span>&#125; &#125;</div></pre></td></tr></table></figure>
+<h3 id="批量添加新的字段"><a href="#批量添加新的字段" class="headerlink" title="批量添加新的字段"></a>批量添加新的字段</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">POST /shop/product/_bulk</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"1"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"desc"</span> : <span class="string">"this is a apple iphone"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"2"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"desc"</span> : <span class="string">"the price is low"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"3"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"desc"</span> : <span class="string">"the frieight is free"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"4"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"desc"</span> : <span class="string">"buy one and a free one"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"update"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"5"</span>&#125; &#125;</div><div class="line">&#123; <span class="attr">"doc"</span> : &#123;<span class="attr">"desc"</span> : <span class="string">"you lost it"</span>&#125; &#125;</div></pre></td></tr></table></figure>
+<h3 id="批量删除"><a href="#批量删除" class="headerlink" title="批量删除"></a>批量删除</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">POST /shop/product/_bulk</div><div class="line">&#123; <span class="attr">"delete"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"2"</span> &#125; &#125;</div><div class="line">&#123; <span class="attr">"delete"</span> : &#123;<span class="attr">"_id"</span> : <span class="string">"3"</span> &#125; &#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/07/31/php中的一些高级用法/" itemprop="url">
+                  php中的一些高级用法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-31T10:34:30+08:00" content="2017-07-31">
+              2017-07-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br> 弱国无外交，人弱亦如此<br></blockquote></p>
+<h3 id="call-user-func-array"><a href="#call-user-func-array" class="headerlink" title="call_user_func_array"></a>call_user_func_array</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foobar</span><span class="params">($arg, $arg2)</span> </span>&#123;</div><div class="line">    <span class="keyword">echo</span> <span class="keyword">__FUNCTION__</span>, <span class="string">" got $arg and $arg2\n"</span>;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">foo</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span><span class="params">($arg, $arg2)</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="keyword">__METHOD__</span>, <span class="string">" got $arg and $arg2\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// Call the foobar() function with 2 arguments</span></div><div class="line">call_user_func_array(<span class="string">"foobar"</span>, <span class="keyword">array</span>(<span class="string">"one"</span>, <span class="string">"two"</span>));</div><div class="line"></div><div class="line"><span class="comment">// Call the $foo-&gt;bar() method with 2 arguments</span></div><div class="line">$foo = <span class="keyword">new</span> foo;</div><div class="line">call_user_func_array(<span class="keyword">array</span>($foo, <span class="string">"bar"</span>), <span class="keyword">array</span>(<span class="string">"three"</span>, <span class="string">"four"</span>));</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="call-user-func"><a href="#call-user-func" class="headerlink" title="call_user_func"></a>call_user_func</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">increment</span><span class="params">($var)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    $var++;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$a = <span class="number">0</span>;</div><div class="line">call_user_func(<span class="string">'increment'</span>, $a);</div><div class="line"><span class="keyword">echo</span> $a.<span class="string">"\n"</span>;</div></pre></td></tr></table></figure>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$class= <span class="keyword">new</span> \Jason\Ccshop\Models\Product();</div><div class="line"></div><div class="line"><span class="comment">//返回对象的类名 命名空间</span></div><div class="line">dump(get_class($class));</div><div class="line"></div><div class="line"><span class="comment">// 返回由类的方法名组成的数组</span></div><div class="line">dump(get_class_methods($class));</div><div class="line"></div><div class="line"><span class="comment">// 返回由类的默认属性组成的数组</span></div><div class="line">dump(get_object_vars($class));</div><div class="line">dump(get_class_vars($class));</div><div class="line"></div><div class="line"><span class="comment">// 返回对象或类的父类名</span></div><div class="line">dump(get_parent_class($class));</div><div class="line"></div><div class="line"><span class="comment">//检查类的方法是否存在</span></div><div class="line">dump(method_exists($class, <span class="string">'getMainThumb'</span>));</div><div class="line"></div><div class="line"><span class="comment">//以参数列表的数组，调用用户方法, 在php7 中被废弃</span></div><div class="line">call_user_method_array</div><div class="line"><span class="comment">//call_user_func_array 代替</span></div><div class="line"><span class="comment">//对特定对象调用用户方法 call_user_method 在php7 中被废弃</span></div><div class="line"><span class="comment">// call_user_func 代替</span></div></pre></td></tr></table></figure>
 
           
         
@@ -555,8 +538,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/25/使用swoole异步发送邮件/" itemprop="url">
-                  使用swoole异步发送邮件
+                <a class="post-title-link" href="/2017/07/28/加密签名原理/" itemprop="url">
+                  加密签名原理
                 </a>
               
             
@@ -569,8 +552,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-25T14:42:39+08:00" content="2017-07-25">
-              2017-07-25
+            <time itemprop="dateCreated" datetime="2017-07-28T15:18:36+08:00" content="2017-07-28">
+              2017-07-28
             </time>
           </span>
 
@@ -599,14 +582,14 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>父母在时，人生尚有来处。<br>父母去时，人生只剩归途。<br></blockquote></p>
-<h3 id="安装swoole"><a href="#安装swoole" class="headerlink" title="安装swoole"></a>安装swoole</h3><p>pecl 安装:<br><code>pecl install swoole</code></p>
-<p>看命令行提示，如果它提示说没有写php.ini，则自己手动在PHP.ini后面加上：<br><code>extension = &quot;swoole.so&quot;</code></p>
-<h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Server</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="keyword">private</span> $serv;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;serv = <span class="keyword">new</span> swoole_server(<span class="string">"0.0.0.0"</span>, <span class="number">9501</span>);</div><div class="line">        <span class="keyword">$this</span>-&gt;serv-&gt;set(<span class="keyword">array</span>(</div><div class="line">            <span class="string">'worker_num'</span> =&gt; <span class="number">1</span>,   <span class="comment">//一般设置为服务器CPU数的1-4倍</span></div><div class="line">            <span class="string">'daemonize'</span> =&gt; <span class="number">1</span>,  <span class="comment">//以守护进程执行</span></div><div class="line">            <span class="string">'max_request'</span> =&gt; <span class="number">10000</span>,</div><div class="line">            <span class="string">'dispatch_mode'</span> =&gt; <span class="number">2</span>,</div><div class="line">            <span class="string">'task_worker_num'</span> =&gt; <span class="number">8</span>,  <span class="comment">//task进程的数量</span></div><div class="line">            <span class="string">"task_ipc_mode "</span> =&gt; <span class="number">3</span> ,  <span class="comment">//使用消息队列通信，并设置为争抢模式</span></div><div class="line">            <span class="comment">//"log_file" =&gt; "log/taskqueueu.log" ,//日志</span></div><div class="line">        ));</div><div class="line">        <span class="keyword">$this</span>-&gt;serv-&gt;on(<span class="string">'Receive'</span>, <span class="keyword">array</span>(<span class="keyword">$this</span>, <span class="string">'onReceive'</span>));</div><div class="line">        <span class="comment">// bind callback</span></div><div class="line">        <span class="keyword">$this</span>-&gt;serv-&gt;on(<span class="string">'Task'</span>, <span class="keyword">array</span>(<span class="keyword">$this</span>, <span class="string">'onTask'</span>));</div><div class="line">        <span class="keyword">$this</span>-&gt;serv-&gt;on(<span class="string">'Finish'</span>, <span class="keyword">array</span>(<span class="keyword">$this</span>, <span class="string">'onFinish'</span>));</div><div class="line">        <span class="keyword">$this</span>-&gt;serv-&gt;start();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onReceive</span><span class="params">( swoole_server $serv, $fd, $from_id, $data )</span> </span>&#123;</div><div class="line">        <span class="comment">//echo "Get Message From Client &#123;$fd&#125;:&#123;$data&#125;n";</span></div><div class="line">        <span class="comment">// send a task to task worker.</span></div><div class="line">        $serv-&gt;task( $data );</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onTask</span><span class="params">($serv,$task_id,$from_id, $data)</span> </span>&#123;</div><div class="line">        $array = json_decode( $data , <span class="keyword">true</span> );</div><div class="line">        <span class="keyword">if</span> ($array[<span class="string">'url'</span>]) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;httpGet( $array[<span class="string">'url'</span>] , $array[<span class="string">'param'</span>]  );</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onFinish</span><span class="params">($serv,$task_id, $data)</span> </span>&#123;</div><div class="line">        <span class="comment">//echo "Task &#123;$task_id&#125; finishn";</span></div><div class="line">        <span class="comment">//echo "Result: &#123;$data&#125;n";</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">httpGet</span><span class="params">($url,$data)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span> ($data) &#123;</div><div class="line">            $url .=<span class="string">'?'</span>.http_build_query($data) ;</div><div class="line">        &#125;</div><div class="line">        $curlObj = curl_init();    <span class="comment">//初始化curl，</span></div><div class="line">        curl_setopt($curlObj, CURLOPT_URL, $url);   <span class="comment">//设置网址</span></div><div class="line">        curl_setopt($curlObj, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);  <span class="comment">//将curl_exec的结果返回</span></div><div class="line">        curl_setopt($curlObj, CURLOPT_SSL_VERIFYPEER, <span class="keyword">FALSE</span>);</div><div class="line">        curl_setopt($curlObj, CURLOPT_SSL_VERIFYHOST, <span class="keyword">FALSE</span>);</div><div class="line">        curl_setopt($curlObj, CURLOPT_HEADER, <span class="number">0</span>);         <span class="comment">//是否输出返回头信息</span></div><div class="line">        $response = curl_exec($curlObj);   <span class="comment">//执行</span></div><div class="line">        curl_close($curlObj);          <span class="comment">//关闭会话</span></div><div class="line">        <span class="keyword">return</span> $response;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line">$server = <span class="keyword">new</span> Server();</div></pre></td></tr></table></figure>
-<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Client</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="keyword">private</span> $client;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;client = <span class="keyword">new</span> swoole_client(SWOOLE_SOCK_TCP);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">connect</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span>( !<span class="keyword">$this</span>-&gt;client-&gt;connect(<span class="string">"127.0.0.1"</span>, <span class="number">9501</span> , <span class="number">1</span>) ) &#123;</div><div class="line">            <span class="keyword">echo</span> <span class="string">"Connect Error"</span>;</div><div class="line">        &#125;</div><div class="line">        $data = <span class="keyword">array</span>(</div><div class="line">            <span class="string">"url"</span> =&gt;  <span class="string">"http://192.168.10.19/send_mail"</span> ,</div><div class="line">            <span class="string">"param"</span> =&gt; <span class="keyword">array</span>(</div><div class="line">                <span class="string">"username"</span>=&gt;<span class="string">'test'</span>,</div><div class="line">                <span class="string">"password"</span> =&gt; <span class="string">'test'</span></div><div class="line">            )</div><div class="line">        );</div><div class="line">        $json_data = json_encode($data);</div><div class="line">        <span class="keyword">$this</span>-&gt;client-&gt;send( $json_data );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$client = <span class="keyword">new</span> Client();</div><div class="line">$client-&gt;connect();</div></pre></td></tr></table></figure>
-<h3 id="查看与关闭"><a href="#查看与关闭" class="headerlink" title="查看与关闭"></a>查看与关闭</h3><p>swoole好像没有很便捷的关闭方式。所以只能直接通过关闭进程来关闭。<br>查看命令：<br><code>ps -ef | grep php</code></p>
-<p>结束单个进程：<br><code>kill -9 {进程号}</code></p>
-<p>结束所有进程的命令：<br><code>killall -9 php</code></p>
+            <blockquote class="blockquote-center"><br>“我先起，你再睡一会儿。”<br></blockquote>
+
+<h3 id="文章核心"><a href="#文章核心" class="headerlink" title="文章核心:"></a>文章核心:</h3><p>甲先算出原文的类似于MD5的校验值(数字”指纹”,也称”信息摘要”)，接下来甲用自己的私钥K对MD5进行变形，得到变形C就是甲对合同A的签名。乙拿到源文件后也先算出MD5值，用甲的公钥K2再对签名C进行反运算，变回MD5，看是否与源文件的MD5一样，如果一样 ，则签名是真的，反之签名则为假冒的。 MD5/数字”指纹”是一种单向散列函数,它是完全不可逆的。 加密用公钥，解密是用私钥进行反运算得到原文。 签名用私钥，验证签名是用公钥进行反运算得到原指纹。 不必担心伪造MD5，因为只有用私钥才能进行签名</p>
+<p>一、加密 加密用来保护敏感信息的传输，保证信息的安全性。在一个加密系统中，信息使用加密密钥加密后，得到的密文传送给接收方，接收方使用解密密钥对密文解密得到原文。FF有两种加密体系：秘密密钥加密和公开密钥加密。</p>
+<p>1、秘密密钥加密 秘密密钥加密也称为对称密钥加密，加密和解密使用同一个密钥，即：原文经过密钥K加工（为避免歧意，本文将所有的对信息的变换均称为“加工”，而不区分加密和解密；加工前的信息称“原文”，加工后所得到的信息称为“变形”）后得到变形，而变形经过密钥K加工后又恢复为明文。因此信息的发送方和接收方必须共享一个密钥。 这种加密类型快速牢固，只要密钥足够长（目前128位被认为是“不可破解的”），密文就不可被破解。对称密钥加密的缺陷是密钥本身必须单独进行交换以便接收看能解密数据，如果密钥没有以安全方式传送，它就很可能被他人截获并用于信息解密。</p>
+<p>2、公开密钥加密 公开密钥加密也称为非对称密钥加密。公开密钥加密体系使用两个不同的密钥：一个用主人秘密保存和专用的，主要用于解密和签名，称为私钥；另一个对外公开，主要用于验证签名和加密，称为公钥（公钥体系即因此而得名）。这两个密钥是数学相关的，但仅凭借公钥，人们无法推算出其对应的私钥。原文经过公钥加工后得到变形，该变形经过私钥加工后又复原为原文；反之亦然，原文经过私钥加工后得到变形，该变形经过公钥加工后又复原为原文。下面将要讲到，“先公后私”和“先私后公”这两者看起来差不多，但应用是完全不同的。用某用户的公钥加工后所得的数据只能用该用户的私钥才能复原为原文。因而要求用户的私钥不能透露给自己不信任的任何人。 公钥加密与对称密钥加密相比，其优势在于不需要一把共享的通用密钥，私钥不发往任何地方，由主人秘密保存，而公钥是公开的，不存在管理和保密的问题。但其缺点是计算复杂，不适应于对大量的数据进行加工处理。 FF在具体的应用时，先将秘密密钥用收件人的公钥进行加工，将变形用公开通道（实际上是附加在加密文件当中）传递给收件人，收件人用其私钥对变形进行加工，恢复出秘密密钥，然后再用秘密密钥对密文进行解密。 公钥加密的另一个用处是身份验证。私钥主人用私钥加工了一条信息后，拥有公钥拷贝的任何人都能对其复原，接收者由此可以知道这条信息确实来自于拥有私钥的人，因为除了私钥的主人外，其他人没有私钥，是无法进行“原文经过私钥加工后得到变形”这一操作的，故“先私后公”的操作方式可以进行身份验证，或者称为“数字签名”、“电子签名”。 二、安全的单向散列函数 （Secure Hash） 单向散列函数（简称“H函数”或“Hash函数”）用于对要传输的数据作运算生成信息摘要，它并不是一种加密机制，但却能产生信息的数字”指纹”，它的目的是为了确保数据没有被修改或变化，保证信息的完整性不被破坏。</p>
+<h3 id="单向散列函数有三个主要特点："><a href="#单向散列函数有三个主要特点：" class="headerlink" title="单向散列函数有三个主要特点："></a>单向散列函数有三个主要特点：</h3><p>1．它能处理任意大小的信息，并将其技信息摘要（message digest）方法生成固定大小的数据块（FF是128位，即16字节），对同一个源数据反复执行Hash函数将总是得到同样的结果。<br>2．它是不可预见的。产生的数据块的大小与原始信息的大小没有任何联系，同时源数据和产生的数据块的数据看起来也没有明显关系，源信息的一个微小变化都会对数据块产生很大的影响。<br>3．它是完全不可逆的，没有办法通过生成的数据块直接恢复源数据。</p>
+<p>H函数最主要的用途是数字签名。具体过程为： 甲先用H函数对某个信息（如合同的电子文件）A进行计算，得到128位的结果B，再用私钥K对B进行变形，得到C，该变形C就是甲对合同A的签名。 他人（乙）的验证过程为：乙用H函数对A进行计算，得到结果B1，对签名C用甲的公钥K1进行加工，得到变形B2，如果B1=B2，则签名是真的，反之签名则为假冒的。 原理：只有持有私钥K的人可以完成从A到C的操作。因为 甲虽然可以指责乙捏造了合同A（任何人都可以在计算机上打出一份他想要的合同），乙也的确可以从A计算出B，但从B到C的过程要用到甲的私钥K，该过程只有甲可以完成； 甲也可以指责乙先捏造了签名C，乙也的确可以用甲的公钥从C计算出B，但乙无法从B推算出A，从A到B的H函数是单向的，无法反向计算。</p>
 
           
         
@@ -656,8 +639,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/24/PHP-cURL多线程模拟并发请求/" itemprop="url">
-                  PHP-cURL多线程模拟并发请求
+                <a class="post-title-link" href="/2017/07/28/数字签名是什么/" itemprop="url">
+                  数字签名是什么
                 </a>
               
             
@@ -670,8 +653,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-24T19:58:49+08:00" content="2017-07-24">
-              2017-07-24
+            <time itemprop="dateCreated" datetime="2017-07-28T09:56:20+08:00" content="2017-07-28">
+              2017-07-28
             </time>
           </span>
 
@@ -700,15 +683,9 @@
       
         
           
-            <p><blockquote class="blockquote-center"><br>钱是买不到幸福的, 因为他本身就是幸福<br></blockquote></p>
-<h3 id="PHP-cURL所有函数列表："><a href="#PHP-cURL所有函数列表：" class="headerlink" title="PHP cURL所有函数列表："></a>PHP cURL所有函数列表：</h3><p><a href="http://php.net/manual/zh/ref.curl.php]http://php.net/manual/zh/ref.curl.php" target="_blank" rel="external">http://php.net/manual/zh/ref.curl.php]http://php.net/manual/zh/ref.curl.php</a></p>
-<p>以下是PHP中cURL多线程相关函数：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">curl_multi_add_handle — 向curl批处理会话中添加单独的curl句柄</div><div class="line">curl_multi_close — 关闭一组cURL句柄</div><div class="line">curl_multi_exec — 运行当前 cURL 句柄的子连接</div><div class="line">curl_multi_getcontent — 如果设置了CURLOPT_RETURNTRANSFER，则返回获取的输出的文本流</div><div class="line">curl_multi_info_read — 获取当前解析的cURL的相关传输信息</div><div class="line">curl_multi_init — 返回一个新cURL批处理句柄</div><div class="line">curl_multi_remove_handle — 移除curl批处理句柄资源中的某个句柄资源</div><div class="line">curl_multi_select — 等待所有cURL批处理中的活动连接</div><div class="line">curl_multi_setopt — 为 cURL 并行处理设置一个选项</div><div class="line">curl_multi_strerror — <span class="keyword">Return</span> string describing error code</div></pre></td></tr></table></figure></p>
-<p>一般来说，想到要用这些函数时，目的显然应该是要同时请求多个URL，而不是一个一个依次请求，否则不如自己循环去调curl_exec好了。</p>
-<p>步骤总结如下：</p>
-<p>1、调用curl_multi_init，初始化一个批处理handle<br>2、循环调用 curl_multi_add_handle，往1中的批处理handle 添加curl_init来的子handle<br>3、持续调用 curl_multi_exec，直到所有子handle执行完毕。<br>4、根据需要循环调用 curl_multi_getcontent 获取结果<br>5、调用 curl_multi_remove_handle，并为每个字handle调用curl_close<br>6、调用 curl_multi_close</p>
-<p>以下是一个通过并发请求抓取网页的demo：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$urls = <span class="keyword">array</span>(</div><div class="line">    <span class="string">'https://979137.com/'</span>,</div><div class="line">    <span class="string">'http://www.sina.com.cn/'</span>,</div><div class="line">    <span class="string">'http://www.sohu.com/'</span>,</div><div class="line">    <span class="string">'http://www.163.com/'</span></div><div class="line">);   </div><div class="line"><span class="comment">//1、初始化一个批处理handle</span></div><div class="line">$mh = curl_multi_init();</div><div class="line"> </div><div class="line"><span class="comment">//2、往批处理handle 添加curl_init来的子handle</span></div><div class="line"><span class="keyword">foreach</span> ($urls <span class="keyword">as</span> $i =&gt; $url) &#123;   </div><div class="line">    $conn[$i] = curl_init($url);   </div><div class="line">    curl_setopt($conn[$i], CURLOPT_HEADER, <span class="number">0</span>);   </div><div class="line">    curl_setopt($conn[$i], CURLOPT_CONNECTTIMEOUT, <span class="number">60</span>);   </div><div class="line">    curl_setopt($conn[$i], CURLOPT_RETURNTRANSFER, <span class="keyword">true</span>);  </div><div class="line">    curl_multi_add_handle($mh, $conn[$i]);   </div><div class="line">&#125;   </div><div class="line"></div><div class="line"><span class="comment">//3、并发执行，直到全部结束。</span></div><div class="line"><span class="keyword">do</span> &#123;   </div><div class="line">    curl_multi_exec($mh, $active);   </div><div class="line">&#125; <span class="keyword">while</span> ($active);   </div><div class="line"> </div><div class="line"><span class="comment">//4、获取结果</span></div><div class="line"><span class="keyword">foreach</span> ($urls <span class="keyword">as</span> $i =&gt; $url) &#123;   </div><div class="line">    $data = curl_multi_getcontent($conn[$i]);</div><div class="line">    <span class="keyword">echo</span> ($data);</div><div class="line">    <span class="keyword">echo</span> <span class="string">'&lt;hr /&gt;'</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">//5、移除子handle，并close子handle</span></div><div class="line"><span class="keyword">foreach</span> ($urls <span class="keyword">as</span> $i =&gt; $url) &#123;   </div><div class="line">  curl_multi_remove_handle($mh,$conn[$i]);   </div><div class="line">  curl_close($conn[$i]);   </div><div class="line">&#125;   </div><div class="line"> </div><div class="line"><span class="comment">//6、关闭批处理handle</span></div><div class="line">curl_multi_close($mh);</div></pre></td></tr></table></figure></p>
+            <p><blockquote class="blockquote-center"><br>我喜欢钱, 很喜欢, 喜欢的不得了<br></blockquote><br><img src="/images/001.png" alt=""><br>鲍勃有两把钥匙，一把是公钥，另一把是私钥。<br><img src="/images/002.png" alt=""><br>鲍勃把公钥送给他的朋友们—-帕蒂、道格、苏珊—-每人一把。<br><img src="/images/003.png" alt=""><br>苏珊要给鲍勃写一封保密的信。她写完后用鲍勃的公钥加密，就可以达到保密的效果。<br><img src="/images/004.png" alt=""><br>鲍勃收信后，用私钥解密，就看到了信件内容。这里要强调的是，只要鲍勃的私钥不泄露，这封信就是安全的，即使落在别人手里，也无法解密。<br><img src="/images/005.png" alt=""><br>鲍勃给苏珊回信，决定采用”数字签名”。他写完后先用Hash函数，生成信件的摘要（digest）。<br><img src="/images/006.png" alt=""><br>然后，鲍勃使用私钥，对这个摘要加密，生成”数字签名”（signature）。<br><img src="/images/007.png" alt=""><br>鲍勃将这个签名，附在信件下面，一起发给苏珊。<br><img src="/images/008.png" alt=""><br>苏珊收信后，取下数字签名，用鲍勃的公钥解密，得到信件的摘要。由此证明，这封信确实是鲍勃发出的。<br><img src="/images/009.png" alt=""><br>苏珊再对信件本身使用Hash函数，将得到的结果，与上一步得到的摘要进行对比。如果两者一致，就证明这封信未被修改过。<br><img src="/images/010.png" alt=""><br>复杂的情况出现了。道格想欺骗苏珊，他偷偷使用了苏珊的电脑，用自己的公钥换走了鲍勃的公钥。此时，苏珊实际拥有的是道格的公钥，但是还以为这是鲍勃的公钥。因此，道格就可以冒充鲍勃，用自己的私钥做成”数字签名”，写信给苏珊，让苏珊用假的鲍勃公钥进行解密。<br><img src="/images/011.png" alt=""><br>后来，苏珊感觉不对劲，发现自己无法确定公钥是否真的属于鲍勃。她想到了一个办法，要求鲍勃去找”证书中心”（certificate authority，简称CA），为公钥做认证。证书中心用自己的私钥，对鲍勃的公钥和一些相关信息一起加密，生成”数字证书”（Digital Certificate）。<br><img src="/images/012.png" alt=""><br>鲍勃拿到数字证书以后，就可以放心了。以后再给苏珊写信，只要在签名的同时，再附上数字证书就行了。<br><img src="/images/013.png" alt=""><br>苏珊收信后，用CA的公钥解开数字证书，就可以拿到鲍勃真实的公钥了，然后就能证明”数字签名”是否真的是鲍勃签的。</p>
 <blockquote>
-<p><a href="https://979137.com/archives/133.html" target="_blank" rel="external">https://979137.com/archives/133.html</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html</a></p>
 </blockquote>
 
           
@@ -742,7 +719,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/37/">37</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/38/">38</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -783,7 +760,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">181</span>
+              <span class="site-state-item-count">187</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -793,7 +770,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">89</span>
+                <span class="site-state-item-count">92</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
