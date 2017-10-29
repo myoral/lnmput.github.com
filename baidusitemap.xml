@@ -4,8 +4,101 @@
 
     
   <url>
+    <loc>http://yangguoqi.me/2017/10/24/mysql%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/</loc>
+    <lastmod>2017-10-24T02:37:08.000Z</lastmod>
+    <data>
+        <display>
+        <title>mysql连接查询</title>
+        <pubTime>2017-10-24T01:36:04.000Z</pubTime>
+        
+        <tag>mysql</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/10/23/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%80%E5%8F%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%90%AF%E5%8A%A8%E5%A4%9A%E4%B8%AAredis%E5%AE%9E%E4%BE%8B/</loc>
+    <lastmod>2017-10-23T01:44:47.000Z</lastmod>
+    <data>
+        <display>
+        <title>如何在一台服务器上启动多个redis实例</title>
+        <pubTime>2017-10-23T01:35:52.000Z</pubTime>
+        
+        <tag>redis</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/10/19/larave%E7%9A%84aes%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-10-19T04:22:24.000Z</lastmod>
+    <data>
+        <display>
+        <title>larave的aes加密模式</title>
+        <pubTime>2017-10-19T04:11:23.000Z</pubTime>
+        
+        <tag>laravel</tag>
+         
+        <tag>aes</tag>
+         
+        <tag>加密</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/10/17/laravel%E4%BD%BF%E7%94%A8Websocket%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5/</loc>
+    <lastmod>2017-10-17T08:31:37.000Z</lastmod>
+    <data>
+        <display>
+        <title>laravel使用Websocket推送通知</title>
+        <pubTime>2017-10-17T08:25:08.000Z</pubTime>
+        
+        <tag>laravel</tag>
+         
+        <tag>swoole</tag>
+         
+        <tag>websocket</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/10/17/swoole%E5%AE%9E%E7%8E%B0%E6%B6%88%E6%81%AF%E7%AE%80%E5%8D%95%E6%B6%88%E6%81%AF%E6%8E%A8%E9%80%81/</loc>
+    <lastmod>2017-10-17T07:58:39.000Z</lastmod>
+    <data>
+        <display>
+        <title>swoole实现消息简单消息推送</title>
+        <pubTime>2017-10-17T07:44:33.000Z</pubTime>
+        
+        <tag>swoole</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yangguoqi.me/2017/10/13/jQuery%E5%BA%8F%E5%88%97%E5%8C%96%E8%A1%A8%E5%8D%95serialize%E5%92%8CserializeArray/</loc>
-    <lastmod>2017-10-13T06:50:21.550Z</lastmod>
+    <lastmod>2017-10-13T06:50:21.000Z</lastmod>
     <data>
         <display>
         <title>jQuery序列化表单serialize和serializeArray</title>
@@ -22,7 +115,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2017/10/12/%E4%BD%BF%E7%94%A8laravel%E6%8A%93%E5%8F%96laracasts%E7%9A%84%E8%A7%86%E9%A2%91%E5%9C%B0%E5%9D%80/</loc>
-    <lastmod>2017-10-12T03:55:39.231Z</lastmod>
+    <lastmod>2017-10-12T03:55:39.000Z</lastmod>
     <data>
         <display>
         <title>使用laravel抓取laracasts的视频地址</title>
