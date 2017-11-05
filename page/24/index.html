@@ -252,6 +252,104 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/27/如何使用Repository模式/" itemprop="url">
+                  如何使用Repository模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-27T10:58:16+08:00" content="2017-02-27">
+              2017-02-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。<br></blockquote><br>这里我们介绍一种laravel开发的模式,用于解决控制器过于肥大的问题.</p>
+<h3 id="路由-routes-php"><a href="#路由-routes-php" class="headerlink" title="路由 routes.php"></a>路由 routes.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">Route::get(<span class="string">'/user'</span>, <span class="string">'UserController@getUser'</span>);</div></pre></td></tr></table></figure>
+<h3 id="控制器-app-Http-Controllers-UserController-php"><a href="#控制器-app-Http-Controllers-UserController-php" class="headerlink" title="控制器 app\Http\Controllers\UserController.php"></a>控制器 app\Http\Controllers\UserController.php</h3><p>将新建的库依赖注入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Repository</span>\<span class="title">UserRepository</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="keyword">protected</span> $userRepository;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(UserRepository $userRepository)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;userRepository = $userRepository;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;userRepository-&gt;getUser();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="模型-app-User-php"><a href="#模型-app-User-php" class="headerlink" title="模型 app\User.php"></a>模型 app\User.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Auth</span>\<span class="title">User</span> <span class="title">as</span> <span class="title">Authenticatable</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Authenticatable</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * The attributes that are mass assignable.</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@var</span> array</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">protected</span> $fillable = [</div><div class="line">        <span class="string">'name'</span>, <span class="string">'email'</span>, <span class="string">'password'</span>,</div><div class="line">    ];</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * The attributes excluded from the model's JSON form.</span></div><div class="line"><span class="comment">     *</span></div><div class="line"><span class="comment">     * <span class="doctag">@var</span> array</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">protected</span> $hidden = [</div><div class="line">        <span class="string">'password'</span>, <span class="string">'remember_token'</span>,</div><div class="line">    ];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="新建库-app-Repository-UserRepository-php"><a href="#新建库-app-Repository-UserRepository-php" class="headerlink" title="新建库 app\Repository\UserRepository.php"></a>新建库 app\Repository\UserRepository.php</h3><p>将模型依赖注入<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Repository</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">User</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserRepository</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="keyword">protected</span> $user;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(User $user)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;user = $user;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;user-&gt;all();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/24/翻译-重建laravel-自动加载/" itemprop="url">
                   [翻译]重建laravel-自动加载
                 </a>
@@ -628,102 +726,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/13/workerman聊天室/" itemprop="url">
-                  workerman聊天室
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-13T15:40:20+08:00" content="2017-02-13">
-              2017-02-13
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>穷人什么苦都能吃就是吃不了学习的苦.<br></blockquote></p>
-<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="comment">// 创建一个Socket实例</span></span></div><div class="line"><span class="javascript"><span class="keyword">var</span> socket =<span class="literal">null</span>;<span class="comment">//初始是null</span></span></div><div class="line"><span class="javascript"><span class="keyword">var</span> isLogin=<span class="literal">false</span>;<span class="comment">//是否登录到服务器上</span></span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">send</span>(<span class="params"></span>)</span></span></div><div class="line"><span class="undefined">        &#123;</span></div><div class="line"><span class="javascript"><span class="keyword">if</span>(!isLogin)</span></div><div class="line"><span class="undefined">            &#123;</span></div><div class="line"><span class="javascript">alert(<span class="string">"请先服务器验证"</span>);</span></div><div class="line"><span class="javascript"><span class="keyword">return</span>;</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="javascript"><span class="keyword">var</span> msg=<span class="built_in">document</span>.getElementById(<span class="string">"txtmsg"</span>).value;</span></div><div class="line"><span class="javascript">socket.send(<span class="string">"msg:"</span>+msg);</span></div><div class="line"><span class="javascript"><span class="comment">//在div 中显示我们的行为</span></span></div><div class="line"><span class="javascript"><span class="keyword">var</span> p=<span class="built_in">document</span>.createElement(<span class="string">"P"</span>);</span></div><div class="line"><span class="xml">p.innerHTML="<span class="tag">&lt;<span class="name">span</span>&gt;</span>发送消息<span class="tag">&lt;/<span class="name">span</span>&gt;</span>"+msg</span></div><div class="line"><span class="javascript"><span class="built_in">document</span>.getElementById(<span class="string">"txtcontent"</span>).appendChild(p);</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">connectServer</span>(<span class="params"></span>)</span></span></div><div class="line"><span class="undefined">        &#123;</span></div><div class="line"><span class="javascript"><span class="keyword">var</span> userName=<span class="built_in">document</span>.getElementById(<span class="string">"username"</span>).value;</span></div><div class="line"><span class="javascript"><span class="keyword">if</span>(userName==<span class="string">""</span>)</span></div><div class="line"><span class="undefined">            &#123;</span></div><div class="line"><span class="javascript">alert(<span class="string">"用户昵称必填 "</span>);</span></div><div class="line"><span class="javascript"><span class="keyword">return</span>;</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="javascript">socket=<span class="keyword">new</span> WebSocket(<span class="string">'ws://121.42.176.99:9091/'</span>);</span></div><div class="line"><span class="javascript"><span class="comment">// 打开Socket</span></span></div><div class="line"><span class="javascript">socket.onopen = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span></div><div class="line"><span class="javascript">socket.send(<span class="string">"login:"</span>+userName);</span></div><div class="line"><span class="undefined">&#125;;</span></div><div class="line"><span class="javascript">socket.onmessage = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="javascript"><span class="keyword">var</span> getMsg=event.data;</span></div><div class="line"><span class="javascript"><span class="keyword">if</span>(<span class="regexp">/^notice:success$/</span>.test(getMsg)) <span class="comment">//服务器验证通过,后面做任何发送操作</span></span></div><div class="line"><span class="undefined">&#123;</span></div><div class="line"><span class="javascript">isLogin=<span class="literal">true</span>;</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="javascript"><span class="keyword">else</span> <span class="keyword">if</span>(<span class="regexp">/^msg:/</span>.test(getMsg)) <span class="comment">//代表是普通消息</span></span></div><div class="line"><span class="undefined">&#123;</span></div><div class="line"><span class="xml">//<span class="tag">&lt;<span class="name">p</span>&gt;</span>xxxxooo<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="javascript"><span class="keyword">var</span> p=<span class="built_in">document</span>.createElement(<span class="string">"P"</span>);</span></div><div class="line"><span class="javascript">p.innerHTML=<span class="string">"&lt;span&gt;收到消息&lt;/span&gt;"</span>+getMsg.replace(<span class="string">"msg:"</span>,<span class="string">""</span>);</span></div><div class="line"><span class="javascript"><span class="built_in">document</span>.getElementById(<span class="string">"txtcontent"</span>).appendChild(p);</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="javascript"><span class="keyword">else</span> <span class="keyword">if</span>(<span class="regexp">/^users:/</span>.test(getMsg))</span></div><div class="line"><span class="javascript">                &#123;<span class="comment">//显示当前已登录用户</span></span></div><div class="line"><span class="javascript">getMsg=getMsg.replace(<span class="string">"users:"</span>,<span class="string">""</span>);</span></div><div class="line"><span class="javascript">getMsg=<span class="built_in">eval</span>(<span class="string">"("</span>+getMsg+<span class="string">")"</span>);</span></div><div class="line"><span class="javascript"><span class="built_in">document</span>.getElementById(<span class="string">"listusers"</span>).innerHTML=<span class="string">""</span>;</span></div><div class="line"><span class="javascript"><span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> getMsg)</span></div><div class="line"><span class="undefined">                    &#123;</span></div><div class="line"><span class="javascript"><span class="keyword">var</span> option=<span class="built_in">document</span>.createElement(<span class="string">"OPTION"</span>);</span></div><div class="line"><span class="javascript">option.value=key;<span class="comment">//IP</span></span></div><div class="line"><span class="javascript">option.innerHTML=getMsg[key];<span class="comment">//昵称</span></span></div><div class="line"><span class="javascript"><span class="built_in">document</span>.getElementById(<span class="string">"listusers"</span>).appendChild(option);</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined">                &#125;</span></div><div class="line"><span class="javascript"><span class="keyword">else</span></span></div><div class="line"><span class="undefined">&#123;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">                &#125;</span></div><div class="line"><span class="undefined">            &#125;;</span></div><div class="line"><span class="javascript"><span class="comment">// 监听Socket的关闭</span></span></div><div class="line"><span class="javascript">socket.onclose = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span></div><div class="line"><span class="javascript">isLogin=<span class="literal">false</span>;</span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="undefined">&#125;;</span></div><div class="line"><span class="undefined">&#125;</span></div><div class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"txtcontent"</span> <span class="attr">style</span>=<span class="string">"width:500px;height:250px;border: solid 1px gray"</span>&gt;</span></div><div class="line"></div><div class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>所有用户:<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"listusers"</span>&gt;</span><span class="tag">&lt;/<span class="name">select</span>&gt;</span> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>你的昵称:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"username"</span>/&gt;</span> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">消息内容:</div><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">style</span>=<span class="string">"width:500px;height:100px"</span> <span class="attr">id</span>=<span class="string">"txtmsg"</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"connectServer()"</span>&gt;</span>连接服务器<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"send()"</span>&gt;</span>发送消息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="comment">//本机ip 121.42.176.99</span></div><div class="line"> <span class="comment">//等下 要监听  9091端口</span></div><div class="line"></div><div class="line"><span class="keyword">require_once</span> <span class="keyword">__DIR__</span> . <span class="string">'/Workerman/Autoloader.php'</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Workerman</span>\<span class="title">Worker</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Workerman</span>\<span class="title">Connection</span>\<span class="title">AsyncTcpConnection</span>;</div><div class="line"></div><div class="line"><span class="comment">// 创建一个Worker监听2345端口，使用http协议通讯</span></div><div class="line">$tcp_worker = <span class="keyword">new</span> Worker(<span class="string">"websocket://121.42.176.99:9091"</span>);</div><div class="line"></div><div class="line"><span class="comment">// 启动1个进程对外提供服务</span></div><div class="line">$tcp_worker-&gt;count = <span class="number">1</span>;</div><div class="line">$clients=[];<span class="comment">//保存客户端信息</span></div><div class="line"></div><div class="line">$tcp_worker-&gt;onMessage = <span class="function"><span class="keyword">function</span><span class="params">($connection, $data)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line"><span class="keyword">global</span> $clients;</div><div class="line"><span class="keyword">if</span>(preg_match(<span class="string">"/^login:(\w&#123;3,20&#125;)/i"</span>,$data,$result))<span class="comment">//代表是客户端认证</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">if</span>(!array_key_exists($connection-&gt;getRemoteIp(),$clients)) <span class="comment">//必须是之前没有记录过</span></div><div class="line">&#123;</div><div class="line"><span class="comment">// $clients[$connection-&gt;getRemoteIp()]=$result[1];//保存所有客户端   格式为 ip=&gt;昵称</span></div><div class="line">$clients[$connection-&gt;getRemoteIp()]=[<span class="string">"ip"</span>=&gt;$connection-&gt;getRemoteIp(),<span class="string">"name"</span>=&gt;$result[<span class="number">1</span>],<span class="string">"conn"</span>=&gt;$connection];</div><div class="line"></div><div class="line">$connection-&gt;send(<span class="string">"notice:success"</span>);<span class="comment">//代表给客户端一个连接提示</span></div><div class="line">$connection-&gt;send(<span class="string">"msg:welcome back "</span>.$result[<span class="number">1</span>]);<span class="comment">//代表是发送普通文字消息</span></div><div class="line"><span class="keyword">echo</span> $connection-&gt;getRemoteIp().<span class="string">":"</span>.$result[<span class="number">1</span>].<span class="string">" login"</span>.PHP_EOL;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//$connection-&gt;send("users:".json_encode($clients));</span></div><div class="line">$users=<span class="string">"users:"</span>.json_encode(array_column($clients,<span class="string">"name"</span>,<span class="string">"ip"</span>));</div><div class="line"><span class="keyword">foreach</span>($clients <span class="keyword">as</span> $ip=&gt;$set)</div><div class="line">            &#123;</div><div class="line">$set[<span class="string">"conn"</span>]-&gt;send($users);</div><div class="line">&#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span>(preg_match(<span class="string">"/^msg:(.*?)/isU"</span>,$data,$msgset)) <span class="comment">//代表 是客户端发送普通消息</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">if</span>(array_key_exists($connection-&gt;getRemoteIp(),$clients)) <span class="comment">//必须已经认证过得客户端</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">echo</span> <span class="string">"get msg :"</span>.$msgset[<span class="number">1</span>];</div><div class="line">&#125;</div><div class="line">    &#125;</div><div class="line">$connection-&gt;onClose=<span class="function"><span class="keyword">function</span> <span class="params">($connection)</span>//客户端主动关闭</span></div><div class="line"><span class="function"></span>&#123;</div><div class="line"><span class="keyword">global</span> $clients;</div><div class="line"><span class="keyword">unset</span>($clients[$connection-&gt;getRemoteIp()]);</div><div class="line">&#125;;</div><div class="line">&#125;;</div><div class="line">$tcp_worker-&gt;onClose=<span class="function"><span class="keyword">function</span> <span class="params">($connection)</span> <span class="title">use</span><span class="params">($clients)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line"></div><div class="line">&#125;;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 运行worker</span></div><div class="line">Worker::runAll();</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -769,7 +771,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">198</span>
+              <span class="site-state-item-count">199</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

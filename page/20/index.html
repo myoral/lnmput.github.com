@@ -252,6 +252,102 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/27/mysql去除重复数据/" itemprop="url">
+                  mysql去除重复数据
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-27T18:55:44+08:00" content="2017-04-27">
+              2017-04-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>悟已往之不谏，知来者之可追。实迷途其未远，觉今是而昨非。<br></blockquote></p>
+<h3 id="保留ID最小的"><a href="#保留ID最小的" class="headerlink" title="保留ID最小的"></a>保留ID最小的</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">NAMES</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> <span class="keyword">NOT</span> <span class="keyword">IN</span>( <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> <span class="keyword">MIN</span>(n.id)<span class="keyword">FROM</span> <span class="keyword">NAMES</span> n GROUPBY n.name) x)</div></pre></td></tr></table></figure>
+<h3 id="保留ID最大的"><a href="#保留ID最大的" class="headerlink" title="保留ID最大的"></a>保留ID最大的</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> <span class="keyword">NAMES</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> <span class="keyword">NOT</span> <span class="keyword">IN</span>( <span class="keyword">SELECT</span> * <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> <span class="keyword">MAX</span>(n.id)<span class="keyword">FROM</span> <span class="keyword">NAMES</span> n GROUPBY n.name) x)</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/27/scrapy爬去西刺ip列表/" itemprop="url">
                   scrapy爬去西刺ip列表
                 </a>
@@ -629,113 +725,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/04/10/mysql的sql-mode合理设置/" itemprop="url">
-                  mysql的sql_mode合理设置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-10T10:03:42+08:00" content="2017-04-10">
-              2017-04-10
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>以大部分人努力程度之低，根本轮不到去拼天赋<br></blockquote><br>MySQL的sql_mode合理设置<br>sql_mode是个很容易被忽视的变量，默认值是空值，在这种设置下是可以允许一些非法操作的，比如允许一些非法数据的插入。在生产环境必须将这个值设置为严格模式，所以开发、测试环境的数据库也必须要设置，这样在开发测试阶段就可以发现问题 </p>
-<p>sql_mode常用值如下：<br>ONLY_FULL_GROUP_BY：<br>对于GROUP BY聚合操作，如果在SELECT中的列，没有在GROUP BY中出现，那么这个SQL是不合法的，因为列不在GROUP BY从句中</p>
-<p>NO_AUTO_VALUE_ON_ZERO：<br>该值影响自增长列的插入。默认设置下，插入0或NULL代表生成下一个自增长值。如果用户 希望插入的值为0，而该列又是自增长的，那么这个选项就有用了。</p>
-<p>STRICT_TRANS_TABLES：<br>在该模式下，如果一个值不能插入到一个事务表中，则中断当前的操作，对非事务表不做限制<br>NO_ZERO_IN_DATE：<br>在严格模式下，不允许日期和月份为零</p>
-<p>NO_ZERO_DATE：<br>设置该值，mysql数据库不允许插入零日期，插入零日期会抛出错误而不是警告。</p>
-<p>ERROR_FOR_DIVISION_BY_ZERO：<br>在INSERT或UPDATE过程中，如果数据被零除，则产生错误而非警告。如 果未给出该模式，那么数据被零除时MySQL返回NULL</p>
-<p>NO_AUTO_CREATE_USER：<br>禁止GRANT创建密码为空的用户</p>
-<p>NO_ENGINE_SUBSTITUTION：<br>如果需要的存储引擎被禁用或未编译，那么抛出错误。不设置此值时，用默认的存储引擎替代，并抛出一个异常</p>
-<p>PIPES_AS_CONCAT：<br>将”||”视为字符串的连接操作符而非或运算符，这和Oracle数据库是一样的，也和字符串的拼接函数Concat相类似</p>
-<p>ANSI_QUOTES：<br>启用ANSI_QUOTES后，不能用双引号来引用字符串，因为它被解释为识别符</p>
-<p>ORACLE的sql_mode设置等同：PIPES_AS_CONCAT, ANSI_QUOTES, IGNORE_SPACE, NO_KEY_OPTIONS, NO_TABLE_OPTIONS, NO_FIELD_OPTIONS, NO_AUTO_CREATE_USER.</p>
-<blockquote>
-<p><a href="http://blog.csdn.net/wyzxg/article/details/8787878" target="_blank" rel="external">http://blog.csdn.net/wyzxg/article/details/8787878</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -781,7 +770,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">198</span>
+              <span class="site-state-item-count">199</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
