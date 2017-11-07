@@ -252,6 +252,106 @@
             
               
                 
+                <a class="post-title-link" href="/2017/08/28/PHP输出缓冲及其应用/" itemprop="url">
+                  PHP输出缓冲及其应用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-08-28T11:21:45+08:00" content="2017-08-28">
+              2017-08-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>某天，你无端想起一个人，她曾让你对明天有所期许，但是却完全没有出现在你的明天里。<br></blockquote><br>缓冲(buffer)是为了协调吞吐速度相差很大的设备之间数据传送而采用的技术，用来存放缓冲数据的区域叫缓冲区，在计算机科学领域，当数据从一个地方传送到另一个地方时，缓冲区被用来临时存储数据。与缓冲相似的一个技术是缓存(cache)，它们都是为了解决数据存储和传输速度不同而带来的问题，不同的是，缓冲主要在写时使用，而缓存主要用来在读时使用。</p>
+<p>PHP在执行的过程中，嵌入的HTML代码，’echo’,’print_r’等指令都是一次数据输出，正是因为有缓冲区的存在，系统可以在php执行完之后再一次把数据发送给浏览器，运行如下代码:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">echo</span> <span class="string">"这里是第一行数据"</span>;</div><div class="line"><span class="keyword">echo</span> <span class="string">"这里是第二行数据，下面睡眠5秒"</span>;</div><div class="line">sleep(<span class="number">5</span>);</div><div class="line"><span class="keyword">echo</span> <span class="string">"这里是第三行数据，下面是HTML代码"</span>;</div><div class="line"><span class="meta">?&gt;</span></div><div class="line">&lt;h1&gt;标题&lt;/h1&gt;</div></pre></td></tr></table></figure></p>
+<p>发现浏览器是同时显示所有内容，而不是先显示第一行和第二行数据，等待5秒后再显示后面的数据。不仅这样，PHP的缓冲区还提供给我们更加强大的功能，我们可以在数据发送之前对其作出捕获，更改等。PHP提供给我们”ob_”系列函数，例如如下代码，可以对某些字符进行替换:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">ob_start();</div><div class="line"><span class="keyword">echo</span> <span class="string">"Hello world, this is http://www.hitoy.org/"</span>;</div><div class="line">$content = ob_get_contents();</div><div class="line">ob_end_clean();</div><div class="line"><span class="keyword">echo</span> str_replace(<span class="string">"http://"</span>,<span class="string">"https://"</span>,$content);</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<p>上面中的ob_start,ob_get_contents,ob_end_clean分别用来开启用户缓冲区，获取缓存内容和关闭缓存区.</p>
+<blockquote>
+<p><a href="https://www.hitoy.org/php-output-buffer.html" target="_blank" rel="external">https://www.hitoy.org/php-output-buffer.html</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/08/28/php依赖注入实现/" itemprop="url">
                   php依赖注入实现
                 </a>
@@ -640,109 +740,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/23/uv和pv的区别/" itemprop="url">
-                  uv和pv的区别
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-23T15:53:18+08:00" content="2017-08-23">
-              2017-08-23
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>我努力的目的就是想让我妈妈给自己买东西的时候能像给我买东西的时候一样干脆。<br></blockquote></p>
-<h3 id="UV（Unique-visitor）"><a href="#UV（Unique-visitor）" class="headerlink" title="UV（Unique visitor）"></a>UV（Unique visitor）</h3><p>是指通过互联网访问、浏览这个网页的自然人。访问您网站的一台电脑客户端为一个访客。00:00-24:00内相同的客户端只被计算一次。<br>一天内同个访客多次访问仅计算一个UV。</p>
-<h3 id="IP（Internet-Protocol）"><a href="#IP（Internet-Protocol）" class="headerlink" title="IP（Internet Protocol）"></a>IP（Internet Protocol）</h3><p>独立IP是指访问过某站点的IP总数，以用户的IP地址作为统计依据。00:00-24:00内相同IP地址之被计算一次。</p>
-<h3 id="UV与IP区别"><a href="#UV与IP区别" class="headerlink" title="UV与IP区别"></a>UV与IP区别</h3><p>你和你的家人用各自的账号在同一台电脑上登录新浪微博，则IP数+1，UV数+2。由于使用的是同一台电脑，所以IP不变，但使用的不同账号，所以UV+2</p>
-<h3 id="PV（Page-View）"><a href="#PV（Page-View）" class="headerlink" title="PV（Page View）"></a>PV（Page View）</h3><p>即页面浏览量或点击量，用户每1次对网站中的每个网页访问均被记录1个PV。用户对同一页面的多次访问，访问量累计，用以衡量网站用户访问的网页数量。</p>
-<h3 id="VV（Visit-View）"><a href="#VV（Visit-View）" class="headerlink" title="VV（Visit View）"></a>VV（Visit View）</h3><p>用以统计所有访客1天内访问网站的次数。当访客完成所有浏览并最终关掉该网站的所有页面时便完成了一次访问，同一访客1天内可能有多次访问行为，访问次数累计。</p>
-<h3 id="PV与VV区别"><a href="#PV与VV区别" class="headerlink" title="PV与VV区别"></a>PV与VV区别</h3><p>如：你今天10点钟打开了百度，访问了它的三个页面；11点钟又打开了百度，访问了它的两个页面，则PV数+5，VV数+2.是指页面的浏览次数，VV是指你访问网站的次数。</p>
-<blockquote>
-<p><a href="https://www.zhihu.com/question/20448467" target="_blank" rel="external">https://www.zhihu.com/question/20448467</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -788,7 +785,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">199</span>
+              <span class="site-state-item-count">200</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -798,7 +795,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">96</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

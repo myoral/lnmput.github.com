@@ -252,6 +252,102 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/05/git丢弃本地修改的所有文件/" itemprop="url">
+                  git丢弃本地修改的所有文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-05T14:28:43+08:00" content="2017-02-05">
+              2017-02-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>我喜欢你，像风走了八万里，不问归期。<br></blockquote><br>git checkout . #本地所有修改的。没有的提交的，都返回到原来的状态<br>git stash #把所有没有提交的修改暂存到stash里面。可用git stash pop回复。<br>git reset –hard HASH #返回到某个节点，不保留修改。<br>git reset –soft HASH #返回到某个节点。保留修改</p>
+<p>git clean -df #返回到某个节点<br>git clean 参数<br>    -n 显示 将要 删除的 文件 和  目录<br>    -f 删除 文件<br>    -df 删除 文件 和 目录<br>也可以使用：</p>
+<p>git checkout . &amp;&amp; git clean -xdf</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/24/MYSQL静态表-动态表-压缩表/" itemprop="url">
                   MYSQL静态表-动态表-压缩表
                 </a>
@@ -626,101 +722,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/10/使用redis记录产品的每日浏览量/" itemprop="url">
-                  使用redis记录产品的每日浏览量
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-10T12:05:44+08:00" content="2017-01-10">
-              2017-01-10
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>全体听令，除我之外~冲锋！<br></blockquote></p>
-<h3 id="配置文件database-php"><a href="#配置文件database-php" class="headerlink" title="配置文件database.php"></a>配置文件database.php</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="string">'redis'</span> =&gt; [</div><div class="line"></div><div class="line">       <span class="string">'cluster'</span> =&gt; <span class="keyword">false</span>,</div><div class="line"></div><div class="line">       <span class="string">'default'</span> =&gt; [</div><div class="line">           <span class="string">'host'</span>     =&gt; env(<span class="string">'REDIS_HOST'</span>, <span class="string">'localhost'</span>),</div><div class="line">           <span class="string">'password'</span> =&gt; env(<span class="string">'REDIS_PASSWORD'</span>, <span class="keyword">null</span>),</div><div class="line">           <span class="string">'port'</span>     =&gt; env(<span class="string">'REDIS_PORT'</span>, <span class="number">6379</span>),</div><div class="line">           <span class="string">'database'</span> =&gt; <span class="number">0</span>,</div><div class="line">       ],</div><div class="line"></div><div class="line">       <span class="string">'product'</span> =&gt; [</div><div class="line">           <span class="string">'host'</span>     =&gt; <span class="string">'localhost'</span>,</div><div class="line">           <span class="string">'password'</span> =&gt;  <span class="keyword">null</span>,</div><div class="line">           <span class="string">'port'</span>     =&gt;  <span class="number">6379</span>,</div><div class="line">           <span class="string">'database'</span> =&gt; <span class="number">1</span>,</div><div class="line">       ]</div><div class="line">   ],</div></pre></td></tr></table></figure>
-<h3 id="连接存储"><a href="#连接存储" class="headerlink" title="连接存储"></a>连接存储</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 连接</span></div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">connectDatabase</span><span class="params">($name)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">   <span class="keyword">return</span> Redis::connection($name);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 存储</span></div><div class="line">$redisConnection = <span class="keyword">parent</span>::getRedisConnectName();</div><div class="line">$redis = RedisHelper::connectDatabase($redisConnection[<span class="string">'store'</span>]);</div><div class="line">$redis-&gt;rpush(<span class="string">'productView'</span>, $product_id);</div><div class="line"></div><div class="line"><span class="comment">// 取出</span></div><div class="line">$products = array_count_values($redis-&gt;lrange(<span class="string">'productView'</span>,<span class="number">0</span>,<span class="number">-1</span>));</div><div class="line"></div><div class="line"><span class="comment">// 删除</span></div><div class="line">$redis-&gt;del(<span class="string">'productView'</span>);</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -766,7 +767,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">199</span>
+              <span class="site-state-item-count">200</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -776,7 +777,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">96</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

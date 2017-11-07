@@ -4,8 +4,61 @@
 
     
   <url>
+    <loc>http://yangguoqi.me/2017/11/07/%E4%BD%BF%E7%94%A8laravel%E7%94%9F%E6%88%90%E6%9D%A1%E5%BD%A2%E7%A0%81/</loc>
+    <lastmod>2017-11-07T01:17:12.354Z</lastmod>
+    <data>
+        <display>
+        <title>使用laravel生成条形码</title>
+        <pubTime>2017-11-07T01:06:07.000Z</pubTime>
+        
+        <tag>laravel</tag>
+         
+        <tag>条形码</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/11/04/%E6%B7%98%E5%AE%9D%E9%87%87%E9%9B%86%E6%8F%92%E4%BB%B6%E7%AE%80%E4%BB%8B/</loc>
+    <lastmod>2017-11-06T05:08:24.263Z</lastmod>
+    <data>
+        <display>
+        <title>淘宝采集插件简介</title>
+        <pubTime>2017-11-04T13:36:09.000Z</pubTime>
+        
+        <tag>项目</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yangguoqi.me/2017/11/04/%E9%82%AE%E4%BB%B6%E5%8F%91%E9%80%81%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B/</loc>
+    <lastmod>2017-11-06T04:58:02.307Z</lastmod>
+    <data>
+        <display>
+        <title>邮件发送系统简介</title>
+        <pubTime>2017-11-04T13:31:23.000Z</pubTime>
+        
+        <tag>项目</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yangguoqi.me/2017/11/04/erp%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B/</loc>
-    <lastmod>2017-11-05T13:41:54.353Z</lastmod>
+    <lastmod>2017-11-05T13:50:30.000Z</lastmod>
     <data>
         <display>
         <title>erp项目简介</title>
@@ -22,7 +75,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2017/11/04/%E5%A4%96%E8%B4%B8%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B/</loc>
-    <lastmod>2017-11-05T13:40:31.060Z</lastmod>
+    <lastmod>2017-11-05T13:50:29.000Z</lastmod>
     <data>
         <display>
         <title>外贸商城项目简介</title>
@@ -39,7 +92,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2017/11/05/larave%E7%BB%93%E5%90%88vue%E4%BB%BF%E7%9F%A5%E4%B9%8E%E9%A1%B9%E7%9B%AE/</loc>
-    <lastmod>2017-11-05T13:40:13.875Z</lastmod>
+    <lastmod>2017-11-05T13:50:25.000Z</lastmod>
     <data>
         <display>
         <title>larave结合vue仿知乎项目</title>
@@ -54,44 +107,10 @@
     </url>
 
     
-  <url>
-    <loc>http://yangguoqi.me/2017/11/04/%E9%82%AE%E4%BB%B6%E5%8F%91%E9%80%81%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B/</loc>
-    <lastmod>2017-11-05T13:39:22.322Z</lastmod>
-    <data>
-        <display>
-        <title>邮件发送系统简介</title>
-        <pubTime>2017-11-04T13:31:23.000Z</pubTime>
-        
-        <tag>项目</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yangguoqi.me/2017/11/04/%E6%B7%98%E5%AE%9D%E9%87%87%E9%9B%86%E6%8F%92%E4%BB%B6%E7%AE%80%E4%BB%8B/</loc>
-    <lastmod>2017-11-05T13:38:58.718Z</lastmod>
-    <data>
-        <display>
-        <title>淘宝采集插件简介</title>
-        <pubTime>2017-11-04T13:36:09.000Z</pubTime>
-        
-        <tag>项目</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
     
   <url>
     <loc>http://yangguoqi.me/2017/11/04/php%E5%AE%9E%E7%8E%B0%E5%95%86%E5%93%81%E7%A7%92%E6%9D%80%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2017-11-04T05:20:05.869Z</lastmod>
+    <lastmod>2017-11-04T05:20:05.000Z</lastmod>
     <data>
         <display>
         <title>php实现商品秒杀技术</title>
@@ -108,7 +127,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2017/10/30/centos%E5%8D%87%E7%BA%A7python/</loc>
-    <lastmod>2017-10-30T05:46:59.000Z</lastmod>
+    <lastmod>2017-10-30T05:47:00.350Z</lastmod>
     <data>
         <display>
         <title>centos升级python</title>
@@ -127,7 +146,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2017/10/24/mysql%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2/</loc>
-    <lastmod>2017-10-24T02:37:08.000Z</lastmod>
+    <lastmod>2017-10-24T02:37:08.913Z</lastmod>
     <data>
         <display>
         <title>mysql连接查询</title>
@@ -144,7 +163,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2017/10/23/%E5%A6%82%E4%BD%95%E5%9C%A8%E4%B8%80%E5%8F%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%90%AF%E5%8A%A8%E5%A4%9A%E4%B8%AAredis%E5%AE%9E%E4%BE%8B/</loc>
-    <lastmod>2017-10-23T01:44:47.000Z</lastmod>
+    <lastmod>2017-10-23T01:44:47.245Z</lastmod>
     <data>
         <display>
         <title>如何在一台服务器上启动多个redis实例</title>
@@ -161,7 +180,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2017/10/19/larave%E7%9A%84aes%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2017-10-19T04:22:24.000Z</lastmod>
+    <lastmod>2017-10-19T04:22:24.668Z</lastmod>
     <data>
         <display>
         <title>larave的aes加密模式</title>
@@ -182,7 +201,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2017/10/17/laravel%E4%BD%BF%E7%94%A8Websocket%E6%8E%A8%E9%80%81%E9%80%9A%E7%9F%A5/</loc>
-    <lastmod>2017-10-17T08:31:37.000Z</lastmod>
+    <lastmod>2017-10-17T08:31:37.053Z</lastmod>
     <data>
         <display>
         <title>laravel使用Websocket推送通知</title>
@@ -203,7 +222,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2017/10/17/swoole%E5%AE%9E%E7%8E%B0%E6%B6%88%E6%81%AF%E7%AE%80%E5%8D%95%E6%B6%88%E6%81%AF%E6%8E%A8%E9%80%81/</loc>
-    <lastmod>2017-10-17T07:58:39.000Z</lastmod>
+    <lastmod>2017-10-17T07:58:39.862Z</lastmod>
     <data>
         <display>
         <title>swoole实现消息简单消息推送</title>
@@ -220,7 +239,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2017/10/13/jQuery%E5%BA%8F%E5%88%97%E5%8C%96%E8%A1%A8%E5%8D%95serialize%E5%92%8CserializeArray/</loc>
-    <lastmod>2017-10-13T06:50:21.000Z</lastmod>
+    <lastmod>2017-10-13T06:50:21.550Z</lastmod>
     <data>
         <display>
         <title>jQuery序列化表单serialize和serializeArray</title>
@@ -237,7 +256,7 @@
     
   <url>
     <loc>http://yangguoqi.me/2017/10/12/%E4%BD%BF%E7%94%A8laravel%E6%8A%93%E5%8F%96laracasts%E7%9A%84%E8%A7%86%E9%A2%91%E5%9C%B0%E5%9D%80/</loc>
-    <lastmod>2017-10-12T03:55:39.000Z</lastmod>
+    <lastmod>2017-10-12T03:55:39.231Z</lastmod>
     <data>
         <display>
         <title>使用laravel抓取laracasts的视频地址</title>

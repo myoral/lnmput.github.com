@@ -252,6 +252,110 @@
             
               
                 
+                <a class="post-title-link" href="/2017/11/07/使用laravel生成条形码/" itemprop="url">
+                  使用laravel生成条形码
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-07T09:06:07+08:00" content="2017-11-07">
+              2017-11-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote class="blockquote-center"><br>我已经和垃圾学校的某些垃圾学生呆够了，再他妈不努力，你这辈子就只能和他们打交道了。<br></blockquote>
+
+<h3 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a>安装包</h3><p>项目地址<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https:<span class="comment">//packagist.org/packages/codeitnowin/barcode</span></div></pre></td></tr></table></figure></p>
+<p>使用composer安装<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer <span class="keyword">require</span> codeitnowin/barcode</div></pre></td></tr></table></figure></p>
+<p>无需配置</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="生成二维码"><a href="#生成二维码" class="headerlink" title="生成二维码"></a>生成二维码</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">CodeItNow</span>\<span class="title">BarcodeBundle</span>\<span class="title">Utils</span>\<span class="title">QrCode</span>;</div><div class="line"></div><div class="line">$qrCode = <span class="keyword">new</span> QrCode();</div><div class="line">$qrCode</div><div class="line">    -&gt;setText(<span class="string">'QR code by codeitnow.in'</span>)</div><div class="line">    -&gt;setSize(<span class="number">300</span>)</div><div class="line">    -&gt;setPadding(<span class="number">10</span>)</div><div class="line">    -&gt;setErrorCorrection(<span class="string">'high'</span>)</div><div class="line">    -&gt;setForegroundColor(<span class="keyword">array</span>(<span class="string">'r'</span> =&gt; <span class="number">0</span>, <span class="string">'g'</span> =&gt; <span class="number">0</span>, <span class="string">'b'</span> =&gt; <span class="number">0</span>, <span class="string">'a'</span> =&gt; <span class="number">0</span>))</div><div class="line">    -&gt;setBackgroundColor(<span class="keyword">array</span>(<span class="string">'r'</span> =&gt; <span class="number">255</span>, <span class="string">'g'</span> =&gt; <span class="number">255</span>, <span class="string">'b'</span> =&gt; <span class="number">255</span>, <span class="string">'a'</span> =&gt; <span class="number">0</span>))</div><div class="line">    -&gt;setLabel(<span class="string">'Scan Qr Code'</span>)</div><div class="line">    -&gt;setLabelFontSize(<span class="number">16</span>)</div><div class="line">    -&gt;setImageType(QrCode::IMAGE_TYPE_PNG)</div><div class="line">;</div><div class="line"><span class="keyword">echo</span> <span class="string">'&lt;img src="data:'</span>.$qrCode-&gt;getContentType().<span class="string">';base64,'</span>.$qrCode-&gt;generate().<span class="string">'" /&gt;'</span>;</div></pre></td></tr></table></figure>
+<h4 id="生成条形码"><a href="#生成条形码" class="headerlink" title="生成条形码"></a>生成条形码</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">CodeItNow</span>\<span class="title">BarcodeBundle</span>\<span class="title">Utils</span>\<span class="title">BarcodeGenerator</span>;</div><div class="line"></div><div class="line">$barcode = <span class="keyword">new</span> BarcodeGenerator();</div><div class="line">$barcode-&gt;setText(<span class="string">"0123456789"</span>);</div><div class="line">$barcode-&gt;setType(BarcodeGenerator::Code128);</div><div class="line">$barcode-&gt;setScale(<span class="number">2</span>);</div><div class="line">$barcode-&gt;setThickness(<span class="number">25</span>);</div><div class="line">$barcode-&gt;setFontSize(<span class="number">10</span>);</div><div class="line">$code = $barcode-&gt;generate();</div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="string">'&lt;img src="data:image/png;base64,'</span>.$code.<span class="string">'" /&gt;'</span>;</div></pre></td></tr></table></figure>
+<p>更多参见说明文档</p>
+<blockquote>
+<p><a href="https://packagist.org/packages/codeitnowin/barcode" target="_blank" rel="external">https://packagist.org/packages/codeitnowin/barcode</a><br><a href="http://www.barcodebakery.com/" target="_blank" rel="external">http://www.barcodebakery.com/</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/11/05/larave结合vue仿知乎项目/" itemprop="url">
                   larave结合vue仿知乎项目
                 </a>
@@ -296,7 +400,7 @@
       
         
           
-            <blockquote class="blockquote-center"><br>失去就好像，你将余生写一首长诗，却不能提及一个与他有关的字……<br></blockquote>
+            <blockquote class="blockquote-center"><br>失去就好像，你将余生写一首长诗，却不能提及一个与她有关的字……<br></blockquote>
 
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>基于laravel5.3 vue2.0开发的仿知乎项目，实现基本的登录注册，发布问题，关注问题，回答问题，评论问题，发送私信，系统发送邮件通知，使用千牛存储图片，使用阿里云提供的短信服务发送验证码等基本功能.</p>
 <h3 id="功能点"><a href="#功能点" class="headerlink" title="功能点"></a>功能点</h3><h4 id="发布问题"><a href="#发布问题" class="headerlink" title="发布问题"></a>发布问题</h4><p><img src="/images/zhihu01.png" alt=""></p>
@@ -406,7 +510,11 @@
             <blockquote class="blockquote-center"><br>中国现在处于并将长期处于社会主义初级阶段。<br></blockquote>
 
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>一个基于chrome开发的商品采集插件， 传统的外贸网站完全使用编辑手工去淘宝等国内电商平台选品，然后商品信息复制到自己商城的后台，费时费力，我们使用chrome插件， 配合商城站提供的相关的API接口，可以实现商品的一键采集到商城站的后台。</p>
-<h3 id="功能点"><a href="#功能点" class="headerlink" title="功能点"></a>功能点</h3>
+<h3 id="功能点"><a href="#功能点" class="headerlink" title="功能点"></a>功能点</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p><img src="/images/ch01.png" alt=""></p>
+<h4 id="配置初始化"><a href="#配置初始化" class="headerlink" title="配置初始化"></a>配置初始化</h4><p><img src="/images/ch02.png" alt=""></p>
+<h4 id="产品抓取页面"><a href="#产品抓取页面" class="headerlink" title="产品抓取页面"></a>产品抓取页面</h4><p><img src="/images/ch03.png" alt=""></p>
+<h4 id="裁图页面"><a href="#裁图页面" class="headerlink" title="裁图页面"></a>裁图页面</h4><p><img src="/images/ch04.png" alt=""></p>
+
           
         
       
@@ -502,7 +610,13 @@
             <blockquote class="blockquote-center"><br>所遇无故物，焉得不速老<br></blockquote>
 
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>基于laravel5.3开发， 用于公司日常营销邮件的发送， 通过laravel的队列机制，linux的计划任务， 来定时监控数万个站点的邮件发送情况，并实各类现数据的统计导出；</p>
-<h3 id="功能点"><a href="#功能点" class="headerlink" title="功能点"></a>功能点</h3><h4 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h4>
+<h3 id="功能点"><a href="#功能点" class="headerlink" title="功能点"></a>功能点</h3><h4 id="任务列表"><a href="#任务列表" class="headerlink" title="任务列表"></a>任务列表</h4><p><img src="/images/em01.png" alt=""></p>
+<h4 id="创建任务"><a href="#创建任务" class="headerlink" title="创建任务"></a>创建任务</h4><p><img src="/images/em02.png" alt=""></p>
+<h4 id="任务详细"><a href="#任务详细" class="headerlink" title="任务详细"></a>任务详细</h4><p><img src="/images/em03.png" alt=""></p>
+<h4 id="shell列表"><a href="#shell列表" class="headerlink" title="shell列表"></a>shell列表</h4><p><img src="/images/em04.png" alt=""></p>
+<h4 id="邮件模板"><a href="#邮件模板" class="headerlink" title="邮件模板"></a>邮件模板</h4><p><img src="/images/em05.png" alt=""></p>
+<h4 id="邮箱列表"><a href="#邮箱列表" class="headerlink" title="邮箱列表"></a>邮箱列表</h4><p><img src="/images/em06.png" alt=""></p>
+
           
         
       
@@ -639,110 +753,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/04/erp项目简介/" itemprop="url">
-                  erp项目简介
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-04T21:30:21+08:00" content="2017-11-04">
-              2017-11-04
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote class="blockquote-center"><br>当完成了童年理想 童年又成了理想<br></blockquote>
-
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>基于laravel5.4开发，用于所有商城的订单管理，实现了采购， 备货，发货的完全管理， 极大的提高了员工的工作效率</p>
-<h3 id="功能点"><a href="#功能点" class="headerlink" title="功能点"></a>功能点</h3><h4 id="首页"><a href="#首页" class="headerlink" title="首页"></a>首页</h4><p><img src="/images/erp01.png" alt=""></p>
-<h4 id="订单列表"><a href="#订单列表" class="headerlink" title="订单列表"></a>订单列表</h4><p><img src="/images/erp02.png" alt=""></p>
-<h4 id="订单详情"><a href="#订单详情" class="headerlink" title="订单详情"></a>订单详情</h4><p><img src="/images/erp03.png" alt=""></p>
-<h4 id="未采购商品列表"><a href="#未采购商品列表" class="headerlink" title="未采购商品列表"></a>未采购商品列表</h4><p><img src="/images/erp04.png" alt=""></p>
-<h4 id="物流信息翻译"><a href="#物流信息翻译" class="headerlink" title="物流信息翻译"></a>物流信息翻译</h4><p><img src="/images/erp05.png" alt=""></p>
-<h4 id="采购信息录入"><a href="#采购信息录入" class="headerlink" title="采购信息录入"></a>采购信息录入</h4><p><img src="/images/erp06.png" alt=""></p>
-<h4 id="批量运费补录"><a href="#批量运费补录" class="headerlink" title="批量运费补录"></a>批量运费补录</h4><p><img src="/images/erp07.png" alt=""></p>
-<h4 id="菜单功能演示"><a href="#菜单功能演示" class="headerlink" title="菜单功能演示"></a>菜单功能演示</h4><p><img src="/images/erp.gif" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -788,7 +798,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">199</span>
+              <span class="site-state-item-count">200</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -798,7 +808,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">96</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

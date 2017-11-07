@@ -252,6 +252,103 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/27/laravel的中大型架构/" itemprop="url">
+                  laravel的中大型架构
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-27T11:40:41+08:00" content="2017-02-27">
+              2017-02-27
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>孤独到死是一个天才最好的归宿，毕竟，这个世界配不上他<br></blockquote><br>解决我们的控制器,模型过于肥大的问题<br>那我們該怎麼寫呢？別將我們的思維侷限在 MVC 內 :<br>Model : 僅當成 Eloquent class。<br>Repository : 輔助 model，處理資料庫邏輯，然後注入到 service。<br>Service : 輔助 controller，處理商業邏輯，然後注入到 controller。<br>Controller : 接收 HTTP request，調用其他 service。<br>Presenter : 處理顯示邏輯，然後注入到 view。<br>View : 使用 blade 將資料 binding 到 HTML。</p>
+<blockquote>
+<p><a href="http://oomusou.io/laravel/laravel-architecture" target="_blank" rel="external">http://oomusou.io/laravel/laravel-architecture</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/27/如何使用Repository模式/" itemprop="url">
                   如何使用Repository模式
                 </a>
@@ -620,112 +717,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/02/21/centos系统python版本升级从2-6到2-7/" itemprop="url">
-                  centos系统python版本升级从2.6到2.7
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-21T09:22:36+08:00" content="2017-02-21">
-              2017-02-21
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote class="blockquote-center"><br>你喜欢的姑娘在学习<br></blockquote>
-
-<h3 id="查看python的版本"><a href="#查看python的版本" class="headerlink" title="查看python的版本"></a>查看python的版本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#python  -V    </span></div><div class="line">Python <span class="number">2.6</span><span class="number">.6</span></div></pre></td></tr></table></figure>
-<h3 id="下载Python-2-7-3"><a href="#下载Python-2-7-3" class="headerlink" title="下载Python-2.7.3"></a>下载Python-2.7.3</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#wget http://python.org/ftp/python/2.7.3/Python-2.7.3.tar.bz2</span></div></pre></td></tr></table></figure>
-<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#tar -jxvf Python-2.7.3.tar.bz2</span></div></pre></td></tr></table></figure>
-<h3 id="更改工作目录"><a href="#更改工作目录" class="headerlink" title="更改工作目录"></a>更改工作目录</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#cd Python-2.7.3</span></div></pre></td></tr></table></figure>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#./configure  </span></div><div class="line"><span class="comment">#make all             </span></div><div class="line"><span class="comment">#make install  </span></div><div class="line"><span class="comment">#make clean  </span></div><div class="line"><span class="comment">#make distclean</span></div></pre></td></tr></table></figure>
-<h3 id="查看版本信息"><a href="#查看版本信息" class="headerlink" title="查看版本信息"></a>查看版本信息</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#/usr/local/bin/python2.7 -V</span></div></pre></td></tr></table></figure>
-<h3 id="建立软连接，使系统默认的-python指向-python2-7"><a href="#建立软连接，使系统默认的-python指向-python2-7" class="headerlink" title="建立软连接，使系统默认的 python指向 python2.7"></a>建立软连接，使系统默认的 python指向 python2.7</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#mv /usr/bin/python /usr/bin/python2.6.6  </span></div><div class="line"><span class="comment">#ln -s /usr/local/bin/python2.7 /usr/bin/python</span></div></pre></td></tr></table></figure>
-<h3 id="重新检验Python-版本"><a href="#重新检验Python-版本" class="headerlink" title="重新检验Python 版本"></a>重新检验Python 版本</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#python -V</span></div></pre></td></tr></table></figure>
-<p>解决系统 Python 软链接指向 Python2.7 版本后，因为yum是不兼容 Python 2.7的，所以yum不能正常工作，我们需要指定 yum 的Python版本<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#vi /usr/bin/yum</span></div></pre></td></tr></table></figure></p>
-<p>将文件头部的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div></pre></td></tr></table></figure></p>
-<p>改成<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python2.6</span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -771,7 +762,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">199</span>
+              <span class="site-state-item-count">200</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -781,7 +772,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">95</span>
+                <span class="site-state-item-count">96</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
