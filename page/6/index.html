@@ -252,6 +252,308 @@
             
               
                 
+                <a class="post-title-link" href="/2017/09/22/php实现跳转的一个坑/" itemprop="url">
+                  php实现跳转的一个坑
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-22T10:14:53+08:00" content="2017-09-22">
+              2017-09-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>被人看得见的努力,都是肤浅的努力<br></blockquote></p>
+<h3 id="原文"><a href="#原文" class="headerlink" title="原文"></a>原文</h3><p>If you don’t put a die() or exit() after your header(‘Location: <a href="http://something" target="_blank" rel="external">http://something</a>‘) your script may continue resulting in unexpected behaviour. This may for example result in content being disclosed that you actually wanted to prevent with the redirect (HTTP 301). The aforementioned may not directly be visible for an end user as the browser may not render it (due to the 301). Conclusion, the exit() and die() functions stop the script from continuing.</p>
+<h3 id="翻译"><a href="#翻译" class="headerlink" title="翻译"></a>翻译</h3><p>这句话的意思是说如果你不在header(‘Location: <a href="http://something&#39;)你的脚本后面加上" target="_blank" rel="external">http://something&#39;)你的脚本后面加上</a> die() 或者 exit(), 你的脚本就会继续向下执行,这样你的脚本就可能跳转不成功;</p>
+<blockquote>
+<p><a href="https://stackoverflow.com/questions/8665985/php-utilizing-exit-or-die-after-headerlocation" target="_blank" rel="external">https://stackoverflow.com/questions/8665985/php-utilizing-exit-or-die-after-headerlocation</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/21/swoole结合php实现多任务异步处理/" itemprop="url">
+                  swoole结合php实现多任务异步处理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-21T18:18:42+08:00" content="2017-09-21">
+              2017-09-21
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>走出来的是因为从来没进去过, 进去了的, 我从没见过走出来的<br></blockquote><br>大部分时候我们项目的业务逻辑是同步阻塞运行的，但是有些时候会遇到一些耗时较大的操作，比如向十万个用户群发通知邮件，我们的程序不可能等待十万次循环后再执行其他操作，这种时候我们会采用异步操作，由 worker 进程向 task 进程发送任务，task 进程处理完全部任务之后通过onFinish回调函数通知 worker 进程。</p>
+<h3 id="创建命令行类"><a href="#创建命令行类" class="headerlink" title="创建命令行类"></a>创建命令行类</h3><p>创建application/console/AsyncTask.php文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Console</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">console</span>\<span class="title">Command</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">console</span>\<span class="title">Input</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">console</span>\<span class="title">Output</span>;</div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AsyncTask</span> <span class="keyword">extends</span> <span class="title">Command</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="keyword">protected</span> $server;</div><div class="line">    </div><div class="line">    <span class="comment">// 设置命令行名称,以及命令行描述</span></div><div class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">configure</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;setName(<span class="string">'task:start'</span>)-&gt;setDescription(<span class="string">'Start TCP(Timer) Server!'</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">execute</span><span class="params">(Input $input, Output $output)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;server = <span class="keyword">new</span> \swoole_server(<span class="string">"0.0.0.0"</span>, <span class="number">9501</span>);</div><div class="line">        <span class="keyword">$this</span>-&gt;server-&gt;set([</div><div class="line">            <span class="string">'worker_num'</span>      =&gt; <span class="number">4</span>,</div><div class="line">            <span class="string">'daemonize'</span>       =&gt; <span class="keyword">false</span>,</div><div class="line">            <span class="string">'task_worker_num'</span> =&gt; <span class="number">4</span>  <span class="comment"># task 进程数</span></div><div class="line">        ]);</div><div class="line">        <span class="keyword">$this</span>-&gt;server-&gt;on(<span class="string">'Start'</span>, [<span class="keyword">$this</span>, <span class="string">'onStart'</span>]);</div><div class="line">        <span class="keyword">$this</span>-&gt;server-&gt;on(<span class="string">'Connect'</span>, [<span class="keyword">$this</span>, <span class="string">'onConnect'</span>]);</div><div class="line">        <span class="keyword">$this</span>-&gt;server-&gt;on(<span class="string">'Receive'</span>, [<span class="keyword">$this</span>, <span class="string">'onReceive'</span>]);</div><div class="line">        <span class="keyword">$this</span>-&gt;server-&gt;on(<span class="string">'Task'</span>, [<span class="keyword">$this</span>, <span class="string">'onTask'</span>]);</div><div class="line">        <span class="keyword">$this</span>-&gt;server-&gt;on(<span class="string">'Finish'</span>, [<span class="keyword">$this</span>, <span class="string">'onFinish'</span>]);</div><div class="line">        <span class="keyword">$this</span>-&gt;server-&gt;on(<span class="string">'Close'</span>, [<span class="keyword">$this</span>, <span class="string">'onClose'</span>]);</div><div class="line">        <span class="keyword">$this</span>-&gt;server-&gt;start();</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 主进程启动时回调函数</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onStart</span><span class="params">(\swoole_server $server)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"开始\n"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 建立连接时回调函数</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onConnect</span><span class="params">(\swoole_server $server, $fd, $from_id)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"连接上了\n"</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onReceive</span><span class="params">(\swoole_server $server, $fd, $from_id, $data)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="comment">//echo "message: &#123;$data&#125; form Client: &#123;$fd&#125; \n";</span></div><div class="line">        <span class="comment">// 投递异步任务</span></div><div class="line">        $task_id = $server-&gt;task($data);</div><div class="line">       <span class="comment">// echo "Dispath AsyncTask: id=&#123;$task_id&#125;\n";</span></div><div class="line">        <span class="comment">// 将受到的客户端消息再返回给客户端</span></div><div class="line">        $server-&gt;send($fd, <span class="string">"Message form Server: &#123;$data&#125;， task_id: &#123;$task_id&#125;"</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    </div><div class="line">    <span class="comment">// 异步任务处理函数</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onTask</span><span class="params">(\swoole_server $server, $task_id, $from_id, $data)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"&#123;$task_id&#125;, 任务处理 \n"</span>;</div><div class="line">        $server-&gt;finish(<span class="string">"$data -&gt; OK"</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onFinish</span><span class="params">(\swoole_server $server, $task_id, $data)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"结束"</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// 关闭连时回调函数</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onClose</span><span class="params">(\swoole_server $server, $fd, $from_id)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"结束\n"</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>文件所在 application/command.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"> </div><div class="line"><span class="keyword">return</span> [</div><div class="line">    <span class="string">'app\console\AsyncTask'</span>,</div><div class="line">];</div></pre></td></tr></table></figure></p>
+<h3 id="启动任务"><a href="#启动任务" class="headerlink" title="启动任务"></a>启动任务</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php think task:start</div></pre></td></tr></table></figure>
+<h3 id="使用-telnet-进行测试"><a href="#使用-telnet-进行测试" class="headerlink" title="使用 telnet 进行测试"></a>使用 telnet 进行测试</h3><p>建议使用 xshell<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">telnet <span class="number">60.205</span><span class="number">.200</span><span class="number">.40</span> <span class="number">9501</span></div></pre></td></tr></table></figure></p>
+<p>连接上服务器后，输入hello回车，发送消息给 TCP 服务器，将受到一下回执</p>
+<blockquote>
+<p><a href="http://www.iswoole.com/article/2066" target="_blank" rel="external">http://www.iswoole.com/article/2066</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/21/swoole结合thinkphp5实现毫秒级定时器/" itemprop="url">
+                  swoole结合thinkphp5实现毫秒级定时器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-21T12:46:20+08:00" content="2017-09-21">
+              2017-09-21
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>我有一把折断的剑，一条荆棘的路，一个看不清的未来和一场回不去的梦。<br></blockquote></p>
+<h3 id="创建命令行类"><a href="#创建命令行类" class="headerlink" title="创建命令行类"></a>创建命令行类</h3><p>创建application/console/Timer.php文件<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"> </div><div class="line"><span class="keyword">namespace</span> <span class="title">app</span>\<span class="title">Console</span>;</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">console</span>\<span class="title">Command</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">console</span>\<span class="title">Input</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">console</span>\<span class="title">Output</span>;</div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Timer</span> <span class="keyword">extends</span> <span class="title">Command</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="keyword">protected</span> $server;</div><div class="line">    <span class="comment">// 命令行配置函数</span></div><div class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">configure</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="comment">// setName 设置命令行名称</span></div><div class="line">        <span class="comment">// setDescription 设置命令行描述</span></div><div class="line">        <span class="keyword">$this</span>-&gt;setName(<span class="string">'timer:start'</span>)-&gt;setDescription(<span class="string">'Start TCP(Timer) Server!'</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 设置命令返回信息</span></div><div class="line">    <span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">execute</span><span class="params">(Input $input, Output $output)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;server = <span class="keyword">new</span> \swoole_server(<span class="string">'0.0.0.0'</span>, <span class="number">9501</span>);</div><div class="line">        <span class="keyword">$this</span>-&gt;server-&gt;set([</div><div class="line">            <span class="string">'worker_num'</span> =&gt; <span class="number">4</span>,</div><div class="line">            <span class="string">'daemonize'</span>  =&gt; <span class="keyword">false</span>,</div><div class="line">        ]);</div><div class="line">        <span class="keyword">$this</span>-&gt;server-&gt;on(<span class="string">'Start'</span>, [<span class="keyword">$this</span>, <span class="string">'onStart'</span>]);</div><div class="line">        <span class="keyword">$this</span>-&gt;server-&gt;on(<span class="string">'WorkerStart'</span>, [<span class="keyword">$this</span>, <span class="string">'onWorkerStart'</span>]);</div><div class="line">        <span class="keyword">$this</span>-&gt;server-&gt;on(<span class="string">'Connect'</span>, [<span class="keyword">$this</span>, <span class="string">'onConnect'</span>]);</div><div class="line">        <span class="keyword">$this</span>-&gt;server-&gt;on(<span class="string">'Receive'</span>, [<span class="keyword">$this</span>, <span class="string">'onReceive'</span>]);</div><div class="line">        <span class="keyword">$this</span>-&gt;server-&gt;on(<span class="string">'Close'</span>, [<span class="keyword">$this</span>, <span class="string">'onClose'</span>]);</div><div class="line">        <span class="keyword">$this</span>-&gt;server-&gt;start();</div><div class="line">        <span class="comment">// $output-&gt;writeln("TCP: Start.\n");</span></div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 主进程启动时回调函数</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onStart</span><span class="params">(\swoole_server $server)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Start"</span> . PHP_EOL;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// Worker 进程启动时回调函数</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onWorkerStart</span><span class="params">(\swoole_server $server, $worker_id)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="comment">// 仅在第一个 Worker 进程启动时启动 Timer 定时器</span></div><div class="line">        <span class="keyword">if</span> ($worker_id == <span class="number">0</span>) &#123;</div><div class="line">            <span class="comment">// 启动 Timer，每 1000 毫秒回调一次 onTick 函数，</span></div><div class="line">            swoole_timer_tick(<span class="number">1000</span>, [<span class="keyword">$this</span>, <span class="string">'onTick'</span>]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 定时任务函数</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onTick</span><span class="params">($timer_id, $params = null)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">'Hello'</span> . PHP_EOL;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 建立连接时回调函数</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onConnect</span><span class="params">(\swoole_server $server, $fd, $from_id)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Connect"</span> . PHP_EOL;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 收到信息时回调函数</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onReceive</span><span class="params">(\swoole_server $server, $fd, $from_id, $data)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"message: &#123;$data&#125; form Client: &#123;$fd&#125;"</span> . PHP_EOL;</div><div class="line">        <span class="comment">// 将受到的客户端消息再返回给客户端</span></div><div class="line">        $server-&gt;send($fd, <span class="string">"Message form Server: "</span>.$data);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">// 关闭连时回调函数</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">onClose</span><span class="params">(\swoole_server $server, $fd, $from_id)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Close"</span> . PHP_EOL;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="注册命令"><a href="#注册命令" class="headerlink" title="注册命令"></a>注册命令</h3><p>文件所在 application/command.php<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"> </div><div class="line"><span class="keyword">return</span> [</div><div class="line">    <span class="string">'app\console\Timer'</span>,</div><div class="line">];</div></pre></td></tr></table></figure></p>
+<p>接下来就可以通过命令行来启动毫秒定时器<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php think timer:start</div></pre></td></tr></table></figure></p>
+<h3 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[root@iZ2ze20vl8jnphmrpet8txZ tp5]<span class="comment"># php think timer:start</span></div><div class="line">Start</div><div class="line">Hello</div><div class="line">Hello</div><div class="line">Hello</div><div class="line">Hello</div><div class="line">Hello</div><div class="line">Hello</div><div class="line">Hello</div><div class="line">Hello</div><div class="line">Hello</div><div class="line">Hello</div><div class="line">Hello</div><div class="line">Hello</div><div class="line">Hello</div><div class="line">Hello</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="http://www.iswoole.com/article/2067" target="_blank" rel="external">http://www.iswoole.com/article/2067</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/09/20/javascript获取系统当前时间/" itemprop="url">
                   javascript获取系统当前时间
                 </a>
@@ -428,320 +730,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/14/php的短路原则以及位运算/" itemprop="url">
-                  php的短路原则以及位运算
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-09-14T13:53:19+08:00" content="2017-09-14">
-              2017-09-14
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>我想我还是不习惯，从默默无闻到有人喜欢！<br></blockquote></p>
-<h3 id="短路作用"><a href="#短路作用" class="headerlink" title="短路作用"></a>短路作用</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$a = <span class="keyword">false</span> || $b = <span class="number">5</span>;</div><div class="line"><span class="keyword">echo</span> $b;</div></pre></td></tr></table></figure>
-<p>当 || 前面的值为 false 时， || 后的表达式才会被执行， 此时结果为5；<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$a = <span class="keyword">true</span> || $b = <span class="number">5</span>;</div><div class="line"><span class="keyword">echo</span> $b;</div></pre></td></tr></table></figure></p>
-<p>当 || 前面的值为 true 时， || 后的表达式不会被执行， 此时结果就找不到 $b<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$b = <span class="keyword">false</span> &amp;&amp; $a = <span class="number">1</span>;</div><div class="line"><span class="keyword">echo</span> $a;</div></pre></td></tr></table></figure></p>
-<p>当 &amp;&amp; 前面的值为false 时， 后面的表达式不会被执行<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$b = <span class="keyword">true</span> &amp;&amp; $a = <span class="number">1</span>;</div><div class="line"><span class="keyword">echo</span> $a;</div></pre></td></tr></table></figure></p>
-<p>只有当 &amp;&amp; 前面的值为true 时， 后面的表达式才会被执行</p>
-<h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3><h4 id="左移-lt-lt"><a href="#左移-lt-lt" class="headerlink" title="左移 &lt;&lt;"></a>左移 &lt;&lt;</h4><p>左移运算的实质是将对应的数据的二进制值逐位左移若干位，并在空出的位置上填0，最高位溢出并舍弃。<br>左移一位, 就实现了乘2运算<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">echo</span> <span class="number">40</span> &lt;&lt; <span class="number">1</span>;</div><div class="line"><span class="comment">//结果是 80</span></div><div class="line"><span class="keyword">echo</span> <span class="number">40</span> &lt;&lt; <span class="number">2</span>;</div><div class="line"><span class="comment">//结果是160</span></div></pre></td></tr></table></figure></p>
-<h4 id="右移-gt-gt"><a href="#右移-gt-gt" class="headerlink" title="右移 &gt;&gt;"></a>右移 &gt;&gt;</h4><p>可以实现 除 2 运算<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">echo</span> <span class="number">40</span> &gt;&gt; <span class="number">1</span>;</div><div class="line"><span class="comment">//结果是 20</span></div><div class="line"><span class="keyword">echo</span> <span class="number">40</span> &gt;&gt; <span class="number">2</span>;</div><div class="line"><span class="comment">//结果是 10</span></div><div class="line"><span class="keyword">echo</span> <span class="number">9</span> &gt;&gt; <span class="number">1</span>;</div><div class="line"><span class="comment">//结果是4</span></div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/12/mysql使用profile进行语句优化/" itemprop="url">
-                  mysql使用profile进行语句优化
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-09-12T10:49:53+08:00" content="2017-09-12">
-              2017-09-12
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>只是我回首来时路的每一步都走的好孤独。<br></blockquote><br>Profiling只是针对单个session的，如果session结束，profiling信息将丢失,可以在 <code>INFORMATION_SCHEMA</code>中的<code>profiling</code>表中获取profiling信息.</p>
-<h3 id="查看profiling系统变量"><a href="#查看profiling系统变量" class="headerlink" title="查看profiling系统变量"></a>查看profiling系统变量</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show variables like '%profil%';  </div><div class="line">+<span class="comment">------------------------+-------+</span></div><div class="line">| Variable_name          | Value |</div><div class="line">+<span class="comment">------------------------+-------+</span></div><div class="line">| have_profiling         | YES   |  #只读变量,用于控制是否由系统变量开启或禁用profiling;</div><div class="line">| profiling              | OFF   |  #开启或关闭SQL语句剖析功能;</div><div class="line">| profiling_history_size | 15    |  #设置保留profiling的数目,缺省为15,范围为0至100,为0时将禁用profiling;</div><div class="line">+<span class="comment">------------------------+-------+</span></div></pre></td></tr></table></figure>
-<h3 id="查看是否开启"><a href="#查看是否开启" class="headerlink" title="查看是否开启"></a>查看是否开启</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> @@profiling;</div></pre></td></tr></table></figure>
-<h3 id="设置开启"><a href="#设置开启" class="headerlink" title="设置开启"></a>设置开启</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SET</span> profiling = <span class="number">1</span>;</div></pre></td></tr></table></figure>
-<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> <span class="keyword">profiles</span>;</div></pre></td></tr></table></figure>
-<h3 id="查看具体的某一条sql"><a href="#查看具体的某一条sql" class="headerlink" title="查看具体的某一条sql"></a>查看具体的某一条sql</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> profile all <span class="keyword">for</span> <span class="keyword">query</span> <span class="number">18</span> ;</div></pre></td></tr></table></figure>
-<h3 id="查看cpu信息"><a href="#查看cpu信息" class="headerlink" title="查看cpu信息"></a>查看cpu信息</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> profile cpu <span class="keyword">for</span> <span class="keyword">query</span> <span class="number">18</span> ;</div></pre></td></tr></table></figure>
-<h3 id="查看内存"><a href="#查看内存" class="headerlink" title="查看内存"></a>查看内存</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> profile <span class="keyword">memory</span> <span class="keyword">for</span> <span class="keyword">query</span> <span class="number">18</span> ;</div></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="http://www.ywnds.com/?p=8677" target="_blank" rel="external">http://www.ywnds.com/?p=8677</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/11/linux环境变量设置/" itemprop="url">
-                  linux环境变量设置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-09-11T14:14:37+08:00" content="2017-09-11">
-              2017-09-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>普通玩家选择标准配置，高级玩家选择自定义配置<br></blockquote><br>Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。</p>
-<h3 id="Linux环境变量分类"><a href="#Linux环境变量分类" class="headerlink" title="Linux环境变量分类"></a>Linux环境变量分类</h3><h4 id="按照生命周期来分"><a href="#按照生命周期来分" class="headerlink" title="按照生命周期来分"></a>按照生命周期来分</h4><p>1、永久的：需要用户修改相关的配置文件，变量永久生效。<br>2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。</p>
-<h4 id="按照作用域来分"><a href="#按照作用域来分" class="headerlink" title="按照作用域来分"></a>按照作用域来分</h4><p>1、系统环境变量：系统环境变量对该系统中所有用户都有效。<br>2、用户环境变量：顾名思义，这种类型的环境变量只对特定的用户有效。</p>
-<h3 id="Linux设置环境变量的方法"><a href="#Linux设置环境变量的方法" class="headerlink" title="Linux设置环境变量的方法"></a>Linux设置环境变量的方法</h3><h4 id="在-etc-profile文件中添加变量-对所有用户生效（永久的）"><a href="#在-etc-profile文件中添加变量-对所有用户生效（永久的）" class="headerlink" title="在/etc/profile文件中添加变量 对所有用户生效（永久的）"></a>在/etc/profile文件中添加变量 对所有用户生效（永久的）</h4><p>用vim在文件/etc/profile文件中增加变量，该变量将会对Linux下所有用户有效，并且是“永久的”。<br>例如：编辑/etc/profile文件，添加CLASSPATH变量<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim /etc/profile    </div><div class="line">export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib</div></pre></td></tr></table></figure></p>
-<p>注：修改文件后要想马上生效还要运行source /etc/profile不然只能在下次重进此用户时生效。</p>
-<h4 id="在用户目录下的-bash-profile文件中增加变量-【对单一用户生效（永久的）】"><a href="#在用户目录下的-bash-profile文件中增加变量-【对单一用户生效（永久的）】" class="headerlink" title="在用户目录下的.bash_profile文件中增加变量 【对单一用户生效（永久的）】"></a>在用户目录下的.bash_profile文件中增加变量 【对单一用户生效（永久的）】</h4><p>用vim ~/.bash_profile文件中增加变量，改变量仅会对当前用户有效，并且是“永久的”。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim ~/.bash.profile</div><div class="line">export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib</div></pre></td></tr></table></figure></p>
-<p>注：修改文件后要想马上生效还要运行$ source ~/.bash_profile不然只能在下次重进此用户时生效。</p>
-<h4 id="直接运行export命令定义变量-【只对当前shell（BASH）有效（临时的）】"><a href="#直接运行export命令定义变量-【只对当前shell（BASH）有效（临时的）】" class="headerlink" title="直接运行export命令定义变量 【只对当前shell（BASH）有效（临时的）】"></a>直接运行export命令定义变量 【只对当前shell（BASH）有效（临时的）】</h4><p>在shell的命令行下直接使用export 变量名=变量值<br>定义变量，该变量只在当前的shell（BASH）或其子shell（BASH）下是有效的，shell关闭了，变量也就失效了，再打开新shell时就没有这个变量，需要使用的话还需要重新定义。</p>
-<blockquote>
-<p><a href="http://www.jianshu.com/p/ac2bc0ad3d74" target="_blank" rel="external">http://www.jianshu.com/p/ac2bc0ad3d74</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -782,7 +775,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-count">203</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -792,7 +785,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">96</span>
+                <span class="site-state-item-count">98</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -252,6 +252,315 @@
             
               
                 
+                <a class="post-title-link" href="/2017/09/14/php的短路原则以及位运算/" itemprop="url">
+                  php的短路原则以及位运算
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-14T13:53:19+08:00" content="2017-09-14">
+              2017-09-14
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>我想我还是不习惯，从默默无闻到有人喜欢！<br></blockquote></p>
+<h3 id="短路作用"><a href="#短路作用" class="headerlink" title="短路作用"></a>短路作用</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$a = <span class="keyword">false</span> || $b = <span class="number">5</span>;</div><div class="line"><span class="keyword">echo</span> $b;</div></pre></td></tr></table></figure>
+<p>当 || 前面的值为 false 时， || 后的表达式才会被执行， 此时结果为5；<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$a = <span class="keyword">true</span> || $b = <span class="number">5</span>;</div><div class="line"><span class="keyword">echo</span> $b;</div></pre></td></tr></table></figure></p>
+<p>当 || 前面的值为 true 时， || 后的表达式不会被执行， 此时结果就找不到 $b<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$b = <span class="keyword">false</span> &amp;&amp; $a = <span class="number">1</span>;</div><div class="line"><span class="keyword">echo</span> $a;</div></pre></td></tr></table></figure></p>
+<p>当 &amp;&amp; 前面的值为false 时， 后面的表达式不会被执行<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$b = <span class="keyword">true</span> &amp;&amp; $a = <span class="number">1</span>;</div><div class="line"><span class="keyword">echo</span> $a;</div></pre></td></tr></table></figure></p>
+<p>只有当 &amp;&amp; 前面的值为true 时， 后面的表达式才会被执行</p>
+<h3 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h3><h4 id="左移-lt-lt"><a href="#左移-lt-lt" class="headerlink" title="左移 &lt;&lt;"></a>左移 &lt;&lt;</h4><p>左移运算的实质是将对应的数据的二进制值逐位左移若干位，并在空出的位置上填0，最高位溢出并舍弃。<br>左移一位, 就实现了乘2运算<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">echo</span> <span class="number">40</span> &lt;&lt; <span class="number">1</span>;</div><div class="line"><span class="comment">//结果是 80</span></div><div class="line"><span class="keyword">echo</span> <span class="number">40</span> &lt;&lt; <span class="number">2</span>;</div><div class="line"><span class="comment">//结果是160</span></div></pre></td></tr></table></figure></p>
+<h4 id="右移-gt-gt"><a href="#右移-gt-gt" class="headerlink" title="右移 &gt;&gt;"></a>右移 &gt;&gt;</h4><p>可以实现 除 2 运算<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">echo</span> <span class="number">40</span> &gt;&gt; <span class="number">1</span>;</div><div class="line"><span class="comment">//结果是 20</span></div><div class="line"><span class="keyword">echo</span> <span class="number">40</span> &gt;&gt; <span class="number">2</span>;</div><div class="line"><span class="comment">//结果是 10</span></div><div class="line"><span class="keyword">echo</span> <span class="number">9</span> &gt;&gt; <span class="number">1</span>;</div><div class="line"><span class="comment">//结果是4</span></div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/12/mysql使用profile进行语句优化/" itemprop="url">
+                  mysql使用profile进行语句优化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-12T10:49:53+08:00" content="2017-09-12">
+              2017-09-12
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>只是我回首来时路的每一步都走的好孤独。<br></blockquote><br>Profiling只是针对单个session的，如果session结束，profiling信息将丢失,可以在 <code>INFORMATION_SCHEMA</code>中的<code>profiling</code>表中获取profiling信息.</p>
+<h3 id="查看profiling系统变量"><a href="#查看profiling系统变量" class="headerlink" title="查看profiling系统变量"></a>查看profiling系统变量</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show variables like '%profil%';  </div><div class="line">+<span class="comment">------------------------+-------+</span></div><div class="line">| Variable_name          | Value |</div><div class="line">+<span class="comment">------------------------+-------+</span></div><div class="line">| have_profiling         | YES   |  #只读变量,用于控制是否由系统变量开启或禁用profiling;</div><div class="line">| profiling              | OFF   |  #开启或关闭SQL语句剖析功能;</div><div class="line">| profiling_history_size | 15    |  #设置保留profiling的数目,缺省为15,范围为0至100,为0时将禁用profiling;</div><div class="line">+<span class="comment">------------------------+-------+</span></div></pre></td></tr></table></figure>
+<h3 id="查看是否开启"><a href="#查看是否开启" class="headerlink" title="查看是否开启"></a>查看是否开启</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> @@profiling;</div></pre></td></tr></table></figure>
+<h3 id="设置开启"><a href="#设置开启" class="headerlink" title="设置开启"></a>设置开启</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SET</span> profiling = <span class="number">1</span>;</div></pre></td></tr></table></figure>
+<h3 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> <span class="keyword">profiles</span>;</div></pre></td></tr></table></figure>
+<h3 id="查看具体的某一条sql"><a href="#查看具体的某一条sql" class="headerlink" title="查看具体的某一条sql"></a>查看具体的某一条sql</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> profile all <span class="keyword">for</span> <span class="keyword">query</span> <span class="number">18</span> ;</div></pre></td></tr></table></figure>
+<h3 id="查看cpu信息"><a href="#查看cpu信息" class="headerlink" title="查看cpu信息"></a>查看cpu信息</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> profile cpu <span class="keyword">for</span> <span class="keyword">query</span> <span class="number">18</span> ;</div></pre></td></tr></table></figure>
+<h3 id="查看内存"><a href="#查看内存" class="headerlink" title="查看内存"></a>查看内存</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">show</span> profile <span class="keyword">memory</span> <span class="keyword">for</span> <span class="keyword">query</span> <span class="number">18</span> ;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="http://www.ywnds.com/?p=8677" target="_blank" rel="external">http://www.ywnds.com/?p=8677</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/11/linux环境变量设置/" itemprop="url">
+                  linux环境变量设置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-09-11T14:14:37+08:00" content="2017-09-11">
+              2017-09-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>普通玩家选择标准配置，高级玩家选择自定义配置<br></blockquote><br>Linux是一个多用户多任务的操作系统，可以在Linux中为不同的用户设置不同的运行环境，具体做法是设置不同用户的环境变量。</p>
+<h3 id="Linux环境变量分类"><a href="#Linux环境变量分类" class="headerlink" title="Linux环境变量分类"></a>Linux环境变量分类</h3><h4 id="按照生命周期来分"><a href="#按照生命周期来分" class="headerlink" title="按照生命周期来分"></a>按照生命周期来分</h4><p>1、永久的：需要用户修改相关的配置文件，变量永久生效。<br>2、临时的：用户利用export命令，在当前终端下声明环境变量，关闭Shell终端失效。</p>
+<h4 id="按照作用域来分"><a href="#按照作用域来分" class="headerlink" title="按照作用域来分"></a>按照作用域来分</h4><p>1、系统环境变量：系统环境变量对该系统中所有用户都有效。<br>2、用户环境变量：顾名思义，这种类型的环境变量只对特定的用户有效。</p>
+<h3 id="Linux设置环境变量的方法"><a href="#Linux设置环境变量的方法" class="headerlink" title="Linux设置环境变量的方法"></a>Linux设置环境变量的方法</h3><h4 id="在-etc-profile文件中添加变量-对所有用户生效（永久的）"><a href="#在-etc-profile文件中添加变量-对所有用户生效（永久的）" class="headerlink" title="在/etc/profile文件中添加变量 对所有用户生效（永久的）"></a>在/etc/profile文件中添加变量 对所有用户生效（永久的）</h4><p>用vim在文件/etc/profile文件中增加变量，该变量将会对Linux下所有用户有效，并且是“永久的”。<br>例如：编辑/etc/profile文件，添加CLASSPATH变量<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim /etc/profile    </div><div class="line">export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib</div></pre></td></tr></table></figure></p>
+<p>注：修改文件后要想马上生效还要运行source /etc/profile不然只能在下次重进此用户时生效。</p>
+<h4 id="在用户目录下的-bash-profile文件中增加变量-【对单一用户生效（永久的）】"><a href="#在用户目录下的-bash-profile文件中增加变量-【对单一用户生效（永久的）】" class="headerlink" title="在用户目录下的.bash_profile文件中增加变量 【对单一用户生效（永久的）】"></a>在用户目录下的.bash_profile文件中增加变量 【对单一用户生效（永久的）】</h4><p>用vim ~/.bash_profile文件中增加变量，改变量仅会对当前用户有效，并且是“永久的”。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim ~/.bash.profile</div><div class="line">export CLASSPATH=./JAVA_HOME/lib;$JAVA_HOME/jre/lib</div></pre></td></tr></table></figure></p>
+<p>注：修改文件后要想马上生效还要运行$ source ~/.bash_profile不然只能在下次重进此用户时生效。</p>
+<h4 id="直接运行export命令定义变量-【只对当前shell（BASH）有效（临时的）】"><a href="#直接运行export命令定义变量-【只对当前shell（BASH）有效（临时的）】" class="headerlink" title="直接运行export命令定义变量 【只对当前shell（BASH）有效（临时的）】"></a>直接运行export命令定义变量 【只对当前shell（BASH）有效（临时的）】</h4><p>在shell的命令行下直接使用export 变量名=变量值<br>定义变量，该变量只在当前的shell（BASH）或其子shell（BASH）下是有效的，shell关闭了，变量也就失效了，再打开新shell时就没有这个变量，需要使用的话还需要重新定义。</p>
+<blockquote>
+<p><a href="http://www.jianshu.com/p/ac2bc0ad3d74" target="_blank" rel="external">http://www.jianshu.com/p/ac2bc0ad3d74</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/09/10/Mysql数据库主从同步/" itemprop="url">
                   Mysql数据库主从同步
                 </a>
@@ -457,331 +766,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/30/简单说说PHP类方法的链式调用/" itemprop="url">
-                  简单说说PHP类方法的链式调用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-30T11:41:11+08:00" content="2017-08-30">
-              2017-08-30
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>是谁来自山川湖海，却囿于昼夜、厨房与爱。<br></blockquote></p>
-<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3><p>如果你使用过PHP的框架，你应该使用过此类代码：<br>如在laravel框架中：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DB::table(<span class="string">'xx'</span>)-&gt;select(<span class="string">'xxxx'</span>)-&gt;where(<span class="string">'xxxx'</span>,<span class="string">'='</span>,<span class="string">'xx'</span>)-&gt;orderBy(<span class="string">'xx'</span>,<span class="string">'desc'</span>)-&gt;get();</div></pre></td></tr></table></figure></p>
-<p>在CI(codeigniter)框架中：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$res =<span class="keyword">$this</span>-&gt;db-&gt;from(<span class="string">'blogs'</span>)-&gt;select(<span class="string">'*'</span>)-&gt;join(<span class="string">'comments'</span>, <span class="string">'comments.id = blogs.id'</span>)-&gt;get();</div></pre></td></tr></table></figure></p>
-<h3 id="创建链式方法"><a href="#创建链式方法" class="headerlink" title="创建链式方法"></a>创建链式方法</h3><p>如果我们有这么一个类：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">	<span class="keyword">public</span> $var = <span class="keyword">array</span>();</div><div class="line">	</div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">($name)</span></span></div><div class="line"><span class="function">	</span>&#123;</div><div class="line">		</div><div class="line">		<span class="keyword">$this</span>-&gt;var[<span class="string">'name'</span>] = $name;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setYear</span><span class="params">($year)</span></span></div><div class="line"><span class="function">	</span>&#123;</div><div class="line">		<span class="keyword">$this</span>-&gt;var[<span class="string">'year'</span>] = $year;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getVar</span><span class="params">()</span></span></div><div class="line"><span class="function">	</span>&#123;</div><div class="line">		</div><div class="line">		<span class="keyword">return</span>  <span class="keyword">$this</span>-&gt;var;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$test = <span class="keyword">new</span> test();</div></pre></td></tr></table></figure></p>
-<p>那么只需要在相应的方法后添加 return $this，就可以了。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">	<span class="keyword">public</span> $var = <span class="keyword">array</span>();</div><div class="line">	</div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">($name)</span></span></div><div class="line"><span class="function">	</span>&#123;</div><div class="line">		<span class="keyword">$this</span>-&gt;var[<span class="string">'name'</span>] = $name;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">$this</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">setYear</span><span class="params">($year)</span></span></div><div class="line"><span class="function">	</span>&#123;</div><div class="line">		<span class="keyword">$this</span>-&gt;var[<span class="string">'year'</span>] = $year;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">$this</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getVar</span><span class="params">()</span></span></div><div class="line"><span class="function">	</span>&#123;</div><div class="line">		<span class="keyword">return</span>  <span class="keyword">$this</span>-&gt;var;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>调用时：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$test = <span class="keyword">new</span> test();</div><div class="line">var_dump($test-&gt;setName(<span class="string">'fc'</span>)-&gt;setYear(<span class="string">'23'</span>)-&gt;getVar());</div></pre></td></tr></table></figure></p>
-<p>这种技术虽然不会让你的PHP代码在本质上发生变化（如性能），但可使你的代码看起来更整洁，并且更容易维护。</p>
-<h3 id="静态方法-static-如何处理"><a href="#静态方法-static-如何处理" class="headerlink" title="静态方法(static)如何处理"></a>静态方法(static)如何处理</h3><p>要让静态方法也能使用链式调用，只需要加入 return new self<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">test2</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span>  $var = <span class="keyword">array</span>();</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">setName</span><span class="params">($name)</span></span></div><div class="line"><span class="function">	</span>&#123;</div><div class="line">		<span class="keyword">self</span>::$var[<span class="string">'name'</span>] = $name;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">self</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">getVar</span><span class="params">()</span></span></div><div class="line"><span class="function">	</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">self</span>::$var;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p><a href="http://fc-lamp.blog.163.com/blog/static/1745666872013106111248929/" target="_blank" rel="external">http://fc-lamp.blog.163.com/blog/static/1745666872013106111248929/</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/30/PHP中的Traits详解/" itemprop="url">
-                  PHP中的Traits详解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-30T11:27:17+08:00" content="2017-08-30">
-              2017-08-30
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>醉后不知天在水，满船清梦压星河<br></blockquote><br>PHP是单继承的语言，在PHP 5.4 Traits出现之前，PHP的类无法同时从两个基类继承属性或方法。php的Traits和Go语言的组合功能类似，通过在类中使用use关键字声明要组合的Trait名称，而具体某个Trait的声明使用trait关键词，Trait不能直接实例化<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">trait</span> Drive &#123;</div><div class="line">    <span class="keyword">public</span> $carName = <span class="string">'trait'</span>;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">driving</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"driving &#123;$this-&gt;carName&#125;\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"eat\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">use</span> <span class="title">Drive</span>;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">study</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"study\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">$student = <span class="keyword">new</span> Student();</div><div class="line">$student-&gt;study();</div><div class="line">$student-&gt;eat();</div><div class="line">$student-&gt;driving();</div></pre></td></tr></table></figure></p>
-<p>输出结果:<br>study<br>eat<br>driving trait<br>上面的例子中，Student类通过继承Person，有了eat方法，通过组合Drive，有了driving方法和属性carName。</p>
-<p>如果Trait、基类和本类中都存在某个同名的属性或者方法，最终会保留哪一个呢？通过下面的代码测试一下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line"><span class="keyword">trait</span> Drive &#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"hello drive\n"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">driving</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"driving from drive\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"hello person\n"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">driving</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"driving from person\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span> </span>&#123;</div><div class="line">    <span class="keyword">use</span> <span class="title">Drive</span>;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"hello student\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">$student = <span class="keyword">new</span> Student();</div><div class="line">$student-&gt;hello();</div><div class="line">$student-&gt;driving()</div></pre></td></tr></table></figure></p>
-<p>输出结果如下：</p>
-<p>hello student<br>driving from drive</p>
-<p>因此得出结论：当方法或属性同名时，当前类中的方法会覆盖 trait的 方法，而 trait 的方法又覆盖了基类中的方法。</p>
-<p>如果要组合多个Trait，通过逗号分隔 Trait名称：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">use</span> <span class="title">Trait1</span>, <span class="title">Trait2</span>;</div></pre></td></tr></table></figure></p>
-<p>如果多个Trait中包含同名方法或者属性时，会怎样呢？答案是当组合的多个Trait包含同名属性或者方法时，需要明确声明解决冲突，否则会产生一个致命错误。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">trait</span> Trait1 &#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Trait1::hello\n"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hi</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Trait1::hi\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">trait</span> Trait2 &#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Trait2::hello\n"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hi</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Trait2::hi\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Class1</span> </span>&#123;</div><div class="line">    <span class="keyword">use</span> <span class="title">Trait1</span>, <span class="title">Trait2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>结果:</p>
-<p>PHP Fatal error:  Trait method hello has not been applied, because there are collisions with other trait methods on Class1 in ~/php54/trait_3.php on line 20</p>
-<p>使用insteadof和as操作符来解决冲突，insteadof是使用某个方法替代另一个，而as是给方法取一个别名，具体用法请看代码：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">trait</span> Trait1 &#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Trait1::hello\n"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hi</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Trait1::hi\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">trait</span> Trait2 &#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Trait2::hello\n"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hi</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Trait2::hi\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Class1</span> </span>&#123;</div><div class="line">    <span class="keyword">use</span> <span class="title">Trait1</span>, <span class="title">Trait2</span> &#123;</div><div class="line">        <span class="title">Trait2</span>::<span class="title">hello</span> <span class="title">insteadof</span> <span class="title">Trait1</span>;</div><div class="line">        Trait1::hi <span class="keyword">insteadof</span> Trait2;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Class2</span> </span>&#123;</div><div class="line">    <span class="keyword">use</span> <span class="title">Trait1</span>, <span class="title">Trait2</span> &#123;</div><div class="line">        <span class="title">Trait2</span>::<span class="title">hello</span> <span class="title">insteadof</span> <span class="title">Trait1</span>;</div><div class="line">        Trait1::hi <span class="keyword">insteadof</span> Trait2;</div><div class="line">        Trait2::hi <span class="keyword">as</span> hei;</div><div class="line">        Trait1::hello <span class="keyword">as</span> hehe;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">$Obj1 = <span class="keyword">new</span> Class1();</div><div class="line">$Obj1-&gt;hello();</div><div class="line">$Obj1-&gt;hi();</div><div class="line"><span class="keyword">echo</span> <span class="string">"\n"</span>;</div><div class="line">$Obj2 = <span class="keyword">new</span> Class2();</div><div class="line">$Obj2-&gt;hello();</div><div class="line">$Obj2-&gt;hi();</div><div class="line">$Obj2-&gt;hei();</div><div class="line">$Obj2-&gt;hehe();</div></pre></td></tr></table></figure></p>
-<p>输出结果如下：</p>
-<p>Trait2::hello<br>Trait1::hi</p>
-<p>Trait2::hello<br>Trait1::hi<br>Trait2::hi<br>Trait1::hello</p>
-<p>as关键词还有另外一个用途，那就是修改方法的访问控制：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">    <span class="keyword">trait</span> Hello &#123;</div><div class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">echo</span> <span class="string">"hello,trait\n"</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Class1</span> </span>&#123;</div><div class="line">        <span class="keyword">use</span> <span class="title">Hello</span> &#123;</div><div class="line">            <span class="title">hello</span> <span class="title">as</span> <span class="title">protected</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Class2</span> </span>&#123;</div><div class="line">        <span class="keyword">use</span> <span class="title">Hello</span> &#123;</div><div class="line">            <span class="title">Hello</span>::<span class="title">hello</span> <span class="title">as</span> <span class="title">private</span> <span class="title">hi</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    $Obj1 = <span class="keyword">new</span> Class1();</div><div class="line">    $Obj1-&gt;hello(); <span class="comment"># 报致命错误，因为hello方法被修改成受保护的</span></div><div class="line">    $Obj2 = <span class="keyword">new</span> Class2();</div><div class="line">    $Obj2-&gt;hello(); <span class="comment"># 原来的hello方法仍然是公共的</span></div><div class="line">    $Obj2-&gt;hi();  <span class="comment"># 报致命错误，因为别名hi方法被修改成私有的</span></div></pre></td></tr></table></figure></p>
-<p>Trait 也能组合Trait，Trait中支持抽象方法、静态属性及静态方法，测试代码如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">trait</span> Hello &#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Hello\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">trait</span> World &#123;</div><div class="line">    <span class="keyword">use</span> <span class="title">Hello</span>;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">sayWorld</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"World\n"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">abstract</span> <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getWorld</span><span class="params">()</span></span>;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">inc</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">static</span> $c = <span class="number">0</span>;</div><div class="line">        $c = $c + <span class="number">1</span>;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"$c\n"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">doSomething</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> <span class="string">"Doing something\n"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</div><div class="line">    <span class="keyword">use</span> <span class="title">World</span>;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getWorld</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">'get World'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">$Obj = <span class="keyword">new</span> HelloWorld();</div><div class="line">$Obj-&gt;sayHello();</div><div class="line">$Obj-&gt;sayWorld();</div><div class="line"><span class="keyword">echo</span> $Obj-&gt;getWorld() . <span class="string">"\n"</span>;</div><div class="line">HelloWorld::doSomething();\</div><div class="line">$Obj-&gt;inc();</div><div class="line">$Obj-&gt;inc();</div></pre></td></tr></table></figure></p>
-<p>输出结果如下：</p>
-<p>Hello<br>World<br>get World<br>Doing something<br>1<br>2</p>
-<blockquote>
-<p><a href="http://tabalt.net/blog/php-traits/" target="_blank" rel="external">http://tabalt.net/blog/php-traits/</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/08/29/Laravel下使用Guzzle编写多线程爬虫实战/" itemprop="url">
-                  Laravel下使用Guzzle编写多线程爬虫实战
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-08-29T14:20:07+08:00" content="2017-08-29">
-              2017-08-29
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>中年以后的男人,时常会觉得孤独,因为他一睁开眼睛,周围都是要依靠他的人,却没有他可以依靠的人<br></blockquote></p>
-<h3 id="创建命令"><a href="#创建命令" class="headerlink" title="创建命令"></a>创建命令</h3><p>运行命令行创建命令<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make:console MultithreadingRequest --command=test:multithreading-request</div></pre></td></tr></table></figure></p>
-<h3 id="注册命令"><a href="#注册命令" class="headerlink" title="注册命令"></a>注册命令</h3><p>编辑 app/Console/Kernel.php，在 $commands 数组中增加：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Commands\MultithreadingRequest::class,</div></pre></td></tr></table></figure></p>
-<h3 id="测试命令"><a href="#测试命令" class="headerlink" title="测试命令"></a>测试命令</h3><p>修改 app/Console/Commands/MultithreadingRequest.php 文件，在 handle 方法中增加：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">$this</span>-&gt;info(<span class="string">'hello'</span>);</div></pre></td></tr></table></figure></p>
-<h3 id="安装-Guzzle"><a href="#安装-Guzzle" class="headerlink" title="安装 Guzzle"></a>安装 Guzzle</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">composer <span class="keyword">require</span> guzzlehttp/guzzle <span class="string">"6.2"</span></div></pre></td></tr></table></figure>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> <span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Console</span>\<span class="title">Commands</span>;</div><div class="line"></div><div class="line"><span class="keyword">use</span> <span class="title">GuzzleHttp</span>\<span class="title">Client</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">GuzzleHttp</span>\<span class="title">Pool</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">GuzzleHttp</span>\<span class="title">Psr7</span>\<span class="title">Request</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">GuzzleHttp</span>\<span class="title">Exception</span>\<span class="title">ClientException</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Console</span>\<span class="title">Command</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MultithreadingRequest</span> <span class="keyword">extends</span> <span class="title">Command</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="keyword">private</span> $totalPageCount;</div><div class="line">    <span class="keyword">private</span> $counter        = <span class="number">1</span>;</div><div class="line">    <span class="keyword">private</span> $concurrency    = <span class="number">7</span>;  <span class="comment">// 同时并发抓取</span></div><div class="line"></div><div class="line">    <span class="keyword">private</span> $users = [<span class="string">'CycloneAxe'</span>, <span class="string">'appleboy'</span>, <span class="string">'Aufree'</span>, <span class="string">'lifesign'</span>,</div><div class="line">                        <span class="string">'overtrue'</span>, <span class="string">'zhengjinghua'</span>, <span class="string">'NauxLiu'</span>];</div><div class="line"></div><div class="line">    <span class="keyword">protected</span> $signature = <span class="string">'test:multithreading-request'</span>;</div><div class="line">    <span class="keyword">protected</span> $description = <span class="string">'Command description'</span>;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">parent</span>::__construct();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;totalPageCount = count(<span class="keyword">$this</span>-&gt;users);</div><div class="line"></div><div class="line">        $client = <span class="keyword">new</span> Client();</div><div class="line"></div><div class="line">        $requests = <span class="function"><span class="keyword">function</span> <span class="params">($total)</span> <span class="title">use</span> <span class="params">($client)</span> </span>&#123;</div><div class="line">            <span class="keyword">foreach</span> (<span class="keyword">$this</span>-&gt;users <span class="keyword">as</span> $key =&gt; $user) &#123;</div><div class="line"></div><div class="line">                $uri = <span class="string">'https://api.github.com/users/'</span> . $user;</div><div class="line">                <span class="keyword">yield</span> <span class="function"><span class="keyword">function</span><span class="params">()</span> <span class="title">use</span> <span class="params">($client, $uri)</span> </span>&#123;</div><div class="line">                    <span class="keyword">return</span> $client-&gt;getAsync($uri);</div><div class="line">                &#125;;</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        $pool = <span class="keyword">new</span> Pool($client, $requests(<span class="keyword">$this</span>-&gt;totalPageCount), [</div><div class="line">            <span class="string">'concurrency'</span> =&gt; <span class="keyword">$this</span>-&gt;concurrency,</div><div class="line">            <span class="string">'fulfilled'</span>   =&gt; <span class="function"><span class="keyword">function</span> <span class="params">($response, $index)</span></span>&#123;</div><div class="line"></div><div class="line">                $res = json_decode($response-&gt;getBody()-&gt;getContents());</div><div class="line"></div><div class="line">                <span class="keyword">$this</span>-&gt;info(<span class="string">"请求第 $index 个请求，用户 "</span> . <span class="keyword">$this</span>-&gt;users[$index] . <span class="string">" 的 Github ID 为："</span> .$res-&gt;id);</div><div class="line"></div><div class="line">                <span class="keyword">$this</span>-&gt;countedAndCheckEnded();</div><div class="line">            &#125;,</div><div class="line">            <span class="string">'rejected'</span> =&gt; <span class="function"><span class="keyword">function</span> <span class="params">($reason, $index)</span></span>&#123;</div><div class="line">                <span class="keyword">$this</span>-&gt;error(<span class="string">"rejected"</span> );</div><div class="line">                <span class="keyword">$this</span>-&gt;error(<span class="string">"rejected reason: "</span> . $reason );</div><div class="line">                <span class="keyword">$this</span>-&gt;countedAndCheckEnded();</div><div class="line">            &#125;,</div><div class="line">        ]);</div><div class="line"></div><div class="line">        <span class="comment">// 开始发送请求</span></div><div class="line">        $promise = $pool-&gt;promise();</div><div class="line">        $promise-&gt;wait();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">countedAndCheckEnded</span><span class="params">()</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;counter &lt; <span class="keyword">$this</span>-&gt;totalPageCount)&#123;</div><div class="line">            <span class="keyword">$this</span>-&gt;counter++;</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">$this</span>-&gt;info(<span class="string">"请求结束！"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p><a href="https://laravel-china.org/topics/2130/laravel-under-the-use-of-guzzle-to-prepare-multi-threaded-crawler-combat" target="_blank" rel="external">https://laravel-china.org/topics/2130/laravel-under-the-use-of-guzzle-to-prepare-multi-threaded-crawler-combat</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -822,7 +811,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-count">203</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -832,7 +821,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">96</span>
+                <span class="site-state-item-count">98</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

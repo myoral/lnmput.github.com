@@ -252,6 +252,345 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/04/laravel5-2使用JWT/" itemprop="url">
+                  laravel5.2使用JWT
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-04T13:45:40+08:00" content="2016-12-04">
+              2016-12-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote class="blockquote-center"><br>more less<br></blockquote>
+
+<p>JWT stand for Json Web Token. JWT will helps to create authentication and connect front-end and back-end function. JWT through we can create login and register API. So first we have to install “tymon/jwt-auth” package in laravel 5.2.</p>
+<h3 id="JWT-Installation"><a href="#JWT-Installation" class="headerlink" title="JWT Installation"></a>JWT Installation</h3><p>First fire following command on your terminal.</p>
+<p>Installation Package</p>
+<p><code>composer require tymon/jwt-auth</code><br>After install this package, Now open config/app.php file and add service provider and aliase.<br><code>config/app.php</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="string">'providers'</span> =&gt; [</div><div class="line">	....</div><div class="line">	<span class="string">'Tymon\JWTAuth\Providers\JWTAuthServiceProvider'</span>,</div><div class="line">],</div><div class="line"><span class="string">'aliases'</span> =&gt; [</div><div class="line">	....</div><div class="line">	<span class="string">'JWTAuth'</span> =&gt; <span class="string">'Tymon\JWTAuth\Facades\JWTAuth'</span></div><div class="line">],</div></pre></td></tr></table></figure></p>
+<p>Now we need to publish JWT configration file, that way we can change configration like token expire time etc. so, let’s fire bellow command.</p>
+<p><code>php artisan vendor:publish --provider=&quot;Tymon\JWTAuth\Providers\JWTAuthServiceProvider&quot;</code><br>At last on installation, we have to generate jwt key, fire bellow command on your terminal.</p>
+<p><code>php artisan jwt:generate</code></p>
+<h3 id="Create-API-Route"><a href="#Create-API-Route" class="headerlink" title="Create API Route"></a>Create API Route</h3><p>Now we require to create create route for API, in bellow route you can see i use two middleware “api” and “cors”. cors is not mandatory, but when you call api and found like:</p>
+<p>“Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at <a href="http://test.com/api/register" target="_blank" rel="external">http://test.com/api/register</a>. (Reason: CORS header ‘Access-Control-Allow-Origin’ missing).”</p>
+<p>Then you have two must be create cors middleware by following link : Ajax - Cross-Origin Request Blocked in Larave 5?.</p>
+<p><code>app/Http/routes.php</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Route::group([<span class="string">'middleware'</span> =&gt; [<span class="string">'api'</span>,<span class="string">'cors'</span>],<span class="string">'prefix'</span> =&gt; <span class="string">'api'</span>], <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">    Route::post(<span class="string">'register'</span>, <span class="string">'APIController@register'</span>);</div><div class="line">    Route::post(<span class="string">'login'</span>, <span class="string">'APIController@login'</span>);</div><div class="line">    Route::group([<span class="string">'middleware'</span> =&gt; <span class="string">'jwt-auth'</span>], <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</div><div class="line">    	Route::post(<span class="string">'get_user_details'</span>, <span class="string">'APIController@get_user_details'</span>);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>In above i use also added jwt-auth for token is valid or not. so we must need to create jwt-auth middleware and first fire following command.</p>
+<p><code>php artisan make:middleware authJWT</code><br>On now you can check on Middleware(app/Http/Middleware) directory, you can find authJWT.php file and put bellow code on that file.</p>
+<p><code>app/Http/Middleware/authJWT.php</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Middleware</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Closure</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">JWTAuth</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Exception</span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">authJWT</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">handle</span><span class="params">($request, Closure $next)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            $user = JWTAuth::toUser($request-&gt;input(<span class="string">'token'</span>));</div><div class="line">        &#125; <span class="keyword">catch</span> (<span class="keyword">Exception</span> $e) &#123;</div><div class="line">            <span class="keyword">if</span> ($e <span class="keyword">instanceof</span> \Tymon\JWTAuth\Exceptions\TokenInvalidException)&#123;</div><div class="line">                <span class="keyword">return</span> response()-&gt;json([<span class="string">'error'</span>=&gt;<span class="string">'Token is Invalid'</span>]);</div><div class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span> ($e <span class="keyword">instanceof</span> \Tymon\JWTAuth\Exceptions\TokenExpiredException)&#123;</div><div class="line">                <span class="keyword">return</span> response()-&gt;json([<span class="string">'error'</span>=&gt;<span class="string">'Token is Expired'</span>]);</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="keyword">return</span> response()-&gt;json([<span class="string">'error'</span>=&gt;<span class="string">'Something is wrong'</span>]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> $next($request);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Ok, now register new created middleware on Kernel.php(app/Http/Kernel.php) file and append following line.</p>
+<p><code>app/Http/Kernel.php</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Http</span>\<span class="title">Kernel</span> <span class="title">as</span> <span class="title">HttpKernel</span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Kernel</span> <span class="keyword">extends</span> <span class="title">HttpKernel</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">	...</div><div class="line">	...</div><div class="line">    <span class="keyword">protected</span> $routeMiddleware = [</div><div class="line">        ...</div><div class="line">        <span class="string">'jwt-auth'</span> =&gt; \App\Http\Middleware\authJWT::class,</div><div class="line">    ];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="Create-Controller"><a href="#Create-Controller" class="headerlink" title="Create Controller"></a>Create Controller</h3><p>Here we have to create controller that will manage all route request. so first create “APIController” and put bellow code.</p>
+<p><code>app/Http/Controllers/APIController.php</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Controllers</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Http</span>\<span class="title">Request</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">User</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">Hash</span>;</div><div class="line"><span class="keyword">use</span> <span class="title">JWTAuth</span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">APIController</span> <span class="keyword">extends</span> <span class="title">Controller</span></span></div><div class="line"><span class="class"></span>&#123;</div><div class="line">	</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">register</span><span class="params">(Request $request)</span></span></div><div class="line"><span class="function">    </span>&#123;        </div><div class="line">    	$input = $request-&gt;all();</div><div class="line">    	$input[<span class="string">'password'</span>] = Hash::make($input[<span class="string">'password'</span>]);</div><div class="line">    	User::create($input);</div><div class="line">        <span class="keyword">return</span> response()-&gt;json([<span class="string">'result'</span>=&gt;<span class="keyword">true</span>]);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">login</span><span class="params">(Request $request)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">    	$input = $request-&gt;all();</div><div class="line">    	<span class="keyword">if</span> (!$token = JWTAuth::attempt($input)) &#123;</div><div class="line">            <span class="keyword">return</span> response()-&gt;json([<span class="string">'result'</span> =&gt; <span class="string">'wrong email or password.'</span>]);</div><div class="line">        &#125;</div><div class="line">        	<span class="keyword">return</span> response()-&gt;json([<span class="string">'result'</span> =&gt; $token]);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">get_user_details</span><span class="params">(Request $request)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">    	$input = $request-&gt;all();</div><div class="line">    	$user = JWTAuth::toUser($input[<span class="string">'token'</span>]);</div><div class="line">        <span class="keyword">return</span> response()-&gt;json([<span class="string">'result'</span> =&gt; $user]);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="Test-API-from-Front-end"><a href="#Test-API-from-Front-end" class="headerlink" title="Test API from Front-end"></a>Test API from Front-end</h3><p>Don’t forgot to change <a href="http://learnl52.hd" target="_blank" rel="external">http://learnl52.hd</a> = your site url.</p>
+<p>Now we are ready to check our API from front-end side. i did make jquery ajax request example but you can also call API in angularjs. first fire register api that will return just success if user created success fully.</p>
+<p>Call Register API<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">	url: <span class="string">"http://learnl52.hd/api/register"</span>,</div><div class="line">	dataType: <span class="string">"json"</span>,</div><div class="line">	type: <span class="string">"POST"</span>,</div><div class="line">	data: &#123;<span class="string">"name"</span>:<span class="string">"HD"</span>,<span class="string">"email"</span>:<span class="string">"test@gmail.com"</span>,<span class="string">"password"</span>:<span class="string">"123456"</span>&#125;,</div><div class="line">	success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">		alert(<span class="string">"user created successfully"</span>)</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>Now you can fire login API, this API will return token in result if, email and password will not wrong. that token you have to pass in all other route that way you can identify this user is current login user so fire following way:</p>
+<p>Call Login API<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">	url: <span class="string">"http://learnl52.hd/api/login"</span>,</div><div class="line">	dataType: <span class="string">"json"</span>,</div><div class="line">	type: <span class="string">"POST"</span>,</div><div class="line">	data: &#123;<span class="string">"email"</span>:<span class="string">"test@gmail.com"</span>,<span class="string">"password"</span>:<span class="string">"123456"</span>&#125;,</div><div class="line">	success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">		alert(data.result)</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>At last we can fire get_user_details API, This API will take only one paramete token, token is that you find on login API. this API will return all users details if your token is valid, if token is not valid then return error message. fire ajax like this way:</p>
+<p>Call Get User Details API<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">	url: <span class="string">"http://learnl52.hd/api/get_user_details"</span>,</div><div class="line">	dataType: <span class="string">"json"</span>,</div><div class="line">	type: <span class="string">"POST"</span>,</div><div class="line">	data: &#123;<span class="string">"token"</span>:your toke here&#125;,</div><div class="line">	success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(data)</div><div class="line">	&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="add"><a href="#add" class="headerlink" title="add"></a>add</h3><p>Require the barryvdh/laravel-cors package in your composer.json and update your dependencies.</p>
+<p><code>composer require barryvdh/laravel-cors</code><br>Add the Cors\ServiceProvider to your<code>config/app.php</code>providers array:</p>
+<p><code>Barryvdh\Cors\ServiceProvider::class,</code></p>
+<blockquote>
+<p><a href="http://itsolutionstuff.com/post/laravel-52-api-using-jwt-authentication-tutorial-from-scratch-exampleexample.html" target="_blank" rel="external">http://itsolutionstuff.com/post/laravel-52-api-using-jwt-authentication-tutorial-from-scratch-exampleexample.html</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/02/flex布局方式之子元素/" itemprop="url">
+                  flex布局方式之子元素
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-02T14:44:04+08:00" content="2016-12-02">
+              2016-12-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>　你必须很努力，才能看上去毫不费力<br></blockquote><br>最近学习了微信小程序，才接触到了这一布局方式，大概试了一下，记录之</p>
+<h3 id="1-布局html"><a href="#1-布局html" class="headerlink" title="1. 布局html"></a>1. 布局html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item1"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item2"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item3"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item4"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item5"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item6"</span>&gt;</span>6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item7"</span>&gt;</span>7<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item8"</span>&gt;</span>8<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item item9"</span>&gt;</span>9<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="2-order-属性"><a href="#2-order-属性" class="headerlink" title="2.order 属性"></a>2.order 属性</h3><p>order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.item1</span>&#123;</div><div class="line">	<span class="attribute">order</span>: <span class="number">2</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item2</span>&#123;</div><div class="line">	<span class="attribute">order</span>: <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="3-flex-grow属性"><a href="#3-flex-grow属性" class="headerlink" title="3. flex-grow属性"></a>3. flex-grow属性</h3><p>即如果子元素在父容器的横向上还没有撑满，左或者右都存在空间<br>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.item1</span>&#123;</div><div class="line">	<span class="attribute">order</span>: <span class="number">2</span>;</div><div class="line">	<span class="attribute">flex-grow</span>: <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果三个元素都设置这样的属性，则由这三个元素一起撑满剩余的部分<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.item1</span>&#123;</div><div class="line">	<span class="attribute">flex-grow</span>: <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item2</span>&#123;</div><div class="line">	<span class="attribute">order</span>: <span class="number">1</span>;</div><div class="line">	<span class="attribute">flex-grow</span>: <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item3</span>&#123;</div><div class="line">	<span class="attribute">flex-grow</span>: <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="4-flex-shrink属性"><a href="#4-flex-shrink属性" class="headerlink" title="4. flex-shrink属性"></a>4. flex-shrink属性</h3><p>如果所有的子元素的宽度已经超过了父容器的宽度，而且设置了不能换行，这时候如果某个元素设置了这样的属性，<br>flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.item2</span>&#123;</div><div class="line">	<span class="attribute">flex-shrink</span>: <span class="number">2</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item3</span>&#123;</div><div class="line">	<span class="attribute">flex-shrink</span>: <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/02/flex布局方式之父容器/" itemprop="url">
+                  flex布局方式之父容器
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-02T14:43:57+08:00" content="2016-12-02">
+              2016-12-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><blockquote class="blockquote-center"><br>没有学到死，就往死里学。<br></blockquote><br>最近学习了微信小程序，才接触到了这一布局方式，大概试了一下，记录：</p>
+<p>使用方式：</p>
+<h3 id="1-html"><a href="#1-html" class="headerlink" title="1. html"></a>1. html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>7<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>8<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span>9<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="2-定义基本css样式："><a href="#2-定义基本css样式：" class="headerlink" title="2. 定义基本css样式："></a>2. 定义基本css样式：</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span>&#123;</div><div class="line">	<span class="attribute">background</span>: <span class="number">#c0ffb6</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">150px</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#4cae4c</span>;</div><div class="line">	<span class="attribute">margin</span>: <span class="number">2px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-设置父容器为flex布局："><a href="#3-设置父容器为flex布局：" class="headerlink" title="3. 设置父容器为flex布局："></a>3. 设置父容器为flex布局：</h3><ul>
+<li><p>div 块儿级元素</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">display</span>: flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>或者 行内元素</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">display</span>: inline-flex;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>设为Flex布局以后，子元素的float、clear和vertical-align属性将失效</p>
+<h3 id="4-flex-direction-属性："><a href="#4-flex-direction-属性：" class="headerlink" title="4. flex-direction 属性："></a>4. flex-direction 属性：</h3><p>决定容器里面元素的排列方式<br>横向排列<br>横向反转排列<br>纵向排列<br>纵向反转排列<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">display</span>: flex;</div><div class="line">	<span class="attribute">flex-direction</span>: column;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="5-flex-wrap-属性"><a href="#5-flex-wrap-属性" class="headerlink" title="5. flex-wrap 属性"></a>5. flex-wrap 属性</h3><p>横向排列的子元素是否换行<br>在子元素的大小超出了父容器的大小以后是换行显示<br>不换行： nowrap  设置了不换行以后，子元素的大小将。。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">display</span>: flex;</div><div class="line">	<span class="attribute">flex-direction</span>: row;</div><div class="line">	<span class="attribute">flex-wrap</span>: nowrap;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">650px</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#4cae4c</span>;</div><div class="line">	<span class="attribute">margin</span>: <span class="number">2px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="6-justify-content-属性"><a href="#6-justify-content-属性" class="headerlink" title="6. justify-content 属性"></a>6. justify-content 属性</h3><p>子元素的对齐方式<br>左对齐<br>右对齐<br>居中显示<br>相等间隔<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">display</span>: flex;</div><div class="line">	<span class="attribute">flex-direction</span>: row;</div><div class="line">	<span class="attribute">flex-wrap</span>: nowrap;</div><div class="line">	<span class="attribute">justify-content</span>: space-around;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="7-align-items"><a href="#7-align-items" class="headerlink" title="7. align-items:"></a>7. align-items:</h3><p>决定子元素在垂直位置上的对齐方式<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">display</span>: flex;</div><div class="line">	<span class="attribute">flex-direction</span>: row;</div><div class="line">	<span class="attribute">flex-wrap</span>: nowrap;</div><div class="line">	<span class="attribute">justify-content</span>: space-around;</div><div class="line">	<span class="attribute">align-items</span>: flex-end;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="8-align-self-属性"><a href="#8-align-self-属性" class="headerlink" title="8. align-self 属性"></a>8. align-self 属性</h3><p>决定当前元素的对齐方式，用于覆盖父容器的align-items 属性<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">	<span class="attribute">display</span>: flex;</div><div class="line">	<span class="attribute">flex-direction</span>: row;</div><div class="line">	<span class="attribute">flex-wrap</span>: nowrap;</div><div class="line">	<span class="attribute">align-items</span>: center;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item</span>&#123;</div><div class="line">	<span class="attribute">width</span>: <span class="number">450px</span>;</div><div class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">	<span class="attribute">background-color</span>: <span class="number">#4cae4c</span>;</div><div class="line">	<span class="attribute">margin</span>: <span class="number">2px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item1</span>&#123;</div><div class="line">	<span class="attribute">height</span>: <span class="number">120px</span>;</div><div class="line">	<span class="attribute">align-self</span>: flex-end;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item2</span>&#123;</div><div class="line">	<span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.item3</span>&#123;</div><div class="line">	<span class="attribute">height</span>: <span class="number">150px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/01/laravel和nginx的404/" itemprop="url">
                   laravel和nginx的404
                 </a>
@@ -430,319 +769,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/29/elasticSearch聚合/" itemprop="url">
-                  elasticSearch聚合
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-29T23:22:13+08:00" content="2016-11-29">
-              2016-11-29
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>当斧头来到树林里的时候，好多树都说，至少它的把手是我们自己人。<br></blockquote><br>ES中的聚合被分为两大类：Metric度量和bucket桶（原谅我英语差，找不到合适的词语…..就用单词来说吧！）。说的通俗点，metric很像SQL中的avg、max、min等方法，而bucket就有点类似group by了。</p>
-<h3 id="Sum-求和"><a href="#Sum-求和" class="headerlink" title="Sum 求和"></a>Sum 求和</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">"aggs" : &#123;</div><div class="line">    "intraday_return" : &#123; "sum" : &#123; "field" : "change" &#125; &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<h3 id="Min-求最小值"><a href="#Min-求最小值" class="headerlink" title="Min 求最小值"></a>Min 求最小值</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"aggs"</span> : &#123;</div><div class="line">        <span class="attr">"min_price"</span> : &#123; <span class="attr">"min"</span> : &#123; <span class="attr">"field"</span> : <span class="string">"price"</span> &#125; &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="cardinality-求唯一值，即不重复的字段有多少"><a href="#cardinality-求唯一值，即不重复的字段有多少" class="headerlink" title="cardinality 求唯一值，即不重复的字段有多少"></a>cardinality 求唯一值，即不重复的字段有多少</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"aggs"</span> : &#123;</div><div class="line">        <span class="attr">"author_count"</span> : &#123;</div><div class="line">            <span class="attr">"cardinality"</span> : &#123;</div><div class="line">                <span class="attr">"field"</span> : <span class="string">"author"</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="一次性返回所有指标，count，min，max，avg，sum"><a href="#一次性返回所有指标，count，min，max，avg，sum" class="headerlink" title="一次性返回所有指标，count，min，max，avg，sum"></a>一次性返回所有指标，count，min，max，avg，sum</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"aggs"</span> : &#123;</div><div class="line">        <span class="attr">"grades_stats"</span> : &#123; <span class="attr">"stats"</span> : &#123; <span class="attr">"field"</span> : <span class="string">"total_price"</span> &#125; &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="先过滤后聚合"><a href="#先过滤后聚合" class="headerlink" title="先过滤后聚合"></a>先过滤后聚合</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"aggs"</span> : &#123;</div><div class="line">        <span class="attr">"paid_order"</span> : &#123;</div><div class="line">            <span class="attr">"filter"</span> : &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"status_code"</span>: <span class="string">"paid"</span> &#125; &#125;,</div><div class="line">            <span class="attr">"aggs"</span> : &#123;</div><div class="line">                <span class="attr">"avg_price"</span> : &#123; <span class="attr">"avg"</span> : &#123; <span class="attr">"field"</span> : <span class="string">"total_price"</span> &#125; &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="去除结果中的产品"><a href="#去除结果中的产品" class="headerlink" title="去除结果中的产品"></a>去除结果中的产品</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"size"</span>:<span class="number">0</span>,</div><div class="line">    <span class="attr">"aggs"</span> : &#123;</div><div class="line">        <span class="attr">"paid_order"</span> : &#123;</div><div class="line">            <span class="attr">"filter"</span> : &#123; <span class="attr">"term"</span>: &#123; <span class="attr">"status_code"</span>: <span class="string">"paid"</span> &#125; &#125;,</div><div class="line">            <span class="attr">"aggs"</span> : &#123;</div><div class="line">                <span class="attr">"avg_price"</span> : &#123; <span class="attr">"avg"</span> : &#123; <span class="attr">"field"</span> : <span class="string">"total_price"</span> &#125; &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="使用区间统计"><a href="#使用区间统计" class="headerlink" title="使用区间统计"></a>使用区间统计</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"aggs"</span> : &#123;</div><div class="line">        <span class="attr">"prices"</span> : &#123;</div><div class="line">            <span class="attr">"histogram"</span> : &#123;</div><div class="line">                <span class="attr">"field"</span> : <span class="string">"total_price"</span>,</div><div class="line">                <span class="attr">"interval"</span> : <span class="number">1000</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="日期过滤"><a href="#日期过滤" class="headerlink" title="日期过滤"></a>日期过滤</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"aggs"</span>: &#123;</div><div class="line">        <span class="attr">"range"</span>: &#123;</div><div class="line">            <span class="attr">"date_range"</span>: &#123;</div><div class="line">                <span class="attr">"field"</span>: <span class="string">"created_at"</span>,</div><div class="line">                <span class="attr">"format"</span>: <span class="string">"MM-yyy"</span>,</div><div class="line">                    <span class="attr">"ranges"</span>: [</div><div class="line">                        &#123; <span class="attr">"to"</span>: <span class="string">"now-10M/M"</span> &#125;,</div><div class="line">                        &#123; <span class="attr">"from"</span>: <span class="string">"now-10M/M"</span> &#125;</div><div class="line">                    ]</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/29/chrome插件开发之获取图片信息/" itemprop="url">
-                  chrome插件开发之获取图片信息
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-29T23:21:48+08:00" content="2016-11-29">
-              2016-11-29
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>受任于败军之际，奉命于危难之间，尔来二十有一年矣。<br></blockquote></p>
-<h3 id="manifest-json"><a href="#manifest-json" class="headerlink" title="manifest.json"></a>manifest.json</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="attr">"name"</span> : <span class="string">"Imageinfo"</span>,</div><div class="line"><span class="attr">"version"</span> : <span class="string">"1.0.1"</span>,</div><div class="line"><span class="attr">"description"</span> : <span class="string">"Get image info for images, including EXIF data"</span>,</div><div class="line"><span class="attr">"background"</span> : &#123; <span class="attr">"scripts"</span>: [<span class="string">"js/background.js"</span>] &#125;,</div><div class="line"><span class="attr">"permissions"</span> : [</div><div class="line"><span class="string">"contextMenus"</span>,</div><div class="line"><span class="string">"tabs"</span>,</div><div class="line"><span class="string">"http://*/*"</span>,</div><div class="line"><span class="string">"https://*/*"</span></div><div class="line">],</div><div class="line"><span class="attr">"minimum_chrome_version"</span> : <span class="string">"6.0.0.0"</span>,</div><div class="line"><span class="attr">"icons"</span> : &#123;</div><div class="line"><span class="attr">"16"</span> : <span class="string">"images/icon16.png"</span>,</div><div class="line"><span class="attr">"48"</span> : <span class="string">"images/icon48.png"</span>,</div><div class="line"><span class="attr">"128"</span> : <span class="string">"images/icon128.png"</span></div><div class="line">&#125;,</div><div class="line"><span class="attr">"manifest_version"</span>: <span class="number">2</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="background-js"><a href="#background-js" class="headerlink" title="background.js"></a>background.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getClickHandler</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">info, tab</span>) </span>&#123;</div><div class="line"><span class="keyword">var</span> url = <span class="string">'html/index.html#'</span> + info.srcUrl;</div><div class="line">chrome.windows.create(&#123; url: url, width: <span class="number">520</span>, height: <span class="number">660</span> &#125;);</div><div class="line">&#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">chrome.contextMenus.create(&#123;</div><div class="line"><span class="string">"title"</span> : <span class="string">"Get image info"</span>,</div><div class="line"><span class="string">"type"</span> : <span class="string">"normal"</span>,</div><div class="line"><span class="string">"contexts"</span> : [<span class="string">"image"</span>],</div><div class="line"><span class="string">"onclick"</span> : getClickHandler()</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h3 id="index-html"><a href="#index-html" class="headerlink" title="index.html"></a>index.html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span></span></div><div class="line"><span class="tag"><span class="attr">content</span>=<span class="string">"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../js/content.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">h1</span>&gt;</span>tihs is a new page<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"con"</span>&gt;</span></div><div class="line"></div><div class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="content-js"><a href="#content-js" class="headerlink" title="content.js"></a>content.js</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">url = <span class="built_in">window</span>.location.href;</div><div class="line">kk = url.split(<span class="string">'#'</span>);</div><div class="line">$(<span class="string">"#con"</span>).html(<span class="string">"&lt;img src='"</span>+kk[<span class="number">1</span>]+<span class="string">"' /&gt;"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/25/事件DOMContentLoaded和load的区别/" itemprop="url">
-                  事件DOMContentLoaded和load的区别
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-25T09:18:27+08:00" content="2016-11-25">
-              2016-11-25
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><blockquote class="blockquote-center"><br>她是你姑姑，又是你师父，怎么能做你妻子！<br></blockquote></p>
-<h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><p>他们的区别是，触发的时机不一样，先触发DOMContentLoaded事件，后触发load事件。</p>
-<p>DOM文档加载的步骤为：</p>
-<ul>
-<li>解析HTML结构。</li>
-<li>加载外部脚本和样式表文件。</li>
-<li>解析并执行脚本代码。</li>
-<li>DOM树构建完成。//DOMContentLoaded</li>
-<li>加载图片等外部文件。</li>
-<li>页面加载完毕。//load</li>
-</ul>
-<p>在第4步，会触发DOMContentLoaded事件。在第6步，触发load事件。<br>用原生js可以这么写:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 不兼容老的浏览器，兼容写法见[jQuery中ready与load事件](http://www.imooc.com/code/3253)，或用jQuery</span></div><div class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"DOMContentLoaded"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="comment">// ...代码...</span></div><div class="line">&#125;, <span class="literal">false</span>);</div><div class="line"></div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">"load"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// ...代码...</span></div><div class="line">&#125;, <span class="literal">false</span>);</div></pre></td></tr></table></figure></p>
-<p>用jQuery这么写:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// DOMContentLoaded</span></div><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// ...代码...</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">//load</span></div><div class="line">$(<span class="built_in">document</span>).load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// ...代码...</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p><a href="http://www.jianshu.com/p/d851db5f2f30" target="_blank" rel="external">http://www.jianshu.com/p/d851db5f2f30</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/29/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/40/">40</a><a class="extend next" rel="next" href="/page/31/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/29/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><span class="page-number current">30</span><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/41/">41</a><a class="extend next" rel="next" href="/page/31/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -783,7 +814,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">200</span>
+              <span class="site-state-item-count">203</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -793,7 +824,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">96</span>
+                <span class="site-state-item-count">98</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
